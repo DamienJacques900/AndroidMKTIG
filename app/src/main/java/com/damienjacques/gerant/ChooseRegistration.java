@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class ChooseRegistration extends AppCompatActivity
 {
+    //test github
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
