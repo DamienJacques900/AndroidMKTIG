@@ -17,15 +17,16 @@
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="38dp"
-            android:id="@+id/res" />
+            android:id="@+id/reservationCoffee"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/res"
-            android:layout_alignLeft="@+id/res"
-            android:layout_alignStart="@+id/res"
+            android:layout_below="@+id/reservationCoffee"
+            android:layout_alignLeft="@+id/reservationCoffee"
+            android:layout_alignStart="@+id/reservationCoffee"
             android:layout_marginTop="18dp">
 
             <TextView

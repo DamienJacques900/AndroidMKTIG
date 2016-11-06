@@ -29,4 +29,9 @@
     <string name="street">Rue</string>
     <string name="coffeeOfferTitle">Café suspendu offert par</string>
     <string name="numberCoffeeOffer">Nombre de café offert :</string>
+    <string name="thanksCoffee">Grâce à vous, number de cafés suspendu ont été offerts</string>
+    <string name="options">Options</string>
+    <string name="confirmatioPassword">Confirmation mot de passe</string>
+    <string name="modify">Modifier</string>
+    <string name="goBack">Retour</string>
 </resources>

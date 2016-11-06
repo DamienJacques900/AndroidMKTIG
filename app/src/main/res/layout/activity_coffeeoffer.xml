@@ -14,7 +14,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="86dp"
-            android:id="@+id/thankYou" />
+            android:id="@+id/thankYou"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
 
         <Button
             android:text="@string/offer"
@@ -46,7 +47,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="33dp"
             android:id="@+id/textView17"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <EditText
             android:layout_width="wrap_content"
