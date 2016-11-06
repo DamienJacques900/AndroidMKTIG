@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gerant</string>
+    <string name="app_name">Café suspendu</string>
     <string name="identifiant">Identifiant</string>
     <string name="connexion">Connexion</string>
     <string name="inscription">Inscription</string>
@@ -34,4 +34,7 @@
     <string name="confirmatioPassword">Confirmation mot de passe</string>
     <string name="modify">Modifier</string>
     <string name="goBack">Retour</string>
+    <string name="thanksClient">Grâce à vous, number sans-abri(s) ont pu béneficier d\'un café suspendu</string>
+    <string name="promotion">Promotion</string>
+    <string name="history">Historique</string>
 </resources>
