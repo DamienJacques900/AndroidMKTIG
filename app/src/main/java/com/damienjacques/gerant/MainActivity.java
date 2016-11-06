@@ -8,15 +8,15 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button clickRegistration,clickConnextion;
+    private Button clickRegistration,clickConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        clickRegistration =(Button) findViewById(R.id.buttonRegistration);
-        clickConnextion = (Button) findViewById(R.id.buttonConnexion);
+        clickRegistration =(Button) findViewById(R.id.buttonRegistrationMain);
+        clickConnection = (Button) findViewById(R.id.buttonConnection);
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clickConnextion.setOnClickListener(new View.OnClickListener() {
+        clickConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {

@@ -66,7 +66,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="59dp"
-            android:id="@+id/button4" />
+            android:id="@+id/buttonRegistrationCoffee" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
             android:layout_below="@+id/textView15"
             android:layout_alignLeft="@+id/textView15"
             android:layout_alignStart="@+id/textView15"
-            android:id="@+id/amountPromoRegistrationCoffee" />
+            android:id="@+id/valuePromoRegistrationCoffee" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -136,8 +136,8 @@
             android:id="@+id/textView16"
             android:layout_alignBaseline="@+id/numberCoffeePromoRegistrationCoffee"
             android:layout_alignBottom="@+id/numberCoffeePromoRegistrationCoffee"
-            android:layout_toRightOf="@+id/button4"
-            android:layout_toEndOf="@+id/button4" />
+            android:layout_toRightOf="@+id/buttonRegistrationCoffee"
+            android:layout_toEndOf="@+id/buttonRegistrationCoffee" />
 
         <EditText
             android:layout_width="wrap_content"
