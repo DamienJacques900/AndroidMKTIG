@@ -8,4 +8,18 @@
     <string name="offrir">Offrir</string>
     <string name="reservation">Reservation</string>
     <string name="merci">MERCI</string>
+    <string name="choix_texte">Choissez qui vous êtes</string>
+    <string name="coffee">Café</string>
+    <string name="client">Client</string>
+    <string name="choice_text">Choissisez qui vous etes</string>
+    <string name="client_bidder">Client offrant</string>
+    <string name="thanks">Merci pour votre geste</string>
+    <string name="offer">Offrir</string>
+    <string name="connection">Connexion</string>
+    <string name="user_name">Identifiant</string>
+    <string name="registration">Inscription</string>
+    <string name="coffee_totalcoffeeoffer">X cafés suspensud ont été offert dans votre établissement</string>
+    <string name="name">Nom</string>
+    <string name="firstname">Prénom</string>
+    <string name="mail">Mail</string>
 </resources>

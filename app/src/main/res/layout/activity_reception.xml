@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="@string/merci"
+            android:text="@string/thanks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -17,7 +17,7 @@
             android:id="@+id/merci" />
 
         <TextView
-            android:text="X cafés suspensud ont été offert dans votre établissement"
+            android:text="@string/coffee_totalcoffeeoffer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

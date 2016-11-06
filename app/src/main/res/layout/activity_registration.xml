@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="Inscription"
+            android:text="@string/registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -20,7 +20,7 @@
             android:id="@+id/textView4" />
 
         <TextView
-            android:text="Nom"
+            android:text="@string/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
@@ -40,7 +40,7 @@
             android:id="@+id/editText3" />
 
         <TextView
-            android:text="Prénom"
+            android:text="@string/firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText3"
@@ -59,7 +59,7 @@
             android:id="@+id/editText5" />
 
         <TextView
-            android:text="Mail"
+            android:text="@string/mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText5"
@@ -78,7 +78,7 @@
             android:layout_alignStart="@+id/textView12" />
 
         <TextView
-            android:text="Pseudo"
+            android:text="@string/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView13"

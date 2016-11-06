@@ -33,7 +33,7 @@
         android:layout_alignStart="@+id/editText" />
 
     <Button
-        android:text="@string/connexion"
+        android:text="@string/connection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonConnexion"
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="@string/identifiant1"
+        android:text="@string/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText"
@@ -61,7 +61,7 @@
         android:layout_marginBottom="47dp" />
 
     <Button
-        android:text="@string/inscription"
+        android:text="@string/registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonRegistration"

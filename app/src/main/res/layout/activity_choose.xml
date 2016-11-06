@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Café"
+            android:text="@string/coffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -19,7 +19,7 @@
             android:id="@+id/button2" />
 
         <Button
-            android:text="Client"
+            android:text="@string/client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/button2"
@@ -30,7 +30,7 @@
             android:id="@+id/button3" />
 
         <TextView
-            android:text="Choissez qui vous êtes"
+            android:text="@string/choice_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

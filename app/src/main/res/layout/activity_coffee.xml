@@ -22,7 +22,7 @@
             android:id="@+id/editText4" />
 
         <TextView
-            android:text="Client offrant"
+            android:text="@string/client_bidder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/editText4"
@@ -32,7 +32,7 @@
             android:id="@+id/textView2" />
 
         <TextView
-            android:text="Password"
+            android:text="@string/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -53,7 +53,7 @@
             android:id="@+id/passwordCoffee" />
 
         <TextView
-            android:text="Merci pour votre geste"
+            android:text="@string/thanks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -62,7 +62,7 @@
             android:id="@+id/thankYou" />
 
         <Button
-            android:text="@string/offrir"
+            android:text="@string/offer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
