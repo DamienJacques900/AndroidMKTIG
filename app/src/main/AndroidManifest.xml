@@ -20,13 +20,13 @@
             android:parentActivityName=".MainActivity"
             />
         
-        <activity android:name=".ReceptionActivity"
+        <activity android:name=".ReceptionCoffeeActivity"
             />
-        <activity android:name=".RegistrationActivity"
+        <activity android:name=".RegistrationClientActivity"
             />
-        <activity android:name=".CoffeeActivity"
+        <activity android:name=".OfferCoffeeActivity"
             />
-        <activity android:name=".ReservationActivity"
+        <activity android:name=".ReservationCoffeeActivity"
             />
     </application>
 

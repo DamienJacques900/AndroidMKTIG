@@ -11,13 +11,13 @@ import android.widget.Toast;
  * Created by Damien Jacques on 16-10-16.
  */
 
-public class CoffeeActivity extends AppCompatActivity
+public class RegistrationClientActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offercoffee);
+        setContentView(R.layout.activity_registrationclient);
     }
 
     @Override
@@ -33,19 +33,19 @@ public class CoffeeActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.receptionId:
-                Intent intentReception = new Intent(CoffeeActivity.this,ReceptionActivity.class);
+                Intent intentReception = new Intent(RegistrationClientActivity.this,ReceptionCoffeeActivity.class);
                 startActivity(intentReception);
-                return true;
+                return true; //indispensable
             case R.id.coffeeId:
-                Intent intentCoffe = new Intent(CoffeeActivity.this,CoffeeActivity.class);
+                Intent intentCoffe = new Intent(RegistrationClientActivity.this,OfferCoffeeActivity.class);
                 startActivity(intentCoffe);
                 return true;
             case R.id.reservationID:
-                Intent intentReservation = new Intent(CoffeeActivity.this,ReservationActivity.class);
+                Intent intentReservation = new Intent(RegistrationClientActivity.this,ReservationCoffeeActivity.class);
                 startActivity(intentReservation);
                 return true;
             case R.id.disconaction:
-                Toast.makeText(CoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationClientActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

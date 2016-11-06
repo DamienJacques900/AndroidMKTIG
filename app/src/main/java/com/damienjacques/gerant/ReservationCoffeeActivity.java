@@ -11,13 +11,13 @@ import android.widget.Toast;
  * Created by Damien Jacques on 16-10-16.
  */
 
-public class RegistrationActivity extends AppCompatActivity
+public class ReservationCoffeeActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrationclient);
+        setContentView(R.layout.activity_reservationcoffee);
     }
 
     @Override
@@ -33,19 +33,19 @@ public class RegistrationActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.receptionId:
-                Intent intentReception = new Intent(RegistrationActivity.this,ReceptionActivity.class);
+                Intent intentReception = new Intent(ReservationCoffeeActivity.this,ReceptionCoffeeActivity.class);
                 startActivity(intentReception);
-                return true; //indispensable
+                return true;
             case R.id.coffeeId:
-                Intent intentCoffe = new Intent(RegistrationActivity.this,CoffeeActivity.class);
+                Intent intentCoffe = new Intent(ReservationCoffeeActivity.this,OfferCoffeeActivity.class);
                 startActivity(intentCoffe);
                 return true;
             case R.id.reservationID:
-                Intent intentReservation = new Intent(RegistrationActivity.this,ReservationActivity.class);
+                Intent intentReservation = new Intent(ReservationCoffeeActivity.this,ReservationCoffeeActivity.class);
                 startActivity(intentReservation);
                 return true;
             case R.id.disconaction:
-                Toast.makeText(RegistrationActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReservationCoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
