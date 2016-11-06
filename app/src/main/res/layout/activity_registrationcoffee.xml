@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:text="@string/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_marginTop="45dp"
+            android:id="@+id/textView10" />
+
+        <TextView
+            android:text="@string/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView11"
+            android:layout_alignLeft="@+id/textView11"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="42dp"
+            android:id="@+id/textView12" />
+
+        <TextView
+            android:text="@string/promoafter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_marginTop="49dp"
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:text="@string/valuepromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView13"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignStart="@+id/textView13"
+            android:layout_marginTop="48dp"
+            android:id="@+id/textView15" />
+
+        <Button
+            android:text="@string/registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="59dp"
+            android:id="@+id/button4" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:id="@+id/userNameRegistrationCoffee" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/textView10"
+            android:layout_alignLeft="@+id/textView10"
+            android:layout_alignStart="@+id/textView10"
+            android:id="@+id/passwordRegistrationCoffee" />
+
+        <TextView
+            android:text="@string/street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11"
+            android:layout_below="@+id/passwordRegistrationCoffee"
+            android:layout_alignLeft="@+id/passwordRegistrationCoffee"
+            android:layout_alignStart="@+id/passwordRegistrationCoffee" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/textView12"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignStart="@+id/textView13"
+            android:id="@+id/numberRegistrationCoffee" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_below="@+id/textView15"
+            android:layout_alignLeft="@+id/textView15"
+            android:layout_alignStart="@+id/textView15"
+            android:id="@+id/amountPromoRegistrationCoffee" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_below="@+id/textView13"
+            android:layout_alignLeft="@+id/textView15"
+            android:layout_alignStart="@+id/textView15"
+            android:id="@+id/numberCoffeePromoRegistrationCoffee" />
+
+        <TextView
+            android:text="@string/coffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:id="@+id/textView16"
+            android:layout_alignBaseline="@+id/numberCoffeePromoRegistrationCoffee"
+            android:layout_alignBottom="@+id/numberCoffeePromoRegistrationCoffee"
+            android:layout_toRightOf="@+id/button4"
+            android:layout_toEndOf="@+id/button4" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/streetRegistrationCoffee"
+            android:layout_below="@+id/textView11"
+            android:layout_toLeftOf="@+id/textView16"
+            android:layout_toStartOf="@+id/textView16" />
+    </RelativeLayout>
+</LinearLayout>

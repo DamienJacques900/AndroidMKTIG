@@ -22,4 +22,9 @@
     <string name="name">Nom</string>
     <string name="firstname">Prénom</string>
     <string name="mail">Mail</string>
+    <string name="phone">Téléphone</string>
+    <string name="number">Numéro</string>
+    <string name="promoafter">Promotion après</string>
+    <string name="valuepromo">Valeur promo</string>
+    <string name="street">Rue</string>
 </resources>
