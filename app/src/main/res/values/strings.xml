@@ -27,4 +27,6 @@
     <string name="promoafter">Promotion après</string>
     <string name="valuepromo">Valeur promo</string>
     <string name="street">Rue</string>
+    <string name="coffeeOfferTitle">Café suspendu offert par</string>
+    <string name="numberCoffeeOffer">Nombre de café offert :</string>
 </resources>
