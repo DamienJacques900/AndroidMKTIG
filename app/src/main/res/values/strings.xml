@@ -37,4 +37,5 @@
     <string name="thanksClient">Grâce à vous, number sans-abri(s) ont pu béneficier d\'un café suspendu</string>
     <string name="promotion">Promotion</string>
     <string name="history">Historique</string>
+    <string name="deleteHistory">Supprimer l\'historique</string>
 </resources>
