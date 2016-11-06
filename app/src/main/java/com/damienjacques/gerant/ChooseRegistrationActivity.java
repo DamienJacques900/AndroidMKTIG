@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Damien Jacques on 16-10-16.
  */
 
-public class ChooseRegistration extends AppCompatActivity
+public class ChooseRegistrationActivity extends AppCompatActivity
 {
     //test github
     @Override

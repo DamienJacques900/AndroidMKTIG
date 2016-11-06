@@ -16,17 +16,38 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ChooseRegistration"
+        <activity android:name=".ChooseRegistrationActivity"
             android:parentActivityName=".MainActivity"
             />
         
         <activity android:name=".ReceptionCoffeeActivity"
             />
+
         <activity android:name=".RegistrationClientActivity"
             />
+
         <activity android:name=".OfferCoffeeActivity"
             />
+
         <activity android:name=".ReservationCoffeeActivity"
+            />
+
+        <activity android:name=".HistoryClientActivity"
+            />
+
+        <activity android:name=".OptionClientActivity"
+            />
+
+        <activity android:name=".OptionCoffeeActivity"
+            />
+
+        <activity android:name=".PromotionClientActivity"
+            />
+
+        <activity android:name=".ReceptionClientActivity"
+            />
+
+        <activity android:name=".RegistrationCoffeeActivity"
             />
     </application>
 
