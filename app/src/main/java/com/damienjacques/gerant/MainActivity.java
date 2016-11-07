@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button clickRegistration,clickConnection;
+    private Button clickRegistration,clickConnection,clickPourClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         clickRegistration =(Button) findViewById(R.id.buttonRegistrationMain);
         clickConnection = (Button) findViewById(R.id.buttonConnection);
+        clickPourClient = (Button) findViewById(R.id.buttonInutile);
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        clickPourClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
                 startActivity(intent);
             }
         });

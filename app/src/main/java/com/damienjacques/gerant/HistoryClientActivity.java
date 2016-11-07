@@ -24,22 +24,28 @@ public class HistoryClientActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.receptionId:
-                Intent intentReception = new Intent(HistoryClientActivity.this, ReceptionCoffeeActivity.class);
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.receptionClientId:
+                Intent intentReception = new Intent(HistoryClientActivity.this,ReceptionClientActivity.class);
                 startActivity(intentReception);
                 return true;
-            case R.id.coffeeId:
-                Intent intentCoffe = new Intent(HistoryClientActivity.this, OfferCoffeeActivity.class);
-                startActivity(intentCoffe);
+            case R.id.historyId:
+                Intent intentHistory = new Intent(HistoryClientActivity.this,HistoryClientActivity.class);
+                startActivity(intentHistory);
                 return true;
-            case R.id.reservationID:
-                Intent intentReservation = new Intent(HistoryClientActivity.this, ReservationCoffeeActivity.class);
-                startActivity(intentReservation);
+            case R.id.promotionId:
+                Intent intentPromotion = new Intent(HistoryClientActivity.this,PromotionClientActivity.class);
+                startActivity(intentPromotion);
                 return true;
-            case R.id.disconaction:
-                Toast.makeText(HistoryClientActivity.this, "Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+            case R.id.optionsClientId:
+                Intent intentOption = new Intent(HistoryClientActivity.this,OptionClientActivity.class);
+                startActivity(intentOption);
+                return true;
+            case R.id.disconactionId:
+                Toast.makeText(HistoryClientActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

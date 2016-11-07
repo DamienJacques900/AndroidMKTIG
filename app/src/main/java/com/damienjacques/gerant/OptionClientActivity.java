@@ -3,8 +3,11 @@ package com.damienjacques.gerant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class OptionClientActivity extends AppCompatActivity
 {
@@ -26,5 +29,41 @@ public class OptionClientActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        this.getMenuInflater().inflate(R.menu.menu_client,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.receptionClientId:
+                Intent intentReception = new Intent(OptionClientActivity.this,ReceptionClientActivity.class);
+                startActivity(intentReception);
+                return true;
+            case R.id.historyId:
+                Intent intentHistory = new Intent(OptionClientActivity.this,HistoryClientActivity.class);
+                startActivity(intentHistory);
+                return true;
+            case R.id.promotionId:
+                Intent intentPromotion = new Intent(OptionClientActivity.this,PromotionClientActivity.class);
+                startActivity(intentPromotion);
+                return true;
+            case R.id.optionsClientId:
+                Intent intentOption = new Intent(OptionClientActivity.this,OptionClientActivity.class);
+                startActivity(intentOption);
+                return true;
+            case R.id.disconactionId:
+                Toast.makeText(OptionClientActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
