@@ -45,7 +45,8 @@ public class HistoryClientActivity extends AppCompatActivity
                 startActivity(intentOption);
                 return true;
             case R.id.disconactionId:
-                Toast.makeText(HistoryClientActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Intent intentDisconect = new Intent(HistoryClientActivity.this,MainActivity.class);
+                startActivity(intentDisconect);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

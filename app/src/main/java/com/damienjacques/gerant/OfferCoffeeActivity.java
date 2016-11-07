@@ -37,8 +37,8 @@ public class OfferCoffeeActivity extends AppCompatActivity
                 startActivity(intentReception);
                 return true;
             case R.id.coffeeId:
-                Intent intentCoffe = new Intent(OfferCoffeeActivity.this,OfferCoffeeActivity.class);
-                startActivity(intentCoffe);
+                Intent intentCoffee = new Intent(OfferCoffeeActivity.this,OfferCoffeeActivity.class);
+                startActivity(intentCoffee);
                 return true;
             case R.id.reservationId:
                 Intent intentReservation = new Intent(OfferCoffeeActivity.this,ReservationCoffeeActivity.class);
@@ -49,7 +49,8 @@ public class OfferCoffeeActivity extends AppCompatActivity
                 startActivity(intentOption);
                 return true;
             case R.id.disconactionId:
-                Toast.makeText(OfferCoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Intent intentDisconect = new Intent(OfferCoffeeActivity.this,MainActivity.class);
+                startActivity(intentDisconect);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -49,7 +49,8 @@ public class ReceptionCoffeeActivity extends AppCompatActivity
                 startActivity(intentOption);
                 return true;
             case R.id.disconactionId:
-                Toast.makeText(ReceptionCoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Intent intentDisconect = new Intent(ReceptionCoffeeActivity.this,MainActivity.class);
+                startActivity(intentDisconect);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

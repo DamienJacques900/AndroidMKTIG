@@ -21,7 +21,7 @@
     <item
         android:id="@+id/optionscoffeeId"
         android:title="@string/options"
-        app:showAsActioOption="never"
+        app:showAsAction="never"
         />
     <item
         android:id="@+id/disconactionId"

@@ -45,7 +45,8 @@ public class PromotionClientActivity extends AppCompatActivity
                 startActivity(intentOption);
                 return true;
             case R.id.disconactionId:
-                Toast.makeText(PromotionClientActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Intent intentDisconect = new Intent(PromotionClientActivity.this,MainActivity.class);
+                startActivity(intentDisconect);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -46,7 +46,8 @@ public class ReservationCoffeeActivity extends AppCompatActivity
                 startActivity(intentOption);
                 return true;
             case R.id.disconactionId:
-                Toast.makeText(ReservationCoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
+                Intent intentDisconect = new Intent(ReservationCoffeeActivity.this,MainActivity.class);
+                startActivity(intentDisconect);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
