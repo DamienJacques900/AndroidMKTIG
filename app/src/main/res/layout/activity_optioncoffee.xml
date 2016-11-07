@@ -116,19 +116,9 @@
             android:text="@string/modify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:id="@+id/modiftyButtonCoffeeOption"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/textView20"
-            android:layout_alignEnd="@+id/textView20"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/modiftyButtonCoffeeOption" />
-
-        <Button
-            android:text="@string/goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/modiftyButtonCoffeeOption"
-            android:layout_toRightOf="@+id/confirmationPasswordCoffeeOption"
-            android:layout_toEndOf="@+id/confirmationPasswordCoffeeOption"
-            android:id="@+id/returnButtonCoffeeOption" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </LinearLayout>

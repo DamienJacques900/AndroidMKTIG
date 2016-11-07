@@ -101,21 +101,10 @@
             android:text="@string/modify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="53dp"
+            android:id="@+id/buttonModifyClientOption"
             android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/confirmationPasswordOptionClient"
-            android:layout_alignStart="@+id/confirmationPasswordOptionClient"
-            android:layout_marginBottom="59dp"
-            android:id="@+id/buttonModifyClientOption" />
+            android:layout_centerHorizontal="true" />
 
-        <Button
-            android:text="@string/goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/buttonModifyClientOption"
-            android:layout_toRightOf="@+id/textView44"
-            android:layout_toEndOf="@+id/textView44"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:id="@+id/buttonReturnOptionClient" />
     </RelativeLayout>
 </LinearLayout>
