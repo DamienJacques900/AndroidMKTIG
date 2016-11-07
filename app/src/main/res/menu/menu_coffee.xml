@@ -4,28 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".ReceptionCoffeeActivity">
 
     <item
-        android:id="@+id/receptionId"
-        android:title="Accueil"
+        android:id="@+id/receptionCoffeeId"
+        android:title="@string/receptionOption"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/coffeeId"
-        android:title="Café"
+        android:title="@string/coffee"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/reservationID"
-        android:title="Réservation"
+        android:title="@string/reservation"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/optionscoffee"
-        android:title="Options"
-        app:showAsAction="never"
+        android:title="@string/options"
+        app:showAsActioOption="never"
         />
     <item
         android:id="@+id/disconaction"
-        android:title="Déconnexion"
+        android:title="@string/disconaction"
         app:showAsAction="never"
         />
 </menu>

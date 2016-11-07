@@ -55,10 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
+        android:layout_marginBottom="44dp"
         android:layout_alignBottom="@+id/passwordConnection"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginBottom="47dp" />
+        android:layout_alignLeft="@+id/passwordConnection"
+        android:layout_alignStart="@+id/passwordConnection" />
 
     <Button
         android:text="@string/registration"

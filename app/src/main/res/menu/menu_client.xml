@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ReceptionClientActivity">>
+    <item
+        android:id="@+id/receptionClientId"
+        android:title="@string/receptionOption"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/historyId"
+        android:title="@string/history"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/promotionId"
+        android:title="Promotion"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/optionsClientId"
+        android:title="@string/options"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/disconaction"
+        android:title="@string/disconaction"
+        app:showAsAction="never"
+        />
+</menu>

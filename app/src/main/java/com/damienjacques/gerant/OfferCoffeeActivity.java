@@ -23,7 +23,7 @@ public class OfferCoffeeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        this.getMenuInflater().inflate(R.menu.menu_main,menu);
+        this.getMenuInflater().inflate(R.menu.menu_coffee,menu);
         return true;
     }
 
