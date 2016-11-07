@@ -7,9 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-/**
- * Created by Damien Jacques on 16-10-16.
- */
 
 public class ReservationCoffeeActivity extends AppCompatActivity
 {
