@@ -32,7 +32,7 @@ public class ReceptionCoffeeActivity extends AppCompatActivity
     {
         switch(item.getItemId())
         {
-            case R.id.receptionId:
+            case R.id.receptionCoffeeId:
                 Intent intentReception = new Intent(ReceptionCoffeeActivity.this,ReceptionCoffeeActivity.class);
                 startActivity(intentReception);
                 return true;
@@ -40,11 +40,15 @@ public class ReceptionCoffeeActivity extends AppCompatActivity
                 Intent intentCoffe = new Intent(ReceptionCoffeeActivity.this,OfferCoffeeActivity.class);
                 startActivity(intentCoffe);
                 return true;
-            case R.id.reservationID:
+            case R.id.reservationId:
                 Intent intentReservation = new Intent(ReceptionCoffeeActivity.this,ReservationCoffeeActivity.class);
                 startActivity(intentReservation);
                 return true;
-            case R.id.disconaction:
+            case R.id.optionscoffeeId:
+                Intent intentOption = new Intent(ReceptionCoffeeActivity.this,OptionCoffeeActivity.class);
+                startActivity(intentOption);
+                return true;
+            case R.id.disconactionId:
                 Toast.makeText(ReceptionCoffeeActivity.this,"Vous avez appuyer sur déconnexion", Toast.LENGTH_SHORT).show();
                 return true;
             default:

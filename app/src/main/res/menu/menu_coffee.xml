@@ -14,17 +14,17 @@
         app:showAsAction="never"
         />
     <item
-        android:id="@+id/reservationID"
+        android:id="@+id/reservationId"
         android:title="@string/reservation"
         app:showAsAction="never"
         />
     <item
-        android:id="@+id/optionscoffee"
+        android:id="@+id/optionscoffeeId"
         android:title="@string/options"
         app:showAsActioOption="never"
         />
     <item
-        android:id="@+id/disconaction"
+        android:id="@+id/disconactionId"
         android:title="@string/disconaction"
         app:showAsAction="never"
         />
