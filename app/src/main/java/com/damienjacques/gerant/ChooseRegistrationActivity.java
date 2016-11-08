@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class ChooseRegistrationActivity extends AppCompatActivity
 {
-    private Button clickCoffee, clickClient;
+    private Button clickCoffee;
+    private Button clickClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

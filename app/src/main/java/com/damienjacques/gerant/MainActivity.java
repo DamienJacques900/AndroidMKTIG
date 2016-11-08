@@ -6,18 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
-    private Button clickRegistration,clickConnection,clickPourClient;
+    private Button clickRegistration;
+    private Button clickConnection;
+    private Button clickPourClient;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        clickRegistration =(Button) findViewById(R.id.buttonRegistrationMain);
-        clickConnection = (Button) findViewById(R.id.buttonConnection);
-        clickPourClient = (Button) findViewById(R.id.buttonInutile);
+        clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
+        clickConnection = (Button)findViewById(R.id.buttonConnection);
+        clickPourClient = (Button)findViewById(R.id.buttonInutile);
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
