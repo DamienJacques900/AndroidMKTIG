@@ -8,7 +8,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
 {
-
     private Button clickRegistration;
     private Button clickConnection;
     private Button clickPourClient;
