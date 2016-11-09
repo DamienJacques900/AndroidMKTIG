@@ -5,14 +5,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class OfferCoffeeActivity extends AppCompatActivity
 {
+    private Button offerButton;
+
+    private TextView clientTextView;
+    private TextView passwordTextView;
+    private TextView nbCoffeeTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        offerButton = (Button)findViewById(R.id.buttonOffer);
+
+        clientTextView = (TextView)findViewById(R.id.userNameBidder);
+        passwordTextView = (TextView)findViewById(R.id.passwordBidder);
+        nbCoffeeTextView = (TextView)findViewById(R.id.numberCoffeeBidder);
+
         setContentView(R.layout.activity_offercoffee);
     }
 

@@ -62,16 +62,6 @@
             android:layout_marginTop="21dp"
             android:id="@+id/textView28" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:layout_below="@+id/textView28"
-            android:layout_alignLeft="@+id/textView28"
-            android:layout_alignStart="@+id/textView28"
-            android:id="@+id/valuePromoCoffeeOption" />
-
         <TextView
             android:text="@string/password"
             android:layout_width="wrap_content"
@@ -120,5 +110,15 @@
             android:id="@+id/modiftyButtonCoffeeOption"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/valuePromoCoffeeOption"
+            android:layout_below="@+id/textView28"
+            android:layout_alignLeft="@+id/textView28"
+            android:layout_alignStart="@+id/textView28" />
     </RelativeLayout>
 </LinearLayout>
