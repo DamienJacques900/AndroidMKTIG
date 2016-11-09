@@ -41,16 +41,6 @@
             android:id="@+id/textView25" />
 
         <TextView
-            android:text="@string/firstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="49dp"
-            android:id="@+id/textView24"
-            android:layout_below="@+id/textView23"
-            android:layout_alignLeft="@+id/textView25"
-            android:layout_alignStart="@+id/textView25" />
-
-        <TextView
             android:text="@string/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,9 +123,18 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/firstnameRegistrationClient"
+            android:id="@+id/firstNameRegistrationClient"
             android:layout_below="@+id/textView24"
             android:layout_alignLeft="@+id/textView24"
             android:layout_alignStart="@+id/textView24" />
+
+        <TextView
+            android:text="@string/firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView24"
+            android:layout_below="@+id/nameRegistrationClient"
+            android:layout_alignLeft="@+id/nameRegistrationClient"
+            android:layout_alignStart="@+id/nameRegistrationClient" />
     </RelativeLayout>
 </LinearLayout>

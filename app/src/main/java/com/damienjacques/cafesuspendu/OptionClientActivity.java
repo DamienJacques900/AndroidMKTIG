@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.*;
 
 public class OptionClientActivity extends AppCompatActivity
 {
+    private TextView mailTextView;
+    private TextView phoneTextView;
+    private TextView passwordTextView;
+    private TextView confirmationPasswordTextView;
+
     private Button clickModify;
 
     @Override
@@ -17,6 +22,11 @@ public class OptionClientActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optionclient);
+
+        mailTextView = (TextView) findViewById(R.id.mailOptionClient);
+        phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
+        passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
+        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
 
         clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
 
