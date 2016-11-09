@@ -7,17 +7,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class OptionCoffeeActivity extends AppCompatActivity
 {
     private Button clickModify;
+
+    private TextView nbCoffeeTextView;
+    private TextView promotionValueTextView;
+    private TextView passwordTextView;
+    private TextView confirmPasswordTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optioncoffee);
 
-        clickModify =(Button) findViewById(R.id.modiftyButtonCoffeeOption);
+        clickModify = (Button)findViewById(R.id.modiftyButtonCoffeeOption);
+
+        nbCoffeeTextView = (TextView)findViewById(R.id.numberCoffeOption);
+        promotionValueTextView = (TextView)findViewById(R.id.valuePromoCoffeeOption);
+        passwordTextView = (TextView)findViewById(R.id.passwordCoffeeOption);
+        confirmPasswordTextView = (TextView)findViewById(R.id.confirmationPasswordCoffeeOption);
 
         clickModify.setOnClickListener(new View.OnClickListener() {
             @Override

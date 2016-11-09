@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this,ChooseRegistrationActivity.class);
-                Toast.makeText(MainActivity.this, userNameTextView.getText() + " " + passwordTextView.getText(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
