@@ -3,104 +3,109 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="@string/promotion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="41dp"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="24dp"
-            android:id="@+id/textView31"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            <TextView
+                android:text="@string/promotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="41dp"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="24dp"
+                android:id="@+id/textView31"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:text="Café 1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView31"
-            android:layout_alignLeft="@+id/textView31"
-            android:layout_alignStart="@+id/textView31"
-            android:layout_marginTop="20dp"
-            android:id="@+id/textView34" />
+            <TextView
+                android:text="Café 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView31"
+                android:layout_alignLeft="@+id/textView31"
+                android:layout_alignStart="@+id/textView31"
+                android:layout_marginTop="20dp"
+                android:id="@+id/textView34" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar2"
-            android:layout_alignBottom="@+id/textView34"
-            android:layout_centerHorizontal="true" />
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar2"
+                android:layout_alignBottom="@+id/textView34"
+                android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:text="Café 2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView35"
-            android:layout_alignLeft="@+id/textView34"
-            android:layout_alignStart="@+id/textView34"
-            android:layout_marginTop="22dp"
-            android:id="@+id/textView36" />
+            <TextView
+                android:text="Café 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView35"
+                android:layout_alignLeft="@+id/textView34"
+                android:layout_alignStart="@+id/textView34"
+                android:layout_marginTop="22dp"
+                android:id="@+id/textView36" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView36"
-            android:layout_alignLeft="@+id/progressBar2"
-            android:layout_alignStart="@+id/progressBar2"
-            android:id="@+id/progressBar3" />
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView36"
+                android:layout_alignLeft="@+id/progressBar2"
+                android:layout_alignStart="@+id/progressBar2"
+                android:id="@+id/progressBar3" />
 
-        <TextView
-            android:text="Café 3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView37"
-            android:layout_alignLeft="@+id/textView36"
-            android:layout_alignStart="@+id/textView36"
-            android:layout_marginTop="21dp"
-            android:id="@+id/textView38" />
+            <TextView
+                android:text="Café 3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView37"
+                android:layout_alignLeft="@+id/textView36"
+                android:layout_alignStart="@+id/textView36"
+                android:layout_marginTop="21dp"
+                android:id="@+id/textView38" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView38"
-            android:layout_alignRight="@+id/progressBar3"
-            android:layout_alignEnd="@+id/progressBar3"
-            android:id="@+id/progressBar4" />
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView38"
+                android:layout_alignRight="@+id/progressBar3"
+                android:layout_alignEnd="@+id/progressBar3"
+                android:id="@+id/progressBar4" />
 
-        <TextView
-            android:text="Il vous reste 2 cafés avant le promotions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:id="@+id/textView35"
-            android:layout_below="@+id/textView34"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:text="Il vous reste 2 cafés avant le promotions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:id="@+id/textView35"
+                android:layout_below="@+id/textView34"
+                android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:text="Il vous reste 1 café avant la promotion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:id="@+id/textView37"
-            android:layout_below="@+id/textView36"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:text="Il vous reste 1 café avant la promotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:id="@+id/textView37"
+                android:layout_below="@+id/textView36"
+                android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:text="Il vous reste 3 cafés avant la promotion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView39"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/textView37"
-            android:layout_alignStart="@+id/textView37" />
-    </RelativeLayout>
+            <TextView
+                android:text="Il vous reste 3 cafés avant la promotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView39"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/textView37"
+                android:layout_alignStart="@+id/textView37" />
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

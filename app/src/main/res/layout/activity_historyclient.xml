@@ -3,119 +3,124 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="@string/history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="34dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="26dp"
-            android:id="@+id/textView45"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            <TextView
+                android:text="@string/history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="34dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="26dp"
+                android:id="@+id/textView45"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:text="Café 1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView45"
-            android:layout_alignLeft="@+id/textView45"
-            android:layout_alignStart="@+id/textView45"
-            android:layout_marginTop="18dp"
-            android:id="@+id/textView46" />
+            <TextView
+                android:text="Café 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView45"
+                android:layout_alignLeft="@+id/textView45"
+                android:layout_alignStart="@+id/textView45"
+                android:layout_marginTop="18dp"
+                android:id="@+id/textView46" />
 
-        <TextView
-            android:text="1 café Mardi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView46"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="80dp"
-            android:layout_marginEnd="80dp"
-            android:id="@+id/textView47" />
+            <TextView
+                android:text="1 café Mardi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView46"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="80dp"
+                android:layout_marginEnd="80dp"
+                android:id="@+id/textView47" />
 
-        <TextView
-            android:text="10/11/2016"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView47"
-            android:layout_alignLeft="@+id/textView47"
-            android:layout_alignStart="@+id/textView47"
-            android:layout_marginTop="12dp"
-            android:id="@+id/textView48" />
+            <TextView
+                android:text="10/11/2016"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView47"
+                android:layout_alignLeft="@+id/textView47"
+                android:layout_alignStart="@+id/textView47"
+                android:layout_marginTop="12dp"
+                android:id="@+id/textView48" />
 
-        <TextView
-            android:text="Café 2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView46"
-            android:layout_alignStart="@+id/textView46"
-            android:id="@+id/textView49"
-            android:layout_alignTop="@+id/textView50" />
+            <TextView
+                android:text="Café 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView46"
+                android:layout_alignStart="@+id/textView46"
+                android:id="@+id/textView49"
+                android:layout_alignTop="@+id/textView50" />
 
-        <TextView
-            android:text="Café 3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView51"
-            android:layout_alignLeft="@+id/textView49"
-            android:layout_alignStart="@+id/textView49"
-            android:layout_marginTop="10dp"
-            android:id="@+id/textView52" />
+            <TextView
+                android:text="Café 3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView51"
+                android:layout_alignLeft="@+id/textView49"
+                android:layout_alignStart="@+id/textView49"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView52" />
 
-        <TextView
-            android:text="13/11/2016"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView53"
-            android:layout_alignLeft="@+id/textView53"
-            android:layout_alignStart="@+id/textView53"
-            android:layout_marginTop="13dp"
-            android:id="@+id/textView54" />
+            <TextView
+                android:text="13/11/2016"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView53"
+                android:layout_alignLeft="@+id/textView53"
+                android:layout_alignStart="@+id/textView53"
+                android:layout_marginTop="13dp"
+                android:id="@+id/textView54" />
 
-        <Button
-            android:text="@string/deleteHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="36dp"
-            android:id="@+id/buttonDeleteHistory" />
+            <Button
+                android:text="@string/deleteHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="36dp"
+                android:id="@+id/buttonDeleteHistory" />
 
-        <TextView
-            android:text="11/11/2016"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:id="@+id/textView51"
-            android:layout_below="@+id/textView50"
-            android:layout_alignRight="@+id/textView47"
-            android:layout_alignEnd="@+id/textView47" />
+            <TextView
+                android:text="11/11/2016"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:id="@+id/textView51"
+                android:layout_below="@+id/textView50"
+                android:layout_alignRight="@+id/textView47"
+                android:layout_alignEnd="@+id/textView47" />
 
-        <TextView
-            android:text="1 café Mercredi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView50"
-            android:layout_below="@+id/textView48"
-            android:layout_alignLeft="@+id/textView48"
-            android:layout_alignStart="@+id/textView48" />
+            <TextView
+                android:text="1 café Mercredi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView50"
+                android:layout_below="@+id/textView48"
+                android:layout_alignLeft="@+id/textView48"
+                android:layout_alignStart="@+id/textView48" />
 
-        <TextView
-            android:text="1 Café Vendredi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView53"
-            android:layout_alignBaseline="@+id/textView52"
-            android:layout_alignBottom="@+id/textView52"
-            android:layout_alignLeft="@+id/textView51"
-            android:layout_alignStart="@+id/textView51" />
-    </RelativeLayout>
+            <TextView
+                android:text="1 Café Vendredi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView53"
+                android:layout_alignBaseline="@+id/textView52"
+                android:layout_alignBottom="@+id/textView52"
+                android:layout_alignLeft="@+id/textView51"
+                android:layout_alignStart="@+id/textView51" />
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

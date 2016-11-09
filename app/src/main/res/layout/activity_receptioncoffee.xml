@@ -3,28 +3,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="@string/thankYou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="113dp"
-            android:id="@+id/merci"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            <TextView
+                android:text="@string/thankYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="113dp"
+                android:id="@+id/merci"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:text="@string/thanksCoffee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/merci"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="41dp"
-            android:id="@+id/textView9" />
+            <TextView
+                android:text="@string/thanksCoffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/merci"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="41dp"
+                android:id="@+id/textView9" />
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>
