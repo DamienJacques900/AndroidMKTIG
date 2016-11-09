@@ -41,7 +41,7 @@
             android:id="@+id/textView25" />
 
         <TextView
-            android:text="@string/firstname"
+            android:text="@string/firstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="49dp"

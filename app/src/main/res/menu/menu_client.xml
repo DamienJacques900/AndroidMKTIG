@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".ReceptionClientActivity">>
+    xmlns:tools="http://schemas.android.com/tools" tools:context="com.damienjacques.cafesuspendu.ReceptionClientActivity">>
     <item
         android:id="@+id/receptionClientId"
         android:title="@string/receptionOption"
@@ -24,7 +24,7 @@
         />
     <item
         android:id="@+id/disconactionId"
-        android:title="@string/disconaction"
+        android:title="@string/disconnection"
         app:showAsAction="never"
         />
 </menu>

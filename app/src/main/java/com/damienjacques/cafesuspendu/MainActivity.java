@@ -1,16 +1,19 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.*;
 
 public class MainActivity extends AppCompatActivity
 {
     private Button clickRegistration;
     private Button clickConnection;
     private Button clickPourClient;
+
+    private TextView userNameTextView;
+    private TextView passwordTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,11 +25,17 @@ public class MainActivity extends AppCompatActivity
         clickConnection = (Button)findViewById(R.id.buttonConnection);
         clickPourClient = (Button)findViewById(R.id.buttonInutile);
 
+        userNameTextView = (TextView)findViewById(R.id.userNameConnection);
+        passwordTextView = (TextView)findViewById(R.id.passwordConnection);
+
+
+
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this,ChooseRegistrationActivity.class);
+                Toast.makeText(MainActivity.this, userNameTextView.getText() + " " + passwordTextView.getText(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

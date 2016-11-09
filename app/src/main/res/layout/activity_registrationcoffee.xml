@@ -40,7 +40,7 @@
             android:id="@+id/textView12" />
 
         <TextView
-            android:text="@string/promoafter"
+            android:text="@string/promoAfter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView12"
@@ -50,7 +50,7 @@
             android:id="@+id/textView13" />
 
         <TextView
-            android:text="@string/valuepromo"
+            android:text="@string/valuePromo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView13"

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.damienjacques.gerant.MainActivity">
+    tools:context="com.damienjacques.cafesuspendu.com.damienjacques.cafesuspendu.MainActivity">
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,16 +50,6 @@
         android:layout_marginBottom="11dp"
         android:id="@+id/textView" />
 
-    <TextView
-        android:text="@string/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_marginBottom="44dp"
-        android:layout_alignBottom="@+id/passwordConnection"
-        android:layout_alignLeft="@+id/passwordConnection"
-        android:layout_alignStart="@+id/passwordConnection" />
-
     <Button
         android:text="@string/registration"
         android:layout_width="wrap_content"
@@ -80,4 +70,14 @@
         android:layout_marginStart="13dp"
         android:layout_marginTop="18dp"
         android:id="@+id/buttonInutile" />
+
+    <TextView
+        android:text="@string/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginBottom="44dp"
+        android:layout_alignBottom="@+id/passwordConnection"
+        android:layout_alignLeft="@+id/passwordConnection"
+        android:layout_alignStart="@+id/passwordConnection" />
 </RelativeLayout>

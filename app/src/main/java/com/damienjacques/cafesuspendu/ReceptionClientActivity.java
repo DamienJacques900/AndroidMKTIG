@@ -1,4 +1,4 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,25 +30,26 @@ public class ReceptionClientActivity extends AppCompatActivity
             case R.id.receptionClientId:
                 Intent intentReception = new Intent(ReceptionClientActivity.this,ReceptionClientActivity.class);
                 startActivity(intentReception);
-                return true;
+                break;
             case R.id.historyId:
                 Intent intentHistory = new Intent(ReceptionClientActivity.this,HistoryClientActivity.class);
                 startActivity(intentHistory);
-                return true;
+                break;
             case R.id.promotionId:
                 Intent intentPromotion = new Intent(ReceptionClientActivity.this,PromotionClientActivity.class);
                 startActivity(intentPromotion);
-                return true;
+                break;
             case R.id.optionsClientId:
                 Intent intentOption = new Intent(ReceptionClientActivity.this,OptionClientActivity.class);
                 startActivity(intentOption);
-                return true;
+                break;
             case R.id.disconactionId:
-                Intent intentDisconect = new Intent(ReceptionClientActivity.this,MainActivity.class);
-                startActivity(intentDisconect);
-                return true;
+                Intent intentDisconnect = new Intent(ReceptionClientActivity.this,MainActivity.class);
+                startActivity(intentDisconnect);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 }

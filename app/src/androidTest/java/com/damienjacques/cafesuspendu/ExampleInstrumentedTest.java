@@ -1,4 +1,4 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

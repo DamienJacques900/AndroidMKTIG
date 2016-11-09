@@ -1,4 +1,4 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.os.Bundle;

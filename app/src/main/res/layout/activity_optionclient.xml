@@ -79,7 +79,7 @@
             android:id="@+id/passwordOptionClient" />
 
         <TextView
-            android:text="@string/confirmatioPassword"
+            android:text="@string/confirmationPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passwordOptionClient"

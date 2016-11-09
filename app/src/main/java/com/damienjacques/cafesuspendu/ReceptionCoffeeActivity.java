@@ -1,4 +1,4 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,25 +31,26 @@ public class ReceptionCoffeeActivity extends AppCompatActivity
             case R.id.receptionCoffeeId:
                 Intent intentReception = new Intent(ReceptionCoffeeActivity.this,ReceptionCoffeeActivity.class);
                 startActivity(intentReception);
-                return true;
+                break;
             case R.id.coffeeId:
-                Intent intentCoffe = new Intent(ReceptionCoffeeActivity.this,OfferCoffeeActivity.class);
-                startActivity(intentCoffe);
-                return true;
+                Intent intentCoffee = new Intent(ReceptionCoffeeActivity.this,OfferCoffeeActivity.class);
+                startActivity(intentCoffee);
+                break;
             case R.id.reservationId:
                 Intent intentReservation = new Intent(ReceptionCoffeeActivity.this,ReservationCoffeeActivity.class);
                 startActivity(intentReservation);
-                return true;
+                break;
             case R.id.optionscoffeeId:
                 Intent intentOption = new Intent(ReceptionCoffeeActivity.this,OptionCoffeeActivity.class);
                 startActivity(intentOption);
-                return true;
+                break;
             case R.id.disconactionId:
-                Intent intentDisconect = new Intent(ReceptionCoffeeActivity.this,MainActivity.class);
-                startActivity(intentDisconect);
-                return true;
+                Intent intentDisconnect = new Intent(ReceptionCoffeeActivity.this,MainActivity.class);
+                startActivity(intentDisconnect);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 }

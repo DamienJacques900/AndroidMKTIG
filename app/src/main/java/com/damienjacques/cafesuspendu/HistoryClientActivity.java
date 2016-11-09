@@ -1,4 +1,4 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,17 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PromotionClientActivity extends AppCompatActivity
+public class HistoryClientActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promotionclient);
+        setContentView(R.layout.activity_historyclient);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu) //pour que le menu s'affiche
     {
         this.getMenuInflater().inflate(R.menu.menu_client,menu);
         return true;
@@ -28,27 +28,28 @@ public class PromotionClientActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.receptionClientId:
-                Intent intentReception = new Intent(PromotionClientActivity.this,ReceptionClientActivity.class);
+                Intent intentReception = new Intent(HistoryClientActivity.this,ReceptionClientActivity.class);
                 startActivity(intentReception);
-                return true;
+                break;
             case R.id.historyId:
-                Intent intentHistory = new Intent(PromotionClientActivity.this,HistoryClientActivity.class);
+                Intent intentHistory = new Intent(HistoryClientActivity.this,HistoryClientActivity.class);
                 startActivity(intentHistory);
-                return true;
+                break;
             case R.id.promotionId:
-                Intent intentPromotion = new Intent(PromotionClientActivity.this,PromotionClientActivity.class);
+                Intent intentPromotion = new Intent(HistoryClientActivity.this,PromotionClientActivity.class);
                 startActivity(intentPromotion);
-                return true;
+                break;
             case R.id.optionsClientId:
-                Intent intentOption = new Intent(PromotionClientActivity.this,OptionClientActivity.class);
+                Intent intentOption = new Intent(HistoryClientActivity.this,OptionClientActivity.class);
                 startActivity(intentOption);
-                return true;
+                break;
             case R.id.disconactionId:
-                Intent intentDisconect = new Intent(PromotionClientActivity.this,MainActivity.class);
-                startActivity(intentDisconect);
-                return true;
+                Intent intentDisconnect = new Intent(HistoryClientActivity.this,MainActivity.class);
+                startActivity(intentDisconnect);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 }

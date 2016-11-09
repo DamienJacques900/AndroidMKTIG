@@ -1,20 +1,19 @@
-package com.damienjacques.gerant;
+package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
-public class ReservationCoffeeActivity extends AppCompatActivity
+public class OfferCoffeeActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservationcoffee);
+        setContentView(R.layout.activity_offercoffee);
     }
 
     @Override
@@ -30,27 +29,28 @@ public class ReservationCoffeeActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.receptionCoffeeId:
-                Intent intentReception = new Intent(ReservationCoffeeActivity.this,ReceptionCoffeeActivity.class);
+                Intent intentReception = new Intent(OfferCoffeeActivity.this,ReceptionCoffeeActivity.class);
                 startActivity(intentReception);
-                return true;
+                break;
             case R.id.coffeeId:
-                Intent intentCoffe = new Intent(ReservationCoffeeActivity.this,OfferCoffeeActivity.class);
-                startActivity(intentCoffe);
-                return true;
+                Intent intentCoffee = new Intent(OfferCoffeeActivity.this,OfferCoffeeActivity.class);
+                startActivity(intentCoffee);
+                break;
             case R.id.reservationId:
-                Intent intentReservation = new Intent(ReservationCoffeeActivity.this,ReservationCoffeeActivity.class);
+                Intent intentReservation = new Intent(OfferCoffeeActivity.this,ReservationCoffeeActivity.class);
                 startActivity(intentReservation);
-                return true;
+                break;
             case R.id.optionscoffeeId:
-                Intent intentOption = new Intent(ReservationCoffeeActivity.this,OptionCoffeeActivity.class);
+                Intent intentOption = new Intent(OfferCoffeeActivity.this,OptionCoffeeActivity.class);
                 startActivity(intentOption);
-                return true;
+                break;
             case R.id.disconactionId:
-                Intent intentDisconect = new Intent(ReservationCoffeeActivity.this,MainActivity.class);
-                startActivity(intentDisconect);
-                return true;
+                Intent intentDisconnect = new Intent(OfferCoffeeActivity.this,MainActivity.class);
+                startActivity(intentDisconnect);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 }
