@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,5 +41,20 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_registrationcoffee_land);
+        }
+        else
+        {
+            setContentView(R.layout.activity_registrationcoffee);
+        }
     }
 }
