@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:text="@string/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView21"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="@string/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView21"
+                android:layout_alignLeft="@+id/textView21"
+                android:layout_alignStart="@+id/textView21"
+                android:layout_marginTop="41dp"
+                android:id="@+id/textView22" />
+
+            <TextView
+                android:text="@string/mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView24"
+                android:layout_alignLeft="@+id/textView22"
+                android:layout_alignStart="@+id/textView22"
+                android:layout_marginTop="47dp"
+                android:id="@+id/textView25" />
+
+            <TextView
+                android:text="@string/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="41dp"
+                android:id="@+id/textView23"
+                android:layout_below="@+id/textView22"
+                android:layout_alignLeft="@+id/textView22"
+                android:layout_alignStart="@+id/textView22" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/textView21"
+                android:layout_alignLeft="@+id/textView22"
+                android:layout_alignStart="@+id/textView22"
+                android:id="@+id/userNameRegistrationClient" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/textView22"
+                android:layout_alignLeft="@+id/textView22"
+                android:layout_alignStart="@+id/textView22"
+                android:id="@+id/passwordRegistrationClient" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/textView23"
+                android:layout_alignLeft="@+id/textView23"
+                android:layout_alignStart="@+id/textView23"
+                android:id="@+id/nameRegistrationClient" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:layout_below="@+id/textView25"
+                android:layout_alignLeft="@+id/textView25"
+                android:layout_alignStart="@+id/textView25"
+                android:id="@+id/mailRegistrationClient" />
+
+            <TextView
+                android:text="@string/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView26"
+                android:layout_below="@+id/mailRegistrationClient"
+                android:layout_alignLeft="@+id/mailRegistrationClient"
+                android:layout_alignStart="@+id/mailRegistrationClient" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:layout_below="@+id/textView26"
+                android:layout_alignLeft="@+id/textView26"
+                android:layout_alignStart="@+id/textView26"
+                android:id="@+id/phoneRegistrationClient" />
+
+            <Button
+                android:text="@string/registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phoneRegistrationClient"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:id="@+id/buttonRegistrationClient" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/firstNameRegistrationClient"
+                android:layout_below="@+id/textView24"
+                android:layout_alignLeft="@+id/textView24"
+                android:layout_alignStart="@+id/textView24" />
+
+            <TextView
+                android:text="@string/firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView24"
+                android:layout_below="@+id/nameRegistrationClient"
+                android:layout_alignLeft="@+id/nameRegistrationClient"
+                android:layout_alignStart="@+id/nameRegistrationClient" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

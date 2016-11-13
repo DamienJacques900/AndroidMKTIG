@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
             setContentView(R.layout.activity_main);
         }
     }
-
+/*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -91,4 +91,5 @@ public class MainActivity extends AppCompatActivity
         userName = savedInstanceState.getString(userNameTextView.getText());
         password = savedInstanceState.getString(passwordTextView.getText());
     }
+    */
 }
