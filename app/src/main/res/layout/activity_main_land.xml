@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/userNameConnection"
+            android:layout_alignLeft="@+id/userNameConnection"
+            android:layout_alignStart="@+id/userNameConnection"
+            android:layout_marginBottom="11dp"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:ems="10"
+            android:layout_marginBottom="150dp"
+            android:id="@+id/userNameConnection"
+            android:layout_above="@+id/buttonRegistrationMain"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="@string/connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonConnection"
+            android:layout_above="@+id/buttonRegistrationMain"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_marginTop="70dp"
+            android:id="@+id/passwordConnection"
+            android:layout_alignTop="@+id/userNameConnection"
+            android:layout_alignLeft="@+id/userNameConnection"
+            android:layout_alignStart="@+id/userNameConnection" />
+
+        <Button
+            android:text="@string/registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonRegistrationMain"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/buttonConnection"
+            android:layout_alignStart="@+id/buttonConnection" />
+
+        <TextView
+            android:text="@string/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_marginBottom="44dp"
+            android:layout_alignBottom="@+id/passwordConnection"
+            android:layout_alignLeft="@+id/passwordConnection"
+            android:layout_alignStart="@+id/passwordConnection" />
+
+        <Button
+            android:text="Connexion client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonInutile"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+</LinearLayout>

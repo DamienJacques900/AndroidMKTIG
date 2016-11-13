@@ -1,8 +1,10 @@
 package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -14,6 +16,9 @@ public class MainActivity extends AppCompatActivity
 
     private TextView userNameTextView;
     private TextView passwordTextView;
+
+    private String userName;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,5 +61,34 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_main_land);
+        }
+        else
+        {
+            setContentView(R.layout.activity_main);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(userNameTextView.getText(), userName);
+        outState.putString(passwordTextView.getText(), password);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        userName = savedInstanceState.getString(userNameTextView.getText());
+        password = savedInstanceState.getString(passwordTextView.getText());
     }
 }

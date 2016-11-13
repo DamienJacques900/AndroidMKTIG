@@ -8,45 +8,56 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.damienjacques.cafesuspendu.MainActivity">
+        <activity android:name="com.damienjacques.cafesuspendu.MainActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
         <activity android:name="com.damienjacques.cafesuspendu.ChooseRegistrationActivity"
+            android:configChanges="orientation|screenSize"
             />
         
         <activity android:name="com.damienjacques.cafesuspendu.ReceptionCoffeeActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.RegistrationClientActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.OfferCoffeeActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.ReservationCoffeeActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.HistoryClientActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.OptionClientActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.OptionCoffeeActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.PromotionClientActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.ReceptionClientActivity"
+            android:configChanges="orientation|screenSize"
             />
 
         <activity android:name="com.damienjacques.cafesuspendu.RegistrationCoffeeActivity"
+            android:configChanges="orientation|screenSize"
             />
     </application>
 

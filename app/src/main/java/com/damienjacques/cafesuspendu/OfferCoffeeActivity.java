@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -67,5 +68,20 @@ public class OfferCoffeeActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_offercoffee_land);
+        }
+        else
+        {
+            setContentView(R.layout.activity_offercoffee);
+        }
     }
 }
