@@ -8,10 +8,22 @@ import android.os.Bundle;
 
 public class FragmentButtonMain extends Fragment
 {
+    View mainView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_fragment_main, container, false);
-    }
 
+        if (mainView != null)
+        {
+            ViewGroup parent = (ViewGroup)container.getParent();
+            parent.removeView(container);
+        }
+        else
+        {
+            mainView = inflater.inflate(R.layout.activity_fragment_main, container, false);
+        }
+
+        return mainView;
+    }
 }

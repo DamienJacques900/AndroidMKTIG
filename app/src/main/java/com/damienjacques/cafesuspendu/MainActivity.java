@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
+
+import static com.damienjacques.cafesuspendu.R.layout.activity_fragment_main;
+import static com.damienjacques.cafesuspendu.R.layout.activity_main_land;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity
 
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            setContentView(R.layout.activity_main_land);
+            setContentView(activity_main_land);
         }
         else
         {
