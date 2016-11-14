@@ -34,56 +34,6 @@
                 android:layout_marginTop="18dp"
                 android:id="@+id/textView46" />
 
-            <TextView
-                android:text="1 café Mardi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textView46"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="80dp"
-                android:layout_marginEnd="80dp"
-                android:id="@+id/textView47" />
-
-            <TextView
-                android:text="10/11/2016"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView47"
-                android:layout_alignLeft="@+id/textView47"
-                android:layout_alignStart="@+id/textView47"
-                android:layout_marginTop="12dp"
-                android:id="@+id/textView48" />
-
-            <TextView
-                android:text="Café 2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView46"
-                android:layout_alignStart="@+id/textView46"
-                android:id="@+id/textView49"
-                android:layout_alignTop="@+id/textView50" />
-
-            <TextView
-                android:text="Café 3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView51"
-                android:layout_alignLeft="@+id/textView49"
-                android:layout_alignStart="@+id/textView49"
-                android:layout_marginTop="10dp"
-                android:id="@+id/textView52" />
-
-            <TextView
-                android:text="13/11/2016"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView53"
-                android:layout_alignLeft="@+id/textView53"
-                android:layout_alignStart="@+id/textView53"
-                android:layout_marginTop="13dp"
-                android:id="@+id/textView54" />
-
             <Button
                 android:text="@string/deleteHistory"
                 android:layout_width="wrap_content"
@@ -94,33 +44,83 @@
                 android:id="@+id/buttonDeleteHistory" />
 
             <TextView
-                android:text="11/11/2016"
+                android:text="13/11/2016"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:id="@+id/textView51"
-                android:layout_below="@+id/textView50"
-                android:layout_alignRight="@+id/textView47"
-                android:layout_alignEnd="@+id/textView47" />
+                android:id="@+id/textView54"
+                android:layout_alignBaseline="@+id/textView52"
+                android:layout_alignBottom="@+id/textView52"
+                android:layout_alignLeft="@+id/textView51"
+                android:layout_alignStart="@+id/textView51" />
 
             <TextView
-                android:text="1 café Mercredi"
+                android:text="10/11/2016"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView50"
-                android:layout_below="@+id/textView48"
-                android:layout_alignLeft="@+id/textView48"
-                android:layout_alignStart="@+id/textView48" />
+                android:id="@+id/textView48"
+                android:layout_above="@+id/textView47"
+                android:layout_alignRight="@+id/textView47"
+                android:layout_alignEnd="@+id/textView47" />
 
             <TextView
                 android:text="1 Café Vendredi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView53"
-                android:layout_alignBaseline="@+id/textView52"
-                android:layout_alignBottom="@+id/textView52"
-                android:layout_alignLeft="@+id/textView51"
-                android:layout_alignStart="@+id/textView51" />
+                android:layout_below="@+id/textView54"
+                android:layout_alignLeft="@+id/textView54"
+                android:layout_alignStart="@+id/textView54" />
+
+            <TextView
+                android:text="1 café Mercredi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView50"
+                android:layout_below="@+id/textView47"
+                android:layout_alignLeft="@+id/textView47"
+                android:layout_alignStart="@+id/textView47"
+                android:layout_marginTop="45dp" />
+
+            <TextView
+                android:text="11/11/2016"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView51"
+                android:layout_marginBottom="15dp"
+                android:layout_alignBottom="@+id/textView50"
+                android:layout_alignRight="@+id/textView47"
+                android:layout_alignEnd="@+id/textView47" />
+
+            <TextView
+                android:text="1 café Mardi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView47"
+                android:layout_below="@+id/textView46"
+                android:layout_toRightOf="@+id/buttonDeleteHistory"
+                android:layout_toEndOf="@+id/buttonDeleteHistory"
+                android:layout_marginLeft="41dp"
+                android:layout_marginStart="41dp" />
+
+            <TextView
+                android:text="Café 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView49"
+                android:layout_alignBaseline="@+id/textView51"
+                android:layout_alignBottom="@+id/textView51"
+                android:layout_alignLeft="@+id/textView46"
+                android:layout_alignStart="@+id/textView46" />
+
+            <TextView
+                android:text="Café 3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:id="@+id/textView52"
+                android:layout_below="@+id/textView50"
+                android:layout_alignLeft="@+id/textView49"
+                android:layout_alignStart="@+id/textView49" />
         </RelativeLayout>
     </ScrollView>
 
