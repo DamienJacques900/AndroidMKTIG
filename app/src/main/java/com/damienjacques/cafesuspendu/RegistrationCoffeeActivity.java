@@ -42,19 +42,4 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             }
         });
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_registrationcoffee_land);
-        }
-        else
-        {
-            setContentView(R.layout.activity_registrationcoffee);
-        }
-    }
 }

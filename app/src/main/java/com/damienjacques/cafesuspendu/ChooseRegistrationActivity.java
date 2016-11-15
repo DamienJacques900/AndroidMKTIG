@@ -40,19 +40,4 @@ public class ChooseRegistrationActivity extends AppCompatActivity
             }
         });
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_choose_land);
-        }
-        else
-        {
-            setContentView(R.layout.activity_choose);
-        }
-    }
 }

@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ReceptionClientActivity extends AppCompatActivity
+public class ReceptionClientActivity extends MenuClientActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,48 +24,37 @@ public class ReceptionClientActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public void goToReceptionClient()
     {
-        switch(item.getItemId())
-        {
-            case R.id.receptionClientId:
-                Intent intentReception = new Intent(ReceptionClientActivity.this,ReceptionClientActivity.class);
-                startActivity(intentReception);
-                break;
-            case R.id.historyId:
-                Intent intentHistory = new Intent(ReceptionClientActivity.this,HistoryClientActivity.class);
-                startActivity(intentHistory);
-                break;
-            case R.id.promotionId:
-                Intent intentPromotion = new Intent(ReceptionClientActivity.this,PromotionClientActivity.class);
-                startActivity(intentPromotion);
-                break;
-            case R.id.optionsClientId:
-                Intent intentOption = new Intent(ReceptionClientActivity.this,OptionClientActivity.class);
-                startActivity(intentOption);
-                break;
-            case R.id.disconactionId:
-                Intent intentDisconnect = new Intent(ReceptionClientActivity.this,MainActivity.class);
-                startActivity(intentDisconnect);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
+        Intent intentReception = new Intent(ReceptionClientActivity.this,ReceptionClientActivity.class);
+        startActivity(intentReception);
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
+    public void goToHistory()
     {
-        super.onConfigurationChanged(newConfig);
+        Intent intentHistory = new Intent(ReceptionClientActivity.this,HistoryClientActivity.class);
+        startActivity(intentHistory);
+    }
 
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_receptionclient_land);
-        }
-        else
-        {
-            setContentView(R.layout.activity_receptionclient);
-        }
+    @Override
+    public void goToPromotion()
+    {
+        Intent intentPromotion = new Intent(ReceptionClientActivity.this,PromotionClientActivity.class);
+        startActivity(intentPromotion);
+    }
+
+    @Override
+    public void goToOptionClient()
+    {
+        Intent intentOption = new Intent(ReceptionClientActivity.this,OptionClientActivity.class);
+        startActivity(intentOption);
+    }
+
+    @Override
+    public void goToDisconaction()
+    {
+        Intent intentDisconnect = new Intent(ReceptionClientActivity.this,MainActivity.class);
+        startActivity(intentDisconnect);
     }
 }

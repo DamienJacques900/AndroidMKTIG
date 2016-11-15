@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ReceptionCoffeeActivity extends AppCompatActivity
+public class ReceptionCoffeeActivity extends MenuCoffeeActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,48 +25,37 @@ public class ReceptionCoffeeActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public void goToReceptionCoffee()
     {
-        switch(item.getItemId())
-        {
-            case R.id.receptionCoffeeId:
-                Intent intentReception = new Intent(ReceptionCoffeeActivity.this,ReceptionCoffeeActivity.class);
-                startActivity(intentReception);
-                break;
-            case R.id.coffeeId:
-                Intent intentCoffee = new Intent(ReceptionCoffeeActivity.this,OfferCoffeeActivity.class);
-                startActivity(intentCoffee);
-                break;
-            case R.id.reservationId:
-                Intent intentReservation = new Intent(ReceptionCoffeeActivity.this,ReservationCoffeeActivity.class);
-                startActivity(intentReservation);
-                break;
-            case R.id.optionscoffeeId:
-                Intent intentOption = new Intent(ReceptionCoffeeActivity.this,OptionCoffeeActivity.class);
-                startActivity(intentOption);
-                break;
-            case R.id.disconactionId:
-                Intent intentDisconnect = new Intent(ReceptionCoffeeActivity.this,MainActivity.class);
-                startActivity(intentDisconnect);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
+        Intent intentReception = new Intent(ReceptionCoffeeActivity.this,ReceptionCoffeeActivity.class);
+        startActivity(intentReception);
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
+    public void goToCoffee()
     {
-        super.onConfigurationChanged(newConfig);
+        Intent intentCoffee = new Intent(ReceptionCoffeeActivity.this,OfferCoffeeActivity.class);
+        startActivity(intentCoffee);
+    }
 
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_receptioncoffee_land);
-        }
-        else
-        {
-            setContentView(R.layout.activity_receptioncoffee);
-        }
+    @Override
+    public void goToReservation()
+    {
+        Intent intentReservation = new Intent(ReceptionCoffeeActivity.this,ReservationCoffeeActivity.class);
+        startActivity(intentReservation);
+    }
+
+    @Override
+    public void goToOptionCoffee()
+    {
+        Intent intentOption = new Intent(ReceptionCoffeeActivity.this,OptionCoffeeActivity.class);
+        startActivity(intentOption);
+    }
+
+    @Override
+    public void goToDisconaction()
+    {
+        Intent intentDisconnect = new Intent(ReceptionCoffeeActivity.this,MainActivity.class);
+        startActivity(intentDisconnect);
     }
 }

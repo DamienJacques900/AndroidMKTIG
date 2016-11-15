@@ -122,7 +122,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/modiftyButtonCoffeeOption"
                 android:layout_below="@+id/confirmationPasswordCoffeeOption"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp" />
         </RelativeLayout>
     </ScrollView>
 

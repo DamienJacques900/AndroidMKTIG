@@ -11,6 +11,8 @@ import android.widget.*;
 
 import static com.damienjacques.cafesuspendu.R.layout.activity_main;
 
+//Remarque général : Les vues n'affichent pas exactement ce qu'on fait dans android studio, à régler?
+
 public class MainActivity extends AppCompatActivity
 {
     private Button clickRegistration;
