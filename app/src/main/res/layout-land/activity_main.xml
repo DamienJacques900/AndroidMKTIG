@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_marginBottom="44dp"
+            android:layout_alignBottom="@+id/passwordConnection"
+            android:layout_alignLeft="@+id/passwordConnection"
+            android:layout_alignStart="@+id/passwordConnection" />
+
+
+        <Button
+            android:text="@string/connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonConnection"
+            android:layout_above="@+id/buttonRegistrationMain"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="@string/registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonRegistrationMain"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/buttonConnection"
+            android:layout_alignStart="@+id/buttonConnection" />
+
+        <Button
+            android:text="Connexion client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonInutile"
+            android:layout_marginBottom="11dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/buttonConnection"
+            android:layout_toEndOf="@+id/buttonConnection" />
+
+        <TextView
+            android:text="@string/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_above="@+id/userNameConnection"
+            android:layout_alignLeft="@+id/userNameConnection"
+            android:layout_alignStart="@+id/userNameConnection" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:ems="10"
+            android:id="@+id/userNameConnection"
+            android:layout_above="@+id/buttonConnection"
+            android:layout_toLeftOf="@+id/buttonConnection"
+            android:layout_toStartOf="@+id/buttonConnection" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordConnection"
+            android:layout_above="@+id/buttonConnection"
+            android:layout_toRightOf="@+id/buttonRegistrationMain"
+            android:layout_toEndOf="@+id/buttonRegistrationMain" />
+        <!--
+                <Button
+                    android:text="@string/connection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonConnection"
+                    android:layout_above="@+id/buttonRegistrationMain"
+                    android:layout_centerHorizontal="true" />
+
+                <Button
+                    android:text="@string/registration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonRegistrationMain"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@+id/buttonConnection"
+                    android:layout_alignStart="@+id/buttonConnection" />
+
+                <Button
+                    android:text="Connexion client"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonInutile"
+                    android:layout_marginBottom="11dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/buttonConnection"
+                    android:layout_toEndOf="@+id/buttonConnection" />
+        -->
+
+    </RelativeLayout>
+
+</LinearLayout>

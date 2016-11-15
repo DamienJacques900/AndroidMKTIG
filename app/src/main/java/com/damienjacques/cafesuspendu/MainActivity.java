@@ -6,13 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 
-import static com.damienjacques.cafesuspendu.R.layout.activity_fragment_main;
-import static com.damienjacques.cafesuspendu.R.layout.activity_main_land;
+import static com.damienjacques.cafesuspendu.R.layout.activity_main;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -68,30 +65,30 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+       /* FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         transaction.replace(R.id.buttonMain_fragment, new FragmentButtonMain());
 
         transaction.addToBackStack(null);
 
-        transaction.commit();
+        transaction.commit();*/
     }
 
-    @Override
+    /*@Override
     public void onConfigurationChanged(Configuration newConfig)
     {
         super.onConfigurationChanged(newConfig);
 
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            setContentView(activity_main_land);
+            setContentView(activity_main);
         }
         else
         {
             setContentView(R.layout.activity_main);
         }
-    }
+    }*/
 /*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
