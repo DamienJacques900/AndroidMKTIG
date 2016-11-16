@@ -1,15 +1,12 @@
-package com.damienjacques.cafesuspendu;
+package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import static com.damienjacques.cafesuspendu.R.layout.activity_main;
+import com.damienjacques.cafesuspendu.R;
 
 //Remarque général : Les vues n'affichent pas exactement ce qu'on fait dans android studio, à régler?
 

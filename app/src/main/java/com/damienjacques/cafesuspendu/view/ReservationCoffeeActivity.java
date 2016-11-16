@@ -1,11 +1,10 @@
-package com.damienjacques.cafesuspendu;
+package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
+
+import com.damienjacques.cafesuspendu.R;
 
 
 public class ReservationCoffeeActivity extends MenuCoffeeActivity

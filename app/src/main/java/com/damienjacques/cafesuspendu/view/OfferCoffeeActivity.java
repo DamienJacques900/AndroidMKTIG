@@ -1,13 +1,12 @@
-package com.damienjacques.cafesuspendu;
+package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.damienjacques.cafesuspendu.R;
 
 //La vue land et portrait bug, à régler
 public class OfferCoffeeActivity extends MenuCoffeeActivity

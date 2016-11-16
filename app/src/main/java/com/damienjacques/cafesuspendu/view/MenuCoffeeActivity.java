@@ -1,9 +1,11 @@
-package com.damienjacques.cafesuspendu;
+package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.damienjacques.cafesuspendu.R;
 
 /**
  * Created by Damien Jacques on 15-11-16.
