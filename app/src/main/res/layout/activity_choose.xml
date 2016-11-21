@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <Button
                 android:text="@string/coffee"
@@ -37,7 +32,7 @@
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/textColorButton"/>
 
-            <TextView
+    <TextView
                 android:text="@string/choice_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +40,16 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="103dp"
                 android:id="@+id/textView14" />
-        </RelativeLayout>
-    </ScrollView>
-</LinearLayout>
+
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:id="@+id/switch3"
+        android:layout_below="@+id/buttonChoiceClient"
+        android:layout_centerHorizontal="true"
+        android:textOff="@string/client"
+        android:textOn="@string/coffee"
+        app:showText="true"/>
+
+</RelativeLayout>
