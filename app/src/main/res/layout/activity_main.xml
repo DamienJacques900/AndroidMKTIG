@@ -20,7 +20,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/buttonConnection"
         android:layout_alignStart="@+id/buttonConnection"
-        android:backgroundTint="@color/buttonColor" />
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -43,7 +44,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="66dp"
-        android:backgroundTint="@color/buttonColor" />
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"/>
 
     <TextView
         android:text="@string/user_name"
@@ -55,7 +57,8 @@
         android:layout_marginBottom="9dp"
         android:layout_above="@+id/userNameConnection"
         android:layout_alignLeft="@+id/buttonInutile"
-        android:layout_alignStart="@+id/buttonInutile" />
+        android:layout_alignStart="@+id/buttonInutile"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:text="@string/password"
@@ -66,19 +69,6 @@
         android:layout_above="@+id/passwordConnection"
         android:layout_alignLeft="@+id/userNameConnection"
         android:layout_alignStart="@+id/userNameConnection" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordConnection"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="18dp"
-        android:layout_above="@+id/buttonConnection"
-        android:layout_alignRight="@+id/userNameConnection"
-        android:layout_alignEnd="@+id/userNameConnection" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -100,33 +90,20 @@
         android:backgroundTint="@color/buttonColor"
         android:layout_above="@+id/buttonRegistrationMain"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <!--
-        <Button
-            android:text="@string/connection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonConnection"
-            android:layout_above="@+id/buttonRegistrationMain"
-            android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/textColorButton"/>
 
-        <Button
-            android:text="@string/registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonRegistrationMain"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/buttonConnection"
-            android:layout_alignStart="@+id/buttonConnection" />
-
-        <Button
-            android:text="Connexion client"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonInutile"
-            android:layout_marginBottom="11dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/buttonConnection"
-            android:layout_toEndOf="@+id/buttonConnection" />-->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordConnection"
+        android:layout_marginBottom="18dp"
+        android:layout_above="@+id/buttonConnection"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/userNameConnection"
+        android:layout_alignEnd="@+id/userNameConnection" />
 
 </RelativeLayout>

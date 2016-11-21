@@ -120,7 +120,9 @@
                 android:layout_below="@+id/phoneRegistrationClient"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="36dp"
-                android:id="@+id/buttonRegistrationClient" />
+                android:id="@+id/buttonRegistrationClient"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
 
             <EditText
                 android:layout_width="wrap_content"

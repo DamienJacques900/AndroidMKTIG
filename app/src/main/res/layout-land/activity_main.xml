@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/buttonConnection"
             android:layout_above="@+id/buttonRegistrationMain"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/buttonColor"/>
 
         <Button
             android:text="@string/registration"
@@ -35,7 +36,8 @@
             android:id="@+id/buttonRegistrationMain"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/buttonConnection"
-            android:layout_alignStart="@+id/buttonConnection" />
+            android:layout_alignStart="@+id/buttonConnection"
+            android:backgroundTint="@color/buttonColor"/>
 
         <Button
             android:text="Connexion client"
@@ -45,7 +47,8 @@
             android:layout_marginBottom="11dp"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/buttonConnection"
-            android:layout_toEndOf="@+id/buttonConnection" />
+            android:layout_toEndOf="@+id/buttonConnection"
+            android:backgroundTint="@color/buttonColor"/>
 
         <TextView
             android:text="@string/user_name"
@@ -85,34 +88,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="54dp"
             android:id="@+id/imageView2" />
-        <!--
-                <Button
-                    android:text="@string/connection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonConnection"
-                    android:layout_above="@+id/buttonRegistrationMain"
-                    android:layout_centerHorizontal="true" />
 
-                <Button
-                    android:text="@string/registration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonRegistrationMain"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@+id/buttonConnection"
-                    android:layout_alignStart="@+id/buttonConnection" />
-
-                <Button
-                    android:text="Connexion client"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonInutile"
-                    android:layout_marginBottom="11dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/buttonConnection"
-                    android:layout_toEndOf="@+id/buttonConnection" />
-        -->
 
     </RelativeLayout>
 

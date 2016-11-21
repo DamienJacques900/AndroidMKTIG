@@ -91,7 +91,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="36dp"
-                android:id="@+id/buttonDeleteHistory" />
+                android:id="@+id/buttonDeleteHistory"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
 
             <TextView
                 android:text="11/11/2016"

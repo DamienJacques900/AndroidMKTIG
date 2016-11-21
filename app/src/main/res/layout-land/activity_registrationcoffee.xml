@@ -134,16 +134,6 @@
                 android:layout_toRightOf="@+id/buttonRegistrationCoffee"
                 android:layout_toEndOf="@+id/buttonRegistrationCoffee" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/streetRegistrationCoffee"
-                android:layout_below="@+id/textView11"
-                android:layout_toLeftOf="@+id/textView16"
-                android:layout_toStartOf="@+id/textView16" />
-
             <Button
                 android:text="@string/registration"
                 android:layout_width="wrap_content"
@@ -151,7 +141,19 @@
                 android:id="@+id/buttonRegistrationCoffee"
                 android:layout_below="@+id/valuePromoRegistrationCoffee"
                 android:layout_toRightOf="@+id/valuePromoRegistrationCoffee"
-                android:layout_toEndOf="@+id/valuePromoRegistrationCoffee" />
+                android:layout_toEndOf="@+id/valuePromoRegistrationCoffee"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/streetRegistrationCoffee"
+                android:layout_below="@+id/textView11"
+                android:layout_alignLeft="@+id/textView11"
+                android:layout_alignStart="@+id/textView11" />
         </RelativeLayout>
     </ScrollView>
 

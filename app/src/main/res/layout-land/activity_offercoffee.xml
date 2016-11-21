@@ -62,16 +62,6 @@
                 android:layout_alignLeft="@+id/passwordBidder"
                 android:layout_alignStart="@+id/passwordBidder" />
 
-            <Button
-                android:text="@string/offer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonOffer"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/numberCoffeeBidder"
-                android:layout_toEndOf="@+id/numberCoffeeBidder"
-                android:layout_marginBottom="16dp" />
-
             <TextView
                 android:text="@string/thanksOffer"
                 android:layout_width="wrap_content"
@@ -106,6 +96,16 @@
                 android:layout_below="@+id/textView5"
                 android:layout_alignLeft="@+id/textView5"
                 android:layout_alignStart="@+id/textView5" />
+
+            <Button
+                android:text="@string/offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonOffer"
+                android:backgroundTint="@color/buttonColor"
+                android:layout_below="@+id/numberCoffeeBidder"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/textColorButton"/>
 
         </RelativeLayout>
     </ScrollView>

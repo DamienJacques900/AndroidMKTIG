@@ -123,7 +123,9 @@
                 android:id="@+id/modiftyButtonCoffeeOption"
                 android:layout_below="@+id/confirmationPasswordCoffeeOption"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="11dp" />
+                android:layout_marginTop="11dp"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
         </RelativeLayout>
     </ScrollView>
 

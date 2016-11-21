@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
+    <TextView
                 android:text="@string/thankYou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -19,17 +13,27 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="113dp"
                 android:id="@+id/merci"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textStyle="bold"/>
 
             <TextView
                 android:text="@string/thanksCoffee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/merci"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="41dp"
-                android:id="@+id/textView9" />
+                android:layout_marginTop="42dp"
+                android:id="@+id/textView9"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
 
-        </RelativeLayout>
-    </ScrollView>
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView"
+        android:scaleType="centerInside"
+        android:layout_above="@+id/merci"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="28dp" />
+
+</RelativeLayout>

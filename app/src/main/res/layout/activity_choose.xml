@@ -20,7 +20,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="43dp"
                 android:layout_marginStart="43dp"
-                android:id="@+id/buttonChoiceCoffee" />
+                android:id="@+id/buttonChoiceCoffee"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
 
             <Button
                 android:text="@string/client"
@@ -31,7 +33,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="60dp"
                 android:layout_marginEnd="60dp"
-                android:id="@+id/buttonChoiceClient" />
+                android:id="@+id/buttonChoiceClient"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
 
             <TextView
                 android:text="@string/choice_text"

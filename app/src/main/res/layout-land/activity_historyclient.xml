@@ -120,7 +120,9 @@
                 android:layout_marginBottom="12dp"
                 android:id="@+id/buttonDeleteHistory"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"/>
         </RelativeLayout>
     </ScrollView>
 
