@@ -83,15 +83,6 @@
                 android:layout_alignStart="@+id/textView10"
                 android:id="@+id/passwordRegistrationCoffee" />
 
-            <TextView
-                android:text="@string/street"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView11"
-                android:layout_below="@+id/passwordRegistrationCoffee"
-                android:layout_alignLeft="@+id/passwordRegistrationCoffee"
-                android:layout_alignStart="@+id/passwordRegistrationCoffee" />
-
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,6 +145,34 @@
                 android:layout_below="@+id/textView11"
                 android:layout_alignLeft="@+id/textView11"
                 android:layout_alignStart="@+id/textView11" />
+
+            <TextView
+                android:text="@string/coffeeRegistrationConfirmPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView56"
+                android:layout_below="@+id/passwordRegistrationCoffee"
+                android:layout_alignLeft="@+id/passwordRegistrationCoffee"
+                android:layout_alignStart="@+id/passwordRegistrationCoffee" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/editText2"
+                android:layout_below="@+id/textView56"
+                android:layout_alignLeft="@+id/textView11"
+                android:layout_alignStart="@+id/textView11" />
+
+            <TextView
+                android:text="@string/street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:layout_below="@+id/editText2"
+                android:layout_alignLeft="@+id/textView56"
+                android:layout_alignStart="@+id/textView56" />
         </RelativeLayout>
     </ScrollView>
 
