@@ -7,4 +7,5 @@ package com.damienjacques.cafesuspendu.model;
 public class UserPerson
 {
 
+
 }
