@@ -10,5 +10,6 @@ public class TimeTable implements Serializable
     private DateInterval openingHour;
     private DateInterval closingHour;
     private Integer dayOfWeek;
-    //private UserCafe userCafe;
+
+    private UserCafe userCafe;
 }

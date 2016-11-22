@@ -8,6 +8,4 @@ public class Terminal implements Serializable
     private Integer nbCookedCoffees;
     private Double latitude;
     private Double longitude;
-
-
 }
