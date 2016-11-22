@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -78,5 +79,20 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     {
         Intent intentDisconnect = new Intent(OptionCoffeeActivity.this,MainActivity.class);
         startActivity(intentDisconnect);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_optioncoffee);
+        }
+        else
+        {
+            setContentView(R.layout.activity_optioncoffee);
+        }
     }
 }
