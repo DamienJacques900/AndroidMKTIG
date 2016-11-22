@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -74,20 +75,20 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();*/
     }
 
-    /*@Override
+    @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
         super.onConfigurationChanged(newConfig);
 
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            setContentView(activity_main);
+            setContentView(R.layout.activity_main);
         }
         else
         {
             setContentView(R.layout.activity_main);
         }
-    }*/
+    }
 /*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
