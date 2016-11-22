@@ -9,6 +9,7 @@ import java.util.Date;
 public class Booking implements Serializable
 {
     private Integer bookingId;
+    //
 
     @NonNull
     private Date dateBooking;
