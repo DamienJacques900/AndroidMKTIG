@@ -9,55 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:text="@string/password"
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:layout_marginBottom="44dp"
-            android:layout_alignBottom="@+id/passwordConnection"
-            android:layout_alignLeft="@+id/passwordConnection"
-            android:layout_alignStart="@+id/passwordConnection" />
-
-
-        <Button
-            android:text="@string/connection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonConnection"
-            android:layout_above="@+id/buttonRegistrationMain"
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="@color/buttonColor"/>
-
-        <Button
-            android:text="@string/registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonRegistrationMain"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/buttonConnection"
-            android:layout_alignStart="@+id/buttonConnection"
-            android:backgroundTint="@color/buttonColor"/>
-
-        <Button
-            android:text="Connexion client"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonInutile"
-            android:layout_marginBottom="11dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/buttonConnection"
-            android:layout_toEndOf="@+id/buttonConnection"
-            android:backgroundTint="@color/buttonColor"/>
-
-        <TextView
-            android:text="@string/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_above="@+id/userNameConnection"
-            android:layout_alignLeft="@+id/userNameConnection"
-            android:layout_alignStart="@+id/userNameConnection" />
+            app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView"
+            android:layout_toStartOf="@+id/textView"
+            android:layout_marginRight="45dp"
+            android:layout_marginEnd="45dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -66,9 +28,19 @@
             android:text=""
             android:ems="10"
             android:id="@+id/userNameConnection"
-            android:layout_above="@+id/buttonConnection"
-            android:layout_toLeftOf="@+id/buttonConnection"
-            android:layout_toStartOf="@+id/buttonConnection" />
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3" />
+
+        <TextView
+            android:text="@string/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_marginTop="19dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/userNameConnection"
+            android:layout_alignStart="@+id/userNameConnection" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -76,18 +48,57 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordConnection"
-            android:layout_above="@+id/buttonConnection"
-            android:layout_toRightOf="@+id/buttonRegistrationMain"
-            android:layout_toEndOf="@+id/buttonRegistrationMain" />
+            android:layout_alignTop="@+id/textView3"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_marginTop="22dp" />
 
-        <ImageView
+        <Button
+            android:text="@string/connection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo"
-            android:layout_above="@+id/textView3"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="54dp"
-            android:id="@+id/imageView2" />
+            android:id="@+id/buttonConnection"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_marginRight="70dp"
+            android:layout_marginEnd="70dp"
+            android:layout_below="@+id/passwordConnection"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="19dp" />
+
+        <TextView
+            android:text="@string/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_marginRight="90dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/userNameConnection"
+            android:layout_alignRight="@+id/buttonConnection"
+            android:layout_alignEnd="@+id/buttonConnection" />
+
+        <Button
+            android:text="@string/registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonRegistrationMain"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_alignBottom="@+id/buttonInutile"
+            android:layout_alignLeft="@+id/buttonConnection"
+            android:layout_alignStart="@+id/buttonConnection" />
+
+        <Button
+            android:text="Connexion client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonInutile"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_below="@+id/buttonConnection"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
     </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -55,5 +56,20 @@ public class PromotionClientActivity extends MenuClientActivity
     {
         Intent intentDisconnect = new Intent(PromotionClientActivity.this,MainActivity.class);
         startActivity(intentDisconnect);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_promotionclient);
+        }
+        else
+        {
+            setContentView(R.layout.activity_promotionclient);
+        }
     }
 }
