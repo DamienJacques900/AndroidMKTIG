@@ -2,14 +2,18 @@ package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.*;
+import com.damienjacques.cafesuspendu.model.*;
 
-//Remarque général : Les vues n'affichent pas exactement ce qu'on fait dans android studio, à régler?
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -65,14 +69,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-       /* FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        transaction.replace(R.id.buttonMain_fragment, new FragmentButtonMain());
-
-        transaction.addToBackStack(null);
-
-        transaction.commit();*/
+        new LoadUser().execute();
+        new LoadTerminal().execute();
     }
 
     @Override
@@ -87,6 +85,58 @@ public class MainActivity extends AppCompatActivity
         else
         {
             setContentView(R.layout.activity_main);
+        }
+    }
+
+    private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
+    {
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
+        {
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
+            {
+                users = userDAO.getAllUsers();
+            }
+            catch(Exception e)
+            {
+                return users;
+            }
+
+            return users;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            Log.i("Test", users.toString());
+        }
+    }
+
+    private class LoadTerminal extends AsyncTask<String, Void, ArrayList<Terminal>>
+    {
+        @Override
+        protected ArrayList<Terminal> doInBackground(String... params)
+        {
+            TerminalDAO terminalDAO = new TerminalDAO();
+            ArrayList<Terminal> terminals = new ArrayList<>();
+            try
+            {
+                terminals = terminalDAO.getAllTerminals();
+            }
+            catch(Exception e)
+            {
+                return terminals;
+            }
+
+            return terminals;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Terminal> terminals)
+        {
+            Log.i("Test terminal", terminals.toString());
         }
     }
 /*

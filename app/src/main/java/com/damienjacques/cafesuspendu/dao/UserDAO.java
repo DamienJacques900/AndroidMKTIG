@@ -1,5 +1,7 @@
 package com.damienjacques.cafesuspendu.dao;
 
+import android.util.Log;
+
 import com.damienjacques.cafesuspendu.model.*;
 
 import org.json.JSONArray;
@@ -11,11 +13,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class CharityDAO
+public class UserDAO
 {
-    public ArrayList<Charity> getAllTerminals() throws Exception
+    public ArrayList<User> getAllUsers() throws Exception
     {
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/TimeTables");
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/UserPersons");
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
@@ -26,20 +28,21 @@ public class CharityDAO
         }
         br.close();
         stringJSON = sb.toString();
-        return jsonToCharities(stringJSON);
+        return jsonToUsers(stringJSON);
     }
 
-    private ArrayList<Charity> jsonToCharities(String stringJSON) throws Exception
+    private ArrayList<User> jsonToUsers(String stringJSON) throws Exception
     {
-        ArrayList<Charity> charities = new ArrayList<>();
-        Charity charity;
+        ArrayList<User> users = new ArrayList<>();
+        User user;
         JSONArray jsonArray = new JSONArray(stringJSON);
         for(int i = 0; i < jsonArray.length();i++)
         {
-            JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            charity = new Charity(jsonCharity.getInt("terminalId"));
-            charities.add(charity);
+            JSONObject jsonUser = jsonArray.getJSONObject(i);
+            Log.i("users",jsonUser.toString());
+            user = new User(jsonUser.getString("UserPersonID"));
+            users.add(user);
         }
-        return charities;
+        return users;
     }
 }

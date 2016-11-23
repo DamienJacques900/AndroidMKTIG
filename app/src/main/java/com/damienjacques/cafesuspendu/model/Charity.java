@@ -22,10 +22,93 @@ public class Charity implements Serializable
     private byte[] rowVersion; //java.sql.Timestamp ?
 
     @NonNull
-    private UserPerson userPerson;
+    private User userPerson;
 
     @NonNull
-    private UserCafe userCafe;
+    private User userCafe;
 
+    public Charity()
+    {
 
+    }
+
+    public Charity(Integer charityId)
+    {
+        this.charityId = charityId;
+    }
+
+    public Integer getCharityId()
+    {
+        return charityId;
+    }
+
+    @NonNull
+    public Integer getNbCoffeeOffered()
+    {
+        return nbCoffeeOffered;
+    }
+
+    @NonNull
+    public Integer getNbCoffeeConsumed()
+    {
+        return nbCoffeeConsumed;
+    }
+
+    @NonNull
+    public Date getOfferingTime()
+    {
+        return offeringTime;
+    }
+
+    public byte[] getRowVersion()
+    {
+        return rowVersion;
+    }
+
+    @NonNull
+    public User getUserPerson()
+    {
+        return userPerson;
+    }
+
+    @NonNull
+    public User getUserCafe()
+    {
+        return userCafe;
+    }
+
+    public void setCharityId(Integer charityId)
+    {
+        this.charityId = charityId;
+    }
+
+    public void setNbCoffeeOffered(@NonNull Integer nbCoffeeOffered)
+    {
+        this.nbCoffeeOffered = nbCoffeeOffered;
+    }
+
+    public void setNbCoffeeConsumed(@NonNull Integer nbCoffeeConsumed)
+    {
+        this.nbCoffeeConsumed = nbCoffeeConsumed;
+    }
+
+    public void setOfferingTime(@NonNull Date offeringTime)
+    {
+        this.offeringTime = offeringTime;
+    }
+
+    public void setRowVersion(byte[] rowVersion)
+    {
+        this.rowVersion = rowVersion;
+    }
+
+    public void setUserPerson(@NonNull User userPerson)
+    {
+        this.userPerson = userPerson;
+    }
+
+    public void setUserCafe(@NonNull User userCafe)
+    {
+        this.userCafe = userCafe;
+    }
 }

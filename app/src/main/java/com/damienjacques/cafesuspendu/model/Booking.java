@@ -18,8 +18,72 @@ public class Booking implements Serializable
     private String name;
 
     @NonNull
-    private UserCafe userCafe;
+    private User userCafe;
 
     @NonNull
     public Terminal terminal;
+
+    public Booking()
+    {
+
+    }
+
+    public Booking(String name)
+    {
+        this.name = name;
+    }
+
+    public Integer getBookingId()
+    {
+        return bookingId;
+    }
+
+    @NonNull
+    public Date getDateBooking()
+    {
+        return dateBooking;
+    }
+
+    @NonNull
+    public String getName()
+    {
+        return name;
+    }
+
+    @NonNull
+    public User getUserCafe()
+    {
+        return userCafe;
+    }
+
+    @NonNull
+    public Terminal getTerminal()
+    {
+        return terminal;
+    }
+
+    public void setBookingId(Integer bookingId)
+    {
+        this.bookingId = bookingId;
+    }
+
+    public void setDateBooking(@NonNull Date dateBooking)
+    {
+        this.dateBooking = dateBooking;
+    }
+
+    public void setName(@NonNull String name)
+    {
+        this.name = name;
+    }
+
+    public void setUserCafe(@NonNull User userCafe)
+    {
+        this.userCafe = userCafe;
+    }
+
+    public void setTerminal(@NonNull Terminal terminal)
+    {
+        this.terminal = terminal;
+    }
 }
