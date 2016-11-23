@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<User> users)
         {
-            Log.i("Test", users.toString());
+            Log.i("Test user", users.toString());
         }
     }
 

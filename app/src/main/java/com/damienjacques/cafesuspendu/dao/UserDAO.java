@@ -39,10 +39,8 @@ public class UserDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
-            Log.i("users",jsonUser.toString());
             user = new User(jsonUser.getString("UserPersonID"));
             users.add(user);
-            //test
         }
         return users;
     }
