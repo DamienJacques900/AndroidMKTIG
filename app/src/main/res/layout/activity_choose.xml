@@ -51,5 +51,22 @@
         android:textOff="@string/client"
         android:textOn="@string/coffee"
         app:showText="true"/>
+        <!--android:thumb="@drawable/switch_thumb"/>-->
+
+    <Switch
+        android:text="Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/buttonChoiceCoffee"
+        android:layout_alignStart="@+id/buttonChoiceCoffee"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginBottom="47dp"
+        android:id="@+id/switch1"/>
+    <!--//android:thumb="@drawable/switch_thumb"
+    //android:track="@drawable/switch_bg"/>
+//android:track="@drawable/switch_bg"-->
+
 
 </RelativeLayout>
