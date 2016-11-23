@@ -42,6 +42,7 @@ public class UserDAO
             Log.i("users",jsonUser.toString());
             user = new User(jsonUser.getString("UserPersonID"));
             users.add(user);
+            //test
         }
         return users;
     }
