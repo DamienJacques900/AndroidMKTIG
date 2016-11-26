@@ -4,43 +4,55 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.damienjacques.cafesuspendu.R;
 
 public class ChooseRegistrationActivity extends AppCompatActivity
 {
-    private Button clickCoffee;
-    private Button clickClient;
+    private SwitchCompat clientOrCafe;
+    private Button registrationButton;
+    private ImageView registrationImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
+        registrationButton = (Button) findViewById(R.id.registrationButton);
+        clientOrCafe = (SwitchCompat) findViewById(R.id.switch3);
+        registrationImage = (ImageView) findViewById(R.id.registrationImage);
 
-        clickCoffee = (Button) findViewById(R.id.buttonChoiceCoffee);
-
-        clickCoffee.setOnClickListener(new View.OnClickListener() {
+        registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(ChooseRegistrationActivity.this,RegistrationCoffeeActivity.class);
+                Intent intent;
+                if(clientOrCafe.isChecked())
+                    intent = new Intent(ChooseRegistrationActivity.this,RegistrationCoffeeActivity.class);
+                else
+                    intent = new Intent(ChooseRegistrationActivity.this,RegistrationClientActivity.class);
+
                 startActivity(intent);
             }
         });
 
-        clickClient = (Button) findViewById(R.id.buttonChoiceClient);
-
-        clickClient.setOnClickListener(new View.OnClickListener() {
+        clientOrCafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(ChooseRegistrationActivity.this,RegistrationClientActivity.class);
-                startActivity(intent);
+                if(((SwitchCompat)v).isChecked())
+                    registrationImage.setImageResource(R.drawable.inscriptioncafe);
+                else
+                    registrationImage.setImageResource(R.drawable.inscriptionclient);
+
             }
         });
+
     }
 
     @Override

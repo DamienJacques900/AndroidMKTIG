@@ -6,64 +6,52 @@
     android:layout_height="match_parent">
 
 
-            <Button
-                android:text="@string/coffee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="43dp"
-                android:layout_marginStart="43dp"
-                android:id="@+id/buttonChoiceCoffee"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColorButton"/>
-
-            <Button
-                android:text="@string/client"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/buttonChoiceCoffee"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="60dp"
-                android:layout_marginEnd="60dp"
-                android:id="@+id/buttonChoiceClient"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColorButton"/>
+    <!--android:thumb="@drawable/switch_thumb"/>-->
 
     <TextView
                 android:text="@string/choice_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="103dp"
-                android:id="@+id/textView14" />
+        android:layout_marginTop="96dp"
+                android:id="@+id/textView14"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp" />
 
     <android.support.v7.widget.SwitchCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:id="@+id/switch3"
-        android:layout_below="@+id/buttonChoiceClient"
-        android:layout_centerHorizontal="true"
         android:textOff="@string/client"
         android:textOn="@string/coffee"
-        app:showText="true"/>
-        <!--android:thumb="@drawable/switch_thumb"/>-->
+        app:showText="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_alignTop="@+id/textView14"
+        android:layout_toRightOf="@+id/registrationButton"
+        android:layout_toEndOf="@+id/registrationButton" />
 
-    <Switch
-        android:text="Switch"
+    <Button
+                android:text="@string/registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        android:id="@+id/registrationButton"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/textColorButton"
+        android:layout_marginBottom="77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/buttonChoiceCoffee"
-        android:layout_alignStart="@+id/buttonChoiceCoffee"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="47dp"
-        android:id="@+id/switch1"/>
+        app:srcCompat="@drawable/inscriptionclient"
+        android:id="@+id/registrationImage"
+        android:layout_below="@+id/switch3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp" />
     <!--//android:thumb="@drawable/switch_thumb"
     //android:track="@drawable/switch_bg"/>
 //android:track="@drawable/switch_bg"-->

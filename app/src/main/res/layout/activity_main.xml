@@ -33,20 +33,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Connexion client"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonInutile"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="66dp"
-        android:backgroundTint="@color/buttonColor"
-        android:textColor="@color/textColorButton"/>
-
     <TextView
         android:text="@string/user_name"
         android:layout_width="wrap_content"
@@ -105,5 +91,19 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_alignRight="@+id/userNameConnection"
         android:layout_alignEnd="@+id/userNameConnection" />
+
+    <Button
+        android:text="Connexion client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonInutile"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="62dp" />
 
 </RelativeLayout>
