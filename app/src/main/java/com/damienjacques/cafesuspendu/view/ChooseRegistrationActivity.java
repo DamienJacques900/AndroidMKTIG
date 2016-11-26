@@ -32,6 +32,7 @@ public class ChooseRegistrationActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent;
+
                 if(clientOrCafe.isChecked())
                     intent = new Intent(ChooseRegistrationActivity.this,RegistrationCoffeeActivity.class);
                 else
