@@ -14,7 +14,7 @@ import com.damienjacques.cafesuspendu.dao.*;
 import com.damienjacques.cafesuspendu.model.*;
 
 import java.util.ArrayList;
-//
+
 public class MainActivity extends AppCompatActivity
 {
     private Button clickRegistration;
