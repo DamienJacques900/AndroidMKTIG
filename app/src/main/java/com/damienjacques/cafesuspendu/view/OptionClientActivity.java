@@ -23,22 +23,7 @@ public class OptionClientActivity extends MenuClientActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optionclient);
-
-        mailTextView = (TextView) findViewById(R.id.mailOptionClient);
-        phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
-        passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
-        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
-
-        clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
-
-        clickModify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(OptionClientActivity.this,OptionClientActivity.class);
-                startActivity(intent);
-            }
-        });
+        createLayout();
     }
 
     @Override
@@ -91,10 +76,31 @@ public class OptionClientActivity extends MenuClientActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
             setContentView(R.layout.activity_optionclient);
+            createLayout();
         }
         else
         {
             setContentView(R.layout.activity_optionclient);
+            createLayout();
         }
+    }
+
+    private void createLayout()
+    {
+        mailTextView = (TextView) findViewById(R.id.mailOptionClient);
+        phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
+        passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
+        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
+
+        clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
+
+        clickModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(OptionClientActivity.this,OptionClientActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

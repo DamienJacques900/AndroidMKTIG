@@ -25,7 +25,28 @@ public class RegistrationClientActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrationclient);
+        createLayout();
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_registrationclient);
+            createLayout();
+        }
+        else
+        {
+            setContentView(R.layout.activity_registrationclient);
+            createLayout();
+        }
+    }
+
+    private void createLayout()
+    {
         userNameTextView = (TextView) findViewById(R.id.userNameRegistrationClient);
         passwordTextView = (TextView) findViewById(R.id.passwordRegistrationClient);
         nameTextView = (TextView) findViewById(R.id.nameRegistrationClient);
@@ -43,20 +64,5 @@ public class RegistrationClientActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_registrationclient);
-        }
-        else
-        {
-            setContentView(R.layout.activity_registrationclient);
-        }
     }
 }

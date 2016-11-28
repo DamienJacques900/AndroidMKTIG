@@ -23,6 +23,28 @@ public class ChooseRegistrationActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
+        createLayout();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_choose);
+            createLayout();
+        }
+        else
+        {
+            setContentView(R.layout.activity_choose);
+            createLayout();
+        }
+    }
+
+    private void createLayout()
+    {
         registrationButton = (Button) findViewById(R.id.registrationButton);
         clientOrCafe = (SwitchCompat) findViewById(R.id.switch3);
         registrationImage = (ImageView) findViewById(R.id.registrationImage);
@@ -53,21 +75,5 @@ public class ChooseRegistrationActivity extends AppCompatActivity
 
             }
         });
-
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_choose);
-        }
-        else
-        {
-            setContentView(R.layout.activity_choose);
-        }
     }
 }

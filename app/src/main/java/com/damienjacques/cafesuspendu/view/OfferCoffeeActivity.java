@@ -22,14 +22,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        offerButton = (Button)findViewById(R.id.buttonOffer);
-
-        clientTextView = (TextView)findViewById(R.id.userNameBidder);
-        passwordTextView = (TextView)findViewById(R.id.passwordBidder);
-        nbCoffeeTextView = (TextView)findViewById(R.id.numberCoffeeBidder);
-
         setContentView(R.layout.activity_offercoffee);
+
+        createlayout();
     }
 
     @Override
@@ -82,10 +77,21 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
             setContentView(R.layout.activity_offercoffee);
+            createlayout();
         }
         else
         {
             setContentView(R.layout.activity_offercoffee);
+            createlayout();
         }
+    }
+
+    private void createlayout()
+    {
+        offerButton = (Button)findViewById(R.id.buttonOffer);
+
+        clientTextView = (TextView)findViewById(R.id.userNameBidder);
+        passwordTextView = (TextView)findViewById(R.id.passwordBidder);
+        nbCoffeeTextView = (TextView)findViewById(R.id.numberCoffeeBidder);
     }
 }

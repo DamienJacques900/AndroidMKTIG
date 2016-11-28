@@ -33,14 +33,37 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        creationLayout();
+
+        new LoadUser().execute();
+        new LoadTerminal().execute();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_main);
+            creationLayout();
+        }
+        else
+        {
+            setContentView(R.layout.activity_main);
+            creationLayout();
+        }
+    }
+
+    private void creationLayout()
+    {
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
         clickConnection = (Button)findViewById(R.id.buttonConnection);
         clickPourClient = (Button)findViewById(R.id.buttonInutile);
 
         userNameTextView = (TextView)findViewById(R.id.userNameConnection);
         passwordTextView = (TextView)findViewById(R.id.passwordConnection);
-
-
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,24 +91,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-        new LoadUser().execute();
-        new LoadTerminal().execute();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_main);
-        }
-        else
-        {
-            setContentView(R.layout.activity_main);
-        }
     }
 
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>

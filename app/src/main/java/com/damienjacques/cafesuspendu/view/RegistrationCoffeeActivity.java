@@ -24,7 +24,28 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrationcoffee);
+        createLayout();
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
+        {
+            setContentView(R.layout.activity_registrationcoffee);
+            createLayout();
+        }
+        else
+        {
+            setContentView(R.layout.activity_registrationcoffee);
+            createLayout();
+        }
+    }
+
+    private void createLayout()
+    {
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationCoffee);
 
         userNameTextView = (TextView)findViewById(R.id.userNameRegistrationCoffee);
@@ -43,20 +64,5 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-
-        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_registrationcoffee);
-        }
-        else
-        {
-            setContentView(R.layout.activity_registrationcoffee);
-        }
     }
 }

@@ -23,21 +23,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optioncoffee);
-
-        clickModify = (Button) findViewById(R.id.modiftyButtonCoffeeOption);
-
-        nbCoffeeTextView = (TextView) findViewById(R.id.numberCoffeOption);
-        promotionValueTextView = (TextView) findViewById(R.id.valuePromoCoffeeOption);
-        passwordTextView = (TextView) findViewById(R.id.passwordCoffeeOption);
-        confirmPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordCoffeeOption);
-
-        clickModify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
-                startActivity(intent);
-            }
-        });
+        createLayout();
     }
 
     @Override
@@ -89,10 +75,30 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
             setContentView(R.layout.activity_optioncoffee);
+            createLayout();
         }
         else
         {
             setContentView(R.layout.activity_optioncoffee);
+            createLayout();
         }
+    }
+
+    private void createLayout()
+    {
+        clickModify = (Button) findViewById(R.id.modiftyButtonCoffeeOption);
+
+        nbCoffeeTextView = (TextView) findViewById(R.id.numberCoffeOption);
+        promotionValueTextView = (TextView) findViewById(R.id.valuePromoCoffeeOption);
+        passwordTextView = (TextView) findViewById(R.id.passwordCoffeeOption);
+        confirmPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordCoffeeOption);
+
+        clickModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
