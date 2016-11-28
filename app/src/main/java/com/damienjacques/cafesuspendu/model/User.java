@@ -9,7 +9,7 @@ import java.util.List;
 public class User implements Serializable
 {
     //Coffee
-    @Size(min=6, max=20)
+
     private Integer userCafeId;
 
     @Size(min=6, max=20)
@@ -29,8 +29,6 @@ public class User implements Serializable
     private Double promotionValue;
 
     private List<Booking> bookings;
-
-    private List<TimeTable> timeTables;
 
     //Person
     @Size(min=6, max=20)
@@ -98,11 +96,6 @@ public class User implements Serializable
     public List<Booking> getBookings()
     {
         return bookings;
-    }
-
-    public List<TimeTable> getTimeTables()
-    {
-        return timeTables;
     }
 
     public String getUserPersonId()
@@ -173,11 +166,6 @@ public class User implements Serializable
     public void setBookings(List<Booking> bookings)
     {
         this.bookings = bookings;
-    }
-
-    public void setTimeTables(List<TimeTable> timeTables)
-    {
-        this.timeTables = timeTables;
     }
 
     public void setUserPersonId(String userPersonId)
