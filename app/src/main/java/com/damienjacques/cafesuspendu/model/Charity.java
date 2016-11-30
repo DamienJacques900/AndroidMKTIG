@@ -32,6 +32,14 @@ public class Charity implements Serializable
 
     }
 
+    public Charity(@NonNull Integer nbCoffeeOffered, @NonNull Integer nbCoffeeConsumed, @NonNull Date offeringTime, @NonNull User userPerson, @NonNull User userCafe) {
+        this.nbCoffeeOffered = nbCoffeeOffered;
+        this.nbCoffeeConsumed = nbCoffeeConsumed;
+        this.offeringTime = offeringTime;
+        this.userPerson = userPerson;
+        this.userCafe = userCafe;
+    }
+
     public Charity(Integer charityId)
     {
         this.charityId = charityId;

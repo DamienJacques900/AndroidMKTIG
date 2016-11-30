@@ -10,12 +10,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CharityDAO
 {
-    public ArrayList<Charity> getAllTerminals() throws Exception
+    public ArrayList<Charity> getAllCharities() throws Exception
     {
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/TimeTables");
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/charities");
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
@@ -34,10 +35,14 @@ public class CharityDAO
         ArrayList<Charity> charities = new ArrayList<>();
         Charity charity;
         JSONArray jsonArray = new JSONArray(stringJSON);
+        System.out.println("Charity : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            charity = new Charity(jsonCharity.getInt("terminalId"));
+            User userCafe = new User();
+            User user = new User();
+            Date dateOffering = new Date();
+            charity = new Charity(jsonCharity.getInt("nbCoffeeOffered"),jsonCharity.getInt("nbCoffeeConsumed"),dateOffering,userCafe,user);
             charities.add(charity);
         }
         return charities;

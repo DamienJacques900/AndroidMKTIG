@@ -10,7 +10,7 @@ public class User implements Serializable
 {
     //Coffee
 
-    private Integer userCafeId;
+    private String userCafeId;
 
     @Size(min=6, max=20)
     private String password;
@@ -46,11 +46,24 @@ public class User implements Serializable
     @Size(max=12)
     private String phoneNumber;
 
-    private List<Charity> charities;
-
     public User()
     {
 
+    }
+
+    public User(String userCafeId, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, List<Booking> bookings, String userPersonId, String firstName, String lastName, String email, String phoneNumber) {
+        this.userCafeId = userCafeId;
+        this.cafeName = cafeName;
+        this.street = street;
+        this.number = number;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
+        this.bookings = bookings;
+        this.userPersonId = userPersonId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public User(String userPersonId)
@@ -58,7 +71,7 @@ public class User implements Serializable
         this.userPersonId = userPersonId;
     }
 
-    public Integer getUserCafeId()
+    public String getUserCafeId()
     {
         return userCafeId;
     }
@@ -123,12 +136,7 @@ public class User implements Serializable
         return phoneNumber;
     }
 
-    public List<Charity> getCharities()
-    {
-        return charities;
-    }
-
-    public void setUserCafeId(Integer userCafeId)
+    public void setUserCafeId(String userCafeId)
     {
         this.userCafeId = userCafeId;
     }
@@ -192,11 +200,4 @@ public class User implements Serializable
     {
         this.phoneNumber = phoneNumber;
     }
-
-    public void setCharities(List<Charity> charities)
-    {
-        this.charities = charities;
-    }
-
-
 }

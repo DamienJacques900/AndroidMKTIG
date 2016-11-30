@@ -25,8 +25,7 @@ public class Terminal implements Serializable
 
     }
 
-    public Terminal(Integer terminalId, Integer nbBookedCoffees, Double latitude, Double longitude)
-    {
+    public Terminal(Integer terminalId, @NonNull Integer nbBookedCoffees, @NonNull Double latitude, @NonNull Double longitude) {
         this.terminalId = terminalId;
         this.nbBookedCoffees = nbBookedCoffees;
         this.latitude = latitude;

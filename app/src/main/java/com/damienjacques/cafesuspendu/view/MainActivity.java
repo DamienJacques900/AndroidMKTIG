@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity
 
         new LoadUser().execute();
         new LoadTerminal().execute();
+        new LoadBooking().execute();
+        new LoadCharity().execute();
+        new LoadTimeTable().execute();
     }
 
     @Override
@@ -142,6 +145,84 @@ public class MainActivity extends AppCompatActivity
         protected void onPostExecute(ArrayList<Terminal> terminals)
         {
             Log.i("Test terminal", terminals.toString());
+        }
+    }
+
+    private class LoadTimeTable extends AsyncTask<String, Void, ArrayList<TimeTable>>
+    {
+        @Override
+        protected ArrayList<TimeTable> doInBackground(String... params)
+        {
+            TimeTableDAO timeTableDAO = new TimeTableDAO();
+            ArrayList<TimeTable> timeTables = new ArrayList<>();
+            try
+            {
+                timeTables = timeTableDAO.getAllTimeTables();
+            }
+            catch(Exception e)
+            {
+                return timeTables;
+            }
+
+            return timeTables;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<TimeTable> timeTables)
+        {
+            Log.i("Test TimeTable", timeTables.toString());
+        }
+    }
+
+    private class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    {
+        @Override
+        protected ArrayList<Charity> doInBackground(String... params)
+        {
+            CharityDAO charityDAO = new CharityDAO();
+            ArrayList<Charity> charities = new ArrayList<>();
+            try
+            {
+                charities = charityDAO.getAllCharities();
+            }
+            catch(Exception e)
+            {
+                return charities;
+            }
+
+            return charities;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Charity> charities)
+        {
+            Log.i("Test Charity", charities.toString());
+        }
+    }
+
+    private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
+    {
+        @Override
+        protected ArrayList<Booking> doInBackground(String... params)
+        {
+            BookingDAO bookingDAO = new BookingDAO();
+            ArrayList<Booking> bookings = new ArrayList<>();
+            try
+            {
+                bookings = bookingDAO.getAllBooking();
+            }
+            catch(Exception e)
+            {
+                return bookings;
+            }
+
+            return bookings;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Booking> bookings)
+        {
+            Log.i("Test Booking", bookings.toString());
         }
     }
 /*

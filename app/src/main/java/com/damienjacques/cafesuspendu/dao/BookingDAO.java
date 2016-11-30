@@ -29,10 +29,13 @@ public class BookingDAO
         ArrayList<Booking> bookings = new ArrayList<>();
         Booking booking;
         JSONArray jsonArray = new JSONArray(stringJSON);
+        System.out.println("Booking : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonBooking = jsonArray.getJSONObject(i);
-            booking = new Booking(jsonBooking.getString("name"));
+            Date dateBooking = new Date();
+            User userCafe = new User();
+            booking = new Booking(dateBooking,jsonBooking.getString("Name"),userCafe);
             bookings.add(booking);
         }
         return bookings;

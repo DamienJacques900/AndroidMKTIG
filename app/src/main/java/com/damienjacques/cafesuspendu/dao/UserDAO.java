@@ -11,13 +11,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
+import java.util.*;
 
 public class UserDAO
 {
     public ArrayList<User> getAllUsers() throws Exception
     {
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/UserPersons");
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/accounts/Users");
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
@@ -36,10 +36,12 @@ public class UserDAO
         ArrayList<User> users = new ArrayList<>();
         User user;
         JSONArray jsonArray = new JSONArray(stringJSON);
+        System.out.println("User : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
-            user = new User(jsonUser.getString("UserPersonID"));
+            List<Booking> bookings;
+            user = new User(jsonUser.getString("userName"),jsonUser.getString("cafeName"),jsonUser.getString("street"),jsonUser.getString("number"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),jsonUser.getDouble("promotionValue"),bookings,jsonUser.getString("userName"),jsonUser.getString("firstName"),jsonUser.getString("lastName"),jsonUser.getString("email"),jsonUser.getString("phoneNumber"));
             users.add(user);
         }
         return users;

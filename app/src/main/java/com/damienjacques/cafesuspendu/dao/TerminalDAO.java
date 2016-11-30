@@ -36,6 +36,7 @@ public class TerminalDAO
         ArrayList<Terminal> terminals = new ArrayList<>();
         Terminal terminal;
         JSONArray jsonArray = new JSONArray(stringJSON);
+        System.out.println("Terminal : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonTerminal = jsonArray.getJSONObject(i);
