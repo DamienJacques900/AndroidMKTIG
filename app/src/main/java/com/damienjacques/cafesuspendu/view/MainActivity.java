@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity
 
         creationLayout();
 
-        new LoadUser().execute();
+        /*
         new LoadTerminal().execute();
         new LoadBooking().execute();
         new LoadCharity().execute();
-        new LoadTimeTable().execute();
+        new LoadTimeTable().execute();*/
     }
 
     @Override
@@ -81,8 +81,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
-                startActivity(intent);
+                new LoadUser().execute();
+                /*Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                startActivity(intent);*/
             }
         });
 
@@ -118,7 +119,32 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<User> users)
         {
-            Log.i("Test user", users.toString());
+            String userName = userNameTextView.getText().toString();
+            String password = passwordTextView.getText().toString();
+            if(userName.equals("") || password.equals(""))
+            {
+                Toast.makeText(MainActivity.this,"Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                int i;
+                for(i = 0 ; i < users.size() && (users.get(i).getUserCafeId().equals(userName) || users.get(i).getUserPersonId().equals(userName)); i++)
+                {
+                    Log.i("Nom cafe", users.get(i).getUserCafeId().toString());
+                    Log.i("Nom user", users.get(i).getUserPersonId().toString());
+                }
+
+                if(i == users.size())
+                {
+                    Toast.makeText(MainActivity.this,"Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this,"Un identifiant a été trouvé", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                    startActivity(intent);
+                }
+            }
         }
     }
 

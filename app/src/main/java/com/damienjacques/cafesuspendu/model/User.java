@@ -51,14 +51,14 @@ public class User implements Serializable
 
     }
 
-    public User(String userCafeId, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, List<Booking> bookings, String userPersonId, String firstName, String lastName, String email, String phoneNumber) {
+    public User(String userCafeId, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, String userPersonId, String firstName, String lastName, String email, String phoneNumber) {
         this.userCafeId = userCafeId;
         this.cafeName = cafeName;
         this.street = street;
         this.number = number;
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
         this.promotionValue = promotionValue;
-        this.bookings = bookings;
+        //this.bookings = bookings;
         this.userPersonId = userPersonId;
         this.firstName = firstName;
         this.lastName = lastName;
