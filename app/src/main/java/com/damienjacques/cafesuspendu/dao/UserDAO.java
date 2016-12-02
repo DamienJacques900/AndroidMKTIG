@@ -39,7 +39,6 @@ public class UserDAO
         System.out.println("User : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
-            //
             JSONObject jsonUser = jsonArray.getJSONObject(i);
             //List<Booking> bookings;
             user = new User(jsonUser.getString("userName"),jsonUser.getString("cafeName"),jsonUser.getString("street"),jsonUser.getString("number"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),jsonUser.getDouble("promotionValue"),jsonUser.getString("userPersonId"),jsonUser.getString("firstName"),jsonUser.getString("lastName"),jsonUser.getString("email"),jsonUser.getString("phoneNumber"));
