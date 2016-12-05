@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this,"Un identifiant a été trouvé", Toast.LENGTH_LONG).show();
                     /*Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                     startActivity(intent);*/
+                    //Mettre un affichage d'attente lors de la première connexion
                 }
             }
         }
