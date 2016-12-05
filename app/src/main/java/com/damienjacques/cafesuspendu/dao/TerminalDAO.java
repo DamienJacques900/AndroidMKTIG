@@ -19,6 +19,7 @@ public class TerminalDAO
     {
         URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/Terminals");
         URLConnection connection = url.openConnection();
+        System.out.println(connection.toString());
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJSON = "",line;

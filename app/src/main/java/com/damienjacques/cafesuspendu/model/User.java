@@ -3,17 +3,14 @@ package com.damienjacques.cafesuspendu.model;
 import android.support.annotation.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class User implements Serializable
 {
-    //Coffee
-
-    private String userCafeId;
-
-    @Size(min=6, max=20)
-    private String password;
+    @Size(max=30)
+    private String userName;
 
     @Size(max=30)
     private String cafeName;
@@ -28,11 +25,9 @@ public class User implements Serializable
 
     private Double promotionValue;
 
-    private List<Booking> bookings;
+    private ArrayList<Booking> bookings;
 
-    //Person
-    @Size(min=6, max=20)
-    private String userPersonId;
+    private ArrayList<TimeTable> timesTables;
 
     @Size(max=30)
     private String firstName;
@@ -43,6 +38,8 @@ public class User implements Serializable
     @Size(max=50)
     private String email;
 
+    private Boolean emailConfirmed;
+
     @Size(max=12)
     private String phoneNumber;
 
@@ -51,153 +48,128 @@ public class User implements Serializable
 
     }
 
-    public User(String userCafeId, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, String userPersonId, String firstName, String lastName, String email, String phoneNumber) {
-        this.userCafeId = userCafeId;
+    public User(String userName)
+    {
+        this.userName = userName;
+    }
+
+    public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
+        this.userName = userName;
         this.cafeName = cafeName;
         this.street = street;
         this.number = number;
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
         this.promotionValue = promotionValue;
-        //this.bookings = bookings;
-        this.userPersonId = userPersonId;
+        this.bookings = bookings;
+        this.timesTables = timesTables;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.emailConfirmed = emailConfirmed;
         this.phoneNumber = phoneNumber;
     }
 
-    public User(String userPersonId)
-    {
-        this.userPersonId = userPersonId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUserCafeId()
-    {
-        return userCafeId;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public String getCafeName()
-    {
-        return cafeName;
-    }
-
-    public String getStreet()
-    {
-        return street;
-    }
-
-    public String getNumber()
-    {
-        return number;
-    }
-
-    public Integer getNbCoffeeRequiredForPromotion()
-    {
-        return nbCoffeeRequiredForPromotion;
-    }
-
-    public Double getPromotionValue()
-    {
-        return promotionValue;
-    }
-
-    public List<Booking> getBookings()
-    {
-        return bookings;
-    }
-
-    public String getUserPersonId()
-    {
-        return userPersonId;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-
-    public void setUserCafeId(String userCafeId)
-    {
-        this.userCafeId = userCafeId;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
-    public void setCafeName(String cafeName)
-    {
+    public void setCafeName(String cafeName) {
         this.cafeName = cafeName;
     }
 
-    public void setStreet(String street)
-    {
+    public void setStreet(String street) {
         this.street = street;
     }
 
-    public void setNumber(String number)
-    {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public void setNbCoffeeRequiredForPromotion(Integer nbCoffeeRequiredForPromotion)
-    {
+    public void setNbCoffeeRequiredForPromotion(Integer nbCoffeeRequiredForPromotion) {
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
     }
 
-    public void setPromotionValue(Double promotionValue)
-    {
+    public void setPromotionValue(Double promotionValue) {
         this.promotionValue = promotionValue;
     }
 
-    public void setBookings(List<Booking> bookings)
-    {
+    public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
     }
 
-    public void setUserPersonId(String userPersonId)
-    {
-        this.userPersonId = userPersonId;
+    public void setTimesTables(ArrayList<TimeTable> timesTables) {
+        this.timesTables = timesTables;
     }
 
-    public void setFirstName(String firstName)
-    {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPhoneNumber(String phoneNumber)
-    {
+    public void setEmailConfirmed(Boolean emailConfirmed) {
+        this.emailConfirmed = emailConfirmed;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getCafeName() {
+        return cafeName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public Integer getNbCoffeeRequiredForPromotion() {
+        return nbCoffeeRequiredForPromotion;
+    }
+
+    public Double getPromotionValue() {
+        return promotionValue;
+    }
+
+    public ArrayList<Booking> getBookings() {
+        return bookings;
+    }
+
+    public ArrayList<TimeTable> getTimesTables() {
+        return timesTables;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Boolean getEmailConfirmed() {
+        return emailConfirmed;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

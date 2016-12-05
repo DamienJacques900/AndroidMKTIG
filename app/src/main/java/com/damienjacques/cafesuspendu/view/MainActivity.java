@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity
 
         creationLayout();
 
-        /*
-        new LoadTerminal().execute();
+        /*new LoadTerminal().execute();
         new LoadBooking().execute();
         new LoadCharity().execute();
         new LoadTimeTable().execute();*/
@@ -82,8 +81,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 new LoadUser().execute();
-                /*Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
-                startActivity(intent);*/
             }
         });
 
@@ -99,6 +96,8 @@ public class MainActivity extends AppCompatActivity
 
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
     {
+        String userName = userNameTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
@@ -107,10 +106,12 @@ public class MainActivity extends AppCompatActivity
             try
             {
                 users = userDAO.getAllUsers();
+                String token = userDAO.getUserWithUserNameAndPw(userName, password);
+                Log.i("Test", token.toString());
             }
             catch(Exception e)
             {
-                return users;
+                System.out.println(e.getMessage());
             }
 
             return users;
@@ -119,8 +120,6 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<User> users)
         {
-            String userName = userNameTextView.getText().toString();
-            String password = passwordTextView.getText().toString();
             if(userName.equals("") || password.equals(""))
             {
                 Toast.makeText(MainActivity.this,"Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
@@ -128,10 +127,9 @@ public class MainActivity extends AppCompatActivity
             else
             {
                 int i;
-                for(i = 0 ; i < users.size() && (users.get(i).getUserCafeId().equals(userName) || users.get(i).getUserPersonId().equals(userName)); i++)
+                for(i = 0 ; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
-                    Log.i("Nom cafe", users.get(i).getUserCafeId().toString());
-                    Log.i("Nom user", users.get(i).getUserPersonId().toString());
+                    Log.i("Nom ", users.get(i).getUserName().toString());
                 }
 
                 if(i == users.size())
@@ -140,9 +138,10 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+
                     Toast.makeText(MainActivity.this,"Un identifiant a été trouvé", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
-                    startActivity(intent);
+                    /*Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                    startActivity(intent);*/
                 }
             }
         }
@@ -153,6 +152,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected ArrayList<Terminal> doInBackground(String... params)
         {
+
             TerminalDAO terminalDAO = new TerminalDAO();
             ArrayList<Terminal> terminals = new ArrayList<>();
             try
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity
             }
             catch(Exception e)
             {
-                return terminals;
+                System.out.println(e.getMessage());
             }
 
             return terminals;
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<Terminal> terminals)
         {
-            Log.i("Test terminal", terminals.toString());
+            Log.i("Test Terminal", terminals.toString());
         }
     }
 
