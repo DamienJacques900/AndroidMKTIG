@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity
     private Button clickConnection;
     private Button clickPourClient;
 
+    private ProgressBar spinner;
+
     private TextView userNameTextView;
     private TextView passwordTextView;
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
         clickConnection = (Button)findViewById(R.id.buttonConnection);
         clickPourClient = (Button)findViewById(R.id.buttonInutile);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         userNameTextView = (TextView)findViewById(R.id.userNameConnection);
         passwordTextView = (TextView)findViewById(R.id.passwordConnection);
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadUser().execute();
             }
         });
@@ -107,7 +112,6 @@ public class MainActivity extends AppCompatActivity
             {
                 users = userDAO.getAllUsers();
                 String token = userDAO.getUserWithUserNameAndPw(userName, password);
-                Log.i("Test", token.toString());
             }
             catch(Exception e)
             {
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity
             if(userName.equals("") || password.equals(""))
             {
                 Toast.makeText(MainActivity.this,"Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
+                spinner.setVisibility(View.GONE);
             }
             else
             {
@@ -130,19 +135,30 @@ public class MainActivity extends AppCompatActivity
                 for(i = 0 ; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
                     Log.i("Nom ", users.get(i).getUserName().toString());
+                    Log.i("Role", users.get(i).getRoles().toString());
                 }
 
                 if(i == users.size())
                 {
                     Toast.makeText(MainActivity.this,"Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
-
-                    Toast.makeText(MainActivity.this,"Un identifiant a été trouvé", Toast.LENGTH_LONG).show();
-                    /*Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
-                    startActivity(intent);*/
-                    //Mettre un affichage d'attente lors de la première connexion
+                    if(users.get(i).getRoles().equals("userperson"))
+                    {
+                        Toast.makeText(MainActivity.this,"Un identifiant user a été trouvé", Toast.LENGTH_LONG).show();
+                        spinner.setVisibility(View.GONE);
+                        Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this,"Un identifiant café a été trouvé", Toast.LENGTH_LONG).show();
+                        spinner.setVisibility(View.GONE);
+                        Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         }

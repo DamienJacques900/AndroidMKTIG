@@ -43,6 +43,8 @@ public class User implements Serializable
     @Size(max=12)
     private String phoneNumber;
 
+    private String roles;
+
     public User()
     {
 
@@ -51,6 +53,12 @@ public class User implements Serializable
     public User(String userName)
     {
         this.userName = userName;
+    }
+
+    public User(String userName,String roles)
+    {
+        this.userName = userName;
+        this.roles = roles;
     }
 
     public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
@@ -67,6 +75,10 @@ public class User implements Serializable
         this.email = email;
         this.emailConfirmed = emailConfirmed;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public void setUserName(String userName) {
@@ -119,6 +131,10 @@ public class User implements Serializable
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getRoles() {
+        return roles;
     }
 
     public String getUserName() {

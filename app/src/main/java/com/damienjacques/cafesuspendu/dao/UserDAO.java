@@ -88,7 +88,8 @@ public class UserDAO
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
             //ArrayList<Booking> bookings;
-            user = new User(jsonUser.getString("userName"));
+            JSONArray roles = jsonUser.getJSONArray("roles");
+            user = new User(jsonUser.getString("userName"),roles.getString(0));
             users.add(user);
         }
         return users;
