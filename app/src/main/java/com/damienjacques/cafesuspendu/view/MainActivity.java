@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity
     {
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
         clickConnection = (Button)findViewById(R.id.buttonConnection);
-        clickPourClient = (Button)findViewById(R.id.buttonInutile);
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
 
@@ -86,15 +86,6 @@ public class MainActivity extends AppCompatActivity
             {
                 spinner.setVisibility(View.VISIBLE);
                 new LoadUser().execute();
-            }
-        });
-
-        clickPourClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -136,6 +127,10 @@ public class MainActivity extends AppCompatActivity
                 {
                     Log.i("Nom ", users.get(i).getUserName().toString());
                     Log.i("Role", users.get(i).getRoles().toString());
+                    Log.i("Email", users.get(i).getEmail().toString());
+                    Log.i("Phone", users.get(i).getPhoneNumber().toString());
+                    Log.i("NbCoffee", users.get(i).getNbCoffeeRequiredForPromotion().toString());
+                    Log.i("PromoValue", users.get(i).getPromotionValue().toString());
                 }
 
                 if(i == users.size())
@@ -146,16 +141,30 @@ public class MainActivity extends AppCompatActivity
                 else
                 {
                     if(users.get(i).getRoles().equals("userperson"))
-                    {
-                        Toast.makeText(MainActivity.this,"Un identifiant user a été trouvé", Toast.LENGTH_LONG).show();
+                    {//User
                         spinner.setVisibility(View.GONE);
+                        SharedPreferences prefCient = getApplicationContext().getSharedPreferences("MyPrefClient", MODE_PRIVATE);
+                        SharedPreferences.Editor editorClient = prefCient.edit();
+                        editorClient.putString("userName",users.get(i).getUserName().toString());
+                        editorClient.putString("role",users.get(i).getRoles().toString());
+                        editorClient.putString("email",users.get(i).getEmail().toString());
+                        editorClient.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
+                        editorClient.commit();
                         Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
                         startActivity(intent);
                     }
                     else
-                    {
-                        Toast.makeText(MainActivity.this,"Un identifiant café a été trouvé", Toast.LENGTH_LONG).show();
+                    {//Coffee
                         spinner.setVisibility(View.GONE);
+                        SharedPreferences prefCoffee = getApplicationContext().getSharedPreferences("MyPrefCoffee", MODE_PRIVATE);
+                        SharedPreferences.Editor editorCoffee = prefCoffee.edit();
+                        editorCoffee.putString("userName",users.get(i).getUserName().toString());
+                        editorCoffee.putString("role",users.get(i).getRoles().toString());
+                        editorCoffee.putString("email",users.get(i).getEmail().toString());
+                        editorCoffee.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
+                        //editorCoffee.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
+                        //editorCoffee.putLong("promotionValue",users.get(i).getPromotionValue());
+                        editorCoffee.commit();
                         Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                         startActivity(intent);
                     }

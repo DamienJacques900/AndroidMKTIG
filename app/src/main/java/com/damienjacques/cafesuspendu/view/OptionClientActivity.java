@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.model.User;
 
 public class OptionClientActivity extends MenuClientActivity
 {
@@ -24,6 +27,7 @@ public class OptionClientActivity extends MenuClientActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optionclient);
         createLayout();
+        displayDataOption();
     }
 
     @Override
@@ -102,5 +106,14 @@ public class OptionClientActivity extends MenuClientActivity
                 startActivity(intent);
             }
         });
+    }
+
+    private void displayDataOption()
+    {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPrefClient", MODE_PRIVATE);
+        String email = pref.getString("email",null);
+        mailTextView.setText(email);
+        String phoneNumber = pref.getString("phoneNumber",null);
+        mailTextView.setText(phoneNumber);
     }
 }

@@ -23,7 +23,7 @@ public class User implements Serializable
 
     private Integer nbCoffeeRequiredForPromotion;
 
-    private Double promotionValue;
+    private Long promotionValue;
 
     private ArrayList<Booking> bookings;
 
@@ -55,13 +55,24 @@ public class User implements Serializable
         this.userName = userName;
     }
 
-    public User(String userName,String roles)
+    public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Long promotionValue)
     {
         this.userName = userName;
         this.roles = roles;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
+    }
+    public User(String userName,String roles,String email,String phoneNumber)
+    {
+        this.userName = userName;
+        this.roles = roles;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
-    public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Double promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
+    public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Long promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
         this.userName = userName;
         this.cafeName = cafeName;
         this.street = street;
@@ -101,7 +112,7 @@ public class User implements Serializable
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
     }
 
-    public void setPromotionValue(Double promotionValue) {
+    public void setPromotionValue(Long promotionValue) {
         this.promotionValue = promotionValue;
     }
 
@@ -157,7 +168,7 @@ public class User implements Serializable
         return nbCoffeeRequiredForPromotion;
     }
 
-    public Double getPromotionValue() {
+    public Long getPromotionValue() {
         return promotionValue;
     }
 

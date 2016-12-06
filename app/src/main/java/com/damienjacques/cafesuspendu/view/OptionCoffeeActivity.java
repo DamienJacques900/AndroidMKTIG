@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optioncoffee);
         createLayout();
+        displayDataOption();
     }
 
     @Override
@@ -100,5 +102,14 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
                 startActivity(intent);
             }
         });
+    }
+
+    public void displayDataOption()
+    {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPrefCoffee", MODE_PRIVATE);
+        Integer nbCoffeeRequiredForPromotion = pref.getInt("nbCoffeeRequiredForPromotion",0);
+        nbCoffeeTextView.setText(nbCoffeeRequiredForPromotion);
+        Long promotionValue = pref.getLong("promotionValue",0);
+        promotionValueTextView.setText(promotionValue.toString());
     }
 }
