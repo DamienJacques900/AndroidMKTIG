@@ -64,13 +64,7 @@ public class User implements Serializable
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
         this.promotionValue = promotionValue;
     }
-    public User(String userName,String roles,String email,String phoneNumber)
-    {
-        this.userName = userName;
-        this.roles = roles;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
+
 
     public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Long promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
         this.userName = userName;
