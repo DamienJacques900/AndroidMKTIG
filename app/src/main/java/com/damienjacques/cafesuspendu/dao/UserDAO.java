@@ -90,8 +90,10 @@ public class UserDAO
             //ArrayList<Booking> bookings;
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.equals("userperson"))
-                user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),0,jsonUser.getLong("promotionValue"));
-                Log.i("PromoValue",user.getPromotionValue().toString());
+            {
+                user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, jsonUser.getLong("promotionValue"));
+                Log.i("PromoValue", user.getPromotionValue().toString());
+            }
             else
                 user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),jsonUser.getLong("promotionValue"));
             users.add(user);
