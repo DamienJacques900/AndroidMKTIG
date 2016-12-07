@@ -25,7 +25,7 @@ public class Charity implements Serializable
     private User userPerson;
 
     @NonNull
-    private User userCafe;
+    private User userCoffee;
 
     public Charity()
     {
@@ -37,7 +37,7 @@ public class Charity implements Serializable
         this.nbCoffeeConsumed = nbCoffeeConsumed;
         this.offeringTime = offeringTime;
         this.userPerson = userPerson;
-        this.userCafe = userCafe;
+        this.userCoffee = userCafe;
     }
 
     public Charity(Integer charityId)
@@ -82,7 +82,7 @@ public class Charity implements Serializable
     @NonNull
     public User getUserCafe()
     {
-        return userCafe;
+        return userCoffee;
     }
 
     public void setCharityId(Integer charityId)
@@ -117,6 +117,6 @@ public class Charity implements Serializable
 
     public void setUserCafe(@NonNull User userCafe)
     {
-        this.userCafe = userCafe;
+        this.userCoffee = userCafe;
     }
 }

@@ -1,11 +1,19 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.CharityDAO;
+import com.damienjacques.cafesuspendu.model.Charity;
+
+import java.util.ArrayList;
 
 public class PromotionClientActivity extends MenuClientActivity
 {
@@ -13,7 +21,14 @@ public class PromotionClientActivity extends MenuClientActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        new LoadCharity().execute();
         setContentView(R.layout.activity_promotionclient);
+
+        TextView coffee = (TextView) findViewById(R.id.textView34);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+        coffee.setText(pref.getString("charities1",null));
     }
 
     @Override
@@ -70,6 +85,54 @@ public class PromotionClientActivity extends MenuClientActivity
         else
         {
             setContentView(R.layout.activity_promotionclient);
+        }
+    }
+
+    private class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    {
+        @Override
+        protected ArrayList<Charity> doInBackground(String... params)
+        {
+            CharityDAO charityDAO = new CharityDAO();
+            ArrayList<Charity> charities = new ArrayList<>();
+            try
+            {
+                charities = charityDAO.getAllCharities();
+            }
+            catch(Exception e)
+            {
+                return charities;
+            }
+
+            return charities;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Charity> charities)
+        {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+            System.out.println("Taille charities : "+charities.size());
+            for(int i = 0 ; i < charities.size(); i++)
+            {
+                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
+                {
+                    charitiesClient.add(charities.get(i));
+                }
+            }
+
+            SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            System.out.println("Taille charities client : "+charitiesClient.size());
+
+            for(int i = 1; i <= charitiesClient.size(); i++)
+            {
+                editor.putString("charities"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
+            }
+
+            editor.commit();
         }
     }
 }

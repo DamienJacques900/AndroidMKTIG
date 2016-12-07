@@ -38,7 +38,6 @@ public class CharityDAO
         ArrayList<Charity> charities = new ArrayList<>();
         Charity charity;
         JSONArray jsonArray = new JSONArray(stringJSON);
-        System.out.println("Charity : "+jsonArray.toString());
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
@@ -48,10 +47,10 @@ public class CharityDAO
 
             JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
             //Log.i("UserNameCof",jsonUserCoffee.getString("UserName"));
-            User userCoffee = new User(jsonUserCient.getString("UserName"));
+            User userCoffee = new User(jsonUserCoffee.getString("UserName"));
 
             SimpleDateFormat dateOffering = new SimpleDateFormat("YYYY-MM-DD");
-            charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOffering.parse(jsonCharity.getString("OfferingTime")),userCoffee,userClient);
+            charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOffering.parse(jsonCharity.getString("OfferingTime")),userClient,userCoffee);
             charities.add(charity);
         }
         return charities;

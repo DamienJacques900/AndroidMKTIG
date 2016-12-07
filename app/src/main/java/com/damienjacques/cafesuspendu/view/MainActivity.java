@@ -152,14 +152,12 @@ public class MainActivity extends AppCompatActivity
                     if(users.get(i).getRoles().equals("userperson"))
                     {//User
                         spinner.setVisibility(View.GONE);
-                        new LoadCharity().execute();
                         Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
                         startActivity(intent);
                     }
                     else
                     {//Coffee
                         spinner.setVisibility(View.GONE);
-                        new LoadBooking().execute();
                         Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                         startActivity(intent);
                     }
@@ -221,7 +219,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    /*private class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
@@ -258,8 +256,9 @@ public class MainActivity extends AppCompatActivity
             Log.i("ValeurClientChar", charitiesClient.toString());
         }
     }
+    */
 
-    private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
+    /*private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
     {
         @Override
         protected ArrayList<Booking> doInBackground(String... params)
@@ -295,7 +294,7 @@ public class MainActivity extends AppCompatActivity
 
             Log.i("ValeurCoffeeBok", bookingsCoffee.toString());
         }
-    }
+    }*/
 /*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
