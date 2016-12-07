@@ -25,7 +25,6 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optioncoffee);
         createLayout();
-        displayDataOption();
     }
 
     @Override
@@ -102,6 +101,8 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
                 startActivity(intent);
             }
         });
+
+        displayDataOption();
     }
 
     public void displayDataOption()

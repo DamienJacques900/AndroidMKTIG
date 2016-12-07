@@ -149,6 +149,8 @@ public class MainActivity extends AppCompatActivity
                         editorClient.putString("role",users.get(i).getRoles().toString());
                         editorClient.putString("email",users.get(i).getEmail().toString());
                         editorClient.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
+                        editorClient.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
+                        editorClient.putLong("promotionValue",users.get(i).getPromotionValue());
                         editorClient.commit();
                         Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
                         startActivity(intent);
@@ -162,8 +164,8 @@ public class MainActivity extends AppCompatActivity
                         editorCoffee.putString("role",users.get(i).getRoles().toString());
                         editorCoffee.putString("email",users.get(i).getEmail().toString());
                         editorCoffee.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
-                        //editorCoffee.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
-                        //editorCoffee.putLong("promotionValue",users.get(i).getPromotionValue());
+                        editorCoffee.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
+                        editorCoffee.putLong("promotionValue",users.get(i).getPromotionValue());
                         editorCoffee.commit();
                         Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                         startActivity(intent);

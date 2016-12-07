@@ -27,7 +27,6 @@ public class OptionClientActivity extends MenuClientActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optionclient);
         createLayout();
-        displayDataOption();
     }
 
     @Override
@@ -106,6 +105,8 @@ public class OptionClientActivity extends MenuClientActivity
                 startActivity(intent);
             }
         });
+
+        displayDataOption();
     }
 
     private void displayDataOption()
@@ -114,6 +115,6 @@ public class OptionClientActivity extends MenuClientActivity
         String email = pref.getString("email",null);
         mailTextView.setText(email);
         String phoneNumber = pref.getString("phoneNumber",null);
-        mailTextView.setText(phoneNumber);
+        phoneTextView.setText(phoneNumber);
     }
 }
