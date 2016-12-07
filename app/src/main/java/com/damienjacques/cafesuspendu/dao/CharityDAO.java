@@ -49,6 +49,7 @@ public class CharityDAO
             JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
             //Log.i("UserNameCof",jsonUserCoffee.getString("UserName"));
             User userCoffee = new User(jsonUserCient.getString("UserName"));
+
             SimpleDateFormat dateOffering = new SimpleDateFormat("YYYY-MM-DD");
             charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOffering.parse(jsonCharity.getString("OfferingTime")),userCoffee,userClient);
             charities.add(charity);

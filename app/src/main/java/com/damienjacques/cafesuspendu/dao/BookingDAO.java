@@ -4,6 +4,7 @@ import com.damienjacques.cafesuspendu.model.*;
 import org.json.*;
 import java.io.*;
 import java.net.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BookingDAO
@@ -33,9 +34,12 @@ public class BookingDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonBooking = jsonArray.getJSONObject(i);
-            Date dateBooking = new Date();
-            User userCafe = new User();
-            booking = new Booking(dateBooking,jsonBooking.getString("Name"),userCafe);
+            JSONObject jsonUser = jsonBooking.getJSONObject("ApplicationUser");
+            User userCafe = new User(jsonUser.getString("UserName"));
+
+            SimpleDateFormat dateBooking = new SimpleDateFormat("YYYY-MM-DD");
+
+            booking = new Booking(dateBooking.parse(jsonBooking.getString("DateBooking")),jsonBooking.getString("Name"),userCafe);
             bookings.add(booking);
         }
         return bookings;

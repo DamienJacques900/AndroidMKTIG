@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         creationLayout();
 
         new LoadTerminal().execute();
-        new LoadBooking().execute();
+
 
         new LoadTimeTable().execute();
     }
@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity
                     else
                     {//Coffee
                         spinner.setVisibility(View.GONE);
+                        new LoadBooking().execute();
                         Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                         startActivity(intent);
                     }
@@ -280,7 +281,19 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<Booking> bookings)
         {
-            Log.i("Test Booking", bookings.toString());
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+            ArrayList<Booking> bookingsCoffee = new ArrayList<Booking>();
+
+            System.out.println("Taille booking : "+bookings.size());
+            for(int i = 0 ; i < bookings.size(); i++)
+            {
+                if(bookings.get(i).getUserCafe().getUserName().equals(pref.getString("userName",null)))
+                {
+                    bookingsCoffee.add(bookings.get(i));
+                }
+            }
+
+            Log.i("ValeurCoffeeBok", bookingsCoffee.toString());
         }
     }
 /*
