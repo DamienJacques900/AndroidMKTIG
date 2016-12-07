@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.damienjacques.cafesuspendu.R;
@@ -24,11 +26,21 @@ public class PromotionClientActivity extends MenuClientActivity
         new LoadCharity().execute();
         setContentView(R.layout.activity_promotionclient);
 
-        TextView coffee = (TextView) findViewById(R.id.textView34);
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.displayCoffee);
+        TextView coffee = new TextView(PromotionClientActivity.this);
         coffee.setText(pref.getString("charities1",null));
+        linearLayout.addView(coffee);
+        /*for(int i=1; i <= pref.getInt("SizeCharities",0); i++)
+        {
+            LinearLayout childLayout = new LinearLayout(PromotionClientActivity.this);
+            TextView coffee = new TextView(PromotionClientActivity.this);
+            coffee.setText(pref.getString("charities"+i,null));
+            System.out.println(coffee.getText());
+            childLayout.addView(coffee);
+            linearLayout.addView(childLayout);
+        }*/
     }
 
     @Override
@@ -113,7 +125,7 @@ public class PromotionClientActivity extends MenuClientActivity
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
 
-            System.out.println("Taille charities : "+charities.size());
+            //System.out.println("Taille charities : "+charities.size());
             for(int i = 0 ; i < charities.size(); i++)
             {
                 if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
@@ -125,13 +137,12 @@ public class PromotionClientActivity extends MenuClientActivity
             SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
 
-            System.out.println("Taille charities client : "+charitiesClient.size());
-
+            //System.out.println("Taille charities client : "+charitiesClient.size());
             for(int i = 1; i <= charitiesClient.size(); i++)
             {
                 editor.putString("charities"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
             }
-
+            editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();
         }
     }
