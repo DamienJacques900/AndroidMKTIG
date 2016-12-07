@@ -111,7 +111,7 @@ public class OptionClientActivity extends MenuClientActivity
 
     private void displayDataOption()
     {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPrefClient", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         String email = pref.getString("email",null);
         mailTextView.setText(email);
         String phoneNumber = pref.getString("phoneNumber",null);

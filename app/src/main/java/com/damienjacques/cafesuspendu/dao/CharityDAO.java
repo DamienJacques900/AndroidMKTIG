@@ -1,5 +1,7 @@
 package com.damienjacques.cafesuspendu.dao;
 
+import android.util.Log;
+
 import com.damienjacques.cafesuspendu.model.*;
 
 import org.json.JSONArray;
@@ -9,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,10 +42,15 @@ public class CharityDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            User userCafe = new User();
-            User user = new User();
-            Date dateOffering = new Date();
-            charity = new Charity(jsonCharity.getInt("nbCoffeeOffered"),jsonCharity.getInt("nbCoffeeConsumed"),dateOffering,userCafe,user);
+            JSONObject jsonUserCient = jsonCharity.getJSONObject("ApplicationUserPerson");
+            //Log.i("UserNameCli",jsonUserCient.getString("UserName"));
+            User userClient = new User(jsonUserCient.getString("UserName"));
+
+            JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
+            //Log.i("UserNameCof",jsonUserCoffee.getString("UserName"));
+            User userCoffee = new User(jsonUserCient.getString("UserName"));
+            SimpleDateFormat dateOffering = new SimpleDateFormat("YYYY-MM-DD");
+            charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOffering.parse(jsonCharity.getString("OfferingTime")),userCoffee,userClient);
             charities.add(charity);
         }
         return charities;

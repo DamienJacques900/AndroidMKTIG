@@ -107,9 +107,9 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
     public void displayDataOption()
     {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPrefCoffee", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         Integer nbCoffeeRequiredForPromotion = pref.getInt("nbCoffeeRequiredForPromotion",0);
-        nbCoffeeTextView.setText(nbCoffeeRequiredForPromotion);
+        nbCoffeeTextView.setText(nbCoffeeRequiredForPromotion.toString());
         Long promotionValue = pref.getLong("promotionValue",0);
         promotionValueTextView.setText(promotionValue.toString());
     }

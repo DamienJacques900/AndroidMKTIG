@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity
 {
     private Button clickRegistration;
     private Button clickConnection;
-    private Button clickPourClient;
 
     private ProgressBar spinner;
 
@@ -38,10 +37,10 @@ public class MainActivity extends AppCompatActivity
 
         creationLayout();
 
-        /*new LoadTerminal().execute();
+        new LoadTerminal().execute();
         new LoadBooking().execute();
-        new LoadCharity().execute();
-        new LoadTimeTable().execute();*/
+
+        new LoadTimeTable().execute();
     }
 
     @Override
@@ -125,12 +124,12 @@ public class MainActivity extends AppCompatActivity
                 int i;
                 for(i = 0 ; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
-                    Log.i("Nom ", users.get(i).getUserName().toString());
+                    /*Log.i("Nom ", users.get(i).getUserName().toString());
                     Log.i("Role", users.get(i).getRoles().toString());
                     Log.i("Email", users.get(i).getEmail().toString());
                     Log.i("Phone", users.get(i).getPhoneNumber().toString());
                     Log.i("NbCoffee", users.get(i).getNbCoffeeRequiredForPromotion().toString());
-                    Log.i("PromoValue", users.get(i).getPromotionValue().toString());
+                    Log.i("PromoValue", users.get(i).getPromotionValue().toString());*/
                 }
 
                 if(i == users.size())
@@ -140,33 +139,26 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("userName",users.get(i).getUserName().toString());
+                    editor.putString("role",users.get(i).getRoles().toString());
+                    editor.putString("email",users.get(i).getEmail().toString());
+                    editor.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
+                    editor.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
+                    editor.putLong("promotionValue",users.get(i).getPromotionValue());
+                    editor.commit();
+
                     if(users.get(i).getRoles().equals("userperson"))
                     {//User
                         spinner.setVisibility(View.GONE);
-                        SharedPreferences prefCient = getApplicationContext().getSharedPreferences("MyPrefClient", MODE_PRIVATE);
-                        SharedPreferences.Editor editorClient = prefCient.edit();
-                        editorClient.putString("userName",users.get(i).getUserName().toString());
-                        editorClient.putString("role",users.get(i).getRoles().toString());
-                        editorClient.putString("email",users.get(i).getEmail().toString());
-                        editorClient.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
-                        editorClient.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
-                        editorClient.putLong("promotionValue",users.get(i).getPromotionValue());
-                        editorClient.commit();
+                        new LoadCharity().execute();
                         Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
                         startActivity(intent);
                     }
                     else
                     {//Coffee
                         spinner.setVisibility(View.GONE);
-                        SharedPreferences prefCoffee = getApplicationContext().getSharedPreferences("MyPrefCoffee", MODE_PRIVATE);
-                        SharedPreferences.Editor editorCoffee = prefCoffee.edit();
-                        editorCoffee.putString("userName",users.get(i).getUserName().toString());
-                        editorCoffee.putString("role",users.get(i).getRoles().toString());
-                        editorCoffee.putString("email",users.get(i).getEmail().toString());
-                        editorCoffee.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
-                        editorCoffee.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
-                        editorCoffee.putLong("promotionValue",users.get(i).getPromotionValue());
-                        editorCoffee.commit();
                         Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
                         startActivity(intent);
                     }
@@ -250,7 +242,19 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
-            Log.i("Test Charity", charities.toString());
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+            System.out.println("Taille charities : "+charities.size());
+            for(int i = 0 ; i < charities.size(); i++)
+            {
+                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
+                {
+                    charitiesClient.add(charities.get(i));
+                }
+            }
+
+            Log.i("ValeurClientChar", charitiesClient.toString());
         }
     }
 

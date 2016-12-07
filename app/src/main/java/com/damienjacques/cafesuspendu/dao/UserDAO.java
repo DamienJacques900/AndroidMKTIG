@@ -85,20 +85,16 @@ public class UserDAO
         JSONArray jsonArray = new JSONArray(stringJSON);
         for(int i = 0; i < jsonArray.length();i++)
         {
-            //DEGUEULASSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             JSONObject jsonUser = jsonArray.getJSONObject(i);
             //ArrayList<Booking> bookings;
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {
                 user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, jsonUser.getLong("promotionValue"));
-                Log.i("PromoValue", user.getPromotionValue().toString());
             }
             else
             {
                 user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),jsonUser.getLong("promotionValue"));
-                Log.i("PromoValue", user.getPromotionValue().toString());
-                Log.i("Nb coffee", user.getNbCoffeeRequiredForPromotion().toString());
             }
                  users.add(user);
         }
