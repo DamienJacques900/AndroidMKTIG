@@ -10,7 +10,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--dddd-->
             <TextView
                 android:text="@string/reservation"
                 android:layout_width="wrap_content"
@@ -24,33 +23,24 @@
                 android:id="@+id/reservationCoffee"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/reservationCoffee"
-                android:layout_alignLeft="@+id/reservationCoffee"
-                android:layout_alignStart="@+id/reservationCoffee"
-                android:layout_marginTop="18dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/textView31"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp">
 
-                <TextView
-                    android:text="TextView"
+                <ListView
+                    android:id="@+id/listBooking"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView6" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView7" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView8" />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="63dp" />
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 

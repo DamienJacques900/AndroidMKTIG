@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
@@ -21,8 +24,8 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        new LoadBooking().execute();
         setContentView(R.layout.activity_reservationcoffee);
+        creationLayout();
     }
 
     @Override
@@ -75,10 +78,12 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
             setContentView(R.layout.activity_reservationcoffee);
+            creationLayout();
         }
         else
         {
             setContentView(R.layout.activity_reservationcoffee);
+            creationLayout();
         }
     }
 
@@ -116,7 +121,39 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
                 }
             }
 
-            Log.i("ValeurCoffeeBok", bookingsCoffee.toString());
+            SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            for(int i = 1; i <= bookingsCoffee.size(); i++)
+            {
+                editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
+                editor.putString("date"+i, bookingsCoffee.get(i-1).getDateBooking().toString());
+                //System.out.println("name : "+bookingsCoffee.get(i-1).getName());
+                //System.out.println("date : "+bookingsCoffee.get(i-1).getDateBooking().toString());
+            }
+            editor.putInt("SizeBooking",bookingsCoffee.size());
+            editor.commit();
         }
+    }
+
+    public void creationLayout()
+    {
+        new LoadBooking().execute();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+        ListView listBooking= (ListView) findViewById(R.id.listBooking);
+
+        String[] listItemsBookings = new String[pref.getInt("SizeBooking",0)];
+
+        for(int i = 1; i <= pref.getInt("SizeBooking",0); i++){
+
+            String coffeeName = pref.getString("nameOffering"+i,null);
+            coffeeName += "      "+pref.getString("date"+i,null);
+
+            listItemsBookings[i-1] = coffeeName;
+        }
+// 4
+        ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsBookings);
+        listBooking.setAdapter(adapterCoffee);
     }
 }
