@@ -90,11 +90,11 @@ public class UserDAO
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {
-                user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, jsonUser.getLong("promotionValue"));
+                user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, (float)jsonUser.getDouble("promotionValue"));
             }
             else
             {
-                user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),jsonUser.getLong("promotionValue"));
+                user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),(float)jsonUser.getDouble("promotionValue"));
             }
             users.add(user);
         }

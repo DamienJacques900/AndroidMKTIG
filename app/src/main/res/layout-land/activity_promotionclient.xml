@@ -24,88 +24,38 @@
                 android:id="@+id/textView31"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-            <TextView
-                android:text="Café 1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/textView31"
-                android:layout_alignLeft="@+id/textView31"
-                android:layout_alignStart="@+id/textView31"
-                android:layout_marginTop="20dp"
-                android:id="@+id/textView34" />
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/relativeLayout">
 
-            <TextView
-                android:text="Café 2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView35"
-                android:layout_alignLeft="@+id/textView34"
-                android:layout_alignStart="@+id/textView34"
-                android:layout_marginTop="22dp"
-                android:id="@+id/textView36" />
-
-            <TextView
-                android:text="Café 3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView37"
-                android:layout_alignLeft="@+id/textView36"
-                android:layout_alignStart="@+id/textView36"
-                android:layout_marginTop="21dp"
-                android:id="@+id/textView38" />
+                <ListView
+                    android:id="@+id/listCoffee"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
 
             <ProgressBar
+                android:id="@+id/progressBarCoffe1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar2"
-                android:layout_below="@+id/textView34"
-                android:layout_centerHorizontal="true" />
+                android:indeterminate="false"
+                android:max="100"
+                android:minHeight="50dp"
+                android:minWidth="200dp"
+                android:progress="1"
+                android:layout_alignTop="@+id/textView31"
+                android:layout_alignRight="@+id/relativeLayout"
+                android:layout_alignEnd="@+id/relativeLayout"
+                android:layout_marginRight="109dp"
+                android:layout_marginEnd="109dp" />
 
-            <TextView
-                android:text="Il vous reste 2 cafés avant le promotions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView35"
-                android:layout_above="@+id/progressBar2"
-                android:layout_alignLeft="@+id/textView39"
-                android:layout_alignStart="@+id/textView39" />
-
-            <TextView
-                android:text="Il vous reste 1 café avant la promotion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView37"
-                android:layout_alignBaseline="@+id/textView36"
-                android:layout_alignBottom="@+id/textView36"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:text="Il vous reste 3 cafés avant la promotion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView39"
-                android:layout_centerVertical="true"
-                android:layout_alignRight="@+id/textView37"
-                android:layout_alignEnd="@+id/textView37" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar3"
-                android:layout_below="@+id/textView37"
-                android:layout_alignLeft="@+id/progressBar2"
-                android:layout_alignStart="@+id/progressBar2" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar4"
-                android:layout_below="@+id/textView39"
-                android:layout_alignLeft="@+id/progressBar3"
-                android:layout_alignStart="@+id/progressBar3" />
         </RelativeLayout>
     </ScrollView>
 

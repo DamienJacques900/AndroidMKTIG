@@ -23,7 +23,7 @@ public class User implements Serializable
 
     private Integer nbCoffeeRequiredForPromotion;
 
-    private Long promotionValue;
+    private Float promotionValue;
 
     private ArrayList<Booking> bookings;
 
@@ -55,14 +55,14 @@ public class User implements Serializable
         this.userName = userName;
     }
 
-    public User(String userName, int nbCoffeeRequiredForPromotion, long promotionValue)
+    public User(String userName, int nbCoffeeRequiredForPromotion, Float promotionValue)
     {
         this.userName = userName;
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
         this.promotionValue = promotionValue;
     }
 
-    public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Long promotionValue)
+    public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Float promotionValue)
     {
         this.userName = userName;
         this.roles = roles;
@@ -73,7 +73,7 @@ public class User implements Serializable
     }
 
 
-    public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Long promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
+    public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Float promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
         this.userName = userName;
         this.cafeName = cafeName;
         this.street = street;
@@ -113,7 +113,7 @@ public class User implements Serializable
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
     }
 
-    public void setPromotionValue(Long promotionValue) {
+    public void setPromotionValue(Float promotionValue) {
         this.promotionValue = promotionValue;
     }
 
@@ -169,7 +169,7 @@ public class User implements Serializable
         return nbCoffeeRequiredForPromotion;
     }
 
-    public Long getPromotionValue() {
+    public Float getPromotionValue() {
         return promotionValue;
     }
 

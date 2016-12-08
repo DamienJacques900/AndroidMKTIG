@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity
         creationLayout();
 
         new LoadTerminal().execute();
-
-
         new LoadTimeTable().execute();
     }
 
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("email",users.get(i).getEmail().toString());
                     editor.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
                     editor.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
-                    editor.putLong("promotionValue",users.get(i).getPromotionValue());
+                    editor.putFloat("promotionValue",users.get(i).getPromotionValue());
                     editor.commit();
 
                     if(users.get(i).getRoles().equals("userperson"))
