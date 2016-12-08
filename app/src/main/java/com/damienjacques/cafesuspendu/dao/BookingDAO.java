@@ -35,7 +35,6 @@ public class BookingDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonBooking = jsonArray.getJSONObject(i);
-            //Log.i("Bookings :",jsonBooking.toString());
             JSONObject jsonUser = jsonBooking.getJSONObject("ApplicationUser");
             User userCafe = new User(jsonUser.getString("UserName"));
 

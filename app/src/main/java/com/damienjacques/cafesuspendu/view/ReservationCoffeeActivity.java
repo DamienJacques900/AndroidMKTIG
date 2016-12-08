@@ -128,8 +128,6 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             {
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
                 editor.putString("date"+i, bookingsCoffee.get(i-1).getDateBooking().toString());
-                //System.out.println("name : "+bookingsCoffee.get(i-1).getName());
-                //System.out.println("date : "+bookingsCoffee.get(i-1).getDateBooking().toString());
             }
             editor.putInt("SizeBooking",bookingsCoffee.size());
             editor.commit();
