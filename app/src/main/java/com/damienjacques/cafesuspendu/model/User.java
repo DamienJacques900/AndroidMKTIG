@@ -50,9 +50,16 @@ public class User implements Serializable
 
     }
 
-    public User(String userName)
+    public User (String userName)
     {
         this.userName = userName;
+    }
+
+    public User(String userName, int nbCoffeeRequiredForPromotion, long promotionValue)
+    {
+        this.userName = userName;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
     }
 
     public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Long promotionValue)
