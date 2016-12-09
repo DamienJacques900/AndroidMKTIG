@@ -25,13 +25,19 @@ public class HistoryClientActivity extends MenuClientActivity
         creationLayout();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet dl'affichage du menu
+    //**************************************************************
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) //pour que le menu s'affiche
+    public boolean onCreateOptionsMenu(Menu menu)
     {
         this.getMenuInflater().inflate(R.menu.menu_client,menu);
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionClient()
     {
@@ -67,6 +73,9 @@ public class HistoryClientActivity extends MenuClientActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -84,6 +93,9 @@ public class HistoryClientActivity extends MenuClientActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de charger les données de l'API
+    //**************************************************************
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
         @Override
@@ -103,13 +115,19 @@ public class HistoryClientActivity extends MenuClientActivity
             return charities;
         }
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
+            //***********************COMMENTAIRE****************************
+            //Permet de pouvoir récuperer les données partout dans le code
+            //par la suite en stockant les données dans un sharePreference
+            //**************************************************************
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
 
-            //System.out.println("Taille charities : "+charities.size());
             for(int i = 0 ; i < charities.size(); i++)
             {
                 if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
@@ -118,10 +136,12 @@ public class HistoryClientActivity extends MenuClientActivity
                 }
             }
 
+            //***********************COMMENTAIRE****************************
+            //Permet d'éditer le sharePreference
+            //**************************************************************
             SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
 
-            //System.out.println("Taille charities client : "+charitiesClient.size());
             for(int i = 1; i <= charitiesClient.size(); i++)
             {
                 editor.putString("coffeeName"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
@@ -134,6 +154,10 @@ public class HistoryClientActivity extends MenuClientActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     public void creationLayout()
     {
         new LoadCharity().execute();
@@ -144,6 +168,9 @@ public class HistoryClientActivity extends MenuClientActivity
 
         String[] listItemsHistory = new String[pref.getInt("SizeCharities",0)];
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'afficher les données dans une listView
+        //**************************************************************
         for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
         {
             int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);

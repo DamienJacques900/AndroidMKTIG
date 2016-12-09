@@ -21,18 +21,30 @@ public class UserDAO
 
     public String getUserWithUserNameAndPw(String userName, String password) throws Exception
     {
+        //***********************COMMENTAIRE****************************
+        //Permet d'établir la connexion pour récuper le token
+        //**************************************************************
         URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/token");
         HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+        //***********************COMMENTAIRE****************************
+        //Permet de dire qu'on va faire une requête POST avec la propriété
+        //qui suit
+        //**************************************************************
         urlConnection.setRequestMethod("POST");
         urlConnection.setRequestProperty("Content-type", "x-www-form-urlencoded");
         urlConnection.setDoInput(true);
 
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'écrire dans la requête(comme dans fiddler)
+        //**************************************************************
         OutputStream out = urlConnection.getOutputStream();
         OutputStreamWriter writer = new OutputStreamWriter(out);
         urlConnection.connect();
 
-
+        //***********************COMMENTAIRE****************************
+        //C'est la requête pour récupérer le token
+        //**************************************************************
         writer.write("username="+userName+"&password="+password+"&grant_type=password");
         writer.flush();
         BufferedReader br;
@@ -63,11 +75,17 @@ public class UserDAO
 
     public ArrayList<User> getAllUsers() throws Exception
     {
+        //***********************COMMENTAIRE****************************
+        //Permet d'établir la connexion
+        //**************************************************************
         URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/accounts/Users");
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJSON = "",line;
+        //***********************COMMENTAIRE****************************
+        //Tant que toutes les données de l'API ne sont pas parcourues
+        //**************************************************************
         while((line=br.readLine())!=null)
         {
             sb.append(line);
@@ -78,11 +96,17 @@ public class UserDAO
         return jsonToUsers(stringJSON);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de convertir le format JSON de l'API en arrayList
+    //**************************************************************
     private ArrayList<User> jsonToUsers(String stringJSON) throws Exception
     {
         ArrayList<User> users = new ArrayList<>();
         User user;
         JSONArray jsonArray = new JSONArray(stringJSON);
+        //***********************COMMENTAIRE****************************
+        //Tant que toutes les données du JSON ne sont pas parcourues
+        //**************************************************************
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
@@ -101,6 +125,9 @@ public class UserDAO
         return users;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de récupérer le token
+    //**************************************************************
     private String jsonToToken(String stringJSON) throws Exception
     {
         String test = new JSONObject(stringJSON).getString("access_token");
