@@ -23,6 +23,9 @@ public class ReceptionClientActivity extends MenuClientActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionClient()
     {
@@ -58,6 +61,9 @@ public class ReceptionClientActivity extends MenuClientActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {

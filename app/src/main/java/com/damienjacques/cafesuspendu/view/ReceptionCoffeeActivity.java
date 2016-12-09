@@ -24,6 +24,9 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionCoffee()
     {
@@ -59,6 +62,9 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {

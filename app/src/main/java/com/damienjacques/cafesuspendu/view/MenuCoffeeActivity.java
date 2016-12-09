@@ -44,6 +44,9 @@ public class MenuCoffeeActivity extends AppCompatActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     public void goToReceptionCoffee()
     {
         Intent intentReception = new Intent(MenuCoffeeActivity.this,ReceptionCoffeeActivity.class);

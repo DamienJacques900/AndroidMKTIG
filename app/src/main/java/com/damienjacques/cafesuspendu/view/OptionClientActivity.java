@@ -36,6 +36,9 @@ public class OptionClientActivity extends MenuClientActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionClient()
     {
@@ -71,6 +74,9 @@ public class OptionClientActivity extends MenuClientActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -88,6 +94,10 @@ public class OptionClientActivity extends MenuClientActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     private void createLayout()
     {
         mailTextView = (TextView) findViewById(R.id.mailOptionClient);
@@ -109,6 +119,10 @@ public class OptionClientActivity extends MenuClientActivity
         displayDataOption();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de récupérer les valeurs de la préférence et de le mettre
+    //où l'on veut
+    //**************************************************************
     private void displayDataOption()
     {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);

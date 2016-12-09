@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity
         new LoadTimeTable().execute();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -58,6 +61,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     private void creationLayout()
     {
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
@@ -87,6 +94,9 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de charger les données de l'API
+    //**************************************************************
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         String userName = userNameTextView.getText().toString();
@@ -109,6 +119,9 @@ public class MainActivity extends AppCompatActivity
             return users;
         }
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
         @Override
         protected void onPostExecute(ArrayList<User> users)
         {
@@ -137,7 +150,14 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    //***********************COMMENTAIRE****************************
+                    //Permet de pouvoir récuperer les données partout dans le code
+                    //par la suite en stockant les données dans un sharePreference
+                    //**************************************************************
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'éditer le sharePreference
+                    //**************************************************************
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("userName",users.get(i).getUserName().toString());
                     editor.putString("role",users.get(i).getRoles().toString());
@@ -216,96 +236,4 @@ public class MainActivity extends AppCompatActivity
             Log.i("Test TimeTable", timeTables.toString());
         }
     }
-
-    /*private class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
-    {
-        @Override
-        protected ArrayList<Charity> doInBackground(String... params)
-        {
-            CharityDAO charityDAO = new CharityDAO();
-            ArrayList<Charity> charities = new ArrayList<>();
-            try
-            {
-                charities = charityDAO.getAllCharities();
-            }
-            catch(Exception e)
-            {
-                return charities;
-            }
-
-            return charities;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Charity> charities)
-        {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
-
-            System.out.println("Taille charities : "+charities.size());
-            for(int i = 0 ; i < charities.size(); i++)
-            {
-                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
-                {
-                    charitiesClient.add(charities.get(i));
-                }
-            }
-
-            Log.i("ValeurClientChar", charitiesClient.toString());
-        }
-    }
-    */
-
-    /*private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
-    {
-        @Override
-        protected ArrayList<Booking> doInBackground(String... params)
-        {
-            BookingDAO bookingDAO = new BookingDAO();
-            ArrayList<Booking> bookings = new ArrayList<>();
-            try
-            {
-                bookings = bookingDAO.getAllBooking();
-            }
-            catch(Exception e)
-            {
-                return bookings;
-            }
-
-            return bookings;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Booking> bookings)
-        {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-            ArrayList<Booking> bookingsCoffee = new ArrayList<Booking>();
-
-            System.out.println("Taille booking : "+bookings.size());
-            for(int i = 0 ; i < bookings.size(); i++)
-            {
-                if(bookings.get(i).getUserCafe().getUserName().equals(pref.getString("userName",null)))
-                {
-                    bookingsCoffee.add(bookings.get(i));
-                }
-            }
-
-            Log.i("ValeurCoffeeBok", bookingsCoffee.toString());
-        }
-    }*/
-/*
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(userNameTextView.getText(), userName);
-        outState.putString(passwordTextView.getText(), password);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        userName = savedInstanceState.getString(userNameTextView.getText());
-        password = savedInstanceState.getString(passwordTextView.getText());
-    }
-    */
 }

@@ -37,6 +37,9 @@ public class PromotionClientActivity extends MenuClientActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionClient()
     {
@@ -72,6 +75,9 @@ public class PromotionClientActivity extends MenuClientActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -89,6 +95,9 @@ public class PromotionClientActivity extends MenuClientActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de charger les données de l'API
+    //**************************************************************
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
         @Override
@@ -108,13 +117,15 @@ public class PromotionClientActivity extends MenuClientActivity
             return charities;
         }
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
 
-            //System.out.println("Taille charities : "+charities.size());
             for(int i = 0 ; i < charities.size(); i++)
             {
                 if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
@@ -126,7 +137,6 @@ public class PromotionClientActivity extends MenuClientActivity
             SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
 
-            //System.out.println("Taille charities client : "+charitiesClient.size());
             for(int i = 1; i <= charitiesClient.size(); i++)
             {
                 editor.putString("charities"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
@@ -139,6 +149,10 @@ public class PromotionClientActivity extends MenuClientActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     public void creationLayout()
     {
         new LoadCharity().execute();
@@ -147,6 +161,9 @@ public class PromotionClientActivity extends MenuClientActivity
 
         ProgressBar progressCoffee= (ProgressBar) findViewById(R.id.progressBarCoffe1);
 
+        //***********************COMMENTAIRE****************************
+        //Permet de récupérer les valeurs de la sharePreference
+        //**************************************************************
         int nbCoffeeRequiredTest = pref.getInt("nbCoffeeRequired1",0);
         int nbCoffeeOfferedTest = pref.getInt("nbCoffeeOffered1",0);
         long progressStatusCoffee = Math.round(((double)nbCoffeeOfferedTest/nbCoffeeRequiredTest)*100);
@@ -159,6 +176,9 @@ public class PromotionClientActivity extends MenuClientActivity
 
         String[] listItemsCoffee = new String[pref.getInt("SizeCharities",0)];
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'afficher les données dans une listView
+        //**************************************************************
         for(int i = 1; i <= pref.getInt("SizeCharities",0); i++){
             int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
             int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);

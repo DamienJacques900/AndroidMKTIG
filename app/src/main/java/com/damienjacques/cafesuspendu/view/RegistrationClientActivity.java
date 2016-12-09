@@ -28,6 +28,9 @@ public class RegistrationClientActivity extends AppCompatActivity
         createLayout();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -45,6 +48,10 @@ public class RegistrationClientActivity extends AppCompatActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     private void createLayout()
     {
         userNameTextView = (TextView) findViewById(R.id.userNameRegistrationClient);

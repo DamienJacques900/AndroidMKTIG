@@ -35,6 +35,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionCoffee()
     {
@@ -70,6 +73,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -87,6 +93,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de charger les données de l'API
+    //**************************************************************
     private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
     {
         @Override
@@ -106,9 +115,16 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             return bookings;
         }
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
         @Override
         protected void onPostExecute(ArrayList<Booking> bookings)
         {
+            //***********************COMMENTAIRE****************************
+            //Permet de pouvoir récuperer les données partout dans le code
+            //par la suite en stockant les données dans un sharePreference
+            //**************************************************************
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             ArrayList<Booking> bookingsCoffee = new ArrayList<Booking>();
 
@@ -122,6 +138,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             }
 
             SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+            //***********************COMMENTAIRE****************************
+            //Permet d'éditer le sharePreference
+            //**************************************************************
             SharedPreferences.Editor editor = prefs.edit();
 
             for(int i = 1; i <= bookingsCoffee.size(); i++)
@@ -134,15 +153,26 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     public void creationLayout()
     {
         new LoadBooking().execute();
+        //***********************COMMENTAIRE****************************
+        //Permet de pouvoir récuperer les données partout dans le code
+        //par la suite en stockant les données dans un sharePreference
+        //**************************************************************
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         ListView listBooking= (ListView) findViewById(R.id.listBooking);
 
         String[] listItemsBookings = new String[pref.getInt("SizeBooking",0)];
 
+        //***********************COMMENTAIRE****************************
+        //Permet d'afficher les données dans une listView
+        //**************************************************************
         for(int i = 1; i <= pref.getInt("SizeBooking",0); i++){
 
             String coffeeName = pref.getString("nameOffering"+i,null);

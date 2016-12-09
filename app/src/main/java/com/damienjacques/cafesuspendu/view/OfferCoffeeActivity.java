@@ -34,6 +34,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     @Override
     public void goToReceptionCoffee()
     {
@@ -69,6 +72,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         startActivity(intentDisconnect);
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer le changement d'orientation
+    //**************************************************************
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -86,6 +92,10 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de crééer le layout et de pouvoir le refaire pour si
+    //il y a un changement d'orientation
+    //**************************************************************
     private void createlayout()
     {
         offerButton = (Button)findViewById(R.id.buttonOffer);

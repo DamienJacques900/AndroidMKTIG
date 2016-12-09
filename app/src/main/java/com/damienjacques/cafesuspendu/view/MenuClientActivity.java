@@ -40,6 +40,9 @@ public class MenuClientActivity extends AppCompatActivity
         return true;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Redéfinition des méthodes pour correspondre à la vue actuelle
+    //**************************************************************
     public void goToReceptionClient()
     {
         Intent intentReception = new Intent(MenuClientActivity.this,ReceptionClientActivity.class);
