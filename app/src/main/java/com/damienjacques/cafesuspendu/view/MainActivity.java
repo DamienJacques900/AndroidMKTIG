@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         creationLayout();
-
+        //new LoadCharity().execute();
         new LoadTerminal().execute();
         new LoadTimeTable().execute();
     }
@@ -234,6 +234,64 @@ public class MainActivity extends AppCompatActivity
         protected void onPostExecute(ArrayList<TimeTable> timeTables)
         {
             Log.i("Test TimeTable", timeTables.toString());
+        }
+    }
+
+    public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    {
+        @Override
+        protected ArrayList<Charity> doInBackground(String... params)
+        {
+            CharityDAO charityDAO = new CharityDAO();
+            ArrayList<Charity> charities = new ArrayList<>();
+            try
+            {
+                charities = charityDAO.getAllCharities();
+            }
+            catch(Exception e)
+            {
+                return charities;
+            }
+
+            return charities;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<Charity> charities)
+        {
+            //***********************COMMENTAIRE****************************
+            //Permet de pouvoir récuperer les données partout dans le code
+            //par la suite en stockant les données dans un sharePreference
+            //**************************************************************
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+            for(int i = 0 ; i < charities.size(); i++)
+            {
+                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
+                {
+                    charitiesClient.add(charities.get(i));
+                }
+            }
+
+            //***********************COMMENTAIRE****************************
+            //Permet d'éditer le sharePreference
+            //**************************************************************
+            SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            for(int i = 1; i <= charitiesClient.size(); i++)
+            {
+                editor.putString("coffeeName"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
+                editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
+                editor.putString("dateOffering"+i, charitiesClient.get(i-1).getOfferingTime().toString());
+                System.out.println("Nom : "+charitiesClient.get(i-1).getUserCafe().getUserName()+" nbCoffe : "+charitiesClient.get(i-1).getNbCoffeeOffered()+" date : "+charitiesClient.get(i-1).getOfferingTime().toString());
+            }
+            editor.putInt("SizeCharities",charitiesClient.size());
+            editor.commit();
         }
     }
 }

@@ -60,8 +60,9 @@ public class CharityDAO
             JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
             User userCoffee = new User(jsonUserCoffee.getString("UserName"),jsonUserCoffee.getInt("NbCoffeeRequiredForPromotion"),(float)jsonUserCoffee.getDouble("PromotionValue"));
 
-            SimpleDateFormat dateOffering = new SimpleDateFormat("YYYY-MM-DD");
-            charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOffering.parse(jsonCharity.getString("OfferingTime")),userClient,userCoffee);
+            SimpleDateFormat dateOffering = new SimpleDateFormat("DD-MM-YYYY");
+            Date dateOff = dateOffering.parse(jsonCharity.getString("OfferingTime"));
+            charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOff,userClient,userCoffee);
             charities.add(charity);
         }
         return charities;

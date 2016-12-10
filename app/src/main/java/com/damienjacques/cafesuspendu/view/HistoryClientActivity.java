@@ -13,7 +13,9 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HistoryClientActivity extends MenuClientActivity
 {
@@ -146,11 +148,15 @@ public class HistoryClientActivity extends MenuClientActivity
             {
                 editor.putString("coffeeName"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
                 editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
-                editor.putString("dateOffering"+i, charitiesClient.get(i-1).getOfferingTime().toString());
-                System.out.println("Nom : "+charitiesClient.get(i-1).getUserCafe().getUserName()+" nbCoffe : "+charitiesClient.get(i-1).getNbCoffeeOffered()+" date : "+charitiesClient.get(i-1).getOfferingTime().toString());
+                SimpleDateFormat dateOffering = new SimpleDateFormat("DD-MM-YYYY");
+                String dateOff = dateOffering.format(charitiesClient.get(i-1).getOfferingTime());
+                System.out.println(dateOff);
+                editor.putString("dateOffering"+i, dateOff);
+                System.out.println("Nom : "+charitiesClient.get(i-1).getUserCafe().getUserName()+" nbCoffe : "+charitiesClient.get(i-1).getNbCoffeeOffered()+" date : "+dateOff);
             }
             editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();
+            System.out.println(prefs.getString("dateOffering1",null));
         }
     }
 
@@ -175,6 +181,7 @@ public class HistoryClientActivity extends MenuClientActivity
         {
             int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
             String dateOffering = pref.getString("dateOffering"+i,null);
+
             String coffeeName = pref.getString("coffeeName"+i,null);
             coffeeName+="           "+nbCoffeeOffered+" le "+dateOffering;
 
