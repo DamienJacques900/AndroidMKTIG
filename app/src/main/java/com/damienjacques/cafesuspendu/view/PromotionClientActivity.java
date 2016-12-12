@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
+import com.damienjacques.cafesuspendu.model.PromotionAdapter;
+import com.damienjacques.cafesuspendu.model.PromotionLine;
 
 import java.util.ArrayList;
 
@@ -123,7 +125,9 @@ public class PromotionClientActivity extends MenuClientActivity
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
+
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
             ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
 
             for(int i = 0 ; i < charities.size(); i++)
@@ -134,15 +138,13 @@ public class PromotionClientActivity extends MenuClientActivity
                 }
             }
 
-            SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-
+            SharedPreferences.Editor editor = pref.edit();
             for(int i = 1; i <= charitiesClient.size(); i++)
             {
                 editor.putString("charities"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
                 editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
                 editor.putInt("nbCoffeeRequired"+i, charitiesClient.get(i-1).getUserCafe().getNbCoffeeRequiredForPromotion());
-                editor.putFloat("costPromo"+i, charitiesClient.get(i-1).getUserCafe().getPromotionValue());
+                editor.putFloat("costPromoCoffee"+i, charitiesClient.get(i-1).getUserCafe().getPromotionValue());
             }
             editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();
@@ -158,42 +160,35 @@ public class PromotionClientActivity extends MenuClientActivity
         new LoadCharity().execute();
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-        ProgressBar progressCoffee= (ProgressBar) findViewById(R.id.progressBarCoffe1);
-
         //***********************COMMENTAIRE****************************
         //Permet de récupérer les valeurs de la sharePreference
         //**************************************************************
-        int nbCoffeeRequiredTest = pref.getInt("nbCoffeeRequired1",0);
-        int nbCoffeeOfferedTest = pref.getInt("nbCoffeeOffered1",0);
-        long progressStatusCoffee = Math.round(((double)nbCoffeeOfferedTest/nbCoffeeRequiredTest)*100);
-
-        progressCoffee.setProgress((int)progressStatusCoffee);
-
+        ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
         ListView listCoffee= (ListView) findViewById(R.id.listCoffee);
-
-        ProgressBar[] listProgressBarCoffee = new ProgressBar[pref.getInt("SizeCharities",0)];
-
-        String[] listItemsCoffee = new String[pref.getInt("SizeCharities",0)];
 
         //***********************COMMENTAIRE****************************
         //Permet d'afficher les données dans une listView
         //**************************************************************
-        for(int i = 1; i <= pref.getInt("SizeCharities",0); i++){
+        for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
+        {
             int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
             int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
             int nbCoffeeForPromotion = nbCoffeeRequired-nbCoffeeOffered;
-            float costPromo = pref.getFloat("costPromo"+i,(float)0.0);
+            Float costPromo = pref.getFloat("costPromoCoffee"+i,0);
             String coffeeName = pref.getString("charities"+i,null);
-            coffeeName += "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
+            String coffeedescription = "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
 
-            long progressStatus = Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100);
-            progressCoffee.setProgress((int)progressStatus);
+            float progressStatus = Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100);
 
-            listItemsCoffee[i-1] = coffeeName;
+            ProgressBar progressBar = new ProgressBar(getApplicationContext());
+            progressBar.setProgress((int) progressStatus);
+
+            PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar);
+
+            arrayPromoLine.add(promo);
         }
-// 4
-        ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsCoffee);
-        listCoffee.setAdapter(adapterCoffee);
+
+        PromotionAdapter promoAdapter = new PromotionAdapter(this,arrayPromoLine);
+        listCoffee.setAdapter(promoAdapter);
     }
 }

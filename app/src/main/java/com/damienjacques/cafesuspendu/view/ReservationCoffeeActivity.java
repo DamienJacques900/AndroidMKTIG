@@ -96,7 +96,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     //***********************COMMENTAIRE****************************
     //Permet de charger les données de l'API
     //**************************************************************
-    private class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
+    public class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
     {
         @Override
         protected ArrayList<Booking> doInBackground(String... params)

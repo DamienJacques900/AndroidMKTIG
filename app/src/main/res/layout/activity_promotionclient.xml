@@ -24,22 +24,6 @@
                 android:id="@+id/textView31"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-
-            <ProgressBar
-                android:id="@+id/progressBarCoffe1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="23dp"
-                android:layout_marginTop="20dp"
-                android:indeterminate="false"
-                android:max="100"
-                android:minHeight="50dp"
-                android:minWidth="200dp"
-                android:progress="1" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,8 +36,13 @@
                 <ListView
                     android:id="@+id/listCoffee"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
             </RelativeLayout>
+
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

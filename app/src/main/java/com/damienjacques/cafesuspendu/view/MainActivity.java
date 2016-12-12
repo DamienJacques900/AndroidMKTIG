@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity
 
         creationLayout();
         //new LoadCharity().execute();
-        new LoadTerminal().execute();
-        new LoadTimeTable().execute();
+        //new LoadTerminal().execute();
+        //new LoadTimeTable().execute();
     }
 
     //***********************COMMENTAIRE****************************
