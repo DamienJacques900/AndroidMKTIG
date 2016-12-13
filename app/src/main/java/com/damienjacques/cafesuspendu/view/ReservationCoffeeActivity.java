@@ -14,7 +14,10 @@ import android.widget.ProgressBar;
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
 import com.damienjacques.cafesuspendu.model.Booking;
+import com.damienjacques.cafesuspendu.model.ReservationAdatper;
+import com.damienjacques.cafesuspendu.model.ReservationLine;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -146,7 +149,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             for(int i = 1; i <= bookingsCoffee.size(); i++)
             {
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
-                editor.putString("date"+i, bookingsCoffee.get(i-1).getDateBooking().toString());
+                SimpleDateFormat dateReservation = new SimpleDateFormat("DD-MM-YYYY");
+                String dateRes = dateReservation.format(bookingsCoffee.get(i-1).getDateBooking());
+                editor.putString("dateReservation"+i, dateRes);
             }
             editor.putInt("SizeBooking",bookingsCoffee.size());
             editor.commit();
@@ -166,22 +171,23 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         //**************************************************************
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
+        ArrayList<ReservationLine> arrayReservationLine= new ArrayList<ReservationLine>();
         ListView listBooking= (ListView) findViewById(R.id.listBooking);
-
-        String[] listItemsBookings = new String[pref.getInt("SizeBooking",0)];
 
         //***********************COMMENTAIRE****************************
         //Permet d'afficher les données dans une listView
         //**************************************************************
-        for(int i = 1; i <= pref.getInt("SizeBooking",0); i++){
-
+        for(int i = 1; i <= pref.getInt("SizeBooking",0); i++)
+        {
             String coffeeName = pref.getString("nameOffering"+i,null);
-            coffeeName += "      "+pref.getString("date"+i,null);
+            String description ="Reservation faites le "+pref.getString("dateReservation"+i,null);
 
-            listItemsBookings[i-1] = coffeeName;
+            ReservationLine reservationLine = new ReservationLine(coffeeName,description);
+
+            arrayReservationLine.add(reservationLine);
         }
 // 4
-        ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsBookings);
-        listBooking.setAdapter(adapterCoffee);
+        ReservationAdatper adatperReservation = new ReservationAdatper(this,arrayReservationLine);
+        listBooking.setAdapter(adatperReservation);
     }
 }
