@@ -150,10 +150,8 @@ public class HistoryClientActivity extends MenuClientActivity
             {
                 editor.putString("coffeeName"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
                 editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
-                SimpleDateFormat dateOffering = new SimpleDateFormat("DD-MM-YYYY");
-                String dateOff = dateOffering.format(charitiesClient.get(i-1).getOfferingTime());
-                editor.putString("dateOffering"+i, dateOff);
-                System.out.println("Nom : "+charitiesClient.get(i-1).getUserCafe().getUserName()+" nbCoffe : "+charitiesClient.get(i-1).getNbCoffeeOffered()+" date : "+dateOff);
+                String HistoryDate = new SimpleDateFormat("dd-MM-yyyy").format(charitiesClient.get(i-1).getOfferingTime());
+                editor.putString("dateOffering"+i, HistoryDate);
             }
             editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();

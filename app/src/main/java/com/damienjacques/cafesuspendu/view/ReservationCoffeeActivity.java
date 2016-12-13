@@ -17,8 +17,11 @@ import com.damienjacques.cafesuspendu.model.Booking;
 import com.damienjacques.cafesuspendu.model.ReservationAdatper;
 import com.damienjacques.cafesuspendu.model.ReservationLine;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class ReservationCoffeeActivity extends MenuCoffeeActivity
@@ -149,9 +152,10 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             for(int i = 1; i <= bookingsCoffee.size(); i++)
             {
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
-                SimpleDateFormat dateReservation = new SimpleDateFormat("DD-MM-YYYY");
-                String dateRes = dateReservation.format(bookingsCoffee.get(i-1).getDateBooking());
-                editor.putString("dateReservation"+i, dateRes);
+
+                String ResDate = new SimpleDateFormat("dd-MM-yyyy").format(bookingsCoffee.get(i-1).getDateBooking());
+
+                editor.putString("dateReservation"+i, ResDate);
             }
             editor.putInt("SizeBooking",bookingsCoffee.size());
             editor.commit();
