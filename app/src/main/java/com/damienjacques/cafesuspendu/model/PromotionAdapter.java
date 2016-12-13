@@ -37,6 +37,7 @@ public class PromotionAdapter extends ArrayAdapter
         ProgressBar progressBarPromo = (ProgressBar) convertView.findViewById(R.id.progressBarPromo);
         nameCoffee.setText(promoLine.getCafeName());
         descriptionPromo.setText(promoLine.getDescriptionPromo());
+        progressBarPromo.setProgress(promoLine.getProgressStatus());
         return convertView;
     }
 }

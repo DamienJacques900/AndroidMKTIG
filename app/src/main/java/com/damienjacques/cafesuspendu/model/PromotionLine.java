@@ -10,11 +10,24 @@ public class PromotionLine
 
     private ProgressBar progressBarPromo;
 
-    public PromotionLine(String cafeName, String descriptionPromo, ProgressBar progressBarPromo)
+    private Integer progressStatus;
+
+    public PromotionLine(String cafeName, String descriptionPromo, ProgressBar progressBarPromo, Integer progressStatus)
     {
         this.cafeName = cafeName;
         this.descriptionPromo = descriptionPromo;
         this.progressBarPromo = progressBarPromo;
+        this.progressStatus = progressStatus;
+    }
+
+    public Integer getProgressStatus()
+    {
+        return progressStatus;
+    }
+
+    public void setProgressStatus(Integer progressStatus)
+    {
+        this.progressStatus = progressStatus;
     }
 
     public String getCafeName()

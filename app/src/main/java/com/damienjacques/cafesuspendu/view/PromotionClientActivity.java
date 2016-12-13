@@ -181,9 +181,8 @@ public class PromotionClientActivity extends MenuClientActivity
             float progressStatus = Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100);
 
             ProgressBar progressBar = new ProgressBar(getApplicationContext());
-            progressBar.setProgress((int) progressStatus);
 
-            PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar);
+            PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar, (int)progressStatus);
 
             arrayPromoLine.add(promo);
         }
