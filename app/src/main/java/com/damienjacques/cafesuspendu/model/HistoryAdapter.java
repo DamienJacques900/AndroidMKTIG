@@ -29,14 +29,14 @@ public class HistoryAdapter extends ArrayAdapter
 
         if(convertView == null)
         {
-            //convertView = LayoutInflater.from(getContext()).inflate(R.layout.historyline,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.historyline,parent,false);
         }
 
-        //TextView nameCoffee = (TextView) convertView.findViewById(R.id.CoffeeNameHistory);
-        //TextView descriptionPromo = (TextView) convertView.findViewById(R.id.textHistory);
+        TextView nameCoffee = (TextView) convertView.findViewById(R.id.CoffeeNameHistory);
+        TextView descriptionPromo = (TextView) convertView.findViewById(R.id.textHistory);
 
-        //nameCoffee.setText(historyLine.getCoffeeName());
-        //descriptionPromo.setText(historyLine.getDescription());
+        nameCoffee.setText(historyLine.getCoffeeName());
+        descriptionPromo.setText(historyLine.getDescription());
 
         return convertView;
     }

@@ -175,7 +175,7 @@ public class HistoryClientActivity extends MenuClientActivity
         ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();
         ListView listHistory= (ListView) findViewById(R.id.listHistory);
 
-        String[] listItemsHistory = new String[pref.getInt("SizeCharities",0)];
+        //String[] listItemsHistory = new String[pref.getInt("SizeCharities",0)];
 
         //***********************COMMENTAIRE****************************
         //Permet d'afficher les données dans une listView
@@ -186,17 +186,17 @@ public class HistoryClientActivity extends MenuClientActivity
             String dateOffering = pref.getString("dateOffering"+i,null);
 
             String coffeeName = pref.getString("coffeeName"+i,null);
-            String coffeeDescription = nbCoffeeOffered+" le "+dateOffering;
+            String coffeeDescription = nbCoffeeOffered+" café(s) offert le "+dateOffering;
 
             HistoryLine historyLine = new HistoryLine(coffeeName,coffeeDescription);
 
             arrayHistoryLine.add(historyLine);
 
-            listItemsHistory[i-1] = coffeeName;
+            //listItemsHistory[i-1] = coffeeName;
         }
 
         HistoryAdapter adapterHistory = new HistoryAdapter(this,arrayHistoryLine);
-        ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsHistory);
-        listHistory.setAdapter(adapterCoffee);
+        //ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsHistory);
+        listHistory.setAdapter(adapterHistory);
     }
 }
