@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity
         {
             if (exception != null)
             {
+                Log.i("Exception",exception.toString());
                 Toast.makeText(MainActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
             }
 
@@ -142,12 +143,7 @@ public class MainActivity extends AppCompatActivity
                 int i;
                 for(i = 0 ; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
-                    /*Log.i("Nom ", users.get(i).getUserName().toString());
-                    Log.i("Role", users.get(i).getRoles().toString());
-                    Log.i("Email", users.get(i).getEmail().toString());
-                    Log.i("Phone", users.get(i).getPhoneNumber().toString());
-                    Log.i("NbCoffee", users.get(i).getNbCoffeeRequiredForPromotion().toString());
-                    Log.i("PromoValue", users.get(i).getPromotionValue().toString());*/
+
                 }
 
                 if(i == users.size())

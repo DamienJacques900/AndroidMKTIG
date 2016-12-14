@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -129,6 +130,7 @@ public class HistoryClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
+                Log.i("Exception",exception.toString());
                 Toast.makeText(HistoryClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
                 goToDisconaction();
             }

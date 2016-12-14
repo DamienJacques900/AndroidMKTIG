@@ -33,15 +33,5 @@
         android:layout_above="@+id/merci"
         android:layout_centerHorizontal="true" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp" />
 
 </RelativeLayout>

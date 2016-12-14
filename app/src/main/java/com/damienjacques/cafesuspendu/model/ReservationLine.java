@@ -18,10 +18,23 @@ public class ReservationLine
 
     private Button notConsummed;
 
-    public ReservationLine(String reservationName, String reservationDate)
+    private Integer idBooking;
+
+    public ReservationLine(String reservationName, String reservationDate, Integer idBooking)
     {
         this.reservationName = reservationName;
         this.reservationDate = reservationDate;
+        this.idBooking = idBooking;
+    }
+
+    public Integer getIdBooking()
+    {
+        return idBooking;
+    }
+
+    public void setIdBooking(Integer idBooking)
+    {
+        this.idBooking = idBooking;
     }
 
     public String getReservationName()

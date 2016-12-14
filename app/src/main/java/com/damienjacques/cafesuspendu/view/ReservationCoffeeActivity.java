@@ -161,6 +161,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
 
             for(int i = 1; i <= bookingsCoffee.size(); i++)
             {
+                editor.putInt("idBooking"+i,bookingsCoffee.get(i-1).getBookingId());//erreur je sais pas pourquoi!
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
 
                 String ResDate = new SimpleDateFormat("yyyy-MM-dd").format(bookingsCoffee.get(i-1).getDateBooking());
@@ -192,10 +193,11 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         //**************************************************************
         for(int i = 1; i <= pref.getInt("SizeBooking",0); i++)
         {
+            Integer idBooking = pref.getInt("idBooking"+i,0);
             String coffeeName = pref.getString("nameOffering"+i,null);
             String description ="Reservation faites le "+pref.getString("dateReservation"+i,null);
 
-            ReservationLine reservationLine = new ReservationLine(coffeeName,description);
+            ReservationLine reservationLine = new ReservationLine(coffeeName,description, idBooking);
 
             arrayReservationLine.add(reservationLine);
         }
