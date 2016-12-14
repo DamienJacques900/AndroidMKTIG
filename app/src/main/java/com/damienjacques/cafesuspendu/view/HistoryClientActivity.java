@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
@@ -24,7 +25,6 @@ public class HistoryClientActivity extends MenuClientActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        new LoadCharity().execute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historyclient);
         creationLayout();
@@ -103,6 +103,7 @@ public class HistoryClientActivity extends MenuClientActivity
     //**************************************************************
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
+        Exception exception;
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
         {
@@ -114,7 +115,7 @@ public class HistoryClientActivity extends MenuClientActivity
             }
             catch(Exception e)
             {
-                return charities;
+                exception = e;
             }
 
             return charities;
@@ -126,6 +127,12 @@ public class HistoryClientActivity extends MenuClientActivity
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
+            if (exception != null)
+            {
+                Toast.makeText(HistoryClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                goToDisconaction();
+            }
+
             //***********************COMMENTAIRE****************************
             //Permet de pouvoir récuperer les données partout dans le code
             //par la suite en stockant les données dans un sharePreference
@@ -166,6 +173,8 @@ public class HistoryClientActivity extends MenuClientActivity
     //**************************************************************
     public void creationLayout()
     {
+        new LoadCharity().execute();
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();

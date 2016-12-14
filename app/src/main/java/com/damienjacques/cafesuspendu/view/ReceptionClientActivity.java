@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
@@ -101,6 +102,8 @@ public class ReceptionClientActivity extends MenuClientActivity
 
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
+        Exception exception;
+
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
         {
@@ -112,7 +115,7 @@ public class ReceptionClientActivity extends MenuClientActivity
             }
             catch(Exception e)
             {
-                return charities;
+                exception = e;
             }
 
             return charities;
@@ -124,6 +127,11 @@ public class ReceptionClientActivity extends MenuClientActivity
         @Override
         protected void onPostExecute(ArrayList<Charity> charities)
         {
+            if (exception != null)
+            {
+                Toast.makeText(ReceptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                goToDisconaction();
+            }
 
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 

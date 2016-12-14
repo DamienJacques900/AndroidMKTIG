@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
@@ -105,6 +106,8 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     //**************************************************************
     public class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
     {
+        Exception exception;
+
         @Override
         protected ArrayList<Booking> doInBackground(String... params)
         {
@@ -116,7 +119,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             }
             catch(Exception e)
             {
-                return bookings;
+                exception = e;
             }
 
             return bookings;
@@ -128,6 +131,12 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         @Override
         protected void onPostExecute(ArrayList<Booking> bookings)
         {
+            if (exception != null)
+            {
+                Toast.makeText(ReservationCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                goToDisconaction();
+            }
+
             //***********************COMMENTAIRE****************************
             //Permet de pouvoir récuperer les données partout dans le code
             //par la suite en stockant les données dans un sharePreference

@@ -40,16 +40,14 @@
                     android:layout_marginTop="63dp" />
             </RelativeLayout>
 
-            <!--<Button
-                android:text="@string/deleteHistory"
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:id="@+id/buttonDeleteHistory"
-                android:layout_alignParentBottom="true"
+                android:id="@+id/progressBar"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColorButton"/>-->
+                android:layout_marginTop="46dp" />
         </RelativeLayout>
     </ScrollView>
 

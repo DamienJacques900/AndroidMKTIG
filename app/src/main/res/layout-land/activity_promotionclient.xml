@@ -38,23 +38,18 @@
                     android:id="@+id/listCoffee"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="46dp" />
             </RelativeLayout>
 
-            <ProgressBar
-                android:id="@+id/progressBarCoffe1"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="false"
-                android:max="100"
-                android:minHeight="50dp"
-                android:minWidth="200dp"
-                android:progress="1"
-                android:layout_alignTop="@+id/textView31"
-                android:layout_alignRight="@+id/relativeLayout"
-                android:layout_alignEnd="@+id/relativeLayout"
-                android:layout_marginRight="109dp"
-                android:layout_marginEnd="109dp" />
+
 
         </RelativeLayout>
     </ScrollView>
