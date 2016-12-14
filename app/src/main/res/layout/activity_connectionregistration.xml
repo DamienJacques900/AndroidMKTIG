@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView2"
+        android:layout_marginBottom="289dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Identifiant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="59dp"
+        android:layout_marginStart="59dp"
+        android:id="@+id/UserNameMain" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/UserNameMain"
+        android:layout_alignLeft="@+id/UserNameMain"
+        android:layout_alignStart="@+id/UserNameMain"
+        android:id="@+id/UserNameMainEdit" />
+
+    <TextView
+        android:text="Mot de passe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UserNameMainEdit"
+        android:layout_alignLeft="@+id/UserNameMainEdit"
+        android:layout_alignStart="@+id/UserNameMainEdit"
+        android:id="@+id/PasswordMain" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/PasswordMain"
+        android:layout_alignLeft="@+id/PasswordMain"
+        android:layout_alignStart="@+id/PasswordMain"
+        android:id="@+id/PasswordMainEdit"
+        android:layout_alignRight="@+id/UserNameMainEdit"
+        android:layout_alignEnd="@+id/UserNameMainEdit" />
+
+    <Button
+        android:text="Connexion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PasswordMainEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:id="@+id/ConnectionMainButton"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <Button
+        android:text="Inscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ConnectionMainButton"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/RegistrationMainButton"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_above="@+id/UserNameMain"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
