@@ -29,11 +29,11 @@ public class ReservationAdatper extends ArrayAdapter
 
         if(convertView == null)
         {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.historyline,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.reservationline,parent,false);
         }
 
-        TextView reservationName = (TextView) convertView.findViewById(R.id.CoffeeNameHistory);
-        TextView dateReservation = (TextView) convertView.findViewById(R.id.textHistory);
+        TextView reservationName = (TextView) convertView.findViewById(R.id.reservationName);
+        TextView dateReservation = (TextView) convertView.findViewById(R.id.textReservation);
 
         reservationName.setText(reservationLine.getReservationName());
         dateReservation.setText(reservationLine.getReservationDate());

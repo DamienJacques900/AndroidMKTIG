@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     //***********************COMMENTAIRE****************************
     //Permet de gérer le changement d'orientation
     //**************************************************************
-    @Override
+   @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
         super.onConfigurationChanged(newConfig);

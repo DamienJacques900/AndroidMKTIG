@@ -23,4 +23,30 @@
         android:layout_alignLeft="@+id/reservationName"
         android:layout_alignStart="@+id/reservationName"
         android:id="@+id/textReservation" />
+
+    <Button
+        android:text="Consommé"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textReservation"
+        android:layout_alignLeft="@+id/textReservation"
+        android:layout_alignStart="@+id/textReservation"
+        android:id="@+id/button"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"/>
+
+    <Button
+        android:text="Pas consommé"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:id="@+id/button2"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"/>
+
 </RelativeLayout>

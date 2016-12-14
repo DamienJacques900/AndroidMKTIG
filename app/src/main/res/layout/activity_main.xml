@@ -42,8 +42,6 @@
         android:layout_marginStart="42dp"
         android:layout_marginBottom="9dp"
         android:layout_above="@+id/userNameConnection"
-        android:layout_alignLeft="@+id/buttonInutile"
-        android:layout_alignStart="@+id/buttonInutile"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView

@@ -1,96 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/progressBar" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/progressBar"
+        android:layout_alignEnd="@+id/progressBar" />
+
+    <Button
+        android:text="@string/registration"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonRegistrationMain"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
 
+    <Button
+        android:text="@string/connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonConnection"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/textColorButton"
+        android:layout_above="@+id/buttonRegistrationMain"
+        android:layout_alignLeft="@+id/buttonRegistrationMain"
+        android:layout_alignStart="@+id/buttonRegistrationMain" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo"
-            android:id="@+id/imageView2"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/textView"
-            android:layout_toStartOf="@+id/textView"
-            android:layout_marginRight="45dp"
-            android:layout_marginEnd="45dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordConnection"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignLeft="@+id/userNameConnection"
+        android:layout_alignStart="@+id/userNameConnection" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text=""
-            android:ems="10"
-            android:id="@+id/userNameConnection"
-            android:layout_below="@+id/textView"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3" />
+    <TextView
+        android:text="@string/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_above="@+id/passwordConnection"
+        android:layout_alignLeft="@+id/buttonConnection"
+        android:layout_alignStart="@+id/buttonConnection" />
 
-        <TextView
-            android:text="@string/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_marginTop="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/userNameConnection"
-            android:layout_alignStart="@+id/userNameConnection" />
+    <TextView
+        android:text="@string/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/passwordConnection"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/passwordConnection"
-            android:layout_alignTop="@+id/textView3"
-            android:layout_toRightOf="@+id/imageView2"
-            android:layout_toEndOf="@+id/imageView2"
-            android:layout_marginTop="22dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:id="@+id/userNameConnection"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
 
-        <Button
-            android:text="@string/connection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonConnection"
-            android:backgroundTint="@color/buttonColor"
-            android:layout_marginRight="70dp"
-            android:layout_marginEnd="70dp"
-            android:layout_below="@+id/passwordConnection"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="19dp"
-            android:textColor="@color/textColorButton"/>
-
-        <TextView
-            android:text="@string/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:layout_marginRight="90dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginTop="17dp"
-            android:layout_below="@+id/userNameConnection"
-            android:layout_alignRight="@+id/buttonConnection"
-            android:layout_alignEnd="@+id/buttonConnection" />
-
-        <Button
-            android:text="@string/registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonRegistrationMain"
-            android:backgroundTint="@color/buttonColor"
-            android:layout_alignBottom="@+id/buttonInutile"
-            android:layout_alignLeft="@+id/buttonConnection"
-            android:layout_alignStart="@+id/buttonConnection"
-            android:textColor="@color/textColorButton"/>
-
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>
