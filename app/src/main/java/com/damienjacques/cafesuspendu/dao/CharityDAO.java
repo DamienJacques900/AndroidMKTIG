@@ -53,14 +53,14 @@ public class CharityDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            //Log.i("Charities",jsonCharity.toString());
+            Log.i("Charities",jsonCharity.toString());
             JSONObject jsonUserCient = jsonCharity.getJSONObject("ApplicationUserPerson");
             User userClient = new User(jsonUserCient.getString("UserName"),0,(float)0.0);
 
             JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
             User userCoffee = new User(jsonUserCoffee.getString("UserName"),jsonUserCoffee.getInt("NbCoffeeRequiredForPromotion"),(float)jsonUserCoffee.getDouble("PromotionValue"));
 
-            SimpleDateFormat dateOffering = new SimpleDateFormat("DD-MM-YYYY");
+            SimpleDateFormat dateOffering = new SimpleDateFormat("yyyy-MM-dd");
             Date dateOff = dateOffering.parse(jsonCharity.getString("OfferingTime"));
             charity = new Charity(jsonCharity.getInt("NbCoffeeOffered"),jsonCharity.getInt("NbCoffeeConsumed"),dateOff,userClient,userCoffee);
             charities.add(charity);

@@ -6,36 +6,32 @@
     android:layout_height="match_parent">
 
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:text="      "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeClient"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
-            <TextView
-                android:text="@string/thanksClient"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView33"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="22dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/welcomeClient"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
-            <TextView
-                android:text="@string/thankYou"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:id="@+id/textView32"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:layout_above="@+id/textView33"
-                android:layout_centerHorizontal="true" />
+    <TextView
+        android:text="MERCI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView45"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_above="@+id/welcomeClient"
+        android:layout_centerHorizontal="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logo"
-                android:id="@+id/imageView"
-                android:layout_above="@+id/textView32"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="27dp" />
 
 </RelativeLayout>

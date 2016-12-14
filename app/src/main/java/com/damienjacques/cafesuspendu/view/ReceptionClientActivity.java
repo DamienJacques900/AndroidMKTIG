@@ -1,19 +1,31 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.CharityDAO;
+import com.damienjacques.cafesuspendu.model.Charity;
+
+import java.util.ArrayList;
 
 public class ReceptionClientActivity extends MenuClientActivity
 {
+    private TextView textWelcome;
+
+    private String welcome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionclient);
+        createLayout();
     }
 
     @Override
@@ -72,10 +84,67 @@ public class ReceptionClientActivity extends MenuClientActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
             setContentView(R.layout.activity_receptionclient);
+            createLayout();
         }
         else
         {
             setContentView(R.layout.activity_receptionclient);
+            createLayout();
+        }
+    }
+
+    public void createLayout()
+    {
+        textWelcome = (TextView)findViewById(R.id.welcomeClient);
+        new LoadCharity().execute();
+    }
+
+    public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    {
+        @Override
+        protected ArrayList<Charity> doInBackground(String... params)
+        {
+            CharityDAO charityDAO = new CharityDAO();
+            ArrayList<Charity> charities = new ArrayList<>();
+            try
+            {
+                charities = charityDAO.getAllCharities();
+            }
+            catch(Exception e)
+            {
+                return charities;
+            }
+
+            return charities;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<Charity> charities)
+        {
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+            for(int i = 0 ; i < charities.size(); i++)
+            {
+                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
+                {
+                    charitiesClient.add(charities.get(i));
+                }
+            }
+
+            Integer nbTotalCoffee = 0;
+            for(int i = 0; i < charitiesClient.size(); i++)
+            {
+                nbTotalCoffee += charitiesClient.get(i).getNbCoffeeOffered();
+            }
+
+            welcome = "Grâce à vous, "+nbTotalCoffee+" café(s) ont été offerts à des sans-abris.";
+            textWelcome.setText(welcome);
         }
     }
 }

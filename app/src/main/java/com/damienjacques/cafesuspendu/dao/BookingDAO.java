@@ -50,11 +50,11 @@ public class BookingDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonBooking = jsonArray.getJSONObject(i);
-            //Log.i("Booking",jsonBooking.toString());
+            Log.i("Booking",jsonBooking.toString());
             JSONObject jsonUser = jsonBooking.getJSONObject("ApplicationUser");
             User userCafe = new User(jsonUser.getString("UserName"));
 
-            SimpleDateFormat dateBooking = new SimpleDateFormat("YYYY-MM-DD");
+            SimpleDateFormat dateBooking = new SimpleDateFormat("yyyy-MM-dd");
 
             booking = new Booking(dateBooking.parse(jsonBooking.getString("DateBooking")),jsonBooking.getString("Name"),userCafe);
             bookings.add(booking);

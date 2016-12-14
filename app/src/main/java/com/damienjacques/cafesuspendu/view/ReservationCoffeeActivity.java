@@ -29,6 +29,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        new LoadBooking().execute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservationcoffee);
         creationLayout();
@@ -153,7 +154,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             {
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
 
-                String ResDate = new SimpleDateFormat("dd-MM-yyyy").format(bookingsCoffee.get(i-1).getDateBooking());
+                String ResDate = new SimpleDateFormat("yyyy-MM-dd").format(bookingsCoffee.get(i-1).getDateBooking());
 
                 editor.putString("dateReservation"+i, ResDate);
             }
@@ -168,7 +169,6 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     //**************************************************************
     public void creationLayout()
     {
-        new LoadBooking().execute();
         //***********************COMMENTAIRE****************************
         //Permet de pouvoir récuperer les données partout dans le code
         //par la suite en stockant les données dans un sharePreference

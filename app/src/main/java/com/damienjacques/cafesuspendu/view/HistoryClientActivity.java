@@ -24,6 +24,7 @@ public class HistoryClientActivity extends MenuClientActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        new LoadCharity().execute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historyclient);
         creationLayout();
@@ -150,7 +151,7 @@ public class HistoryClientActivity extends MenuClientActivity
             {
                 editor.putString("coffeeName"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
                 editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
-                String HistoryDate = new SimpleDateFormat("dd-MM-yyyy").format(charitiesClient.get(i-1).getOfferingTime());
+                String HistoryDate = new SimpleDateFormat("yyyy-MM-dd").format(charitiesClient.get(i-1).getOfferingTime());
                 editor.putString("dateOffering"+i, HistoryDate);
             }
             editor.putInt("SizeCharities",charitiesClient.size());
@@ -165,8 +166,6 @@ public class HistoryClientActivity extends MenuClientActivity
     //**************************************************************
     public void creationLayout()
     {
-        new LoadCharity().execute();
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();
@@ -188,12 +187,9 @@ public class HistoryClientActivity extends MenuClientActivity
             HistoryLine historyLine = new HistoryLine(coffeeName,coffeeDescription);
 
             arrayHistoryLine.add(historyLine);
-
-            //listItemsHistory[i-1] = coffeeName;
         }
 
         HistoryAdapter adapterHistory = new HistoryAdapter(this,arrayHistoryLine);
-        //ArrayAdapter adapterCoffee = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItemsHistory);
         listHistory.setAdapter(adapterHistory);
     }
 }

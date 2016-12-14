@@ -173,12 +173,12 @@ public class PromotionClientActivity extends MenuClientActivity
         {
             int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
             int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
-            int nbCoffeeForPromotion = nbCoffeeRequired-nbCoffeeOffered;
+            int nbCoffeeForPromotion = nbCoffeeRequired-(nbCoffeeOffered%nbCoffeeRequired);
             Float costPromo = pref.getFloat("costPromoCoffee"+i,0);
             String coffeeName = pref.getString("charities"+i,null);
             String coffeedescription = "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
 
-            float progressStatus = Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100);
+            float progressStatus = (Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100))%100;
 
             ProgressBar progressBar = new ProgressBar(getApplicationContext());
 

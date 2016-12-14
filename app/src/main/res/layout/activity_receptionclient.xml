@@ -6,9 +6,6 @@
     android:layout_height="match_parent">
 
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <TextView
                 android:text="@string/thankYou"
                 android:layout_width="wrap_content"
@@ -20,15 +17,17 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             <TextView
-                android:text="@string/thanksClient"
+                android:text="       "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:id="@+id/textView33"
+                android:id="@+id/welcomeClient"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:layout_alignTop="@+id/textView32"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
