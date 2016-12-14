@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_connectionregistration);
 
         creationLayout();
         //new LoadCharity().execute();
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity
 
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE)
         {
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_connectionregistration);
             creationLayout();
         }
         else
         {
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_connectionregistration);
             creationLayout();
         }
     }
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity
     //**************************************************************
     private void creationLayout()
     {
-        clickRegistration = (Button)findViewById(R.id.buttonRegistrationMain);
-        clickConnection = (Button)findViewById(R.id.buttonConnection);
+        clickRegistration = (Button)findViewById(R.id.RegistrationMainButton);
+        clickConnection = (Button)findViewById(R.id.ConnectionMainButton);
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
 
-        userNameTextView = (TextView)findViewById(R.id.userNameConnection);
-        passwordTextView = (TextView)findViewById(R.id.passwordConnection);
+        userNameTextView = (TextView)findViewById(R.id.UserNameMainEdit);
+        passwordTextView = (TextView)findViewById(R.id.PasswordMainEdit);
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
