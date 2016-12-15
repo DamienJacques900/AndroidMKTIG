@@ -27,6 +27,7 @@ public class HistoryClientActivity extends MenuClientActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        new LoadCharity().execute();
         setContentView(R.layout.activity_historyclient);
         creationLayout();
     }
@@ -68,6 +69,7 @@ public class HistoryClientActivity extends MenuClientActivity
     @Override
     public void goToOptionClient()
     {
+        new LoadCharity().execute();
         Intent intentOption = new Intent(HistoryClientActivity.this,OptionClientActivity.class);
         startActivity(intentOption);
     }

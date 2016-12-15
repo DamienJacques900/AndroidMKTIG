@@ -17,21 +17,14 @@ public class BookingDAO
         //***********************COMMENTAIRE****************************
         //Permet d'établir la connexion pour supprimer une réservation
         //**************************************************************
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/Bookings/?id="+id+"&isCoffeeConsumed="+consumed);
-        HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/Bookings/?id=" + id + "&isCoffeeConsumed=" + consumed);
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         //***********************COMMENTAIRE****************************
         //Permet de dire qu'on va faire une requête DELETE avec la propriété
         //qui suit
         //**************************************************************
         urlConnection.setRequestMethod("DELETE");
         urlConnection.setDoInput(true);
-
-        //***********************COMMENTAIRE****************************
-        //Permet d'écrire dans la requête(comme dans fiddler)
-        //**************************************************************
-        OutputStream out = urlConnection.getOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        urlConnection.connect();
     }
 
     //***********************COMMENTAIRE****************************

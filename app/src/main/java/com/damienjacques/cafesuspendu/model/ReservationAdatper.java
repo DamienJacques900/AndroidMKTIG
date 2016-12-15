@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
+import com.damienjacques.cafesuspendu.exception.DeleteBookingException;
 import com.damienjacques.cafesuspendu.view.ChooseRegistrationActivity;
 import com.damienjacques.cafesuspendu.view.MainActivity;
 import com.damienjacques.cafesuspendu.view.ReservationCoffeeActivity;
@@ -62,9 +63,8 @@ public class ReservationAdatper extends ArrayAdapter
                 }
                 catch(Exception e)
                 {
-                    e.getMessage();
+                    Toast.makeText(v.getContext(), "Erreur de connexion aux données durant la tentative de suppression de la réservation", Toast.LENGTH_LONG).show();
                 }
-                System.out.println("Vous avez appuyé sur le bouton consummé"+idBooking);
             }
         });
 
@@ -82,9 +82,8 @@ public class ReservationAdatper extends ArrayAdapter
                 }
                 catch(Exception e)
                 {
-                    e.getMessage();
+                    Toast.makeText(v.getContext(), "Erreur de connexion aux données durant la tentative de suppression de la réservation", Toast.LENGTH_LONG).show();
                 }
-                System.out.println("Vous avez appuyé sur le bouton pas consommé"+idBooking);
             }
         });
 
