@@ -30,8 +30,8 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        new LoadBooking().execute();
         super.onCreate(savedInstanceState);
+        new LoadBooking().execute();
         setContentView(R.layout.activity_reservationcoffee);
         creationLayout();
     }

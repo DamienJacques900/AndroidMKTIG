@@ -16,8 +16,27 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
-public class UserDAO
-{
+public class UserDAO {
+
+    public void changeOptionCoffee(Integer nbCoffeeRequired, Double promotionValue)
+    {
+
+    }
+
+    public void changeOptionPerson(String email, String phoneNumber)
+    {
+
+    }
+
+    public void newRegistrationCoffee()
+    {
+
+    }
+
+    public void newRegistrationPerson()
+    {
+
+    }
 
     public String getUserWithUserNameAndPw(String userName, String password) throws Exception
     {

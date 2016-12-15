@@ -3,13 +3,23 @@ package com.damienjacques.cafesuspendu.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.CharityDAO;
+import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.model.Charity;
+import com.damienjacques.cafesuspendu.model.User;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class OptionCoffeeActivity extends MenuCoffeeActivity
 {
@@ -106,9 +116,9 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
         clickModify.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
-                startActivity(intent);
+            public void onClick(View v)
+            {
+                new LoadUserOptionCoffee().execute();
             }
         });
 
@@ -126,5 +136,58 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         nbCoffeeTextView.setText(nbCoffeeRequiredForPromotion.toString());
         Float promotionValue = pref.getFloat("promotionValue",0);
         promotionValueTextView.setText(promotionValue.toString());
+    }
+
+    public class LoadUserOptionCoffee extends AsyncTask<String, Void, ArrayList<User>>
+    {
+        Exception exception;
+
+        String nbCoffeeForPromo = nbCoffeeTextView.getText().toString();
+        String valuePromo = promotionValueTextView.getText().toString();
+
+        Integer intNbCoffee = Integer.parseInt(nbCoffeeForPromo);
+        Double doubleValuePromo = Double.parseDouble(valuePromo);
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
+        {
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
+            {
+                users = userDAO.getAllUsers();
+                userDAO.changeOptionCoffee(intNbCoffee,doubleValuePromo);
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return users;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (nbCoffeeForPromo.equals("") || valuePromo.equals(""))
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(OptionCoffeeActivity.this, ReceptionCoffeeActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }

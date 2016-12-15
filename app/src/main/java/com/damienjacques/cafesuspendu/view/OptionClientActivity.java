@@ -3,6 +3,7 @@ package com.damienjacques.cafesuspendu.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.*;
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
 import com.damienjacques.cafesuspendu.model.User;
+
+import java.util.ArrayList;
 
 public class OptionClientActivity extends MenuClientActivity
 {
@@ -107,12 +110,12 @@ public class OptionClientActivity extends MenuClientActivity
 
         clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
 
-        clickModify.setOnClickListener(new View.OnClickListener() {
+        clickModify.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(OptionClientActivity.this,OptionClientActivity.class);
-                startActivity(intent);
+                new LoadUserOptionCoffee().execute();
             }
         });
 
@@ -130,5 +133,56 @@ public class OptionClientActivity extends MenuClientActivity
         mailTextView.setText(email);
         String phoneNumber = pref.getString("phoneNumber",null);
         phoneTextView.setText(phoneNumber);
+    }
+
+    public class LoadUserOptionCoffee extends AsyncTask<String, Void, ArrayList<User>>
+    {
+        Exception exception;
+
+        String email = mailTextView.getText().toString();
+        String phoneNumber = phoneTextView.getText().toString();
+
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
+        {
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
+            {
+                users = userDAO.getAllUsers();
+                userDAO.changeOptionPerson(email,phoneNumber);
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return users;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (email.equals("") || phoneNumber.equals(""))
+                {
+                    Toast.makeText(OptionClientActivity.this, "ous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                Intent intentOption = new Intent(OptionClientActivity.this,OptionClientActivity.class);
+                startActivity(intentOption);
+            }
+        }
     }
 }

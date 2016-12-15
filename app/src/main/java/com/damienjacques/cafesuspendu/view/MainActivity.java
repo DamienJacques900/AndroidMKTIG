@@ -141,103 +141,40 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                if (userName.equals("") || password.equals(""))
+                int i;
+                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
-                    Toast.makeText(MainActivity.this, "Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
+                }
+                //***********************COMMENTAIRE****************************
+                //Permet de pouvoir récuperer les données partout dans le code
+                //par la suite en stockant les données dans un sharePreference
+                //**************************************************************
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                //***********************COMMENTAIRE****************************
+                //Permet d'éditer le sharePreference
+                //**************************************************************
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("userName", users.get(i).getUserName().toString());
+                editor.putString("role", users.get(i).getRoles().toString());
+                editor.putString("email", users.get(i).getEmail().toString());
+                editor.putString("phoneNumber", users.get(i).getPhoneNumber().toString());
+                editor.putInt("nbCoffeeRequiredForPromotion", users.get(i).getNbCoffeeRequiredForPromotion());
+                editor.putFloat("promotionValue", users.get(i).getPromotionValue());
+                editor.commit();
+
+                if (users.get(i).getRoles().equals("userperson"))
+                {//User
                     spinner.setVisibility(View.GONE);
+                    Intent intent = new Intent(MainActivity.this, ReceptionClientActivity.class);
+                    startActivity(intent);
                 }
                 else
-                {
-                    int i;
-                    for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
-                    {
-
-                    }
-
-                    //***********************COMMENTAIRE****************************
-                    //Permet de pouvoir récuperer les données partout dans le code
-                    //par la suite en stockant les données dans un sharePreference
-                    //**************************************************************
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                    //***********************COMMENTAIRE****************************
-                    //Permet d'éditer le sharePreference
-                    //**************************************************************
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("userName", users.get(i).getUserName().toString());
-                    editor.putString("role", users.get(i).getRoles().toString());
-                    editor.putString("email", users.get(i).getEmail().toString());
-                    editor.putString("phoneNumber", users.get(i).getPhoneNumber().toString());
-                    editor.putInt("nbCoffeeRequiredForPromotion", users.get(i).getNbCoffeeRequiredForPromotion());
-                    editor.putFloat("promotionValue", users.get(i).getPromotionValue());
-                    editor.commit();
-
-                    if (users.get(i).getRoles().equals("userperson"))
-                    {//User
-                        spinner.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this, ReceptionClientActivity.class);
-                        startActivity(intent);
-                    }
-                    else
-                    {//Coffee
-                        spinner.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
-                        startActivity(intent);
-                    }
+                {//Coffee
+                    spinner.setVisibility(View.GONE);
+                    Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
+                    startActivity(intent);
                 }
             }
         }
     }
-/*
-    private class LoadTerminal extends AsyncTask<String, Void, ArrayList<Terminal>>
-    {
-        @Override
-        protected ArrayList<Terminal> doInBackground(String... params)
-        {
-
-            TerminalDAO terminalDAO = new TerminalDAO();
-            ArrayList<Terminal> terminals = new ArrayList<>();
-            try
-            {
-                terminals = terminalDAO.getAllTerminals();
-            }
-            catch(Exception e)
-            {
-                System.out.println(e.getMessage());
-            }
-
-            return terminals;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Terminal> terminals)
-        {
-            Log.i("Test Terminal", terminals.toString());
-        }
-    }
-
-    private class LoadTimeTable extends AsyncTask<String, Void, ArrayList<TimeTable>>
-    {
-        @Override
-        protected ArrayList<TimeTable> doInBackground(String... params)
-        {
-            TimeTableDAO timeTableDAO = new TimeTableDAO();
-            ArrayList<TimeTable> timeTables = new ArrayList<>();
-            try
-            {
-                timeTables = timeTableDAO.getAllTimeTables();
-            }
-            catch(Exception e)
-            {
-                return timeTables;
-            }
-
-            return timeTables;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<TimeTable> timeTables)
-        {
-            Log.i("Test TimeTable", timeTables.toString());
-        }
-    }*/
 }

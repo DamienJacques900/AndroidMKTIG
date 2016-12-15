@@ -69,7 +69,6 @@ public class HistoryClientActivity extends MenuClientActivity
     @Override
     public void goToOptionClient()
     {
-        new LoadCharity().execute();
         Intent intentOption = new Intent(HistoryClientActivity.this,OptionClientActivity.class);
         startActivity(intentOption);
     }
@@ -167,7 +166,6 @@ public class HistoryClientActivity extends MenuClientActivity
             }
             editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();
-            System.out.println(prefs.getString("dateOffering1",null));
         }
     }
 
@@ -177,14 +175,10 @@ public class HistoryClientActivity extends MenuClientActivity
     //**************************************************************
     public void creationLayout()
     {
-        new LoadCharity().execute();
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();
         ListView listHistory= (ListView) findViewById(R.id.listHistory);
-
-        //String[] listItemsHistory = new String[pref.getInt("SizeCharities",0)];
 
         //***********************COMMENTAIRE****************************
         //Permet d'afficher les données dans une listView
@@ -196,6 +190,8 @@ public class HistoryClientActivity extends MenuClientActivity
 
             String coffeeName = pref.getString("coffeeName"+i,null);
             String coffeeDescription = nbCoffeeOffered+" café(s) offert le "+dateOffering;
+
+            System.out.println("Description = "+coffeeDescription);
 
             HistoryLine historyLine = new HistoryLine(coffeeName,coffeeDescription);
 

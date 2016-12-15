@@ -92,4 +92,35 @@ public class ReservationAdatper extends ArrayAdapter
 
         return convertView;
     }
+
+    public class LoadBookingDelete extends AsyncTask<String, Void, ArrayList<Booking>>
+    {
+        Exception exception;
+
+        @Override
+        protected ArrayList<Booking> doInBackground(String... params)
+        {
+            BookingDAO bookingDAO = new BookingDAO();
+            ArrayList<Booking> bookings = new ArrayList<>();
+            try
+            {
+                bookings = bookingDAO.getAllBooking();
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return bookings;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<Booking> bookings)
+        {
+
+        }
+    }
 }

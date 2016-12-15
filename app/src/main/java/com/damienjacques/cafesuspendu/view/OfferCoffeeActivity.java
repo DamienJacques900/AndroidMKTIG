@@ -1,13 +1,21 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.CharityDAO;
+import com.damienjacques.cafesuspendu.model.Charity;
+
+import java.util.ArrayList;
 
 //La vue land et portrait bug, à régler
 public class OfferCoffeeActivity extends MenuCoffeeActivity
@@ -103,5 +111,66 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         clientTextView = (TextView)findViewById(R.id.userNameBidder);
         passwordTextView = (TextView)findViewById(R.id.passwordBidder);
         nbCoffeeTextView = (TextView)findViewById(R.id.numberCoffeeBidder);
+
+        offerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                new LoadCharityAdd().execute();
+            }
+        });
+    }
+
+    public class LoadCharityAdd extends AsyncTask<String, Void, ArrayList<Charity>>
+    {
+        Exception exception;
+
+        String userName = clientTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
+        String nbCoffee = nbCoffeeTextView.getText().toString();
+        Integer intNbCoffee = Integer.parseInt(nbCoffee);
+        @Override
+        protected ArrayList<Charity> doInBackground(String... params)
+        {
+            CharityDAO charityDAO = new CharityDAO();
+            ArrayList<Charity> charities = new ArrayList<>();
+            try
+            {
+                charities = charityDAO.getAllCharities();
+                charityDAO.newChairty(intNbCoffee,userName,password);
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return charities;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<Charity> charities)
+        {
+            if (exception != null)
+            {
+                if(userName.equals("") || password.equals("") || nbCoffee.equals(""))
+                {
+                    Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OfferCoffeeActivity.this,ReceptionCoffeeActivity.class);
+                startActivity(intent);
+            }
+
+        }
     }
 }

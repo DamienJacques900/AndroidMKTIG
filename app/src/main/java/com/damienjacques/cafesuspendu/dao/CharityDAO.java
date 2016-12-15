@@ -17,6 +17,12 @@ import java.util.Date;
 
 public class CharityDAO
 {
+
+    public void newChairty(Integer nbCoffee, String userName, String password)
+    {
+
+    }
+
     public ArrayList<Charity> getAllCharities() throws Exception
     {
         //***********************COMMENTAIRE****************************

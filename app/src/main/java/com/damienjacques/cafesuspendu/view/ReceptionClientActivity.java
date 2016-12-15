@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ReceptionClientActivity extends MenuClientActivity
