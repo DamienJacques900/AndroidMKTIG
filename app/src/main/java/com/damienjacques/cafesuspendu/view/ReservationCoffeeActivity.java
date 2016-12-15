@@ -161,7 +161,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
 
             for(int i = 1; i <= bookingsCoffee.size(); i++)
             {
-                editor.putInt("idBooking"+i,bookingsCoffee.get(i-1).getBookingId());//erreur je sais pas pourquoi!
+                editor.putInt("idBooking"+i,bookingsCoffee.get(i-1).getBookingId());
                 editor.putString("nameOffering"+i, bookingsCoffee.get(i-1).getName());
 
                 String ResDate = new SimpleDateFormat("yyyy-MM-dd").format(bookingsCoffee.get(i-1).getDateBooking());

@@ -23,10 +23,6 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by Damien Jacques on 13-12-16.
- */
-
 public class ReservationAdatper extends ArrayAdapter
 {
     public ReservationAdatper(Context context, ArrayList<ReservationLine> history)
@@ -61,6 +57,7 @@ public class ReservationAdatper extends ArrayAdapter
                 Boolean consumedBool = true;
                 try
                 {
+                    System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
                     bookingDAO.deleteBooking(idBooking, consumedBool);
                 }
                 catch(Exception e)
@@ -80,6 +77,7 @@ public class ReservationAdatper extends ArrayAdapter
                 Boolean consumedBool = false;
                 try
                 {
+                    System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
                     bookingDAO.deleteBooking(idBooking, consumedBool);
                 }
                 catch(Exception e)

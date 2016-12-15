@@ -53,7 +53,7 @@ public class CharityDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            Log.i("Charities",jsonCharity.toString());
+            //Log.i("Charities",jsonCharity.toString());
             JSONObject jsonUserCient = jsonCharity.getJSONObject("ApplicationUserPerson");
             User userClient = new User(jsonUserCient.getString("UserName"),0,(float)0.0);
 

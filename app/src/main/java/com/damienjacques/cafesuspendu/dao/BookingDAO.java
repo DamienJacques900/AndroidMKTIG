@@ -79,7 +79,7 @@ public class BookingDAO
 
             SimpleDateFormat dateBooking = new SimpleDateFormat("yyyy-MM-dd");
 
-            booking = new Booking(dateBooking.parse(jsonBooking.getString("DateBooking")),jsonBooking.getString("Name"),userCafe);
+            booking = new Booking(dateBooking.parse(jsonBooking.getString("DateBooking")),jsonBooking.getString("Name"),userCafe,jsonBooking.getInt("BookingID"));
             bookings.add(booking);
         }
         return bookings;

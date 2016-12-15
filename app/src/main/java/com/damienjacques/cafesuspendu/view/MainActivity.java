@@ -129,30 +129,31 @@ public class MainActivity extends AppCompatActivity
         {
             if (exception != null)
             {
-                Log.i("Exception",exception.toString());
-                Toast.makeText(MainActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-            }
-
-            if(userName.equals("") || password.equals(""))
-            {
-                Toast.makeText(MainActivity.this,"Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
+                if (userName.equals("") || password.equals(""))
+                {
+                    Toast.makeText(MainActivity.this, "Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
+                }
                 spinner.setVisibility(View.GONE);
             }
             else
             {
-                int i;
-                for(i = 0 ; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
+                if (userName.equals("") || password.equals(""))
                 {
-
-                }
-
-                if(i == users.size())
-                {
-                    Toast.makeText(MainActivity.this,"Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Vous devez remplir les champs identifiants et mot de passe pour pouvoir accèder à votre compte", Toast.LENGTH_SHORT).show();
                     spinner.setVisibility(View.GONE);
                 }
                 else
                 {
+                    int i;
+                    for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
+                    {
+
+                    }
+
                     //***********************COMMENTAIRE****************************
                     //Permet de pouvoir récuperer les données partout dans le code
                     //par la suite en stockant les données dans un sharePreference
@@ -162,24 +163,24 @@ public class MainActivity extends AppCompatActivity
                     //Permet d'éditer le sharePreference
                     //**************************************************************
                     SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("userName",users.get(i).getUserName().toString());
-                    editor.putString("role",users.get(i).getRoles().toString());
-                    editor.putString("email",users.get(i).getEmail().toString());
-                    editor.putString("phoneNumber",users.get(i).getPhoneNumber().toString());
-                    editor.putInt("nbCoffeeRequiredForPromotion",users.get(i).getNbCoffeeRequiredForPromotion());
-                    editor.putFloat("promotionValue",users.get(i).getPromotionValue());
+                    editor.putString("userName", users.get(i).getUserName().toString());
+                    editor.putString("role", users.get(i).getRoles().toString());
+                    editor.putString("email", users.get(i).getEmail().toString());
+                    editor.putString("phoneNumber", users.get(i).getPhoneNumber().toString());
+                    editor.putInt("nbCoffeeRequiredForPromotion", users.get(i).getNbCoffeeRequiredForPromotion());
+                    editor.putFloat("promotionValue", users.get(i).getPromotionValue());
                     editor.commit();
 
-                    if(users.get(i).getRoles().equals("userperson"))
+                    if (users.get(i).getRoles().equals("userperson"))
                     {//User
                         spinner.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this,ReceptionClientActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ReceptionClientActivity.class);
                         startActivity(intent);
                     }
                     else
                     {//Coffee
                         spinner.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this,ReceptionCoffeeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
                         startActivity(intent);
                     }
                 }

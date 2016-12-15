@@ -28,10 +28,11 @@ public class Booking implements Serializable
 
     }
 
-    public Booking(@NonNull Date dateBooking, @NonNull String name, @NonNull User userCafe) {
+    public Booking(@NonNull Date dateBooking, @NonNull String name, @NonNull User userCafe, Integer bookingId) {
         this.dateBooking = dateBooking;
         this.name = name;
         this.userCafe = userCafe;
+        this.bookingId = bookingId;
     }
 
     public Booking(Integer bookingId, @NonNull Date dateBooking, @NonNull String name, @NonNull User userCafe, @NonNull Terminal terminal) {
@@ -41,6 +42,8 @@ public class Booking implements Serializable
         this.userCafe = userCafe;
         this.terminal = terminal;
     }
+
+
 
     public Booking(String name)
     {
