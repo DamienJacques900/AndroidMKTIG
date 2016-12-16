@@ -128,10 +128,17 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         String userName = clientTextView.getText().toString();
         String password = passwordTextView.getText().toString();
         String nbCoffee = nbCoffeeTextView.getText().toString();
-        Integer intNbCoffee = Integer.parseInt(nbCoffee);
+        Integer intNbCoffee;
+
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
         {
+
+            if(nbCoffee.equals(""))
+                intNbCoffee = 0;
+            else
+                intNbCoffee = Integer.parseInt(nbCoffee);
+
             CharityDAO charityDAO = new CharityDAO();
             ArrayList<Charity> charities = new ArrayList<>();
             try
@@ -155,20 +162,20 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
-                if(userName.equals("") || password.equals("") || nbCoffee.equals(""))
-                {
+                Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                if(userName.equals("") || password.equals("") || intNbCoffee==0)
+                {//A bouger quand l'ajout dans le charity sera fait, remettre dans exception
                     Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OfferCoffeeActivity.this, ReceptionCoffeeActivity.class);
+                    startActivity(intent);
                 }
-            }
-            else
-            {
-                Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(OfferCoffeeActivity.this,ReceptionCoffeeActivity.class);
-                startActivity(intent);
             }
 
         }
