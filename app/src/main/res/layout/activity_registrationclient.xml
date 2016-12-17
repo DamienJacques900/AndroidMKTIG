@@ -126,7 +126,7 @@
                 android:text="@string/coffeeRegistrationConfirmPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView56"
+                android:id="@+id/confirmationPassword"
                 android:layout_below="@+id/passwordRegistrationClient"
                 android:layout_alignLeft="@+id/passwordRegistrationClient"
                 android:layout_alignStart="@+id/passwordRegistrationClient" />

@@ -112,6 +112,14 @@ public class MainActivity extends AppCompatActivity
             {
                 users = userDAO.getAllUsers();
                 String token = userDAO.getUserWithUserNameAndPw(userName, password);
+                //***********************COMMENTAIRE****************************
+                //Il faut sauver le token pour la session pour pouvoir faire
+                //des modifications et autre
+                //**************************************************************
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("token", token);
+                editor.commit();
             }
             catch(Exception e)
             {

@@ -18,11 +18,13 @@ import java.util.*;
 
 public class UserDAO {
 
-    public void putChangeOptionCoffee() throws Exception {
+    public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
+    {
 
     }
 
-    public String optionCoffeeToJson(String token, User userCoffee) throws Exception {
+    public String optionCoffeeToJson(User userCoffee) throws Exception
+    {
         JSONObject optionCoffee = new JSONObject();
 
         //optionCoffee.accumulate("id",userCoffee);
@@ -45,11 +47,13 @@ public class UserDAO {
         return optionCoffee.toString();
     }
 
-    public void putChangeOptionPerson() throws Exception {
+    public void putChangeOptionPerson(String token, User userPerson) throws Exception
+    {
 
     }
 
-    public String optionPersonToJson(String token, User userPerson) throws Exception {
+    public String optionPersonToJson(User userPerson) throws Exception
+    {
         JSONObject optionPerson = new JSONObject();
 
         //optionPerson.accumulate("id",userPerson);
@@ -72,11 +76,13 @@ public class UserDAO {
         return optionPerson.toString();
     }
 
-    public void postNewRegistrationCoffee() throws Exception {
+    public void postNewRegistrationCoffee(String token, User userCoffee) throws Exception
+    {
 
     }
 
-    public String registratinCoffeeToJson(String token, User userCoffee) throws Exception {
+    public String registratinCoffeeToJson(User userCoffee) throws Exception
+    {
         JSONObject newCoffee = new JSONObject();
 
         //newCoffee.accumulate("id",userCoffee);
@@ -99,12 +105,12 @@ public class UserDAO {
         return newCoffee.toString();
     }
 
-    public void postNewRegistrationPerson() throws Exception
+    public void postNewRegistrationPerson(String token, User userPerson) throws Exception
     {
 
     }
 
-    public String registrationPersonToJson(String token, User userPerson) throws Exception
+    public String registrationPersonToJson(User userPerson) throws Exception
     {
         JSONObject newPerson = new JSONObject();
 
