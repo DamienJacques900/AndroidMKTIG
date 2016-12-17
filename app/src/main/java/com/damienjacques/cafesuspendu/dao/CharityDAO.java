@@ -18,9 +18,18 @@ import java.util.Date;
 public class CharityDAO
 {
 
-    public void newChairty(Integer nbCoffee, String userName, String password)
+    public void newCharity(Integer nbCoffee, String userName, String password)
     {
 
+    }
+
+    private String charityToJson(Charity charity) throws Exception
+    {
+        JSONObject jsonCharity = new JSONObject();
+
+
+
+        return jsonCharity.toString();
     }
 
     public ArrayList<Charity> getAllCharities() throws Exception
