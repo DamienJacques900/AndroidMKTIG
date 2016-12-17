@@ -61,13 +61,13 @@ public class RegistrationClientActivity extends AppCompatActivity
     //**************************************************************
     private void createLayout()
     {
-        userNameTextView = (TextView) findViewById(R.id.userNameRegistrationClient);
-        passwordTextView = (TextView) findViewById(R.id.passwordRegistrationClient);
-        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPassword);
-        nameTextView = (TextView) findViewById(R.id.nameRegistrationClient);
-        firstNameTextView = (TextView) findViewById(R.id.firstNameRegistrationClient);
-        mailTextView = (TextView) findViewById(R.id.mailRegistrationClient);
-        phoneTextView = (TextView) findViewById(R.id.phoneRegistrationClient) ;
+        userNameTextView = (TextView) findViewById(R.id.userNamClientEdit);
+        passwordTextView = (TextView) findViewById(R.id.passwordClientEdit);
+        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationClientEdit);
+        nameTextView = (TextView) findViewById(R.id.nameClientEdit);
+        firstNameTextView = (TextView) findViewById(R.id.firstNameClientEdit);
+        mailTextView = (TextView) findViewById(R.id.mailClientEdit);
+        phoneTextView = (TextView) findViewById(R.id.phoneClientEdit) ;
 
         clickRegistration = (Button) findViewById(R.id.buttonRegistrationClient);
 
@@ -75,12 +75,12 @@ public class RegistrationClientActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                new LoadUserRegistration().execute();
+                newUserRegistration();
             }
         });
     }
 
-    public class LoadUserRegistration extends AsyncTask<String, Void, ArrayList<User>>
+    public void newUserRegistration ()
     {
         Exception exception;
 
@@ -91,39 +91,5 @@ public class RegistrationClientActivity extends AppCompatActivity
         String firstName = firstNameTextView.getText().toString();
         String email = mailTextView.getText().toString();
         String phoneNumber = phoneTextView.getText().toString();
-
-        @Override
-        protected ArrayList<User> doInBackground(String... params)
-        {
-            UserDAO userDAO = new UserDAO();
-            ArrayList<User> users = new ArrayList<>();
-            try
-            {
-                users = userDAO.getAllUsers();
-            }
-            catch(Exception e)
-            {
-                exception = e;
-            }
-
-            return users;
-        }
-
-        //***********************COMMENTAIRE****************************
-        //Permet d'executer quelque chose après le chargement des données
-        //**************************************************************
-        @Override
-        protected void onPostExecute(ArrayList<User> users)
-        {
-            if (exception != null)
-            {
-                Toast.makeText(RegistrationClientActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Intent intent = new Intent(RegistrationClientActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        }
     }
 }

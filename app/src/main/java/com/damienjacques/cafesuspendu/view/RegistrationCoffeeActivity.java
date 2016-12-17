@@ -2,12 +2,17 @@ package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
+import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.model.User;
+
+import java.util.ArrayList;
 
 public class RegistrationCoffeeActivity extends AppCompatActivity
 {
@@ -67,9 +72,22 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(RegistrationCoffeeActivity.this,ReceptionCoffeeActivity.class);
-                startActivity(intent);
+
             }
         });
+    }
+
+    public void newUserRegistration()
+    {
+        Exception exception;
+
+        String userName = userNameTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
+        //String confirmationPassword = confirmationPasswordTextView.getText().toString();
+        String street = streetTextView.getText().toString();
+        String number = numberTextView.getText().toString();
+        String promotionAfter = nbCoffeePromotionTextView.getText().toString();
+        String promoValue = promotionValueTextView.getText().toString();
+
     }
 }
