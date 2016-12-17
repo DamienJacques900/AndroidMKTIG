@@ -110,6 +110,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/buttonColor"
+                android:layout_below="@+id/phoneOptionClient"
                 android:textColor="@color/textColorButton"/>
 
         </RelativeLayout>

@@ -108,9 +108,7 @@
                 android:id="@+id/buttonModifyClientOption"
                 android:layout_marginLeft="42dp"
                 android:layout_marginStart="42dp"
-                android:layout_below="@+id/confirmationPasswordOptionClient"
-                android:layout_toRightOf="@+id/confirmationPasswordOptionClient"
-                android:layout_toEndOf="@+id/confirmationPasswordOptionClient"
+                android:layout_below="@+id/phoneOptionClient"
                 android:layout_marginTop="17dp"
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/textColorButton"/>

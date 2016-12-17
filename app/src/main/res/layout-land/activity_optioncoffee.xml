@@ -126,7 +126,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="22dp"
-                android:layout_below="@+id/confirmationPasswordCoffeeOption"/>
+                android:layout_below="@+id/valuePromoCoffeeOption"/>
         </RelativeLayout>
     </ScrollView>
 
