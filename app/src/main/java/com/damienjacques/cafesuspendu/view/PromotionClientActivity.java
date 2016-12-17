@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 public class PromotionClientActivity extends MenuClientActivity
 {
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -156,6 +158,38 @@ public class PromotionClientActivity extends MenuClientActivity
             }
             editor.putInt("SizeCharities",charitiesClient.size());
             editor.commit();
+
+            //***********************COMMENTAIRE****************************
+            //Permet de récupérer les valeurs de la sharePreference
+            //**************************************************************
+            ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
+            ListView listCoffee= (ListView) findViewById(R.id.listCoffee);
+
+            //***********************COMMENTAIRE****************************
+            //Permet d'afficher les données dans une listView
+            //**************************************************************
+            for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
+            {
+                int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
+                int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
+                int nbCoffeeForPromotion = nbCoffeeRequired-(nbCoffeeOffered%nbCoffeeRequired);
+                Float costPromo = pref.getFloat("costPromoCoffee"+i,0);
+                String coffeeName = pref.getString("charities"+i,null);
+                String coffeedescription = "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
+
+                float progressStatus = (Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100))%100;
+
+                ProgressBar progressBar = new ProgressBar(getApplicationContext());
+
+                PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar, (int)progressStatus);
+
+                arrayPromoLine.add(promo);
+            }
+
+            PromotionAdapter promoAdapter = new PromotionAdapter(PromotionClientActivity.this,arrayPromoLine);
+            listCoffee.setAdapter(promoAdapter);
+
+            spinner.setVisibility(View.GONE);
         }
     }
 
@@ -165,37 +199,9 @@ public class PromotionClientActivity extends MenuClientActivity
     //**************************************************************
     public void creationLayout()
     {
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
+
         new LoadCharity().execute();
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        //***********************COMMENTAIRE****************************
-        //Permet de récupérer les valeurs de la sharePreference
-        //**************************************************************
-        ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
-        ListView listCoffee= (ListView) findViewById(R.id.listCoffee);
-
-        //***********************COMMENTAIRE****************************
-        //Permet d'afficher les données dans une listView
-        //**************************************************************
-        for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
-        {
-            int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
-            int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
-            int nbCoffeeForPromotion = nbCoffeeRequired-(nbCoffeeOffered%nbCoffeeRequired);
-            Float costPromo = pref.getFloat("costPromoCoffee"+i,0);
-            String coffeeName = pref.getString("charities"+i,null);
-            String coffeedescription = "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
-
-            float progressStatus = (Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100))%100;
-
-            ProgressBar progressBar = new ProgressBar(getApplicationContext());
-
-            PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar, (int)progressStatus);
-
-            arrayPromoLine.add(promo);
-        }
-
-        PromotionAdapter promoAdapter = new PromotionAdapter(this,arrayPromoLine);
-        listCoffee.setAdapter(promoAdapter);
     }
 }

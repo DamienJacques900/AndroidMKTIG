@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -27,11 +28,12 @@ import java.util.Date;
 
 public class ReservationCoffeeActivity extends MenuCoffeeActivity
 {
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        new LoadBooking().execute();
         setContentView(R.layout.activity_reservationcoffee);
         creationLayout();
     }
@@ -170,6 +172,33 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             }
             editor.putInt("SizeBooking",bookingsCoffee.size());
             editor.commit();
+
+            //***********************COMMENTAIRE****************************
+            //Permet de pouvoir récuperer les données partout dans le code
+            //par la suite en stockant les données dans un sharePreference
+            //**************************************************************
+
+            ArrayList<ReservationLine> arrayReservationLine= new ArrayList<ReservationLine>();
+            ListView listBooking= (ListView) findViewById(R.id.listBooking);
+
+            //***********************COMMENTAIRE****************************
+            //Permet d'afficher les données dans une listView
+            //**************************************************************
+            for(int i = 1; i <= pref.getInt("SizeBooking",0); i++)
+            {
+                Integer idBooking = pref.getInt("idBooking"+i,0);
+                String coffeeName = pref.getString("nameOffering"+i,null);
+                String description ="Reservation faites le "+pref.getString("dateReservation"+i,null);
+
+                ReservationLine reservationLine = new ReservationLine(coffeeName,description, idBooking);
+
+                arrayReservationLine.add(reservationLine);
+            }
+// 4
+            ReservationAdatper adatperReservation = new ReservationAdatper(ReservationCoffeeActivity.this,arrayReservationLine);
+            listBooking.setAdapter(adatperReservation);
+
+            spinner.setVisibility(View.GONE);
         }
     }
 
@@ -179,30 +208,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     //**************************************************************
     public void creationLayout()
     {
-        //***********************COMMENTAIRE****************************
-        //Permet de pouvoir récuperer les données partout dans le code
-        //par la suite en stockant les données dans un sharePreference
-        //**************************************************************
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
 
-        ArrayList<ReservationLine> arrayReservationLine= new ArrayList<ReservationLine>();
-        ListView listBooking= (ListView) findViewById(R.id.listBooking);
-
-        //***********************COMMENTAIRE****************************
-        //Permet d'afficher les données dans une listView
-        //**************************************************************
-        for(int i = 1; i <= pref.getInt("SizeBooking",0); i++)
-        {
-            Integer idBooking = pref.getInt("idBooking"+i,0);
-            String coffeeName = pref.getString("nameOffering"+i,null);
-            String description ="Reservation faites le "+pref.getString("dateReservation"+i,null);
-
-            ReservationLine reservationLine = new ReservationLine(coffeeName,description, idBooking);
-
-            arrayReservationLine.add(reservationLine);
-        }
-// 4
-        ReservationAdatper adatperReservation = new ReservationAdatper(this,arrayReservationLine);
-        listBooking.setAdapter(adatperReservation);
+        new LoadBooking().execute();
     }
 }
