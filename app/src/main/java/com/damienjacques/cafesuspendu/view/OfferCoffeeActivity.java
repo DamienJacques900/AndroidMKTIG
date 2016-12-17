@@ -144,7 +144,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             try
             {
                 charities = charityDAO.getAllCharities();
-                charityDAO.newChairty(intNbCoffee,userName,password);
+                charityDAO.newCharity(intNbCoffee,userName,password);
             }
             catch(Exception e)
             {

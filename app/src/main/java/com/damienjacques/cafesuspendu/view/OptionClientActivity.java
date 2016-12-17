@@ -105,8 +105,8 @@ public class OptionClientActivity extends MenuClientActivity
     {
         mailTextView = (TextView) findViewById(R.id.mailOptionClient);
         phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
-        passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
-        confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
+        //passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
+        //confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
 
         clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
 
@@ -150,7 +150,7 @@ public class OptionClientActivity extends MenuClientActivity
             try
             {
                 users = userDAO.getAllUsers();
-                userDAO.changeOptionPerson(email,phoneNumber);
+                //userDAO.changeOptionPerson(email,phoneNumber);
             }
             catch(Exception e)
             {

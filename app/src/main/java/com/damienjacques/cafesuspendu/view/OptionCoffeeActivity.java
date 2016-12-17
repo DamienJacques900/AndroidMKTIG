@@ -111,8 +111,8 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
         nbCoffeeTextView = (TextView) findViewById(R.id.numberCoffeOption);
         promotionValueTextView = (TextView) findViewById(R.id.valuePromoCoffeeOption);
-        passwordTextView = (TextView) findViewById(R.id.passwordCoffeeOption);
-        confirmPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordCoffeeOption);
+        //passwordTextView = (TextView) findViewById(R.id.passwordCoffeeOption);
+        //confirmPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordCoffeeOption);
 
         clickModify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +155,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             try
             {
                 users = userDAO.getAllUsers();
-                userDAO.changeOptionCoffee(intNbCoffee,doubleValuePromo);
+                //userDAO.changeOptionCoffee(intNbCoffee,doubleValuePromo);
             }
             catch(Exception e)
             {

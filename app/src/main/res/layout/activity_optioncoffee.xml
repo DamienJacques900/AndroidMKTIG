@@ -66,7 +66,7 @@
                 android:layout_marginTop="21dp"
                 android:id="@+id/textView28" />
 
-            <TextView
+            <!--<TextView
                 android:text="@string/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_below="@+id/textView30"
                 android:layout_alignRight="@+id/passwordCoffeeOption"
                 android:layout_alignEnd="@+id/passwordCoffeeOption"
-                android:id="@+id/confirmationPasswordCoffeeOption" />
+                android:id="@+id/confirmationPasswordCoffeeOption" />-->
 
             <Button
                 android:text="@string/modify"

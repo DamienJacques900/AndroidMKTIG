@@ -160,7 +160,7 @@ public class PromotionClientActivity extends MenuClientActivity
             editor.commit();
 
             //***********************COMMENTAIRE****************************
-            //Permet de récupérer les valeurs de la sharePreference
+            //Affichage des promotions
             //**************************************************************
             ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
             ListView listCoffee= (ListView) findViewById(R.id.listCoffee);

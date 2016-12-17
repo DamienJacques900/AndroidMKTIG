@@ -63,7 +63,7 @@
                 android:layout_alignStart="@+id/textView42"
                 android:id="@+id/phoneOptionClient" />
 
-            <TextView
+           <!-- <TextView
                 android:text="@string/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:id="@+id/confirmationPasswordOptionClient"
                 android:layout_below="@+id/textView44"
                 android:layout_alignLeft="@+id/textView44"
-                android:layout_alignStart="@+id/textView44" />
+                android:layout_alignStart="@+id/textView44" />-->
 
             <Button
                 android:text="@string/modify"

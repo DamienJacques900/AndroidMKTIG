@@ -18,7 +18,7 @@ import java.util.Date;
 public class CharityDAO
 {
 
-    public void newCharity(Integer nbCoffee, String userName, String password)
+    public void newCharity(Integer nbCoffee, String userName, String password) throws Exception
     {
 
     }
@@ -27,7 +27,14 @@ public class CharityDAO
     {
         JSONObject jsonCharity = new JSONObject();
 
-
+        SimpleDateFormat dateCharity = new SimpleDateFormat("yyyy-MM-dd");
+        jsonCharity.accumulate("OfferingTime", dateCharity.format(charity.getOfferingTime()));
+        //jsonCharity.accumulate("CharityId",charity.getOfferingTime());
+        jsonCharity.accumulate("NbCoffeeOffered", charity.getNbCoffeeOffered());
+        jsonCharity.accumulate("NbCoffeeConsumed", charity.getNbCoffeeConsumed());
+        //jsonCharity.accumulate("RowVersion", charity.getOfferingTime());
+        jsonCharity.accumulate("ApplicationUserPerson", charity.getUserPerson());
+        jsonCharity.accumulate("ApplicationUserCoffee", charity.getUserCafe());
 
         return jsonCharity.toString();
     }

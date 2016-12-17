@@ -18,24 +18,114 @@ import java.util.*;
 
 public class UserDAO {
 
-    public void changeOptionCoffee(Integer nbCoffeeRequired, Double promotionValue)
+    public void putChangeOptionCoffee() throws Exception {
+
+    }
+
+    public String optionCoffeeToJson(String token, User userCoffee) throws Exception {
+        JSONObject optionCoffee = new JSONObject();
+
+        //optionCoffee.accumulate("id",userCoffee);
+        optionCoffee.accumulate("userName", userCoffee.getUserName());
+        optionCoffee.accumulate("cafeName", userCoffee.getCafeName());
+        optionCoffee.accumulate("street", userCoffee.getStreet());
+        optionCoffee.accumulate("number", userCoffee.getNumber());
+        optionCoffee.accumulate("nbCoffeeRequiredForPromotion", userCoffee.getNbCoffeeRequiredForPromotion());
+        optionCoffee.accumulate("promotionValue", userCoffee.getPromotionValue());
+        optionCoffee.accumulate("bookings", userCoffee.getBookings());
+        optionCoffee.accumulate("timeTables", userCoffee.getTimesTables());
+        optionCoffee.accumulate("firstName", userCoffee.getFirstName());
+        optionCoffee.accumulate("lastName", userCoffee.getLastName());
+        optionCoffee.accumulate("email", userCoffee.getEmail());
+        optionCoffee.accumulate("emailConfirmed", userCoffee.getEmailConfirmed());
+        optionCoffee.accumulate("phoneNumber", userCoffee.getPhoneNumber());
+        optionCoffee.accumulate("roles", userCoffee.getRoles());
+        //optionCoffee.accumulate("claims",userCoffee);
+
+        return optionCoffee.toString();
+    }
+
+    public void putChangeOptionPerson() throws Exception {
+
+    }
+
+    public String optionPersonToJson(String token, User userPerson) throws Exception {
+        JSONObject optionPerson = new JSONObject();
+
+        //optionPerson.accumulate("id",userPerson);
+        optionPerson.accumulate("userName", userPerson.getUserName());
+        optionPerson.accumulate("cafeName", userPerson.getCafeName());
+        optionPerson.accumulate("street", userPerson.getStreet());
+        optionPerson.accumulate("number", userPerson.getNumber());
+        optionPerson.accumulate("nbCoffeeRequiredForPromotion", userPerson.getNbCoffeeRequiredForPromotion());
+        optionPerson.accumulate("promotionValue", userPerson.getPromotionValue());
+        optionPerson.accumulate("bookings", userPerson.getBookings());
+        optionPerson.accumulate("timeTables", userPerson.getTimesTables());
+        optionPerson.accumulate("firstName", userPerson.getFirstName());
+        optionPerson.accumulate("lastName", userPerson.getLastName());
+        optionPerson.accumulate("email", userPerson.getEmail());
+        optionPerson.accumulate("emailConfirmed", userPerson.getEmailConfirmed());
+        optionPerson.accumulate("phoneNumber", userPerson.getPhoneNumber());
+        optionPerson.accumulate("roles", userPerson.getRoles());
+        //optionPerson.accumulate("claims",userPerson);
+
+        return optionPerson.toString();
+    }
+
+    public void postNewRegistrationCoffee() throws Exception {
+
+    }
+
+    public String registratinCoffeeToJson(String token, User userCoffee) throws Exception {
+        JSONObject newCoffee = new JSONObject();
+
+        //newCoffee.accumulate("id",userCoffee);
+        newCoffee.accumulate("userName", userCoffee.getUserName());
+        newCoffee.accumulate("cafeName", userCoffee.getCafeName());
+        newCoffee.accumulate("street", userCoffee.getStreet());
+        newCoffee.accumulate("number", userCoffee.getNumber());
+        newCoffee.accumulate("nbCoffeeRequiredForPromotion", userCoffee.getNbCoffeeRequiredForPromotion());
+        newCoffee.accumulate("promotionValue", userCoffee.getPromotionValue());
+        newCoffee.accumulate("bookings", userCoffee.getBookings());
+        newCoffee.accumulate("timeTables", userCoffee.getTimesTables());
+        newCoffee.accumulate("firstName", userCoffee.getFirstName());
+        newCoffee.accumulate("lastName", userCoffee.getLastName());
+        newCoffee.accumulate("email", userCoffee.getEmail());
+        newCoffee.accumulate("emailConfirmed", userCoffee.getEmailConfirmed());
+        newCoffee.accumulate("phoneNumber", userCoffee.getPhoneNumber());
+        newCoffee.accumulate("roles", userCoffee.getRoles());
+        //newCoffee.accumulate("claims",userCoffee);
+
+        return newCoffee.toString();
+    }
+
+    public void postNewRegistrationPerson() throws Exception
     {
 
     }
 
-    public void changeOptionPerson(String email, String phoneNumber)
+    public String registrationPersonToJson(String token, User userPerson) throws Exception
     {
+        JSONObject newPerson = new JSONObject();
 
-    }
+        //newPerson.accumulate("id",userPerson);
+        newPerson.accumulate("userName",userPerson.getUserName());
+        newPerson.accumulate("cafeName",userPerson.getCafeName());
+        newPerson.accumulate("street",userPerson.getStreet());
+        newPerson.accumulate("number",userPerson.getNumber());
+        newPerson.accumulate("nbCoffeeRequiredForPromotion",userPerson.getNbCoffeeRequiredForPromotion());
+        newPerson.accumulate("promotionValue",userPerson.getPromotionValue());
+        newPerson.accumulate("bookings",userPerson.getBookings());
+        newPerson.accumulate("timeTables",userPerson.getTimesTables());
+        newPerson.accumulate("firstName",userPerson.getFirstName());
+        newPerson.accumulate("lastName",userPerson.getLastName());
+        newPerson.accumulate("email",userPerson.getEmail());
+        newPerson.accumulate("emailConfirmed",userPerson.getEmailConfirmed());
+        newPerson.accumulate("phoneNumber",userPerson.getPhoneNumber());
+        newPerson.accumulate("roles",userPerson.getRoles());
+        //newPerson.accumulate("claims",userPerson);
 
-    public void newRegistrationCoffee()
-    {
-
-    }
-
-    public void newRegistrationPerson()
-    {
-
+        return newPerson.toString();
     }
 
     public String getUserWithUserNameAndPw(String userName, String password) throws Exception
@@ -130,6 +220,7 @@ public class UserDAO {
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
             //ArrayList<Booking> bookings;
+            Log.i("Users",jsonUser.toString());
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {

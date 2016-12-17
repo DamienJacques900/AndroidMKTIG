@@ -174,10 +174,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             editor.commit();
 
             //***********************COMMENTAIRE****************************
-            //Permet de pouvoir récuperer les données partout dans le code
-            //par la suite en stockant les données dans un sharePreference
+            //Affichage des réservations
             //**************************************************************
-
+            //**************************************************************
             ArrayList<ReservationLine> arrayReservationLine= new ArrayList<ReservationLine>();
             ListView listBooking= (ListView) findViewById(R.id.listBooking);
 
