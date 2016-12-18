@@ -15,6 +15,9 @@ public class User implements Serializable
     @Size(max=30)
     private String cafeName;
 
+    @Size(max=30)
+    private String password;
+
     @Size(max=50)
     private String street;
 
@@ -87,6 +90,29 @@ public class User implements Serializable
         this.email = email;
         this.emailConfirmed = emailConfirmed;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(String userName, String phoneNumber, String email, String lastName, String firstName, String password,String roles)
+    {
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String cafeName, String userName, String password, String street, String number, Integer nbCoffeeRequiredForPromotion, Float promotionValue, String roles)
+    {
+        this.cafeName = cafeName;
+        this.userName = userName;
+        this.password = password;
+        this.street = street;
+        this.number = number;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
+        this.roles = roles;
     }
 
     public void setRoles(String roles) {

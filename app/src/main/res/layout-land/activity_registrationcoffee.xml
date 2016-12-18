@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -12,167 +13,171 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="@string/user_name"
+                android:text="Identifiant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="19dp"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="17dp"
-                android:id="@+id/textView4" />
-
-            <TextView
-                android:text="@string/password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView4"
-                android:layout_alignLeft="@+id/textView4"
-                android:layout_alignStart="@+id/textView4"
-                android:layout_marginTop="45dp"
-                android:id="@+id/textView10" />
-
-            <TextView
-                android:text="@string/number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView11"
-                android:layout_alignLeft="@+id/textView11"
-                android:layout_alignStart="@+id/textView11"
-                android:layout_marginTop="42dp"
-                android:id="@+id/textView12" />
-
-            <TextView
-                android:text="@string/promoAfter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView12"
-                android:layout_alignLeft="@+id/textView12"
-                android:layout_alignStart="@+id/textView12"
-                android:layout_marginTop="49dp"
-                android:id="@+id/textView13" />
-
-            <TextView
-                android:text="@string/valuePromo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView13"
-                android:layout_alignLeft="@+id/textView13"
-                android:layout_alignStart="@+id/textView13"
-                android:layout_marginTop="48dp"
-                android:id="@+id/textView15" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="14dp"
+                android:id="@+id/userNameCoffeeText" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_below="@+id/textView4"
-                android:layout_alignLeft="@+id/textView4"
-                android:layout_alignStart="@+id/textView4"
-                android:id="@+id/userNameRegistrationCoffee" />
+                android:layout_below="@+id/userNameCoffeeText"
+                android:layout_alignLeft="@+id/userNameCoffeeText"
+                android:layout_alignStart="@+id/userNameCoffeeText"
+                android:id="@+id/userNameCoffeeEdit" />
+
+            <TextView
+                android:text="Mot de passe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameCoffeeEdit"
+                android:layout_alignLeft="@+id/userNameCoffeeEdit"
+                android:layout_alignStart="@+id/userNameCoffeeEdit"
+                android:id="@+id/passwordCoffeeText" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:layout_below="@+id/textView10"
-                android:layout_alignLeft="@+id/textView10"
-                android:layout_alignStart="@+id/textView10"
-                android:id="@+id/passwordRegistrationCoffee" />
+                android:layout_below="@+id/passwordCoffeeText"
+                android:layout_alignLeft="@+id/passwordCoffeeText"
+                android:layout_alignStart="@+id/passwordCoffeeText"
+                android:id="@+id/passwordCoffeeEdit" />
+
+            <TextView
+                android:text="Confirmation mot de passe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passwordCoffeeEdit"
+                android:layout_alignLeft="@+id/passwordCoffeeEdit"
+                android:layout_alignStart="@+id/passwordCoffeeEdit"
+                android:id="@+id/confirmationPasswordCoffeeText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/confirmationPasswordCoffeeEdit"
+                android:layout_below="@+id/confirmationPasswordCoffeeText"
+                android:layout_alignLeft="@+id/confirmationPasswordCoffeeText"
+                android:layout_alignStart="@+id/confirmationPasswordCoffeeText" />
+
+            <TextView
+                android:text="Rue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/confirmationPasswordCoffeeEdit"
+                android:layout_alignLeft="@+id/confirmationPasswordCoffeeEdit"
+                android:layout_alignStart="@+id/confirmationPasswordCoffeeEdit"
+                android:id="@+id/streetCoffeeText" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_below="@+id/textView12"
-                android:layout_alignLeft="@+id/textView13"
-                android:layout_alignStart="@+id/textView13"
-                android:id="@+id/numberRegistrationCoffee" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:layout_below="@+id/textView15"
-                android:layout_alignLeft="@+id/textView15"
-                android:layout_alignStart="@+id/textView15"
-                android:id="@+id/valuePromoRegistrationCoffee" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:layout_below="@+id/textView13"
-                android:layout_alignLeft="@+id/textView15"
-                android:layout_alignStart="@+id/textView15"
-                android:id="@+id/numberCoffeePromoRegistrationCoffee" />
+                android:layout_below="@+id/streetCoffeeText"
+                android:layout_alignRight="@+id/userNameCoffeeEdit"
+                android:layout_alignEnd="@+id/userNameCoffeeEdit"
+                android:id="@+id/streetCoffeeEdit" />
 
             <TextView
-                android:text="@string/coffee"
+                android:text="Numéro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_marginStart="26dp"
-                android:id="@+id/textView16"
-                android:layout_alignBaseline="@+id/numberCoffeePromoRegistrationCoffee"
-                android:layout_alignBottom="@+id/numberCoffeePromoRegistrationCoffee"
-                android:layout_toRightOf="@+id/buttonRegistrationCoffee"
-                android:layout_toEndOf="@+id/buttonRegistrationCoffee" />
+                android:layout_below="@+id/streetCoffeeEdit"
+                android:layout_alignLeft="@+id/streetCoffeeEdit"
+                android:layout_alignStart="@+id/streetCoffeeEdit"
+                android:id="@+id/numberCoffeeText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/numberCoffeeText"
+                android:layout_alignLeft="@+id/numberCoffeeText"
+                android:layout_alignStart="@+id/numberCoffeeText"
+                android:id="@+id/numberCoffeeEdit" />
+
+            <TextView
+                android:text="Promotion après"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/promotionCoffeeText"
+                android:layout_below="@+id/numberCoffeeEdit"
+                android:layout_alignLeft="@+id/numberCoffeeEdit"
+                android:layout_alignStart="@+id/numberCoffeeEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/promotionCoffeeEdit"
+                android:layout_below="@+id/promotionCoffeeText"
+                android:layout_alignLeft="@+id/promotionCoffeeText"
+                android:layout_alignStart="@+id/promotionCoffeeText" />
+
+            <TextView
+                android:text="Valeur de la promotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/promotionValueText"
+                android:layout_below="@+id/promotionCoffeeEdit"
+                android:layout_alignLeft="@+id/promotionCoffeeEdit"
+                android:layout_alignStart="@+id/promotionCoffeeEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/promotionValueEdit"
+                android:layout_below="@+id/promotionValueText"
+                android:layout_alignLeft="@+id/promotionCoffeeEdit"
+                android:layout_alignStart="@+id/promotionCoffeeEdit" />
+
+            <TextView
+                android:text="Nom du café"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/coffeeNameText"
+                android:layout_below="@+id/promotionValueEdit"
+                android:layout_alignLeft="@+id/promotionValueEdit"
+                android:layout_alignStart="@+id/promotionValueEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/coffeeNameEdit"
+                android:layout_below="@+id/coffeeNameText"
+                android:layout_alignLeft="@+id/coffeeNameText"
+                android:layout_alignStart="@+id/coffeeNameText" />
 
             <Button
-                android:text="@string/registration"
-                android:layout_width="wrap_content"
+                android:text="Inscription"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonRegistrationCoffee"
-                android:layout_below="@+id/valuePromoRegistrationCoffee"
-                android:layout_toRightOf="@+id/valuePromoRegistrationCoffee"
-                android:layout_toEndOf="@+id/valuePromoRegistrationCoffee"
+                android:layout_below="@+id/coffeeNameEdit"
                 android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColorButton"/>
+                android:textColor="@color/textColorButton"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/streetRegistrationCoffee"
-                android:layout_below="@+id/textView11"
-                android:layout_alignLeft="@+id/textView11"
-                android:layout_alignStart="@+id/textView11" />
-
-            <TextView
-                android:text="@string/coffeeRegistrationConfirmPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView56"
-                android:layout_below="@+id/passwordRegistrationCoffee"
-                android:layout_alignLeft="@+id/passwordRegistrationCoffee"
-                android:layout_alignStart="@+id/passwordRegistrationCoffee" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/editText2"
-                android:layout_below="@+id/textView56"
-                android:layout_alignLeft="@+id/textView11"
-                android:layout_alignStart="@+id/textView11" />
-
-            <TextView
-                android:text="@string/street"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView11"
-                android:layout_below="@+id/editText2"
-                android:layout_alignLeft="@+id/textView56"
-                android:layout_alignStart="@+id/textView56" />
         </RelativeLayout>
     </ScrollView>
 

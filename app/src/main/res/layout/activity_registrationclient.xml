@@ -23,15 +23,15 @@
         android:layout_below="@+id/userNameRegistrationCoffee"
         android:layout_alignLeft="@+id/userNameRegistrationCoffee"
         android:layout_alignStart="@+id/userNameRegistrationCoffee"
-        android:id="@+id/userNamClientEdit" />
+        android:id="@+id/userNameClientEdit" />
 
     <TextView
         android:text="Mot de passe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userNamClientEdit"
-        android:layout_alignLeft="@+id/userNamClientEdit"
-        android:layout_alignStart="@+id/userNamClientEdit"
+        android:layout_below="@+id/userNameClientEdit"
+        android:layout_alignLeft="@+id/userNameClientEdit"
+        android:layout_alignStart="@+id/userNameClientEdit"
         android:id="@+id/PasswordClientText" />
 
     <EditText

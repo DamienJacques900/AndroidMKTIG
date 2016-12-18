@@ -19,10 +19,12 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private Button clickRegistration;
     private TextView userNameTextView;
     private TextView passwordTextView;
+    private TextView confirmationPasswordTextView;
     private TextView streetTextView;
     private TextView numberTextView;
     private TextView nbCoffeePromotionTextView;
     private TextView promotionValueTextView;
+    private TextView coffeNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,19 +62,20 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     {
         clickRegistration = (Button)findViewById(R.id.buttonRegistrationCoffee);
 
-        userNameTextView = (TextView)findViewById(R.id.userNameRegistrationCoffee);
-        passwordTextView = (TextView)findViewById(R.id.passwordRegistrationCoffee);
-        streetTextView = (TextView)findViewById(R.id.streetRegistrationCoffee);
-        numberTextView = (TextView)findViewById(R.id.numberRegistrationCoffee);
-        nbCoffeePromotionTextView= (TextView)findViewById(R.id.numberCoffeePromoRegistrationCoffee);
-        promotionValueTextView = (TextView)findViewById(R.id.valuePromoRegistrationCoffee);
+        userNameTextView = (TextView)findViewById(R.id.userNameCoffeeEdit);
+        passwordTextView = (TextView)findViewById(R.id.passwordCoffeeEdit);
+        confirmationPasswordTextView = (TextView)findViewById(R.id.confirmationPasswordCoffeeEdit);
+        streetTextView = (TextView)findViewById(R.id.streetCoffeeEdit);
+        numberTextView = (TextView)findViewById(R.id.numberCoffeeEdit);
+        nbCoffeePromotionTextView= (TextView)findViewById(R.id.promotionCoffeeEdit);
+        promotionValueTextView = (TextView)findViewById(R.id.promotionValueEdit);
 
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-
+                newUserRegistration();
             }
         });
     }
@@ -83,11 +86,20 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
-        //String confirmationPassword = confirmationPasswordTextView.getText().toString();
+        String confirmationPassword = confirmationPasswordTextView.getText().toString();
         String street = streetTextView.getText().toString();
         String number = numberTextView.getText().toString();
         String promotionAfter = nbCoffeePromotionTextView.getText().toString();
         String promoValue = promotionValueTextView.getText().toString();
+        String coffeeName = coffeNameTextView.getText().toString();
+        String userCoffee = "userCoffee";
 
+        int intPromotionAfter = Integer.parseInt("promotionAfter");
+        Float doublePromoValue = Float.parseFloat("promoValue");
+
+        if (password.equals(confirmationPassword))
+        {
+            User newUser = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
+        }
     }
 }

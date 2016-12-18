@@ -61,7 +61,7 @@ public class RegistrationClientActivity extends AppCompatActivity
     //**************************************************************
     private void createLayout()
     {
-        userNameTextView = (TextView) findViewById(R.id.userNamClientEdit);
+        userNameTextView = (TextView) findViewById(R.id.userNameClientEdit);
         passwordTextView = (TextView) findViewById(R.id.passwordClientEdit);
         confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationClientEdit);
         nameTextView = (TextView) findViewById(R.id.nameClientEdit);
@@ -80,8 +80,7 @@ public class RegistrationClientActivity extends AppCompatActivity
         });
     }
 
-    public void newUserRegistration ()
-    {
+    public void newUserRegistration () {
         Exception exception;
 
         String userName = userNameTextView.getText().toString();
@@ -91,5 +90,11 @@ public class RegistrationClientActivity extends AppCompatActivity
         String firstName = firstNameTextView.getText().toString();
         String email = mailTextView.getText().toString();
         String phoneNumber = phoneTextView.getText().toString();
+        String userPerson ="userPeron";
+
+        if (password.equals(confirmationPassword))
+        {
+            User newUser = new User(userName,phoneNumber,email,name,firstName,password,userPerson);
+        }
     }
 }
