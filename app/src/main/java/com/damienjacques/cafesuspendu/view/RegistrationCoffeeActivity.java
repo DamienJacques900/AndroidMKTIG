@@ -69,6 +69,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         numberTextView = (TextView)findViewById(R.id.numberCoffeeEdit);
         nbCoffeePromotionTextView= (TextView)findViewById(R.id.promotionCoffeeEdit);
         promotionValueTextView = (TextView)findViewById(R.id.promotionValueEdit);
+        coffeNameTextView = (TextView) findViewById(R.id.coffeeNameEdit);
 
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
@@ -94,12 +95,27 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         String coffeeName = coffeNameTextView.getText().toString();
         String userCoffee = "userCoffee";
 
-        int intPromotionAfter = Integer.parseInt("promotionAfter");
-        Float doublePromoValue = Float.parseFloat("promoValue");
+        int intPromotionAfter = Integer.parseInt(promotionAfter);
+        Float doublePromoValue = Float.parseFloat(promoValue);
 
-        if (password.equals(confirmationPassword))
+        if (!password.equals(confirmationPassword))
         {
-            User newUser = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
+            Toast.makeText(RegistrationCoffeeActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals(""))
+            {
+                Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                User newUser = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
+                //fonction pour ajouter une user
+                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this,MainActivity.class);
+                startActivity(intentReservation);
+                Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
