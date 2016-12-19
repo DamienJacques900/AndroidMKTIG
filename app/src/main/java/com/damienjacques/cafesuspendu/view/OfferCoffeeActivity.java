@@ -13,9 +13,14 @@ import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
+import com.damienjacques.cafesuspendu.dao.UserDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
+import com.damienjacques.cafesuspendu.model.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 //La vue land et portrait bug, à régler
 public class OfferCoffeeActivity extends MenuCoffeeActivity
@@ -116,12 +121,12 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             @Override
             public void onClick(View v)
             {
-                new LoadCharityAdd().execute();
+                new LoadUser().execute();
             }
         });
     }
 
-    public class LoadCharityAdd extends AsyncTask<String, Void, ArrayList<Charity>>
+    public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
 
@@ -130,54 +135,147 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         String nbCoffee = nbCoffeeTextView.getText().toString();
         Integer intNbCoffee;
 
-        @Override
-        protected ArrayList<Charity> doInBackground(String... params)
-        {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
+        @Override
+        protected Integer doInBackground(String... params)
+        {
             if(nbCoffee.equals(""))
                 intNbCoffee = 0;
             else
                 intNbCoffee = Integer.parseInt(nbCoffee);
 
+            Date dateCharity = new Date();
+            String tokenCoffee = pref.getString("token",null);
+            String tokenPerson = pref.getString("tokenPerson",null);
+
             CharityDAO charityDAO = new CharityDAO();
-            ArrayList<Charity> charities = new ArrayList<>();
+
+            Gson gson = new Gson();
+            String jsonCoffee = pref.getString("userCoffee", "");
+            String jsonPerson = pref.getString("userPerson", "");
+            User userCoffee = gson.fromJson(jsonCoffee, User.class);
+            User userPerson = gson.fromJson(jsonPerson, User.class);
+
             try
             {
-                charities = charityDAO.getAllCharities();
-                charityDAO.newCharity(intNbCoffee,userName,password);
+                Charity charity = new Charity(dateCharity,userPerson,userCoffee,intNbCoffee);
+                charityDAO.newCharity(charity,tokenCoffee);
             }
             catch(Exception e)
             {
                 exception = e;
             }
 
-            return charities;
+            return 0;
         }
 
         //***********************COMMENTAIRE****************************
         //Permet d'executer quelque chose après le chargement des données
         //**************************************************************
         @Override
-        protected void onPostExecute(ArrayList<Charity> charities)
+        protected void onPostExecute(Integer nbCoffee)
         {
             if (exception != null)
             {
                 Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
             }
+
+            if(userName.equals("") || password.equals("") || intNbCoffee==0)
+            {
+                Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+            }
             else
             {
-                if(userName.equals("") || password.equals("") || intNbCoffee==0)
-                {//A bouger quand l'ajout dans le charity sera fait, remettre dans exception
-                    Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OfferCoffeeActivity.this, ReceptionCoffeeActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
+    {
+        Exception exception;
+
+        String userName = clientTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
+        {
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
+            {
+                users = userDAO.getAllUsers();
+                String token = userDAO.getUserWithUserNameAndPw(userName, password);
+                //***********************COMMENTAIRE****************************
+                //Il faut sauver le token pour la session pour pouvoir faire
+                //des modifications et autre
+                //**************************************************************
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("tokenPerson", token);
+                editor.commit();
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return users;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (userName.equals("") || password.equals(""))
+                {
+                    Toast.makeText(OfferCoffeeActivity.this, "Vous devez remplir les champs identifiants et mot de passe pour pouvoir offrir un café", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OfferCoffeeActivity.this, ReceptionCoffeeActivity.class);
-                    startActivity(intent);
+                    System.out.println(exception);
+                    Toast.makeText(OfferCoffeeActivity.this, "Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
                 }
             }
+            else
+            {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                String coffeeName = pref.getString("userName",null);
 
+                int i;
+                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(coffeeName); i++)
+                {
+                }
+
+                User userCoffee = users.get(i);
+
+                SharedPreferences.Editor editor = pref.edit();
+                Gson gsonCoffee = new Gson();
+                String json = gsonCoffee.toJson(userCoffee);
+                editor.putString("userCoffee", json);
+                editor.commit();
+
+
+                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
+                {
+                }
+
+                User userPerson = users.get(i);
+
+                Gson gsonPerson = new Gson();
+                String jsonPerson = gsonPerson.toJson(userPerson);
+                editor.putString("userPerson", json);
+                editor.commit();
+
+                new LoadCharity().execute();
+            }
         }
     }
 }

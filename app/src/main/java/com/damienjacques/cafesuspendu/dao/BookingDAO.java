@@ -9,23 +9,16 @@ import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class BookingDAO
+public class BookingDAO extends ModifyDBDAO
 {
 
-    public void deleteBooking(Integer id, Boolean consumed) throws Exception
+    public void deleteBooking(Integer id, Boolean consumed, String token) throws Exception
     {
-        //***********************COMMENTAIRE****************************
-        //Permet d'établir la connexion pour supprimer une réservation
-        //**************************************************************
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/Bookings/?id=" + id + "&isCoffeeConsumed=" + consumed);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        //***********************COMMENTAIRE****************************
-        //Permet de dire qu'on va faire une requête DELETE avec la propriété
-        //qui suit
-        //**************************************************************
-        urlConnection.setRequestMethod("DELETE");
-        urlConnection.setDoInput(true);
+        String urlForDelete = "http://cafesuspenduappweb.azurewebsites.net/api/Bookings/?id=" + id + "&isCoffeeConsumed=" + consumed;
+        deleteJsonStringWithURL(token,urlForDelete);
     }
+
+
 
     //***********************COMMENTAIRE****************************
     //Permet de récupérer les valeurs dans l'API

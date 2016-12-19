@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    System.out.println(exception);
                     Toast.makeText(MainActivity.this, "Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
                 }
                 spinner.setVisibility(View.GONE);

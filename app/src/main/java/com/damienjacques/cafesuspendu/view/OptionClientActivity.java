@@ -98,8 +98,8 @@ public class OptionClientActivity extends MenuClientActivity
     }
 
     //***********************COMMENTAIRE****************************
-    //Permet de crééer le layout et de pouvoir le refaire pour si
-    //il y a un changement d'orientation
+    //Permet de crééer le layout et de pouvoir le refaire pour si  *
+    //il y a un changement d'orientation                           *
     //**************************************************************
     private void createLayout()
     {

@@ -49,6 +49,9 @@ public class ReservationAdatper extends ArrayAdapter
 
         final Integer idBooking = reservationLine.getIdBooking();
 
+        SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        final String token = pref.getString("token",null);
+
         consumed.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -59,7 +62,7 @@ public class ReservationAdatper extends ArrayAdapter
                 try
                 {
                     System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
-                    bookingDAO.deleteBooking(idBooking, consumedBool);
+                    bookingDAO.deleteBooking(idBooking, consumedBool,token);
                 }
                 catch(Exception e)
                 {
@@ -78,7 +81,7 @@ public class ReservationAdatper extends ArrayAdapter
                 try
                 {
                     System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
-                    bookingDAO.deleteBooking(idBooking, consumedBool);
+                    bookingDAO.deleteBooking(idBooking, consumedBool,token);
                 }
                 catch(Exception e)
                 {
@@ -91,36 +94,5 @@ public class ReservationAdatper extends ArrayAdapter
         dateReservation.setText(reservationLine.getReservationDate());
 
         return convertView;
-    }
-
-    public class LoadBookingDelete extends AsyncTask<String, Void, ArrayList<Booking>>
-    {
-        Exception exception;
-
-        @Override
-        protected ArrayList<Booking> doInBackground(String... params)
-        {
-            BookingDAO bookingDAO = new BookingDAO();
-            ArrayList<Booking> bookings = new ArrayList<>();
-            try
-            {
-                bookings = bookingDAO.getAllBooking();
-            }
-            catch(Exception e)
-            {
-                exception = e;
-            }
-
-            return bookings;
-        }
-
-        //***********************COMMENTAIRE****************************
-        //Permet d'executer quelque chose après le chargement des données
-        //**************************************************************
-        @Override
-        protected void onPostExecute(ArrayList<Booking> bookings)
-        {
-
-        }
     }
 }

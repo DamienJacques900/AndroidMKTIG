@@ -102,58 +102,43 @@ public class ReceptionClientActivity extends MenuClientActivity
         new LoadCharity().execute();
     }
 
-    public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
+    public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
         @Override
-        protected ArrayList<Charity> doInBackground(String... params)
+        protected Integer doInBackground(String... params)
         {
             CharityDAO charityDAO = new CharityDAO();
-            ArrayList<Charity> charities = new ArrayList<>();
+            Integer nbCoffee = 0;
             try
             {
-                charities = charityDAO.getAllCharities();
+                nbCoffee = charityDAO.getNbCoffeeCharityPerson(pref.getString("userName",null));
             }
             catch(Exception e)
             {
                 exception = e;
             }
 
-            return charities;
+            return nbCoffee;
         }
 
         //***********************COMMENTAIRE****************************
         //Permet d'executer quelque chose après le chargement des données
         //**************************************************************
         @Override
-        protected void onPostExecute(ArrayList<Charity> charities)
+        protected void onPostExecute(Integer nbCoffee)
         {
             if (exception != null)
             {
+                System.out.println(exception);
                 Toast.makeText(ReceptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
                 goToDisconaction();
             }
 
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
-
-            for(int i = 0 ; i < charities.size(); i++)
-            {
-                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
-                {
-                    charitiesClient.add(charities.get(i));
-                }
-            }
-
-            Integer nbTotalCoffee = 0;
-            for(int i = 0; i < charitiesClient.size(); i++)
-            {
-                nbTotalCoffee += charitiesClient.get(i).getNbCoffeeOffered();
-            }
-
-            welcome = "Grâce à vous, "+nbTotalCoffee+" café(s) ont été offerts à des sans-abris.";
+            welcome = "Grâce à vous, "+nbCoffee+" café(s) ont été offerts à des sans-abris.";
             textWelcome.setText(welcome);
         }
     }

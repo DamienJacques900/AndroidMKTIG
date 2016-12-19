@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.damienjacques.cafesuspendu.model.*;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,14 +17,16 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
-public class UserDAO {
+public class UserDAO extends ModifyDBDAO
+{
 
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
+        String JSONOption = optionCoffeeToJSON(userCoffee);
+        putJsonStringWithURL(token, JSONOption, "http://cafesuspenduappweb.azurewebsites.net/api/Users/"+userCoffee.getUserName());
 
     }
-
-    public String optionCoffeeToJson(User userCoffee) throws Exception
+    public String optionCoffeeToJSON(User userCoffee) throws Exception
     {
         JSONObject optionCoffee = new JSONObject();
 
@@ -49,10 +52,11 @@ public class UserDAO {
 
     public void putChangeOptionPerson(String token, User userPerson) throws Exception
     {
-
+        String jsonOption = optionPersonToJSON(userPerson);
+        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users/"+userPerson.getUserName());
     }
 
-    public String optionPersonToJson(User userPerson) throws Exception
+    public String optionPersonToJSON(User userPerson) throws Exception
     {
         JSONObject optionPerson = new JSONObject();
 
@@ -78,10 +82,11 @@ public class UserDAO {
 
     public void postNewRegistrationCoffee(String token, User userCoffee) throws Exception
     {
-
+        String registrationJSON = registratinCoffeeToJSON(userCoffee);
+        postJsonStringWithURL(token, registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
     }
 
-    public String registratinCoffeeToJson(User userCoffee) throws Exception
+    public String registratinCoffeeToJSON(User userCoffee) throws Exception
     {
         JSONObject newCoffee = new JSONObject();
 
@@ -107,10 +112,11 @@ public class UserDAO {
 
     public void postNewRegistrationPerson(String token, User userPerson) throws Exception
     {
-
+        String registrationJSON = registrationPersonToJSON(userPerson);
+        postJsonStringWithURL(token, registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
     }
 
-    public String registrationPersonToJson(User userPerson) throws Exception
+    public String registrationPersonToJSON(User userPerson) throws Exception
     {
         JSONObject newPerson = new JSONObject();
 
@@ -226,7 +232,7 @@ public class UserDAO {
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
             //ArrayList<Booking> bookings;
-            Log.i("Users",jsonUser.toString());
+            //Log.i("Users",jsonUser.toString());
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {

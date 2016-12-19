@@ -15,12 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CharityDAO
+public class CharityDAO extends ModifyDBDAO
 {
 
-    public void newCharity(Integer nbCoffee, String userName, String password) throws Exception
+    public void newCharity(Charity charity, String token) throws Exception
     {
-
+        String JSONCharity = charityToJson(charity);
+        putJsonStringWithURL(token, JSONCharity, "http://cafesuspenduappweb.azurewebsites.net/api/Users/");
     }
 
     private String charityToJson(Charity charity) throws Exception
@@ -38,6 +39,69 @@ public class CharityDAO
 
         return jsonCharity.toString();
     }
+
+    public Integer getNbCoffeeCharity(String userName) throws Exception
+    {
+        //***********************COMMENTAIRE****************************
+        //Permet d'établir la connexion
+        //**************************************************************
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForCafe?userName="+userName);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJSON = "",line;
+        //***********************COMMENTAIRE****************************
+        //Tant que toutes les données de l'API ne sont pas parcourues
+        //**************************************************************
+        while((line=br.readLine())!=null)
+        {
+            sb.append(line);
+        }
+        br.close();
+        stringJSON = sb.toString();
+        return jsonToNbCoffeeCharities(stringJSON);
+    }
+
+    private Integer jsonToNbCoffeeCharities(String stringJSON) throws Exception
+    {
+        JSONArray jsonArray = new JSONArray(stringJSON);
+        Integer nbCoffeeCharity = jsonArray.getInt(0);
+
+        return nbCoffeeCharity;
+    }
+
+    public Integer getNbCoffeeCharityPerson(String userName) throws Exception
+    {
+        //***********************COMMENTAIRE****************************
+        //Permet d'établir la connexion
+        //**************************************************************
+        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForPerson?userName="+userName);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJSON = "",line;
+        //***********************COMMENTAIRE****************************
+        //Tant que toutes les données de l'API ne sont pas parcourues
+        //**************************************************************
+        while((line=br.readLine())!=null)
+        {
+            sb.append(line);
+        }
+        br.close();
+        stringJSON = sb.toString();
+        return jsonToNbCoffeeCharities(stringJSON);
+    }
+
+    private Integer jsonToNbCoffeeCharitiesPerson(String stringJSON) throws Exception
+    {
+        JSONArray jsonArray = new JSONArray(stringJSON);
+        Integer nbCoffeeCharity = jsonArray.getInt(0);
+
+        return nbCoffeeCharity;
+    }
+
+
+
 
     public ArrayList<Charity> getAllCharities() throws Exception
     {
@@ -75,7 +139,7 @@ public class CharityDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            //Log.i("Charities",jsonCharity.toString());
+            Log.i("Charities",jsonCharity.toString());
             JSONObject jsonUserCient = jsonCharity.getJSONObject("ApplicationUserPerson");
             User userClient = new User(jsonUserCient.getString("UserName"),0,(float)0.0);
 

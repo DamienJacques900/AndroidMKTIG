@@ -174,11 +174,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonRegistrationCoffee"
-                android:layout_below="@+id/coffeeNameEdit"
+                android:layout_below="@+id/MondayText"
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/textColorButton"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"/>
+
+            <TextView
+                android:text="Horaire lundi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/MondayText"
+                android:layout_below="@+id/coffeeNameEdit"
+                android:layout_alignLeft="@+id/coffeeNameEdit"
+                android:layout_alignStart="@+id/coffeeNameEdit" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>
