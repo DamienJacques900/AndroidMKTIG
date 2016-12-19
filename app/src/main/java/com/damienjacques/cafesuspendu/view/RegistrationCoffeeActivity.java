@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -76,12 +77,12 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                newUserRegistration();
+                new LoadNewUser().execute();
             }
         });
     }
 
-    public void newUserRegistration()
+    private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
 
@@ -97,16 +98,42 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
 
         int intPromotionAfter = Integer.parseInt(promotionAfter);
         Float doublePromoValue = Float.parseFloat(promoValue);
-
-        if (!password.equals(confirmationPassword))
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
         {
-            Toast.makeText(RegistrationCoffeeActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals(""))
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
             {
-                Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
+                users = userDAO.getAllUsers();
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return users;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (!password.equals(confirmationPassword))
+                {
+                    Toast.makeText(RegistrationCoffeeActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals(""))
+                    {
+                        Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
             else
             {

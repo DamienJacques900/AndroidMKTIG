@@ -118,7 +118,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             @Override
             public void onClick(View v)
             {
-                modifyOptionCoffee();
+                new LoadUserModify().execute();
             }
         });
 
@@ -138,70 +138,88 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         promotionValueTextView.setText(promotionValue.toString());
     }
 
-    public void modifyOptionCoffee()
+    private class LoadUserModify extends AsyncTask<String, Void, ArrayList<User>>
     {
-        String nbCoffeeForPromo = nbCoffeeTextView.getText().toString();
-        String valuePromo = promotionValueTextView.getText().toString();
+        Exception exception;
 
-        UserDAO userDAO = new UserDAO();
-        ArrayList<User> users = new ArrayList<>();
-        try
+        String nbCoffee = nbCoffeeTextView.getText().toString();
+        String promotionValue = promotionValueTextView.getText().toString();
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
         {
-            users = userDAO.getAllUsers();
-        }
-        catch(Exception e)
-        {
-            if (nbCoffeeForPromo.equals("") || valuePromo.equals(""))
-            {
-                Toast.makeText(OptionCoffeeActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        //***********************COMMENTAIRE****************************
-        //Permet de récupérer le token et le userName pour savoir à
-        //qui il faut apporter des modifications
-        //**************************************************************
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-        String userName = pref.getString("userName",null);
-        String token = pref.getString("token",null);
-
-        int i;
-        for(i = 0 ; i< users.size() && users.get(i).getUserName().equals(userName); i++)
-        {
-
-        }
-
-        User userModified = users.get(i);
-
-        //***********************COMMENTAIRE****************************
-        //On va regarder si au moins un champ a été modifié
-        //**************************************************************
-        if(!nbCoffeeTextView.getText().toString().equals(nbCoffeeForPromo) || !promotionValueTextView.getText().toString().equals(valuePromo))
-        {
-            userModified.setEmail(nbCoffeeTextView.getText().toString());
-            userModified.setPhoneNumber(promotionValueTextView.getText().toString());
-
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
             try
             {
-                userDAO.putChangeOptionCoffee(token, userModified);
+                users = userDAO.getAllUsers();
             }
             catch(Exception e)
             {
-                Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de la modification", Toast.LENGTH_LONG).show();
+                exception = e;
             }
 
-            Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-            Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionClientActivity.class);
-            startActivity(intentOption);
+            return users;
         }
 
-        Toast.makeText(OptionCoffeeActivity.this, "Aucune valeur n'a été modifiées, il faut des valeurs différentes", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(OptionCoffeeActivity.this, ReceptionCoffeeActivity.class);
-        startActivity(intent);
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (nbCoffee.equals("") || promotionValue.equals(""))
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+                String userName = pref.getString("userName",null);
+                String token = pref.getString("token",null);
+
+                int i;
+                for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
+                {
+
+                }
+
+                User userModified = users.get(i);
+                UserDAO userDAO = new UserDAO();
+
+                //***********************COMMENTAIRE****************************
+                //On va regarder si au moins un champ a été modifié
+                //**************************************************************
+                if(!nbCoffeeTextView.getText().toString().equals(nbCoffee) || !promotionValueTextView.getText().toString().equals(promotionValue))
+                {
+                    userModified.setNbCoffeeRequiredForPromotion(Integer.parseInt(nbCoffee));
+                    userModified.setPromotionValue(Float.parseFloat(promotionValue));
+
+                    try
+                    {
+                        userDAO.putChangeOptionPerson(token, userModified);
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de la modification", Toast.LENGTH_LONG).show();
+                    }
+
+                    Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                    Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionClientActivity.class);
+                    startActivity(intentOption);
+                }
+
+                Toast.makeText(OptionCoffeeActivity.this, "Aucune valeur n'a été modifiées, il faut des valeurs différentes", Toast.LENGTH_LONG).show();
+                Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionClientActivity.class);
+                startActivity(intentOption);
+            }
+        }
     }
 }

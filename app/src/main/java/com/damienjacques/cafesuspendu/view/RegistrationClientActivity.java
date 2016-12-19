@@ -80,6 +80,68 @@ public class RegistrationClientActivity extends AppCompatActivity
         });
     }
 
+    private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
+    {
+        Exception exception;
+
+        String userName = userNameTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
+        String confirmationPassword = confirmationPasswordTextView.getText().toString();
+        String name = nameTextView.getText().toString();
+        String firstName = firstNameTextView.getText().toString();
+        String email = mailTextView.getText().toString();
+        String phoneNumber = phoneTextView.getText().toString();
+        String userPerson ="userPeron";
+
+        @Override
+        protected ArrayList<User> doInBackground(String... params)
+        {
+            UserDAO userDAO = new UserDAO();
+            ArrayList<User> users = new ArrayList<>();
+            try
+            {
+                users = userDAO.getAllUsers();
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return users;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<User> users)
+        {
+            if (exception != null)
+            {
+                if (!password.equals(confirmationPassword))
+                {
+                    Toast.makeText(RegistrationClientActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    if (userName.equals("") || password.equals("") || confirmationPassword.equals("") || name.equals("") || firstName.equals("")) {
+                        Toast.makeText(RegistrationClientActivity.this, "Tout les champs doivent être remplis obligatoirememnt sauf email et numéro de téléphone", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+            else
+            {
+                User newUser = new User(userName,phoneNumber,email,name,firstName,password,userPerson);
+                //fonction pour ajouter une user
+                Intent intentReservation = new Intent(RegistrationClientActivity.this,MainActivity.class);
+                startActivity(intentReservation);
+                Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
     public void newUserRegistration () {
         Exception exception;
 
