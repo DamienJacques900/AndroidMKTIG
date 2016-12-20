@@ -159,8 +159,8 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
 
             try
             {
-                Charity charity = new Charity(dateCharity,userPerson,userCoffee,intNbCoffee);
-                charityDAO.newCharity(charity,tokenCoffee);
+                Charity charity = new Charity(dateCharity,userPerson,userCoffee,intNbCoffee,0);
+                charityDAO.newCharity(charity,tokenPerson);
             }
             catch(Exception e)
             {
@@ -178,6 +178,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
+                System.out.println(exception);
                 Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
             }
 
@@ -258,8 +259,8 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
 
                 SharedPreferences.Editor editor = pref.edit();
                 Gson gsonCoffee = new Gson();
-                String json = gsonCoffee.toJson(userCoffee);
-                editor.putString("userCoffee", json);
+                String jsonCoffee = gsonCoffee.toJson(userCoffee);
+                editor.putString("userCoffee", jsonCoffee);
                 editor.commit();
 
 
@@ -271,7 +272,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
 
                 Gson gsonPerson = new Gson();
                 String jsonPerson = gsonPerson.toJson(userPerson);
-                editor.putString("userPerson", json);
+                editor.putString("userPerson", jsonPerson);
                 editor.commit();
 
                 new LoadCharity().execute();

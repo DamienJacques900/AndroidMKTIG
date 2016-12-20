@@ -21,7 +21,7 @@ public class CharityDAO extends ModifyDBDAO
     public void newCharity(Charity charity, String token) throws Exception
     {
         String JSONCharity = charityToJson(charity);
-        putJsonStringWithURL(token, JSONCharity, "http://cafesuspenduappweb.azurewebsites.net/api/Users/");
+        putJsonStringWithURL(token, JSONCharity, "http://cafesuspenduappweb.azurewebsites.net/api/Charities");
     }
 
     private String charityToJson(Charity charity) throws Exception
@@ -30,12 +30,12 @@ public class CharityDAO extends ModifyDBDAO
 
         SimpleDateFormat dateCharity = new SimpleDateFormat("yyyy-MM-dd");
         jsonCharity.accumulate("OfferingTime", dateCharity.format(charity.getOfferingTime()));
-        //jsonCharity.accumulate("CharityId",charity.getOfferingTime());
         jsonCharity.accumulate("NbCoffeeOffered", charity.getNbCoffeeOffered());
         jsonCharity.accumulate("NbCoffeeConsumed", charity.getNbCoffeeConsumed());
-        //jsonCharity.accumulate("RowVersion", charity.getOfferingTime());
-        jsonCharity.accumulate("ApplicationUserPerson", charity.getUserPerson());
-        jsonCharity.accumulate("ApplicationUserCoffee", charity.getUserCafe());
+        jsonCharity.accumulate("ApplicationUserPersonEmail", charity.getUserPerson().getEmail());
+        jsonCharity.accumulate("ApplicationUserCoffeeEmail", charity.getUserCafe().getEmail());
+
+        System.out.println("JSON : "+jsonCharity.toString());
 
         return jsonCharity.toString();
     }

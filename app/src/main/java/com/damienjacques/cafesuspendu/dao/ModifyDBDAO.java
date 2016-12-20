@@ -36,9 +36,9 @@ public class ModifyDBDAO
         urlConnection.disconnect();
     }
 
-    public void putJsonStringWithURL(String token, String jsonString, String urlAress) throws Exception
+    public void putJsonStringWithURL(String token, String jsonString, String urlAdress) throws Exception
     {
-        URL url = new URL(urlAress);
+        URL url = new URL(urlAdress);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("PUT");
         urlConnection.setRequestProperty("Content-type", "application/json");
