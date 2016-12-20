@@ -230,12 +230,100 @@
                 android:layout_alignRight="@+id/mondayEndText"
                 android:layout_alignEnd="@+id/mondayEndText" />
 
+            <TextView
+                android:text="Horaire mardi début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tuesdayBeginText"
+                android:layout_below="@+id/mondayBeginEdit"
+                android:layout_alignLeft="@+id/mondayBeginEdit"
+                android:layout_alignStart="@+id/mondayBeginEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/tuesdayBeginEdit"
+                android:layout_below="@+id/tuesdayBeginText"
+                android:layout_alignLeft="@+id/buttonRegistrationCoffee"
+                android:layout_alignStart="@+id/buttonRegistrationCoffee"
+                android:layout_alignRight="@+id/tuesdayBeginText"
+                android:layout_alignEnd="@+id/tuesdayBeginText" />
+
+            <TextView
+                android:text="Horaire mercredi début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tuesdayBeginEdit"
+                android:id="@+id/wednesdayBeginText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:layout_below="@+id/wednesdayBeginText"
+                android:id="@+id/wednesayBeginEdit" />
+
+            <TextView
+                android:text="Horaire jeudi début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/thursdayBeginText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/thursdayBeginEdit" />
+
+            <TextView
+                android:text="Horaire vendredi début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fridayBeginText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/fridayBeginEdit" />
+
+            <TextView
+                android:text="Horaire samedi horaire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/saturdayBeginText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/saturdayBeginEdit" />
+
+            <TextView
+                android:text="Horaire dimanche début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sundayBeginText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/sundayBeginEdit" />
+
             <Button
                 android:text="Inscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonRegistrationCoffee"
-                android:layout_below="@+id/mondayBeginEdit"
+                android:layout_below="@+id/tuesdayBeginEdit"
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/textColorButton"
                 android:layout_marginLeft="15dp"
