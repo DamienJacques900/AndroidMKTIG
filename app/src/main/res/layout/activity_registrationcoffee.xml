@@ -169,25 +169,78 @@
                 android:layout_alignLeft="@+id/coffeeNameText"
                 android:layout_alignStart="@+id/coffeeNameText" />
 
+            <TextView
+                android:text="Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailCoffeeText"
+                android:layout_below="@+id/coffeeNameEdit"
+                android:layout_alignLeft="@+id/coffeeNameEdit"
+                android:layout_alignStart="@+id/coffeeNameEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailCoffeeEdit"
+                android:layout_below="@+id/emailCoffeeText"
+                android:layout_alignLeft="@+id/emailCoffeeText"
+                android:layout_alignStart="@+id/emailCoffeeText" />
+
+            <TextView
+                android:text="Horaire lundi début"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mondayBeginText"
+                android:layout_below="@+id/emailCoffeeEdit"
+                android:layout_alignLeft="@+id/coffeeNameEdit"
+                android:layout_alignStart="@+id/coffeeNameEdit" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/mondayBeginEdit"
+                android:layout_below="@+id/mondayBeginText"
+                android:layout_alignLeft="@+id/mondayBeginText"
+                android:layout_alignStart="@+id/mondayBeginText"
+                android:layout_alignRight="@+id/mondayBeginText"
+                android:layout_alignEnd="@+id/mondayBeginText" />
+
+            <TextView
+                android:text="Horaire lundi fin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mondayEndText"
+                android:layout_below="@+id/emailCoffeeEdit"
+                android:layout_toRightOf="@+id/promotionValueText"
+                android:layout_toEndOf="@+id/promotionValueText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:layout_below="@+id/mondayEndText"
+                android:layout_alignLeft="@+id/mondayEndText"
+                android:layout_alignStart="@+id/mondayEndText"
+                android:id="@+id/mondayEndEdit"
+                android:layout_alignRight="@+id/mondayEndText"
+                android:layout_alignEnd="@+id/mondayEndText" />
+
             <Button
                 android:text="Inscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonRegistrationCoffee"
-                android:layout_below="@+id/MondayText"
+                android:layout_below="@+id/mondayBeginEdit"
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/textColorButton"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"/>
 
-            <TextView
-                android:text="Horaire lundi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/MondayText"
-                android:layout_below="@+id/coffeeNameEdit"
-                android:layout_alignLeft="@+id/coffeeNameEdit"
-                android:layout_alignStart="@+id/coffeeNameEdit" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

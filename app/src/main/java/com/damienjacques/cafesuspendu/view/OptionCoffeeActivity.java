@@ -204,7 +204,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
                     try
                     {
-                        userDAO.putChangeOptionPerson(token, userModified);
+                        //userDAO.putChangeOptionPerson(token, userModified);
                     }
                     catch(Exception e)
                     {

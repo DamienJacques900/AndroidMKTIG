@@ -202,7 +202,8 @@ public class OptionClientActivity extends MenuClientActivity
 
                     try
                     {
-                        userDAO.putChangeOptionPerson(token, userModified);
+                        userDAO.putChangeOptionPersonPhone(token, userModified);
+                        userDAO.putChangeOptionPersonEmail(token, userModified);
                     }
                     catch(Exception e)
                     {

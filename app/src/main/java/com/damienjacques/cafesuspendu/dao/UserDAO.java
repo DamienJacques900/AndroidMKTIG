@@ -23,7 +23,7 @@ public class UserDAO extends ModifyDBDAO
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
         String JSONOption = optionCoffeeToJSON(userCoffee);
-        putJsonStringWithURL(token, JSONOption, "http://cafesuspenduappweb.azurewebsites.net/api/Users/"+userCoffee.getUserName());
+        putJsonStringWithURL(token, JSONOption, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
 
     }
     public String optionCoffeeToJSON(User userCoffee) throws Exception
@@ -50,17 +50,23 @@ public class UserDAO extends ModifyDBDAO
         return optionCoffee.toString();
     }
 
-    public void putChangeOptionPerson(String token, User userPerson) throws Exception
+    public void putChangeOptionPersonPhone(String token, User userPerson) throws Exception
     {
         String jsonOption = optionPersonToJSON(userPerson);
-        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users/"+userPerson.getUserName());
+        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
+    }
+
+    public void putChangeOptionPersonEmail(String token, User userPerson) throws Exception
+    {
+        String jsonOption = optionPersonToJSON(userPerson);
+        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
 
     public String optionPersonToJSON(User userPerson) throws Exception
     {
         JSONObject optionPerson = new JSONObject();
 
-        //optionPerson.accumulate("id",userPerson);
+        optionPerson.accumulate("id",userPerson.getId());
         optionPerson.accumulate("userName", userPerson.getUserName());
         optionPerson.accumulate("cafeName", userPerson.getCafeName());
         optionPerson.accumulate("street", userPerson.getStreet());
@@ -236,11 +242,11 @@ public class UserDAO extends ModifyDBDAO
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {
-                user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, (float)jsonUser.getDouble("promotionValue"));
+                user = new User(jsonUser.getString("userName"), roles.getString(0), jsonUser.getString("email"), jsonUser.getString("phoneNumber"), 0, (float)jsonUser.getDouble("promotionValue"),jsonUser.getString("id"));
             }
             else
             {
-                user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),(float)jsonUser.getDouble("promotionValue"));
+                user = new User(jsonUser.getString("userName"),roles.getString(0),jsonUser.getString("email"),jsonUser.getString("phoneNumber"),jsonUser.getInt("nbCoffeeRequiredForPromotion"),(float)jsonUser.getDouble("promotionValue"),jsonUser.getString("id"));
             }
             users.add(user);
         }

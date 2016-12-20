@@ -9,6 +9,8 @@ import java.util.List;
 
 public class User implements Serializable
 {
+    private String id;
+
     @Size(max=30)
     private String userName;
 
@@ -75,6 +77,17 @@ public class User implements Serializable
         this.promotionValue = promotionValue;
     }
 
+    public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Float promotionValue,String id)
+    {
+        this.userName = userName;
+        this.roles = roles;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
+        this.id = id;
+    }
+
 
     public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Float promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
         this.userName = userName;
@@ -116,6 +129,15 @@ public class User implements Serializable
     }
 
 
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
 
     public void setRoles(String roles) {
         this.roles = roles;

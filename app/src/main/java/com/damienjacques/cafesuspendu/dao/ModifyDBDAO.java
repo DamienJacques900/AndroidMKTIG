@@ -53,11 +53,13 @@ public class ModifyDBDAO
         writer.write(jsonString);
         writer.flush();
 
-        if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299) {
+        if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+        {
             Log.i("Test", "Url connection bonne");
         }
 
-        else {
+        else
+        {
             Log.i("Test", "URL connection : " + urlConnection.getResponseMessage() + " " + urlConnection.getResponseCode());
         }
 
