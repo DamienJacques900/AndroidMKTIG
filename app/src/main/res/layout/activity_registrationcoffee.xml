@@ -270,20 +270,23 @@
                 android:text="Horaire jeudi début"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/thursdayBeginText" />
+                android:id="@+id/thursdayBeginText"
+                android:layout_below="@+id/wednesayBeginEdit"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="time"
                 android:ems="10"
-                android:id="@+id/thursdayBeginEdit" />
+                android:id="@+id/thursdayBeginEdit"
+                android:layout_below="@+id/thursdayBeginText"/>
 
             <TextView
                 android:text="Horaire vendredi début"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/fridayBeginText" />
+                android:id="@+id/fridayBeginText"
+                android:layout_below="@+id/thursdayBeginText"/>
 
             <EditText
                 android:layout_width="wrap_content"

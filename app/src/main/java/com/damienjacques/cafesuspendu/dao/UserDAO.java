@@ -22,11 +22,11 @@ public class UserDAO extends ModifyDBDAO
 
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
-        String JSONOption = optionCoffeeToJSON(userCoffee);
-        putJsonStringWithURL(token, JSONOption, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
+        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
 
     }
-    public String optionCoffeeToJSON(User userCoffee) throws Exception
+
+    /*public String optionCoffeeToJSON(User userCoffee) throws Exception
     {
         JSONObject optionCoffee = new JSONObject();
 
@@ -48,21 +48,19 @@ public class UserDAO extends ModifyDBDAO
         //optionCoffee.accumulate("claims",userCoffee);
 
         return optionCoffee.toString();
-    }
+    }*/
 
     public void putChangeOptionPersonPhone(String token, User userPerson) throws Exception
     {
-        String jsonOption = optionPersonToJSON(userPerson);
-        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
+        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
     }
 
     public void putChangeOptionPersonEmail(String token, User userPerson) throws Exception
     {
-        String jsonOption = optionPersonToJSON(userPerson);
-        putJsonStringWithURL(token, jsonOption, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&email="+userPerson.getEmail());
+        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
 
-    public String optionPersonToJSON(User userPerson) throws Exception
+    /*public String optionPersonToJSON(User userPerson) throws Exception
     {
         JSONObject optionPerson = new JSONObject();
 
@@ -84,7 +82,7 @@ public class UserDAO extends ModifyDBDAO
         //optionPerson.accumulate("claims",userPerson);
 
         return optionPerson.toString();
-    }
+    }*/
 
     public void postNewRegistrationCoffee(String token, User userCoffee) throws Exception
     {
@@ -126,7 +124,6 @@ public class UserDAO extends ModifyDBDAO
     {
         JSONObject newPerson = new JSONObject();
 
-        //newPerson.accumulate("id",userPerson);
         newPerson.accumulate("userName",userPerson.getUserName());
         newPerson.accumulate("cafeName",userPerson.getCafeName());
         newPerson.accumulate("street",userPerson.getStreet());
@@ -141,7 +138,6 @@ public class UserDAO extends ModifyDBDAO
         newPerson.accumulate("emailConfirmed",userPerson.getEmailConfirmed());
         newPerson.accumulate("phoneNumber",userPerson.getPhoneNumber());
         newPerson.accumulate("roles",userPerson.getRoles());
-        //newPerson.accumulate("claims",userPerson);
 
         return newPerson.toString();
     }

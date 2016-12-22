@@ -160,7 +160,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             try
             {
                 Charity charity = new Charity(dateCharity,userPerson,userCoffee,intNbCoffee,0);
-                charityDAO.newCharity(charity,tokenPerson);
+                charityDAO.newCharity(charity,tokenCoffee);
             }
             catch(Exception e)
             {
