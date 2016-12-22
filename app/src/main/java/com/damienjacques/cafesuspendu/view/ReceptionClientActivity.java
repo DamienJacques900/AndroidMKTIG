@@ -115,7 +115,7 @@ public class ReceptionClientActivity extends MenuClientActivity
             Integer nbCoffee = 0;
             try
             {
-                nbCoffee = charityDAO.getNbCoffeeCharityPerson(pref.getString("userName",null));
+                nbCoffee = charityDAO.getNbCoffeeCharityPerson(pref.getString("token",null),pref.getString("userName",null));
             }
             catch(Exception e)
             {
