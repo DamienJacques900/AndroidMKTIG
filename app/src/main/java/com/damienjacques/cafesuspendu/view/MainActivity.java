@@ -179,9 +179,16 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {//Coffee
-                    spinner.setVisibility(View.GONE);
-                    Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
-                    startActivity(intent);
+                    if(users.get(i).getRoles().equals("usercafe"))
+                    {
+                        spinner.setVisibility(View.GONE);
+                        Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Aucune role pour cet utilisateur", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }

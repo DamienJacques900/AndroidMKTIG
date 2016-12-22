@@ -121,6 +121,7 @@ public class OptionClientActivity extends MenuClientActivity
         });
 
         displayDataOption();
+
     }
 
     //***********************COMMENTAIRE****************************
@@ -150,6 +151,29 @@ public class OptionClientActivity extends MenuClientActivity
             try
             {
                 users = userDAO.getAllUsers();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+                String userName = pref.getString("userName",null);
+                String token = pref.getString("token",null);
+
+                int i;
+                for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
+                {
+
+                }
+
+                User userModified = users.get(i);
+
+                userModified.setEmail(email);
+                userModified.setPhoneNumber(phoneNumber);
+
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("email", email);
+                editor.putString("phoneNumber", phoneNumber);
+                editor.commit();
+
+                userDAO.putChangeOptionPersonPhone(token, userModified);
+                userDAO.putChangeOptionPersonEmail(token, userModified);
             }
             catch(Exception e)
             {
@@ -167,55 +191,19 @@ public class OptionClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
-                if (email.equals("") || phoneNumber.equals(""))
+                if (mailTextView.getText().toString().equals("") || phoneTextView.getText().toString().equals(""))
                 {
                     Toast.makeText(OptionClientActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                    System.out.println(exception);
                 }
             }
             else
             {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-                String userName = pref.getString("userName",null);
-                String token = pref.getString("token",null);
-
-                int i;
-                for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
-                {
-
-                }
-
-                User userModified = users.get(i);
-                UserDAO userDAO = new UserDAO();
-
-                //***********************COMMENTAIRE****************************
-                //On va regarder si au moins un champ a été modifié
-                //**************************************************************
-                if(!mailTextView.getText().toString().equals(email) || !phoneTextView.getText().toString().equals(phoneNumber))
-                {
-                    userModified.setEmail(email);
-                    userModified.setPhoneNumber(phoneNumber);
-
-                    try
-                    {
-                        userDAO.putChangeOptionPersonPhone(token, userModified);
-                        userDAO.putChangeOptionPersonEmail(token, userModified);
-                    }
-                    catch(Exception e)
-                    {
-                        Toast.makeText(OptionClientActivity.this, "Erreur lors de la modification", Toast.LENGTH_LONG).show();
-                    }
-
-                    Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                    Intent intentOption = new Intent(OptionClientActivity.this,OptionClientActivity.class);
-                    startActivity(intentOption);
-                }
-
-                Toast.makeText(OptionClientActivity.this, "Aucune valeur n'a été modifiées, il faut des valeurs différentes", Toast.LENGTH_LONG).show();
+                Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
                 Intent intentOption = new Intent(OptionClientActivity.this,OptionClientActivity.class);
                 startActivity(intentOption);
             }

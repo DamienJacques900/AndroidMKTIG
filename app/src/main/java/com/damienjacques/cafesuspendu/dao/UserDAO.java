@@ -22,67 +22,45 @@ public class UserDAO extends ModifyDBDAO
 
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
-        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
+        String optionJSON = optionToJSON(userCoffee);
+        putJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
 
     }
 
-    /*public String optionCoffeeToJSON(User userCoffee) throws Exception
+    public String optionToJSON(User user) throws Exception
     {
         JSONObject optionCoffee = new JSONObject();
 
-        //optionCoffee.accumulate("id",userCoffee);
-        optionCoffee.accumulate("userName", userCoffee.getUserName());
-        optionCoffee.accumulate("cafeName", userCoffee.getCafeName());
-        optionCoffee.accumulate("street", userCoffee.getStreet());
-        optionCoffee.accumulate("number", userCoffee.getNumber());
-        optionCoffee.accumulate("nbCoffeeRequiredForPromotion", userCoffee.getNbCoffeeRequiredForPromotion());
-        optionCoffee.accumulate("promotionValue", userCoffee.getPromotionValue());
-        optionCoffee.accumulate("bookings", userCoffee.getBookings());
-        optionCoffee.accumulate("timeTables", userCoffee.getTimesTables());
-        optionCoffee.accumulate("firstName", userCoffee.getFirstName());
-        optionCoffee.accumulate("lastName", userCoffee.getLastName());
-        optionCoffee.accumulate("email", userCoffee.getEmail());
-        optionCoffee.accumulate("emailConfirmed", userCoffee.getEmailConfirmed());
-        optionCoffee.accumulate("phoneNumber", userCoffee.getPhoneNumber());
-        optionCoffee.accumulate("roles", userCoffee.getRoles());
-        //optionCoffee.accumulate("claims",userCoffee);
+        optionCoffee.accumulate("id",user.getId());
+        optionCoffee.accumulate("userName", user.getUserName());
+        optionCoffee.accumulate("cafeName", user.getCafeName());
+        optionCoffee.accumulate("street", user.getStreet());
+        optionCoffee.accumulate("number", user.getNumber());
+        optionCoffee.accumulate("nbCoffeeRequiredForPromotion", user.getNbCoffeeRequiredForPromotion());
+        optionCoffee.accumulate("promotionValue", user.getPromotionValue());
+        optionCoffee.accumulate("bookings", user.getBookings());
+        optionCoffee.accumulate("timeTables", user.getTimesTables());
+        optionCoffee.accumulate("firstName", user.getFirstName());
+        optionCoffee.accumulate("lastName", user.getLastName());
+        optionCoffee.accumulate("email", user.getEmail());
+        optionCoffee.accumulate("emailConfirmed", user.getEmailConfirmed());
+        optionCoffee.accumulate("phoneNumber", user.getPhoneNumber());
+        optionCoffee.accumulate("roles", user.getRoles());
 
         return optionCoffee.toString();
-    }*/
+    }
 
     public void putChangeOptionPersonPhone(String token, User userPerson) throws Exception
     {
-        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
+        String optionJSON = optionToJSON(userPerson);
+        postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangePhoneNumber?userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
     }
 
     public void putChangeOptionPersonEmail(String token, User userPerson) throws Exception
     {
-        putJsonStringWithURL(token, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/changePhoneNumber,userId="+userPerson.getId()+"&email="+userPerson.getEmail());
+        String optionJSON = optionToJSON(userPerson);
+        postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangeEmail?userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
-
-    /*public String optionPersonToJSON(User userPerson) throws Exception
-    {
-        JSONObject optionPerson = new JSONObject();
-
-        optionPerson.accumulate("id",userPerson.getId());
-        optionPerson.accumulate("userName", userPerson.getUserName());
-        optionPerson.accumulate("cafeName", userPerson.getCafeName());
-        optionPerson.accumulate("street", userPerson.getStreet());
-        optionPerson.accumulate("number", userPerson.getNumber());
-        optionPerson.accumulate("nbCoffeeRequiredForPromotion", userPerson.getNbCoffeeRequiredForPromotion());
-        optionPerson.accumulate("promotionValue", userPerson.getPromotionValue());
-        optionPerson.accumulate("bookings", userPerson.getBookings());
-        optionPerson.accumulate("timeTables", userPerson.getTimesTables());
-        optionPerson.accumulate("firstName", userPerson.getFirstName());
-        optionPerson.accumulate("lastName", userPerson.getLastName());
-        optionPerson.accumulate("email", userPerson.getEmail());
-        optionPerson.accumulate("emailConfirmed", userPerson.getEmailConfirmed());
-        optionPerson.accumulate("phoneNumber", userPerson.getPhoneNumber());
-        optionPerson.accumulate("roles", userPerson.getRoles());
-        //optionPerson.accumulate("claims",userPerson);
-
-        return optionPerson.toString();
-    }*/
 
     public void postNewRegistrationCoffee(String token, User userCoffee) throws Exception
     {
