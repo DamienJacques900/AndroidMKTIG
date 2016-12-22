@@ -110,6 +110,8 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     {
         Exception exception;
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
         @Override
         protected ArrayList<Booking> doInBackground(String... params)
         {
@@ -117,7 +119,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             ArrayList<Booking> bookings = new ArrayList<>();
             try
             {
-                bookings = bookingDAO.getAllBooking();
+                bookings = bookingDAO.getAllBooking(pref.getString("token",null));
             }
             catch(Exception e)
             {

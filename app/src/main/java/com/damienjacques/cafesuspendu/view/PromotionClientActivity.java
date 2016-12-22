@@ -107,6 +107,8 @@ public class PromotionClientActivity extends MenuClientActivity
     {
         Exception exception;
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
         {
@@ -114,7 +116,7 @@ public class PromotionClientActivity extends MenuClientActivity
             ArrayList<Charity> charities = new ArrayList<>();
             try
             {
-                charities = charityDAO.getAllCharities();
+                charities = charityDAO.getAllCharities(pref.getString("token",null));
             }
             catch(Exception e)
             {

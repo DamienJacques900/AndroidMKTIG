@@ -39,91 +39,154 @@ public class ModifyDBDAO
         }
     }
 
-    public void deleteJsonStringWithURL(String token, String urlAress) throws Exception
+    public void deleteJsonStringWithURL(String token, String urlAdress) throws Exception
     {
-        URL url = new URL(urlAress);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("DELETE");
-        urlConnection.setRequestProperty("Content-type", "application/json");
-        urlConnection.setRequestProperty("Authorization", token);
-        urlConnection.setDoOutput(true);
+        try
+        {
+            URL url = new URL(urlAdress);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("DELETE");
+            urlConnection.setRequestProperty("Content-type", "application/json");
+            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
+            urlConnection.setDoOutput(true);
 
-        OutputStream out = urlConnection.getOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        urlConnection.connect();
+            OutputStream out = urlConnection.getOutputStream();
+            /*OutputStreamWriter writer = new OutputStreamWriter(out);
+            urlConnection.connect();
 
 
-        if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299) {
-            Log.i("Test", "Url connection bonne");
+            writer.write(jsonString);
+            writer.flush();*/
+
+            if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+            {
+                Log.i("Test", "Url connection bonne");
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            //writer.close();
+            out.close();
+            urlConnection.disconnect();
         }
-
-        else {
-            Log.i("Test", "URL connection : " + urlConnection.getResponseMessage() + " " + urlConnection.getResponseCode());
+        catch (Exception e)
+        {
+            throw new Exception();
         }
-
-        out.close();
-        urlConnection.disconnect();
     }
 
     public void putJsonStringWithURL(String token, String jsonString, String urlAdress) throws Exception
     {
-        URL url = new URL(urlAdress);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("PUT");
-        urlConnection.setRequestProperty("Content-type", "application/json");
-        urlConnection.setRequestProperty("Authorization", token);
-        urlConnection.setDoOutput(true);
-
-        OutputStream out = urlConnection.getOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        urlConnection.connect();
-
-
-        writer.write(jsonString);
-        writer.flush();
-
-        if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+        try
         {
-            Log.i("Test", "Url connection bonne");
-        }
+            URL url = new URL(urlAdress);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("PUT");
+            urlConnection.setRequestProperty("Content-type", "application/json");
+            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
+            urlConnection.setDoOutput(true);
 
-        else
+            OutputStream out = urlConnection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            urlConnection.connect();
+
+
+            writer.write(jsonString);
+            writer.flush();
+
+            if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+            {
+                Log.i("Test", "Url connection bonne");
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            writer.close();
+            out.close();
+            urlConnection.disconnect();
+        }
+        catch (Exception e)
         {
-            Log.i("Test", "URL connection : " + urlConnection.getResponseMessage() + " " + urlConnection.getResponseCode());
+            throw new Exception();
         }
-
-        writer.close();
-        out.close();
-        urlConnection.disconnect();
     }
 
     public void postJsonStringWithURL(String token, String jsonString, String urlAdress) throws Exception
     {
-        URL url = new URL(urlAdress);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("POST");
-        urlConnection.setRequestProperty("Content-type", "application/json");
-        urlConnection.setRequestProperty("Authorization", token);
-        urlConnection.setDoOutput(true);
+        try
+        {
+            URL url = new URL(urlAdress);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-type", "application/json");
+            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
+            urlConnection.setDoOutput(true);
 
-        OutputStream out = urlConnection.getOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        urlConnection.connect();
+            OutputStream out = urlConnection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            urlConnection.connect();
 
 
-        writer.write(jsonString);
-        writer.flush();
+            writer.write(jsonString);
+            writer.flush();
 
-        if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299) {
-            Log.i("Test", "Url connection bonne");
+            if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+            {
+                Log.i("Test", "Url connection bonne");
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            writer.close();
+            out.close();
+            urlConnection.disconnect();
         }
-
-        else {
-            Log.i("Test", "URL connection : " + urlConnection.getResponseMessage() + " " + urlConnection.getResponseCode());
+        catch (Exception e)
+        {
+            throw new Exception();
         }
+    }
 
-        writer.close();
-        out.close();
-        urlConnection.disconnect();
+    public void postJsonStringRegistrationWithURL(String jsonString, String urlAdress) throws Exception
+    {
+        try
+        {
+            URL url = new URL(urlAdress);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-type", "application/json");
+            urlConnection.setDoOutput(true);
+
+            OutputStream out = urlConnection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            urlConnection.connect();
+
+
+            writer.write(jsonString);
+            writer.flush();
+
+            if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
+            {
+                Log.i("Test", "Url connection bonne");
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            writer.close();
+            out.close();
+            urlConnection.disconnect();
+        }
+        catch (Exception e)
+        {
+            throw new Exception();
+        }
     }
 }

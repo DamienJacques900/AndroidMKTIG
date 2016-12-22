@@ -75,7 +75,7 @@ public class RegistrationClientActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                newUserRegistration();
+                new LoadNewUser().execute();
             }
         });
     }
@@ -93,6 +93,8 @@ public class RegistrationClientActivity extends AppCompatActivity
         String phoneNumber = phoneTextView.getText().toString();
         String userPerson ="userPeron";
 
+        User newPerson = new User(userName,password,confirmationPassword,firstName,name,email,phoneNumber,userPerson);
+
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
@@ -100,7 +102,7 @@ public class RegistrationClientActivity extends AppCompatActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
-                users = userDAO.getAllUsers();
+                userDAO.postNewRegistrationPerson(newPerson);
             }
             catch(Exception e)
             {
@@ -131,43 +133,6 @@ public class RegistrationClientActivity extends AppCompatActivity
             }
             else
             {
-                User newUser = new User(userName,phoneNumber,email,name,firstName,password,userPerson);
-                //fonction pour ajouter une user
-                Intent intentReservation = new Intent(RegistrationClientActivity.this,MainActivity.class);
-                startActivity(intentReservation);
-                Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
-
-    public void newUserRegistration () {
-        Exception exception;
-
-        String userName = userNameTextView.getText().toString();
-        String password = passwordTextView.getText().toString();
-        String confirmationPassword = confirmationPasswordTextView.getText().toString();
-        String name = nameTextView.getText().toString();
-        String firstName = firstNameTextView.getText().toString();
-        String email = mailTextView.getText().toString();
-        String phoneNumber = phoneTextView.getText().toString();
-        String userPerson ="userPeron";
-
-        if (!password.equals(confirmationPassword))
-        {
-            Toast.makeText(RegistrationClientActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || name.equals("") || firstName.equals(""))
-            {
-                Toast.makeText(RegistrationClientActivity.this, "Tout les champs doivent être remplis obligatoirememnt sauf email et numéro de téléphone", Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                User newUser = new User(userName,phoneNumber,email,name,firstName,password,userPerson);
-                //fonction pour ajouter une user
                 Intent intentReservation = new Intent(RegistrationClientActivity.this,MainActivity.class);
                 startActivity(intentReservation);
                 Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();

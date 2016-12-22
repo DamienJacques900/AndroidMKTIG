@@ -23,8 +23,11 @@ public class BookingDAO extends ModifyDBDAO
     //***********************COMMENTAIRE****************************
     //Permet de récupérer les valeurs dans l'API
     //**************************************************************
-    public ArrayList<Booking> getAllBooking() throws Exception
+    public ArrayList<Booking> getAllBooking(String token) throws Exception
     {
+        String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/Bookings");
+        return jsonToBookings(stringJSON);
+        /*
         //***********************COMMENTAIRE****************************
         //Permet d'établir la connexion
         //**************************************************************
@@ -42,7 +45,7 @@ public class BookingDAO extends ModifyDBDAO
         }
         br.close();
         stringJSON = sb.toString();
-        return jsonToBookings(stringJSON);
+        return jsonToBookings(stringJSON);*/
     }
 
     //***********************COMMENTAIRE****************************

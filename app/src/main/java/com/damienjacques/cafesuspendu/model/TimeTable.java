@@ -25,6 +25,13 @@ public class TimeTable implements Serializable
 
     }
 
+    public TimeTable(Integer timeTableID, DateInterval openingHour, DateInterval closingHour)
+    {
+        this.timeTableID = timeTableID;
+        this.openingHour = openingHour;
+        this.closingHour = closingHour;
+    }
+
     public TimeTable(Integer timeTableID)
     {
         this.timeTableID = timeTableID;

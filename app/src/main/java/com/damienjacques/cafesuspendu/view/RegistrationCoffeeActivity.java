@@ -11,8 +11,10 @@ import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.model.TimeTable;
 import com.damienjacques.cafesuspendu.model.User;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class RegistrationCoffeeActivity extends AppCompatActivity
@@ -26,6 +28,27 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private TextView nbCoffeePromotionTextView;
     private TextView promotionValueTextView;
     private TextView coffeNameTextView;
+
+    private TextView mondayBeginHourTextView;
+    private TextView mondayEndHourTextView;
+
+    private TextView thusdayBeginHourTextView;
+    private TextView thusdayEndHourTextView;
+
+    private TextView wednsedayBeginHourTextView;
+    private TextView wednsedayEndHourTextView;
+
+    private TextView thursdayBeginHourTextView;
+    private TextView thursdayEndHourTextView;
+
+    private TextView fridayBeginHourTextView;
+    private TextView fridayEndHourTextView;
+
+    private TextView saturdayBeginHourTextView;
+    private TextView saturdayEndHourTextView;
+
+    private TextView sundayBeginHourTextView;
+    private TextView sundayEndHourTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -72,6 +95,27 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         promotionValueTextView = (TextView)findViewById(R.id.promotionValueEdit);
         coffeNameTextView = (TextView) findViewById(R.id.coffeeNameEdit);
 
+        mondayBeginHourTextView = (TextView) findViewById(R.id.mondayBeginEdit);
+        mondayEndHourTextView = (TextView) findViewById(R.id.mondayEndEdit);
+
+        thusdayBeginHourTextView = (TextView) findViewById(R.id.tuesdayBeginEdit);
+        thusdayEndHourTextView = (TextView) findViewById(R.id.thusdayEndEdit);
+
+        wednsedayBeginHourTextView = (TextView) findViewById(R.id.wednesayBeginEdit);
+        wednsedayEndHourTextView = (TextView) findViewById(R.id.wednsedayEndEdit);
+
+        thursdayBeginHourTextView = (TextView) findViewById(R.id.thursdayBeginEdit);
+        thursdayEndHourTextView = (TextView) findViewById(R.id.thursdayEndEdit);
+
+        fridayBeginHourTextView = (TextView) findViewById(R.id.fridayBeginEdit);
+        fridayEndHourTextView = (TextView) findViewById(R.id.fridayEndEdit);
+
+        saturdayBeginHourTextView = (TextView) findViewById(R.id.saturdayBeginEdit);
+        saturdayEndHourTextView = (TextView) findViewById(R.id.saturdayEndEdit);
+
+        sundayBeginHourTextView = (TextView) findViewById(R.id.sundayBeginEdit);
+        sundayEndHourTextView = (TextView) findViewById(R.id.sundayEndEdit);
+
 
         clickRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +140,32 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         String coffeeName = coffeNameTextView.getText().toString();
         String userCoffee = "userCoffee";
 
+        String mondayBeginHour = mondayBeginHourTextView.getText().toString();
+        String mondayEndHour = mondayEndHourTextView.getText().toString();
+
+        String thusdayBeginHour = thusdayBeginHourTextView.getText().toString();
+        String thusdayEndHour = thusdayEndHourTextView.getText().toString();
+
+        String wednsedayBeginHour = wednsedayBeginHourTextView.getText().toString();
+        String wednsedayEndHour = wednsedayEndHourTextView.getText().toString();
+
+        String thursdayBeginHour = thursdayBeginHourTextView.getText().toString();
+        String thursdayEndHour = thursdayEndHourTextView.getText().toString();
+
+        String fridayBeginHour = fridayBeginHourTextView.getText().toString();
+        String fridayEndHour = fridayEndHourTextView.getText().toString();
+
+        String saturdayBeginHour = saturdayBeginHourTextView.getText().toString();
+        String saturdayEndHour = saturdayEndHourTextView.getText().toString();
+
+        String sundayBeginHour = sundayBeginHourTextView.getText().toString();
+        String sundayEndHour = sundayEndHourTextView.getText().toString();
+
         int intPromotionAfter = Integer.parseInt(promotionAfter);
         Float doublePromoValue = Float.parseFloat(promoValue);
+
+        TimeTable timeTable = new TimeTable();
+        User newCoffee = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
@@ -105,7 +173,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
-                users = userDAO.getAllUsers();
+                userDAO.postNewRegistrationCoffee(newCoffee);
             }
             catch(Exception e)
             {
@@ -137,8 +205,6 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             }
             else
             {
-                User newUser = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
-                //fonction pour ajouter une user
                 Intent intentReservation = new Intent(RegistrationCoffeeActivity.this,MainActivity.class);
                 startActivity(intentReservation);
                 Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();

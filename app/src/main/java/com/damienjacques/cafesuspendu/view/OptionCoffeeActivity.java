@@ -169,8 +169,8 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
                 userModified.setPromotionValue(Float.parseFloat(promotionValue));
 
                 SharedPreferences.Editor editor = pref.edit();
-                editor.putString("nbCoffeeRequiredForPromotion", nbCoffee);
-                editor.putString("promotionValue", promotionValue);
+                editor.putInt("nbCoffeeRequiredForPromotion", Integer.parseInt(nbCoffee));
+                editor.putFloat("promotionValue", Float.parseFloat(promotionValue));
                 editor.commit();
 
                 userDAO.putChangeOptionCoffee(token, userModified);

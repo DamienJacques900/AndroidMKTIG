@@ -23,7 +23,7 @@ public class UserDAO extends ModifyDBDAO
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
         String optionJSON = optionToJSON(userCoffee);
-        postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/updatePromotionInformations?cafeId="+userCoffee.getId()+"&nbCoffeeRequiredForPromotion="+userCoffee.getNbCoffeeRequiredForPromotion()+"&promotionValue="+userCoffee.getPromotionValue());
+        putJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/updatePromotionInformations?cafeId="+userCoffee.getId()+"&nbCoffeeRequiredForPromotion="+userCoffee.getNbCoffeeRequiredForPromotion()+"&promotionValue="+userCoffee.getPromotionValue());
 
     }
 
@@ -62,10 +62,10 @@ public class UserDAO extends ModifyDBDAO
         postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangeEmail?userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
 
-    public void postNewRegistrationCoffee(String token, User userCoffee) throws Exception
+    public void postNewRegistrationCoffee(User userCoffee) throws Exception
     {
         String registrationJSON = registratinCoffeeToJSON(userCoffee);
-        postJsonStringWithURL(token, registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
+        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
     }
 
     public String registratinCoffeeToJSON(User userCoffee) throws Exception
@@ -92,30 +92,34 @@ public class UserDAO extends ModifyDBDAO
         return newCoffee.toString();
     }
 
-    public void postNewRegistrationPerson(String token, User userPerson) throws Exception
+    public void postNewRegistrationPerson(User userPerson) throws Exception
     {
         String registrationJSON = registrationPersonToJSON(userPerson);
-        postJsonStringWithURL(token, registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
+        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
     }
 
     public String registrationPersonToJSON(User userPerson) throws Exception
     {
         JSONObject newPerson = new JSONObject();
+        JSONArray timeTable = new JSONArray();
+        JSONArray rolesArray = new JSONArray();
+        rolesArray.put(userPerson.getRoles());
 
         newPerson.accumulate("userName",userPerson.getUserName());
-        newPerson.accumulate("cafeName",userPerson.getCafeName());
-        newPerson.accumulate("street",userPerson.getStreet());
-        newPerson.accumulate("number",userPerson.getNumber());
-        newPerson.accumulate("nbCoffeeRequiredForPromotion",userPerson.getNbCoffeeRequiredForPromotion());
-        newPerson.accumulate("promotionValue",userPerson.getPromotionValue());
-        newPerson.accumulate("bookings",userPerson.getBookings());
-        newPerson.accumulate("timeTables",userPerson.getTimesTables());
+        newPerson.accumulate("cafeName",null);
+        newPerson.accumulate("street",null);
+        newPerson.accumulate("number",null);
+        newPerson.accumulate("nbCoffeeRequiredForPromotion",null);
+        newPerson.accumulate("promotionValue",0.0);
+        newPerson.accumulate("bookings",null);
+        newPerson.accumulate("password",userPerson.getPassword());
+        newPerson.accumulate("confirmPassword",userPerson.getConfirmPassword());
+        newPerson.accumulate("timeTables",timeTable);
         newPerson.accumulate("firstName",userPerson.getFirstName());
         newPerson.accumulate("lastName",userPerson.getLastName());
         newPerson.accumulate("email",userPerson.getEmail());
-        newPerson.accumulate("emailConfirmed",userPerson.getEmailConfirmed());
         newPerson.accumulate("phoneNumber",userPerson.getPhoneNumber());
-        newPerson.accumulate("roles",userPerson.getRoles());
+        newPerson.accumulate("roles",rolesArray);
 
         return newPerson.toString();
     }

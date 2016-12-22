@@ -20,6 +20,9 @@ public class User implements Serializable
     @Size(max=30)
     private String password;
 
+    @Size(max=30)
+    private String confirmPassword;
+
     @Size(max=50)
     private String street;
 
@@ -53,6 +56,18 @@ public class User implements Serializable
     public User()
     {
 
+    }
+
+    public User(String userName, String password, String confirmPassword, String firstName, String lastName, String email, String phoneNumber, String roles)
+    {
+        this.userName = userName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.roles = roles;
     }
 
     public User (String userName)
@@ -128,6 +143,25 @@ public class User implements Serializable
         this.roles = roles;
     }
 
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public String getConfirmPassword()
+    {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword)
+    {
+        this.confirmPassword = confirmPassword;
+    }
 
     public String getId()
     {

@@ -109,6 +109,9 @@ public class HistoryClientActivity extends MenuClientActivity
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
         Exception exception;
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
         @Override
         protected ArrayList<Charity> doInBackground(String... params)
         {
@@ -116,7 +119,7 @@ public class HistoryClientActivity extends MenuClientActivity
             ArrayList<Charity> charities = new ArrayList<>();
             try
             {
-                charities = charityDAO.getAllCharities();
+                charities = charityDAO.getAllCharities(pref.getString("token",null));
             }
             catch(Exception e)
             {

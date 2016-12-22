@@ -58,20 +58,6 @@ public class CharityDAO extends ModifyDBDAO
     {
         String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForPerson?userName="+userName);
         return jsonToNbCoffeeCharitiesPerson(stringJSON);
-
-        /*URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForPerson?userName="+userName);
-        URLConnection connection = url.openConnection();
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        StringBuilder sb = new StringBuilder();
-        String stringJSON = "",line;
-
-        while((line=br.readLine())!=null)
-        {
-            sb.append(line);
-        }
-        br.close();
-        stringJSON = sb.toString();
-        return jsonToNbCoffeeCharities(stringJSON);*/
     }
 
     private Integer jsonToNbCoffeeCharitiesPerson(String stringJSON) throws Exception
@@ -85,8 +71,12 @@ public class CharityDAO extends ModifyDBDAO
 
 
 
-    public ArrayList<Charity> getAllCharities() throws Exception
+    public ArrayList<Charity> getAllCharities(String token) throws Exception
     {
+        String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/charities");
+        return jsonToCharities(stringJSON);
+
+/*
         //***********************COMMENTAIRE****************************
         //Permet d'établir la connexion
         //**************************************************************
@@ -104,7 +94,7 @@ public class CharityDAO extends ModifyDBDAO
         }
         br.close();
         stringJSON = sb.toString();
-        return jsonToCharities(stringJSON);
+        return jsonToCharities(stringJSON);*/
     }
 
     //***********************COMMENTAIRE****************************
