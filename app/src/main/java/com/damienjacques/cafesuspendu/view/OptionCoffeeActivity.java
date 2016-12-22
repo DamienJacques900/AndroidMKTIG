@@ -152,6 +152,28 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             try
             {
                 users = userDAO.getAllUsers();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+                String userName = pref.getString("userName",null);
+                String token = pref.getString("token",null);
+
+                int i;
+                for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
+                {
+
+                }
+
+                User userModified = users.get(i);
+
+                userModified.setNbCoffeeRequiredForPromotion(Integer.parseInt(nbCoffee));
+                userModified.setPromotionValue(Float.parseFloat(promotionValue));
+
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("nbCoffeeRequiredForPromotion", nbCoffee);
+                editor.putString("promotionValue", promotionValue);
+                editor.commit();
+
+                userDAO.putChangeOptionCoffee(token, userModified);
             }
             catch(Exception e)
             {
@@ -180,44 +202,8 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             }
             else
             {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-                String userName = pref.getString("userName",null);
-                String token = pref.getString("token",null);
-
-                int i;
-                for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
-                {
-
-                }
-
-                User userModified = users.get(i);
-                UserDAO userDAO = new UserDAO();
-
-                //***********************COMMENTAIRE****************************
-                //On va regarder si au moins un champ a été modifié
-                //**************************************************************
-                if(!nbCoffeeTextView.getText().toString().equals(nbCoffee) || !promotionValueTextView.getText().toString().equals(promotionValue))
-                {
-                    userModified.setNbCoffeeRequiredForPromotion(Integer.parseInt(nbCoffee));
-                    userModified.setPromotionValue(Float.parseFloat(promotionValue));
-
-                    try
-                    {
-                        //userDAO.putChangeOptionPerson(token, userModified);
-                    }
-                    catch(Exception e)
-                    {
-                        Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de la modification", Toast.LENGTH_LONG).show();
-                    }
-
-                    Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                    Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionClientActivity.class);
-                    startActivity(intentOption);
-                }
-
-                Toast.makeText(OptionCoffeeActivity.this, "Aucune valeur n'a été modifiées, il faut des valeurs différentes", Toast.LENGTH_LONG).show();
-                Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionClientActivity.class);
+                Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionCoffeeActivity.class);
                 startActivity(intentOption);
             }
         }

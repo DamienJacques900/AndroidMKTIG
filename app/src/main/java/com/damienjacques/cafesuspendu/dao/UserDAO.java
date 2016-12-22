@@ -23,7 +23,7 @@ public class UserDAO extends ModifyDBDAO
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
         String optionJSON = optionToJSON(userCoffee);
-        putJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/accounts/"+userCoffee.getUserName());
+        postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/updatePromotionInformations?cafeId="+userCoffee.getId()+"&nbCoffeeRequiredForPromotion="+userCoffee.getNbCoffeeRequiredForPromotion()+"&promotionValue="+userCoffee.getPromotionValue());
 
     }
 
