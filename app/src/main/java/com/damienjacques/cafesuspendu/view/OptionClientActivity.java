@@ -172,8 +172,8 @@ public class OptionClientActivity extends MenuClientActivity
                 editor.putString("phoneNumber", phoneNumber);
                 editor.commit();
 
-                userDAO.putChangeOptionPersonPhone(token, userModified);
-                userDAO.putChangeOptionPersonEmail(token, userModified);
+                userDAO.postChangeOptionPersonPhone(token, userModified);
+                userDAO.postChangeOptionPersonEmail(token, userModified);
             }
             catch(Exception e)
             {

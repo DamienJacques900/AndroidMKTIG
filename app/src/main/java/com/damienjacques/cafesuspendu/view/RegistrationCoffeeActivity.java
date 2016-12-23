@@ -3,6 +3,7 @@ package com.damienjacques.cafesuspendu.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.icu.util.DateInterval;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,10 @@ import com.damienjacques.cafesuspendu.model.TimeTable;
 import com.damienjacques.cafesuspendu.model.User;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RegistrationCoffeeActivity extends AppCompatActivity
 {
@@ -161,19 +165,44 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         String sundayBeginHour = sundayBeginHourTextView.getText().toString();
         String sundayEndHour = sundayEndHourTextView.getText().toString();
 
+
+
         int intPromotionAfter = Integer.parseInt(promotionAfter);
         Float doublePromoValue = Float.parseFloat(promoValue);
 
-        TimeTable timeTable = new TimeTable();
+
         User newCoffee = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
+            /*String hour = mondayBeginHour.substring(0,2);
+            String min = mondayBeginHour.substring(3,5);
+
+            System.out.println(hour+" "+min);*/
+
+
+            /*TimeTable timeTableMonday = new TimeTable(1, mondayBeginHour,mondayEndHour);
+            TimeTable timeTableThusday = new TimeTable(2,thusdayBeginHour,thusdayEndHour);
+            TimeTable timeTableWednseday = new TimeTable(3,wednsedayBeginHour,wednsedayEndHour);
+            TimeTable timeTableThursday = new TimeTable(4,thursdayBeginHour,thursdayEndHour);
+            TimeTable timeTableFriday = new TimeTable(5,fridayBeginHour,fridayEndHour);
+            TimeTable timeTableSaturday = new TimeTable(6,saturdayBeginHour,saturdayEndHour);
+            TimeTable timeTableSunday = new TimeTable(7,sundayBeginHour,sundayEndHour);*/
+
+            ArrayList<TimeTable> timeTables = new ArrayList<TimeTable>();
+           /* timeTables.add(timeTableMonday);
+            timeTables.add(timeTableThusday);
+            timeTables.add(timeTableWednseday);
+            timeTables.add(timeTableThursday);
+            timeTables.add(timeTableFriday);
+            timeTables.add(timeTableSaturday);
+            timeTables.add(timeTableSunday);*/
+
             UserDAO userDAO = new UserDAO();
             ArrayList<User> users = new ArrayList<>();
             try
             {
-                userDAO.postNewRegistrationCoffee(newCoffee);
+                userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
             }
             catch(Exception e)
             {

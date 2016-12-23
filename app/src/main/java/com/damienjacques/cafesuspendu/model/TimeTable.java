@@ -4,15 +4,16 @@ import android.icu.util.DateInterval;
 import android.support.annotation.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TimeTable implements Serializable
 {
 
     private Integer timeTableID;
 
-    private DateInterval openingHour;
+    private Date openingHour;
 
-    private DateInterval closingHour;
+    private Date closingHour;
 
     @NonNull
     private Integer dayOfWeek;
@@ -25,7 +26,7 @@ public class TimeTable implements Serializable
 
     }
 
-    public TimeTable(Integer timeTableID, DateInterval openingHour, DateInterval closingHour)
+    public TimeTable(Integer timeTableID, Date openingHour, Date closingHour)
     {
         this.timeTableID = timeTableID;
         this.openingHour = openingHour;
@@ -42,12 +43,12 @@ public class TimeTable implements Serializable
         return timeTableID;
     }
 
-    public DateInterval getOpeningHour()
+    public Date getOpeningHour()
     {
         return openingHour;
     }
 
-    public DateInterval getClosingHour()
+    public Date getClosingHour()
     {
         return closingHour;
     }
@@ -69,12 +70,12 @@ public class TimeTable implements Serializable
         this.timeTableID = timeTableID;
     }
 
-    public void setOpeningHour(DateInterval openingHour)
+    public void setOpeningHour(Date openingHour)
     {
         this.openingHour = openingHour;
     }
 
-    public void setClosingHour(DateInterval closingHour)
+    public void setClosingHour(Date closingHour)
     {
         this.closingHour = closingHour;
     }

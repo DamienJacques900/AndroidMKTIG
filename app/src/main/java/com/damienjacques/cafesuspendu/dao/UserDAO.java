@@ -50,44 +50,48 @@ public class UserDAO extends ModifyDBDAO
         return optionCoffee.toString();
     }
 
-    public void putChangeOptionPersonPhone(String token, User userPerson) throws Exception
+    public void postChangeOptionPersonPhone(String token, User userPerson) throws Exception
     {
         String optionJSON = optionToJSON(userPerson);
         postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangePhoneNumber?userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
     }
 
-    public void putChangeOptionPersonEmail(String token, User userPerson) throws Exception
+    public void postChangeOptionPersonEmail(String token, User userPerson) throws Exception
     {
         String optionJSON = optionToJSON(userPerson);
         postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangeEmail?userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
 
-    public void postNewRegistrationCoffee(User userCoffee) throws Exception
+    public void postNewRegistrationCoffee(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
     {
-        String registrationJSON = registratinCoffeeToJSON(userCoffee);
+        String registrationJSON = registratinCoffeeToJSON(userCoffee,timeTables);
         postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
     }
 
-    public String registratinCoffeeToJSON(User userCoffee) throws Exception
+    public String registratinCoffeeToJSON(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
     {
         JSONObject newCoffee = new JSONObject();
 
-        //newCoffee.accumulate("id",userCoffee);
-        newCoffee.accumulate("userName", userCoffee.getUserName());
-        newCoffee.accumulate("cafeName", userCoffee.getCafeName());
-        newCoffee.accumulate("street", userCoffee.getStreet());
-        newCoffee.accumulate("number", userCoffee.getNumber());
-        newCoffee.accumulate("nbCoffeeRequiredForPromotion", userCoffee.getNbCoffeeRequiredForPromotion());
-        newCoffee.accumulate("promotionValue", userCoffee.getPromotionValue());
-        newCoffee.accumulate("bookings", userCoffee.getBookings());
-        newCoffee.accumulate("timeTables", userCoffee.getTimesTables());
-        newCoffee.accumulate("firstName", userCoffee.getFirstName());
-        newCoffee.accumulate("lastName", userCoffee.getLastName());
-        newCoffee.accumulate("email", userCoffee.getEmail());
-        newCoffee.accumulate("emailConfirmed", userCoffee.getEmailConfirmed());
-        newCoffee.accumulate("phoneNumber", userCoffee.getPhoneNumber());
-        newCoffee.accumulate("roles", userCoffee.getRoles());
-        //newCoffee.accumulate("claims",userCoffee);
+        JSONArray timeTable = new JSONArray();
+        timeTable.put(timeTables);
+        JSONArray roles = new JSONArray();
+        roles.put(userCoffee.getRoles());
+
+        newCoffee.accumulate("userName",userCoffee.getUserName());
+        newCoffee.accumulate("cafeName",userCoffee.getCafeName());
+        newCoffee.accumulate("street",userCoffee.getStreet());
+        newCoffee.accumulate("number",userCoffee.getNumber());
+        newCoffee.accumulate("nbCoffeeRequiredForPromotion",userCoffee.getNbCoffeeRequiredForPromotion());
+        newCoffee.accumulate("promotionValue",userCoffee.getPromotionValue());
+        newCoffee.accumulate("bookings",JSONObject.NULL);
+        newCoffee.accumulate("password",userCoffee.getPassword());
+        newCoffee.accumulate("confirmPassword",userCoffee.getConfirmPassword());
+        newCoffee.accumulate("timeTables",timeTable);
+        newCoffee.accumulate("firstName",JSONObject.NULL);
+        newCoffee.accumulate("lastName",JSONObject.NULL);
+        newCoffee.accumulate("email",userCoffee.getEmail());
+        newCoffee.accumulate("phoneNumber",JSONObject.NULL);
+        newCoffee.accumulate("roles",roles);
 
         return newCoffee.toString();
     }
@@ -101,25 +105,25 @@ public class UserDAO extends ModifyDBDAO
     public String registrationPersonToJSON(User userPerson) throws Exception
     {
         JSONObject newPerson = new JSONObject();
-        JSONArray timeTable = new JSONArray();
-        JSONArray rolesArray = new JSONArray();
-        rolesArray.put(userPerson.getRoles());
+        JSONArray timeTableArray = new JSONArray();
+        JSONArray roles = new JSONArray();
+        roles.put(userPerson.getRoles());
 
         newPerson.accumulate("userName",userPerson.getUserName());
-        newPerson.accumulate("cafeName",null);
-        newPerson.accumulate("street",null);
-        newPerson.accumulate("number",null);
-        newPerson.accumulate("nbCoffeeRequiredForPromotion",null);
+        newPerson.accumulate("cafeName",JSONObject.NULL);
+        newPerson.accumulate("street",JSONObject.NULL);
+        newPerson.accumulate("number",JSONObject.NULL);
+        newPerson.accumulate("nbCoffeeRequiredForPromotion",JSONObject.NULL);
         newPerson.accumulate("promotionValue",0.0);
-        newPerson.accumulate("bookings",null);
-        newPerson.accumulate("password",userPerson.getPassword());
-        newPerson.accumulate("confirmPassword",userPerson.getConfirmPassword());
-        newPerson.accumulate("timeTables",timeTable);
+        newPerson.accumulate("bookings",JSONObject.NULL);
+        newPerson.accumulate("timeTables",timeTableArray);
         newPerson.accumulate("firstName",userPerson.getFirstName());
         newPerson.accumulate("lastName",userPerson.getLastName());
         newPerson.accumulate("email",userPerson.getEmail());
         newPerson.accumulate("phoneNumber",userPerson.getPhoneNumber());
-        newPerson.accumulate("roles",rolesArray);
+        newPerson.accumulate("roles",roles);
+        newPerson.accumulate("password",userPerson.getPassword());
+        newPerson.accumulate("confirmPassword",userPerson.getConfirmPassword());
 
         return newPerson.toString();
     }
