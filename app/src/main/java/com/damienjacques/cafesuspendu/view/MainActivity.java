@@ -14,7 +14,10 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.*;
 import com.damienjacques.cafesuspendu.model.*;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
 {

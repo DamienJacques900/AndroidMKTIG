@@ -11,9 +11,9 @@ public class TimeTable implements Serializable
 
     private Integer timeTableID;
 
-    private Date openingHour;
+    private String openingHour;
 
-    private Date closingHour;
+    private String closingHour;
 
     @NonNull
     private Integer dayOfWeek;
@@ -26,7 +26,7 @@ public class TimeTable implements Serializable
 
     }
 
-    public TimeTable(Integer timeTableID, Date openingHour, Date closingHour)
+    public TimeTable(Integer timeTableID, String openingHour, String closingHour)
     {
         this.timeTableID = timeTableID;
         this.openingHour = openingHour;
@@ -43,12 +43,12 @@ public class TimeTable implements Serializable
         return timeTableID;
     }
 
-    public Date getOpeningHour()
+    public String getOpeningHour()
     {
         return openingHour;
     }
 
-    public Date getClosingHour()
+    public String getClosingHour()
     {
         return closingHour;
     }
@@ -70,12 +70,12 @@ public class TimeTable implements Serializable
         this.timeTableID = timeTableID;
     }
 
-    public void setOpeningHour(Date openingHour)
+    public void setOpeningHour(String openingHour)
     {
         this.openingHour = openingHour;
     }
 
-    public void setClosingHour(Date closingHour)
+    public void setClosingHour(String closingHour)
     {
         this.closingHour = closingHour;
     }
