@@ -46,18 +46,8 @@ public class ModifyDBDAO
             URL url = new URL(urlAdress);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("DELETE");
-            urlConnection.setRequestProperty("Content-type", "application/json");
             urlConnection.setRequestProperty("Authorization", "Bearer " + token);
-            urlConnection.setDoOutput(true);
-
-            OutputStream out = urlConnection.getOutputStream();
-            /*OutputStreamWriter writer = new OutputStreamWriter(out);
-            urlConnection.connect();
-
-
-            writer.write(jsonString);
-            writer.flush();*/
-
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
             {
                 Log.i("Test", "Url connection bonne");
@@ -67,9 +57,6 @@ public class ModifyDBDAO
                 throw new Exception();
             }
 
-            //writer.close();
-            out.close();
-            urlConnection.disconnect();
         }
         catch (Exception e)
         {

@@ -14,12 +14,10 @@ public class BookingDAO extends ModifyDBDAO
 
     public void deleteBooking(Integer id, Boolean consumed, String token) throws Exception
     {
-        String urlForDelete = "http://cafesuspenduappweb.azurewebsites.net/api/Bookings/?id=" + id + "&isCoffeeConsumed=" + consumed;
+        String urlForDelete = "http://cafesuspenduappweb.azurewebsites.net/api/Bookings?id=" + id + "&isCoffeeConsumed=" + consumed;
+        System.out.println("ID : "+id+" Consumed : "+consumed+" URL : "+urlForDelete);
         deleteJsonStringWithURL(token,urlForDelete);
     }
-
-
-
     //***********************COMMENTAIRE****************************
     //Permet de récupérer les valeurs dans l'API
     //**************************************************************

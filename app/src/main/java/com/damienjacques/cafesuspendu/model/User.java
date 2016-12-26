@@ -58,6 +58,9 @@ public class User implements Serializable
 
     }
 
+    //***********************COMMENTAIRE****************************
+    //*Constructeur pour l'inscription des personnes               *
+    //**************************************************************
     public User(String userName, String password, String confirmPassword, String firstName, String lastName, String email, String phoneNumber, String roles)
     {
         this.userName = userName;
@@ -131,6 +134,9 @@ public class User implements Serializable
         this.roles = roles;
     }
 
+    //***********************COMMENTAIRE****************************
+    //*Constructeur pour l'inscription des cafés                   *
+    //**************************************************************
     public User(String cafeName, String userName, String password, String confirmPassword,String street, String number, String email, Integer nbCoffeeRequiredForPromotion, Float promotionValue, String roles)
     {
         this.cafeName = cafeName;

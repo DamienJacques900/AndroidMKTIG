@@ -9,14 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
 import com.damienjacques.cafesuspendu.exception.DeleteBookingException;
 import com.damienjacques.cafesuspendu.view.ChooseRegistrationActivity;
 import com.damienjacques.cafesuspendu.view.MainActivity;
+import com.damienjacques.cafesuspendu.view.ReceptionClientActivity;
+import com.damienjacques.cafesuspendu.view.ReceptionCoffeeActivity;
 import com.damienjacques.cafesuspendu.view.ReservationCoffeeActivity;
 
 import java.text.SimpleDateFormat;
@@ -47,27 +51,23 @@ public class ReservationAdatper extends ArrayAdapter
         Button consumed = (Button) convertView.findViewById(R.id.button);
         Button notConsumed = (Button) convertView.findViewById(R.id.button2);
 
-        final Integer idBooking = reservationLine.getIdBooking();
-
-        SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        final String token = pref.getString("token",null);
 
         consumed.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                BookingDAO bookingDAO = new BookingDAO();
                 Boolean consumedBool = true;
-                try
-                {
-                    System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
-                    bookingDAO.deleteBooking(idBooking, consumedBool,token);
-                }
-                catch(Exception e)
-                {
-                    Toast.makeText(v.getContext(), "Erreur de connexion aux données durant la tentative de suppression de la réservation", Toast.LENGTH_LONG).show();
-                }
+                Integer idBooking = reservationLine.getIdBooking();
+                SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                //***********************COMMENTAIRE****************************
+                //Permet d'éditer le sharePreference
+                //**************************************************************
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("idBooking", idBooking);
+                editor.putBoolean("consumedBool", consumedBool);
+                editor.commit();
+                new LoadBooking().execute();
             }
         });
 
@@ -76,17 +76,17 @@ public class ReservationAdatper extends ArrayAdapter
             @Override
             public void onClick(View v)
             {
-                BookingDAO bookingDAO = new BookingDAO();
                 Boolean consumedBool = false;
-                try
-                {
-                    System.out.println("Valeur delete : "+consumedBool+" "+idBooking);
-                    bookingDAO.deleteBooking(idBooking, consumedBool,token);
-                }
-                catch(Exception e)
-                {
-                    Toast.makeText(v.getContext(), "Erreur de connexion aux données durant la tentative de suppression de la réservation", Toast.LENGTH_LONG).show();
-                }
+
+                Integer idBooking = reservationLine.getIdBooking();
+
+                SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("idBooking", idBooking);
+                editor.putBoolean("consumedBool", consumedBool);
+                editor.commit();
+                new LoadBooking().execute();
             }
         });
 
@@ -94,5 +94,55 @@ public class ReservationAdatper extends ArrayAdapter
         dateReservation.setText(reservationLine.getReservationDate());
 
         return convertView;
+    }
+
+    public class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
+    {
+        Exception exception;
+
+        @Override
+        protected ArrayList<Booking> doInBackground(String... params)
+        {
+            BookingDAO bookingDAO = new BookingDAO();
+            ArrayList<Booking> bookings = new ArrayList<>();
+            try
+            {
+                SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                String token = pref.getString("token",null);
+                Integer idBooking = pref.getInt("idBooking",0);
+                Boolean consumedBool = pref.getBoolean("consumedBool",false);
+                bookingDAO.deleteBooking(idBooking, consumedBool,token);
+            }
+            catch(Exception e)
+            {
+                exception = e;
+            }
+
+            return bookings;
+        }
+
+        //***********************COMMENTAIRE****************************
+        //Permet d'executer quelque chose après le chargement des données
+        //**************************************************************
+        @Override
+        protected void onPostExecute(ArrayList<Booking> bookings)
+        {
+            if (exception != null)
+            {
+                Toast.makeText(getContext(), "Erreur lors de la suppression", Toast.LENGTH_LONG).show();
+                System.out.println(exception);
+            }
+            else
+            {
+                SharedPreferences pref = getContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                Boolean consumedBool = pref.getBoolean("consumedBool",false);
+                if(consumedBool)
+                    Toast.makeText(getContext(), "La suppression c'est bien effectué car le sans-abri a pris son café", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), "La suppression c'est bien effectué car personne n'est venu prendre le café", Toast.LENGTH_LONG).show();
+                /*Intent intentReservation = new Intent(getContext(),ReservationCoffeeActivity.class);
+                startActivity(intentReservation);*/
+            }
+        }
     }
 }
