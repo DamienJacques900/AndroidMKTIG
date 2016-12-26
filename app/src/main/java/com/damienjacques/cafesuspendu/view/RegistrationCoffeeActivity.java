@@ -34,6 +34,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private TextView nbCoffeePromotionTextView;
     private TextView promotionValueTextView;
     private TextView coffeNameTextView;
+    private TextView emailTextView;
 
     private TextView mondayBeginHourTextView;
     private TextView mondayEndHourTextView;
@@ -100,6 +101,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         nbCoffeePromotionTextView= (TextView)findViewById(R.id.promotionCoffeeEdit);
         promotionValueTextView = (TextView)findViewById(R.id.promotionValueEdit);
         coffeNameTextView = (TextView) findViewById(R.id.coffeeNameEdit);
+        emailTextView = (TextView) findViewById(R.id.emailCoffeeEdit);
 
         mondayBeginHourTextView = (TextView) findViewById(R.id.mondayBeginEdit);
         mondayEndHourTextView = (TextView) findViewById(R.id.mondayEndEdit);
@@ -144,7 +146,8 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         String promotionAfter = nbCoffeePromotionTextView.getText().toString();
         String promoValue = promotionValueTextView.getText().toString();
         String coffeeName = coffeNameTextView.getText().toString();
-        String userCoffee = "userCoffee";
+        String email = emailTextView.getText().toString();
+        String userCoffee = "usercafe";
 
         String mondayBeginHour = mondayBeginHourTextView.getText().toString();
         String mondayEndHour = mondayEndHourTextView.getText().toString();
@@ -172,7 +175,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         Float doublePromoValue = Float.parseFloat(promoValue);
 
         ArrayList<String> hourDay = new ArrayList<String>();
-        User newCoffee = new User(coffeeName,userName,password,street,number,intPromotionAfter,doublePromoValue,userCoffee);
+        User newCoffee = new User(coffeeName,userName,password,confirmationPassword,street,number,email,intPromotionAfter,doublePromoValue,userCoffee);
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
@@ -251,11 +254,16 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 }
                 else
                 {
-                    if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals(""))
+                    if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals("") || email.equals(""))
                     {
                         Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
                     }
+                    else
+                    {
+                        Toast.makeText(RegistrationCoffeeActivity.this, "Erreur dans les horaires", Toast.LENGTH_LONG).show();
+                    }
                 }
+                System.out.println(exception);
             }
             else
             {

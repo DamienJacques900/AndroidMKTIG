@@ -67,7 +67,8 @@ public class UserDAO extends ModifyDBDAO
     public void postNewRegistrationCoffee(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
     {
         String registrationJSON = registratinCoffeeToJSON(userCoffee,timeTables);
-        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
+        System.out.println(registrationJSON);
+        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/create");
     }
 
     public String registratinCoffeeToJSON(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
@@ -91,49 +92,42 @@ public class UserDAO extends ModifyDBDAO
         dayOne.accumulate("closingHour",timeTables.get(0).getClosingHour());
         dayOne.accumulate("dayOfWeek",timeTables.get(0).getTimeTableID());
         timeTable.put(dayOne);
-        System.out.println(dayOne);
 
         JSONObject dayTwo = new JSONObject();
         dayTwo.accumulate("openingHour",timeTables.get(1).getOpeningHour());
         dayTwo.accumulate("closingHour",timeTables.get(1).getClosingHour());
         dayTwo.accumulate("dayOfWeek",timeTables.get(1).getTimeTableID());
         timeTable.put(dayTwo);
-        System.out.println(dayTwo);
 
         JSONObject dayThree = new JSONObject();
         dayThree.accumulate("openingHour",timeTables.get(2).getOpeningHour());
         dayThree.accumulate("closingHour",timeTables.get(2).getClosingHour());
         dayThree.accumulate("dayOfWeek",timeTables.get(2).getTimeTableID());
         timeTable.put(dayThree);
-        System.out.println(dayThree);
 
         JSONObject dayFour = new JSONObject();
         dayFour.accumulate("openingHour",timeTables.get(3).getOpeningHour());
         dayFour.accumulate("closingHour",timeTables.get(3).getClosingHour());
         dayFour.accumulate("dayOfWeek",timeTables.get(3).getTimeTableID());
         timeTable.put(dayFour);
-        System.out.println(dayFour);
 
         JSONObject dayFive = new JSONObject();
         dayFive.accumulate("openingHour",timeTables.get(4).getOpeningHour());
         dayFive.accumulate("closingHour",timeTables.get(4).getClosingHour());
         dayFive.accumulate("dayOfWeek",timeTables.get(4).getTimeTableID());
         timeTable.put(dayFive);
-        System.out.println(dayFive);
 
         JSONObject daySix = new JSONObject();
         daySix.accumulate("openingHour",timeTables.get(5).getOpeningHour());
         daySix.accumulate("closingHour",timeTables.get(5).getClosingHour());
         daySix.accumulate("dayOfWeek",timeTables.get(5).getTimeTableID());
         timeTable.put(daySix);
-        System.out.println(daySix);
 
         JSONObject daySeven = new JSONObject();
         daySeven.accumulate("openingHour",timeTables.get(6).getOpeningHour());
         daySeven.accumulate("closingHour",timeTables.get(6).getClosingHour());
         daySeven.accumulate("dayOfWeek",timeTables.get(6).getTimeTableID());
         timeTable.put(daySeven);
-        System.out.println(daySeven);
 
         newCoffee.accumulate("timeTables",timeTable);
 
@@ -146,15 +140,14 @@ public class UserDAO extends ModifyDBDAO
         newCoffee.accumulate("password",userCoffee.getPassword());
         newCoffee.accumulate("confirmPassword",userCoffee.getConfirmPassword());
 
-        System.out.println(newCoffee);
-
         return newCoffee.toString();
     }
 
     public void postNewRegistrationPerson(User userPerson) throws Exception
     {
         String registrationJSON = registrationPersonToJSON(userPerson);
-        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/Users");
+        System.out.println(registrationJSON);
+        postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/create");
     }
 
     public String registrationPersonToJSON(User userPerson) throws Exception
@@ -169,16 +162,16 @@ public class UserDAO extends ModifyDBDAO
         newPerson.accumulate("street",JSONObject.NULL);
         newPerson.accumulate("number",JSONObject.NULL);
         newPerson.accumulate("nbCoffeeRequiredForPromotion",JSONObject.NULL);
-        newPerson.accumulate("promotionValue",0.0);
+        newPerson.accumulate("promotionValue",0.1);
         newPerson.accumulate("bookings",JSONObject.NULL);
+        newPerson.accumulate("password",userPerson.getPassword());
+        newPerson.accumulate("confirmPassword",userPerson.getConfirmPassword());
         newPerson.accumulate("timeTables",timeTableArray);
         newPerson.accumulate("firstName",userPerson.getFirstName());
         newPerson.accumulate("lastName",userPerson.getLastName());
         newPerson.accumulate("email",userPerson.getEmail());
         newPerson.accumulate("phoneNumber",userPerson.getPhoneNumber());
         newPerson.accumulate("roles",roles);
-        newPerson.accumulate("password",userPerson.getPassword());
-        newPerson.accumulate("confirmPassword",userPerson.getConfirmPassword());
 
         return newPerson.toString();
     }

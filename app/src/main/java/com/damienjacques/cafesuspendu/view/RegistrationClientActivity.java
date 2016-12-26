@@ -92,7 +92,7 @@ public class RegistrationClientActivity extends AppCompatActivity
         String firstName = firstNameTextView.getText().toString();
         String email = mailTextView.getText().toString();
         String phoneNumber = phoneTextView.getText().toString();
-        String userPerson ="userPeron";
+        String userPerson ="userperson";
 
         User newPerson = new User(userName,password,confirmationPassword,firstName,name,email,phoneNumber,userPerson);
 

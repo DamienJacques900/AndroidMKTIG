@@ -131,13 +131,15 @@ public class User implements Serializable
         this.roles = roles;
     }
 
-    public User(String cafeName, String userName, String password, String street, String number, Integer nbCoffeeRequiredForPromotion, Float promotionValue, String roles)
+    public User(String cafeName, String userName, String password, String confirmPassword,String street, String number, String email, Integer nbCoffeeRequiredForPromotion, Float promotionValue, String roles)
     {
         this.cafeName = cafeName;
         this.userName = userName;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.street = street;
         this.number = number;
+        this.email = email;
         this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
         this.promotionValue = promotionValue;
         this.roles = roles;
