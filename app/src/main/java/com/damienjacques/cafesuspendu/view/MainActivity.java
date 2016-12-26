@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity
     private TextView userNameTextView;
     private TextView passwordTextView;
 
-    private String userName;
-    private String password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,9 +36,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_connectionregistration);
 
         creationLayout();
-        //new LoadCharity().execute();
-        //new LoadTerminal().execute();
-        //new LoadTimeTable().execute();
     }
 
     //***********************COMMENTAIRE****************************
@@ -153,6 +147,9 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
+                //***********************COMMENTAIRE****************************
+                //Permet d'aller chercher l'utilisateur que l'on souhaite
+                //**************************************************************
                 int i;
                 for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {

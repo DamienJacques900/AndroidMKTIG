@@ -178,7 +178,6 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             //***********************COMMENTAIRE****************************
             //Affichage des réservations
             //**************************************************************
-            //**************************************************************
             ArrayList<ReservationLine> arrayReservationLine= new ArrayList<ReservationLine>();
             ListView listBooking= (ListView) findViewById(R.id.listBooking);
 

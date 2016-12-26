@@ -76,7 +76,6 @@ public class RegistrationClientActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 new LoadNewUser().execute();
-                System.out.println("Coucou");
             }
         });
     }

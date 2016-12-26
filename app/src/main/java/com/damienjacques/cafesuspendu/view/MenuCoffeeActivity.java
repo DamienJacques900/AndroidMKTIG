@@ -7,10 +7,6 @@ import android.view.MenuItem;
 
 import com.damienjacques.cafesuspendu.R;
 
-/**
- * Created by Damien Jacques on 15-11-16.
- */
-
 public class MenuCoffeeActivity extends AppCompatActivity
 {
     @Override

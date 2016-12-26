@@ -18,6 +18,9 @@ import java.util.Date;
 public class CharityDAO extends ModifyDBDAO
 {
 
+    //***********************COMMENTAIRE****************************
+    //Permet d'ajouter une nouvelle charitée
+    //**************************************************************
     public void newCharity(Charity charity, String token) throws Exception
     {
         String JSONCharity = charityToJson(charity);
@@ -28,6 +31,11 @@ public class CharityDAO extends ModifyDBDAO
     {
         JSONObject jsonCharity = new JSONObject();
 
+        //***********************COMMENTAIRE****************************
+        //Permet de créer un objet JSON et d'ajouter des valeurs à
+        //l'intérieur en leur donnant un nom en première argument et
+        //la valeur au deuxième.
+        //**************************************************************
         SimpleDateFormat dateCharity = new SimpleDateFormat("yyyy-MM-dd");
         jsonCharity.accumulate("NbCoffeeOffered", charity.getNbCoffeeOffered());
         jsonCharity.accumulate("NbCoffeeConsumed", charity.getNbCoffeeConsumed());
@@ -35,11 +43,12 @@ public class CharityDAO extends ModifyDBDAO
         jsonCharity.accumulate("ApplicationUserPersonEmail", charity.getUserPerson().getEmail());
         jsonCharity.accumulate("ApplicationUserCoffeeEmail", charity.getUserCafe().getEmail());
 
-        System.out.println("JSON : "+jsonCharity.toString());
-
         return jsonCharity.toString();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de récupérer le nombre de charitées pour un café.
+    //**************************************************************
     public Integer getNbCoffeeCharity(String token, String userName) throws Exception
     {
         String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForCafe?userName="+userName);
@@ -54,6 +63,9 @@ public class CharityDAO extends ModifyDBDAO
         return nbCoffeeCharity;
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de récupérer le nombre de charités pour un personne
+    //**************************************************************
     public Integer getNbCoffeeCharityPerson(String token, String userName) throws Exception
     {
         String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/accounts/getNbCoffeeForPerson?userName="+userName);
@@ -75,26 +87,6 @@ public class CharityDAO extends ModifyDBDAO
     {
         String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/charities");
         return jsonToCharities(stringJSON);
-
-/*
-        //***********************COMMENTAIRE****************************
-        //Permet d'établir la connexion
-        //**************************************************************
-        URL url = new URL("http://cafesuspenduappweb.azurewebsites.net/api/charities");
-        URLConnection connection = url.openConnection();
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        StringBuilder sb = new StringBuilder();
-        String stringJSON = "",line;
-        //***********************COMMENTAIRE****************************
-        //Tant que toutes les données de l'API ne sont pas parcourues
-        //**************************************************************
-        while((line=br.readLine())!=null)
-        {
-            sb.append(line);
-        }
-        br.close();
-        stringJSON = sb.toString();
-        return jsonToCharities(stringJSON);*/
     }
 
     //***********************COMMENTAIRE****************************
@@ -111,10 +103,16 @@ public class CharityDAO extends ModifyDBDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonCharity = jsonArray.getJSONObject(i);
-            Log.i("Charities",jsonCharity.toString());
+
+            //***********************COMMENTAIRE****************************
+            //Permet de récuperer les valeurs pour une personne
+            //**************************************************************
             JSONObject jsonUserCient = jsonCharity.getJSONObject("ApplicationUserPerson");
             User userClient = new User(jsonUserCient.getString("UserName"),0,(float)0.0);
 
+            //***********************COMMENTAIRE****************************
+            //Permet de récuperer les valeurs pour un café
+            //**************************************************************
             JSONObject jsonUserCoffee = jsonCharity.getJSONObject("ApplicationUserCoffee");
             User userCoffee = new User(jsonUserCoffee.getString("UserName"),jsonUserCoffee.getInt("NbCoffeeRequiredForPromotion"),(float)jsonUserCoffee.getDouble("PromotionValue"));
 

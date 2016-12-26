@@ -79,7 +79,6 @@ public class ChooseRegistrationActivity extends AppCompatActivity
                     registrationImage.setImageResource(R.drawable.inscriptioncafe);
                 else
                     registrationImage.setImageResource(R.drawable.inscriptionclient);
-
             }
         });
     }

@@ -12,10 +12,12 @@ import java.util.*;
 public class BookingDAO extends ModifyDBDAO
 {
 
+    //***********************COMMENTAIRE****************************
+    //Permet de supprimer les réservations
+    //**************************************************************
     public void deleteBooking(Integer id, Boolean consumed, String token) throws Exception
     {
         String urlForDelete = "http://cafesuspenduappweb.azurewebsites.net/api/Bookings?id=" + id + "&isCoffeeConsumed=" + consumed;
-        System.out.println("ID : "+id+" Consumed : "+consumed+" URL : "+urlForDelete);
         deleteJsonStringWithURL(token,urlForDelete);
     }
     //***********************COMMENTAIRE****************************
@@ -47,7 +49,8 @@ public class BookingDAO extends ModifyDBDAO
     }
 
     //***********************COMMENTAIRE****************************
-    //Permet de convertir le format JSON de l'API en arrayList
+    //Permet de convertir le format JSON de l'API en arrayList et
+    //de renvoyer les valeurs obtenues.
     //**************************************************************
     private ArrayList<Booking> jsonToBookings(String stringJSON) throws Exception
     {
@@ -60,12 +63,20 @@ public class BookingDAO extends ModifyDBDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonBooking = jsonArray.getJSONObject(i);
-            Log.i("Booking",jsonBooking.toString());
+
+            //***********************COMMENTAIRE****************************
+            //On créé un autre objet JSON pour pouvoir récupérer dans le
+            //booking les valeurs correspondant à un utilisateur.
+            //**************************************************************
             JSONObject jsonUser = jsonBooking.getJSONObject("ApplicationUser");
             User userCafe = new User(jsonUser.getString("UserName"));
 
             SimpleDateFormat dateBooking = new SimpleDateFormat("yyyy-MM-dd");
 
+            //***********************COMMENTAIRE****************************
+            //On va récuperer les valeurs du fichier JSON grâce au nom de
+            //la valeur que l'on veut récupérer du format JSON.
+            //**************************************************************
             booking = new Booking(dateBooking.parse(jsonBooking.getString("DateBooking")),jsonBooking.getString("Name"),userCafe,jsonBooking.getInt("BookingID"));
             bookings.add(booking);
         }

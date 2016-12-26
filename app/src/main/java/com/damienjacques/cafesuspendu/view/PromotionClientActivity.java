@@ -137,59 +137,63 @@ public class PromotionClientActivity extends MenuClientActivity
                 Toast.makeText(PromotionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
                 goToDisconaction();
             }
-
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-
-            ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
-
-            for(int i = 0 ; i < charities.size(); i++)
+            else
             {
-                if(charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName",null)))
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+
+                ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+                for (int i = 0; i < charities.size(); i++)
                 {
-                    charitiesClient.add(charities.get(i));
+                    //***********************COMMENTAIRE****************************
+                    //Permet de récupérer les charity du client actuel.
+                    //**************************************************************
+                    if (charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName", null)))
+                    {
+                        charitiesClient.add(charities.get(i));
+                    }
                 }
+
+                SharedPreferences.Editor editor = pref.edit();
+                for (int i = 1; i <= charitiesClient.size(); i++) {
+                    editor.putString("charities" + i, charitiesClient.get(i - 1).getUserCafe().getUserName());
+                    editor.putInt("nbCoffeeOffered" + i, charitiesClient.get(i - 1).getNbCoffeeOffered());
+                    editor.putInt("nbCoffeeRequired" + i, charitiesClient.get(i - 1).getUserCafe().getNbCoffeeRequiredForPromotion());
+                    editor.putFloat("costPromoCoffee" + i, charitiesClient.get(i - 1).getUserCafe().getPromotionValue());
+                }
+                editor.putInt("SizeCharities", charitiesClient.size());
+                editor.commit();
+
+                //***********************COMMENTAIRE****************************
+                //Affichage des promotions
+                //**************************************************************
+                ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
+                ListView listCoffee = (ListView) findViewById(R.id.listCoffee);
+
+                //***********************COMMENTAIRE****************************
+                //Permet d'afficher les données dans une listView
+                //**************************************************************
+                for (int i = 1; i <= pref.getInt("SizeCharities", 0); i++)
+                {
+                    int nbCoffeeRequired = pref.getInt("nbCoffeeRequired" + i, 0);
+                    int nbCoffeeOffered = pref.getInt("nbCoffeeOffered" + i, 0);
+                    int nbCoffeeForPromotion = nbCoffeeRequired - (nbCoffeeOffered % nbCoffeeRequired);
+                    Float costPromo = pref.getFloat("costPromoCoffee" + i, 0);
+                    String coffeeName = pref.getString("charities" + i, null);
+                    String coffeedescription = "\nIl vous reste " + nbCoffeeForPromotion + " café(s) avant la promotion de " + (double) costPromo + " euro(s)!";
+
+                    float progressStatus = (Math.round(((double) nbCoffeeOffered / nbCoffeeRequired) * 100)) % 100;
+
+                    ProgressBar progressBar = new ProgressBar(getApplicationContext());
+
+                    PromotionLine promo = new PromotionLine(coffeeName, coffeedescription, progressBar, (int) progressStatus);
+
+                    arrayPromoLine.add(promo);
+                }
+
+                PromotionAdapter promoAdapter = new PromotionAdapter(PromotionClientActivity.this, arrayPromoLine);
+                listCoffee.setAdapter(promoAdapter);
             }
-
-            SharedPreferences.Editor editor = pref.edit();
-            for(int i = 1; i <= charitiesClient.size(); i++)
-            {
-                editor.putString("charities"+i, charitiesClient.get(i-1).getUserCafe().getUserName());
-                editor.putInt("nbCoffeeOffered"+i, charitiesClient.get(i-1).getNbCoffeeOffered());
-                editor.putInt("nbCoffeeRequired"+i, charitiesClient.get(i-1).getUserCafe().getNbCoffeeRequiredForPromotion());
-                editor.putFloat("costPromoCoffee"+i, charitiesClient.get(i-1).getUserCafe().getPromotionValue());
-            }
-            editor.putInt("SizeCharities",charitiesClient.size());
-            editor.commit();
-
-            //***********************COMMENTAIRE****************************
-            //Affichage des promotions
-            //**************************************************************
-            ArrayList<PromotionLine> arrayPromoLine = new ArrayList<PromotionLine>();
-            ListView listCoffee= (ListView) findViewById(R.id.listCoffee);
-
-            //***********************COMMENTAIRE****************************
-            //Permet d'afficher les données dans une listView
-            //**************************************************************
-            for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
-            {
-                int nbCoffeeRequired = pref.getInt("nbCoffeeRequired"+i,0);
-                int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
-                int nbCoffeeForPromotion = nbCoffeeRequired-(nbCoffeeOffered%nbCoffeeRequired);
-                Float costPromo = pref.getFloat("costPromoCoffee"+i,0);
-                String coffeeName = pref.getString("charities"+i,null);
-                String coffeedescription = "\nIl vous reste "+nbCoffeeForPromotion+" café(s) avant la promotion de "+(double)costPromo+" euro(s)!";
-
-                float progressStatus = (Math.round(((double)nbCoffeeOffered/nbCoffeeRequired)*100))%100;
-
-                ProgressBar progressBar = new ProgressBar(getApplicationContext());
-
-                PromotionLine promo = new PromotionLine(coffeeName,coffeedescription,progressBar, (int)progressStatus);
-
-                arrayPromoLine.add(promo);
-            }
-
-            PromotionAdapter promoAdapter = new PromotionAdapter(PromotionClientActivity.this,arrayPromoLine);
-            listCoffee.setAdapter(promoAdapter);
 
             spinner.setVisibility(View.GONE);
         }

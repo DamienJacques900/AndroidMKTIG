@@ -137,7 +137,6 @@ public class HistoryClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
-                Log.i("Exception",exception.toString());
                 Toast.makeText(HistoryClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
                 goToDisconaction();
             }
@@ -150,8 +149,14 @@ public class HistoryClientActivity extends MenuClientActivity
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
 
-                for (int i = 0; i < charities.size(); i++) {
-                    if (charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName", null))) {
+                for (int i = 0; i < charities.size(); i++)
+                {
+                    //***********************COMMENTAIRE****************************
+                    //Si le charity correspondent à l'utilisateur actuel, alors
+                    //on ajoute ces données dans l'arrayList de l'utilisateur.
+                    //**************************************************************
+                    if (charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName", null)))
+                    {
                         charitiesClient.add(charities.get(i));
                     }
                 }
@@ -162,7 +167,8 @@ public class HistoryClientActivity extends MenuClientActivity
                 SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
 
-                for (int i = 1; i <= charitiesClient.size(); i++) {
+                for (int i = 1; i <= charitiesClient.size(); i++)
+                {
                     editor.putString("coffeeName" + i, charitiesClient.get(i - 1).getUserCafe().getUserName());
                     editor.putInt("nbCoffeeOffered" + i, charitiesClient.get(i - 1).getNbCoffeeOffered());
                     String HistoryDate = new SimpleDateFormat("yyyy-MM-dd").format(charitiesClient.get(i - 1).getOfferingTime());

@@ -87,6 +87,7 @@ public class ReservationAdatper extends ArrayAdapter
                 editor.putBoolean("consumedBool", consumedBool);
                 editor.commit();
                 new LoadBooking().execute();
+
             }
         });
 

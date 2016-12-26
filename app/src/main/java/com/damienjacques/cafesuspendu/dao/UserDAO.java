@@ -22,6 +22,9 @@ import java.util.*;
 public class UserDAO extends ModifyDBDAO
 {
 
+    //***********************COMMENTAIRE****************************
+    //Permet de changer des valeurs dans les options du café.
+    //**************************************************************
     public void putChangeOptionCoffee(String token, User userCoffee) throws Exception
     {
         String optionJSON = optionToJSON(userCoffee);
@@ -33,6 +36,10 @@ public class UserDAO extends ModifyDBDAO
     {
         JSONObject optionCoffee = new JSONObject();
 
+        //***********************COMMENTAIRE****************************
+        //Permet de créer un JSON object avec les valeurs que l'on
+        //souhaite.
+        //**************************************************************
         optionCoffee.accumulate("id",user.getId());
         optionCoffee.accumulate("userName", user.getUserName());
         optionCoffee.accumulate("cafeName", user.getCafeName());
@@ -52,25 +59,36 @@ public class UserDAO extends ModifyDBDAO
         return optionCoffee.toString();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de changer le mail pour les utilisateurs
+    //**************************************************************
     public void postChangeOptionPersonPhone(String token, User userPerson) throws Exception
     {
         String optionJSON = optionToJSON(userPerson);
         postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangePhoneNumber?userId="+userPerson.getId()+"&phoneNumber="+userPerson.getPhoneNumber());
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de changer le numéro de téléphone pour les utilisateurs.
+    //**************************************************************
     public void postChangeOptionPersonEmail(String token, User userPerson) throws Exception
     {
         String optionJSON = optionToJSON(userPerson);
         postJsonStringWithURL(token,optionJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/ChangeEmail?userId="+userPerson.getId()+"&email="+userPerson.getEmail());
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet d'ajouter une nouvelle inscription pour les cafés.
+    //**************************************************************
     public void postNewRegistrationCoffee(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
     {
         String registrationJSON = registratinCoffeeToJSON(userCoffee,timeTables);
-        System.out.println(registrationJSON);
         postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/create");
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de créer le fichier JSON pour un nouveau café.
+    //**************************************************************
     public String registratinCoffeeToJSON(User userCoffee,ArrayList<TimeTable> timeTables) throws Exception
     {
         JSONObject newCoffee = new JSONObject();
@@ -87,6 +105,11 @@ public class UserDAO extends ModifyDBDAO
         newCoffee.accumulate("promotionValue",userCoffee.getPromotionValue());
         newCoffee.accumulate("bookings",JSONObject.NULL);
 
+        //***********************COMMENTAIRE****************************
+        //Timetable contient plusieurs objets timeTable pour les cafés,
+        //il faut donc en créer sept pour tout les jours de la
+        //semaine.
+        //**************************************************************
         JSONObject dayOne = new JSONObject();
         dayOne.accumulate("openingHour",timeTables.get(0).getOpeningHour());
         dayOne.accumulate("closingHour",timeTables.get(0).getClosingHour());
@@ -143,6 +166,9 @@ public class UserDAO extends ModifyDBDAO
         return newCoffee.toString();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de créer un nouvel utilisateur.
+    //**************************************************************
     public void postNewRegistrationPerson(User userPerson) throws Exception
     {
         String registrationJSON = registrationPersonToJSON(userPerson);
@@ -150,6 +176,9 @@ public class UserDAO extends ModifyDBDAO
         postJsonStringRegistrationWithURL(registrationJSON, "http://cafesuspenduappweb.azurewebsites.net/api/Accounts/create");
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de créer un fichier JSON pour un nouvel utilisateur.
+    //**************************************************************
     public String registrationPersonToJSON(User userPerson) throws Exception
     {
         JSONObject newPerson = new JSONObject();
@@ -176,6 +205,10 @@ public class UserDAO extends ModifyDBDAO
         return newPerson.toString();
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de gérer la connexion et d'autoriser ceux qui ont
+    //accès.
+    //**************************************************************
     public String getUserWithUserNameAndPw(String userName, String password) throws Exception
     {
         //***********************COMMENTAIRE****************************
@@ -229,7 +262,11 @@ public class UserDAO extends ModifyDBDAO
         return jsonToToken(stringJSON);
     }
 
-
+    //***********************COMMENTAIRE****************************
+    //Ici pas besoin de token pour récupérer les valeurs car c'est
+    //pour la connexion et donc pas encor le token pour accéder à
+    //ses données
+    //**************************************************************
     public ArrayList<User> getAllUsers() throws Exception
     {
         //***********************COMMENTAIRE****************************
@@ -240,9 +277,7 @@ public class UserDAO extends ModifyDBDAO
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJSON = "",line;
-        //***********************COMMENTAIRE****************************
-        //Tant que toutes les données de l'API ne sont pas parcourues
-        //**************************************************************
+
         while((line=br.readLine())!=null)
         {
             sb.append(line);
@@ -267,8 +302,7 @@ public class UserDAO extends ModifyDBDAO
         for(int i = 0; i < jsonArray.length();i++)
         {
             JSONObject jsonUser = jsonArray.getJSONObject(i);
-            //ArrayList<Booking> bookings;
-            //Log.i("Users",jsonUser.toString());
+
             JSONArray roles = jsonUser.getJSONArray("roles");
             if(roles.getString(0).equals("userperson"))
             {
@@ -288,8 +322,18 @@ public class UserDAO extends ModifyDBDAO
     //**************************************************************
     private String jsonToToken(String stringJSON) throws Exception
     {
-        String test = new JSONObject(stringJSON).getString("access_token");
-        return test;
+        String token = new JSONObject(stringJSON).getString("access_token");
+        return token;
+    }
+
+    //***********************COMMENTAIRE****************************
+    //Est utile pour les options et donc la besoin du token pour
+    //accéder aux données
+    //**************************************************************
+    public ArrayList<User> getAllUsersOption(String token) throws Exception
+    {
+        String stringJSON = getJsonStringWithURL(token,"http://cafesuspenduappweb.azurewebsites.net/api/accounts/Users");
+        return jsonToUsers(stringJSON);
     }
 
 }

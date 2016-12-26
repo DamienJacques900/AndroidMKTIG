@@ -15,6 +15,9 @@ import java.security.spec.ECField;
 public class ModifyDBDAO
 {
 
+    //***********************COMMENTAIRE****************************
+    //Permet d'aller chercher des valeurs dans l'API avec le token
+    //**************************************************************
     public String getJsonStringWithURL(String token, String urlAdress) throws Exception
     {
         try
@@ -24,6 +27,9 @@ public class ModifyDBDAO
             urlConnection.setRequestProperty("Authorization", "Bearer " + token);
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             StringBuilder sb = new StringBuilder();
+            //***********************COMMENTAIRE****************************
+            //Permet de créer le format JSON avec les données
+            //**************************************************************
             String stringJSON, line;
             while ((line = br.readLine()) != null)
             {
@@ -39,6 +45,9 @@ public class ModifyDBDAO
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet de supprimer une réservation
+    //**************************************************************
     public void deleteJsonStringWithURL(String token, String urlAdress) throws Exception
     {
         try
@@ -47,7 +56,6 @@ public class ModifyDBDAO
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("DELETE");
             urlConnection.setRequestProperty("Authorization", "Bearer " + token);
-            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             if (200 <= urlConnection.getResponseCode() && urlConnection.getResponseCode() <= 299)
             {
                 Log.i("Test", "Url connection bonne");
@@ -64,6 +72,9 @@ public class ModifyDBDAO
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet modifier des valeurs dans l'API
+    //**************************************************************
     public void putJsonStringWithURL(String token, String jsonString, String urlAdress) throws Exception
     {
         try
@@ -102,6 +113,9 @@ public class ModifyDBDAO
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet d'ajouter des valeurs de l'API
+    //**************************************************************
     public void postJsonStringWithURL(String token, String jsonString, String urlAdress) throws Exception
     {
         try
@@ -140,6 +154,10 @@ public class ModifyDBDAO
         }
     }
 
+    //***********************COMMENTAIRE****************************
+    //Permet d'ajouter des valeurs dans l'API sans avoir besoin du
+    //token. C'est utile pour les inscriptions.
+    //**************************************************************
     public void postJsonStringRegistrationWithURL(String jsonString, String urlAdress) throws Exception
     {
         try

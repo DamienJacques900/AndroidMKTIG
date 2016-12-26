@@ -194,11 +194,6 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             hourDay.add(sundayBeginHour+":00");
             hourDay.add(sundayEndHour+":00");
 
-            /*IMPORTANT
-            DATE DU JOUR
-            Date today = Calendar.getInstance().getTime();
-             */
-
             UserDAO userDAO = new UserDAO();
             ArrayList<User> users = new ArrayList<>();
             try
@@ -206,6 +201,9 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 ArrayList<String> dateDay = new ArrayList<String>();
                 for(int i = 0; i < hourDay.size(); i++)
                 {
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'avoir le format voulu pour les heures
+                    //**************************************************************
                     SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
                     Date date = format.parse(hourDay.get(i));
                     Format formatter = new SimpleDateFormat("HH:mm:ss");

@@ -26,9 +26,7 @@ public class TerminalDAO
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJSON = "",line;
-        //***********************COMMENTAIRE****************************
-        //Tant que toutes les données de l'API ne sont pas parcourues
-        //**************************************************************
+
         while((line=br.readLine())!=null)
         {
             sb.append(line);

@@ -20,8 +20,6 @@ public class OptionClientActivity extends MenuClientActivity
 {
     private TextView mailTextView;
     private TextView phoneTextView;
-    private TextView passwordTextView;
-    private TextView confirmationPasswordTextView;
 
     private Button clickModify;
 
@@ -106,8 +104,6 @@ public class OptionClientActivity extends MenuClientActivity
     {
         mailTextView = (TextView) findViewById(R.id.mailOptionClient);
         phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
-        //passwordTextView = (TextView) findViewById(R.id.passwordOptionClient);
-        //confirmationPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordOptionClient);
 
         clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
 
@@ -150,12 +146,17 @@ public class OptionClientActivity extends MenuClientActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
-                users = userDAO.getAllUsers();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
                 String userName = pref.getString("userName",null);
                 String token = pref.getString("token",null);
 
+                users = userDAO.getAllUsersOption(token);
+
+                //***********************COMMENTAIRE****************************
+                //Permet de récupérer les valeurs de l'utilisateur que l'on
+                //souhaite
+                //**************************************************************
                 int i;
                 for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {

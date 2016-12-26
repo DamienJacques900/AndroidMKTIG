@@ -27,18 +27,18 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
     private TextView nbCoffeeTextView;
     private TextView promotionValueTextView;
-    private TextView passwordTextView;
-    private TextView confirmPasswordTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optioncoffee);
         createLayout();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         this.getMenuInflater().inflate(R.menu.menu_coffee, menu);
         return true;
     }
@@ -111,8 +111,6 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
         nbCoffeeTextView = (TextView) findViewById(R.id.numberCoffeOption);
         promotionValueTextView = (TextView) findViewById(R.id.valuePromoCoffeeOption);
-        //passwordTextView = (TextView) findViewById(R.id.passwordCoffeeOption);
-        //confirmPasswordTextView = (TextView) findViewById(R.id.confirmationPasswordCoffeeOption);
 
         clickModify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,12 +149,17 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
-                users = userDAO.getAllUsers();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
                 String userName = pref.getString("userName",null);
                 String token = pref.getString("token",null);
 
+                users = userDAO.getAllUsersOption(token);
+
+                //***********************COMMENTAIRE****************************
+                //Permet de récupérer les valeurs de l'utilisateur que l'on
+                //souhaite.
+                //**************************************************************
                 int i;
                 for(i = 0 ; i< users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {

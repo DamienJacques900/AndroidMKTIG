@@ -147,10 +147,12 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
 
             Date dateCharity = new Date();
             String tokenCoffee = pref.getString("token",null);
-            String tokenPerson = pref.getString("tokenPerson",null);
 
             CharityDAO charityDAO = new CharityDAO();
 
+            //***********************COMMENTAIRE****************************
+            //Permet d'utiliser les préférences pour récuperer des objets.
+            //**************************************************************
             Gson gson = new Gson();
             String jsonCoffee = pref.getString("userCoffee", "");
             String jsonPerson = pref.getString("userPerson", "");
@@ -250,6 +252,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 String coffeeName = pref.getString("userName",null);
 
+                //***********************COMMENTAIRE****************************
+                //Permet de récupérer le café que l'on souhaite.
+                //**************************************************************
                 int i;
                 for (i = 0; i < users.size() && !users.get(i).getUserName().equals(coffeeName); i++)
                 {
@@ -258,18 +263,26 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
                 User userCoffee = users.get(i);
 
                 SharedPreferences.Editor editor = pref.edit();
+                //***********************COMMENTAIRE****************************
+                //Permet de sauvergarder un objet de les préférences.
+                //**************************************************************
                 Gson gsonCoffee = new Gson();
                 String jsonCoffee = gsonCoffee.toJson(userCoffee);
                 editor.putString("userCoffee", jsonCoffee);
                 editor.commit();
 
-
+                //***********************COMMENTAIRE****************************
+                //Permet de récupérer l'utilisateur que l'on souhaite.
+                //**************************************************************
                 for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
                 {
                 }
 
                 User userPerson = users.get(i);
 
+                //***********************COMMENTAIRE****************************
+                //Permet de sauvergarder un objet de les préférences.
+                //**************************************************************
                 Gson gsonPerson = new Gson();
                 String jsonPerson = gsonPerson.toJson(userPerson);
                 editor.putString("userPerson", jsonPerson);
