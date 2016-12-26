@@ -18,6 +18,7 @@ import com.damienjacques.cafesuspendu.model.Charity;
 import com.damienjacques.cafesuspendu.model.User;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -180,13 +181,16 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
-                System.out.println(exception);
-                Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
-            }
-
-            if(userName.equals("") || password.equals("") || intNbCoffee==0)
-            {
-                Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+                if(userName.equals("") || password.equals("") || intNbCoffee==0)
+                {
+                    Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    System.out.println(exception);
+                    Toast.makeText(OfferCoffeeActivity.this, "Erreur lors de l'enregistrement de l'offre", Toast.LENGTH_SHORT).show();
+                    goToDisconaction();
+                }
             }
             else
             {
@@ -200,6 +204,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        Exception ioException;
 
         String userName = clientTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -220,6 +225,10 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("tokenPerson", token);
                 editor.commit();
+            }
+            catch(IOException e)
+            {
+                ioException = e;
             }
             catch(Exception e)
             {
@@ -249,46 +258,53 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             }
             else
             {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                String coffeeName = pref.getString("userName",null);
-
-                //***********************COMMENTAIRE****************************
-                //Permet de récupérer le café que l'on souhaite.
-                //**************************************************************
-                int i;
-                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(coffeeName); i++)
+                if(ioException!=null)
                 {
+                    Toast.makeText(OfferCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                    goToDisconaction();
+                }
+                else
+                {
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    String coffeeName = pref.getString("userName", null);
+
+                    //***********************COMMENTAIRE****************************
+                    //Permet de récupérer le café que l'on souhaite.
+                    //**************************************************************
+                    int i;
+                    for (i = 0; i < users.size() && !users.get(i).getUserName().equals(coffeeName); i++) {
+                    }
+
+                    User userCoffee = users.get(i);
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    //***********************COMMENTAIRE****************************
+                    //Permet de sauvergarder un objet de les préférences.
+                    //**************************************************************
+                    Gson gsonCoffee = new Gson();
+                    String jsonCoffee = gsonCoffee.toJson(userCoffee);
+                    editor.putString("userCoffee", jsonCoffee);
+                    editor.commit();
+
+                    //***********************COMMENTAIRE****************************
+                    //Permet de récupérer l'utilisateur que l'on souhaite.
+                    //**************************************************************
+                    for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++) {
+                    }
+
+                    User userPerson = users.get(i);
+
+                    //***********************COMMENTAIRE****************************
+                    //Permet de sauvergarder un objet de les préférences.
+                    //**************************************************************
+                    Gson gsonPerson = new Gson();
+                    String jsonPerson = gsonPerson.toJson(userPerson);
+                    editor.putString("userPerson", jsonPerson);
+                    editor.commit();
+
+                    new LoadCharity().execute();
                 }
 
-                User userCoffee = users.get(i);
-
-                SharedPreferences.Editor editor = pref.edit();
-                //***********************COMMENTAIRE****************************
-                //Permet de sauvergarder un objet de les préférences.
-                //**************************************************************
-                Gson gsonCoffee = new Gson();
-                String jsonCoffee = gsonCoffee.toJson(userCoffee);
-                editor.putString("userCoffee", jsonCoffee);
-                editor.commit();
-
-                //***********************COMMENTAIRE****************************
-                //Permet de récupérer l'utilisateur que l'on souhaite.
-                //**************************************************************
-                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
-                {
-                }
-
-                User userPerson = users.get(i);
-
-                //***********************COMMENTAIRE****************************
-                //Permet de sauvergarder un objet de les préférences.
-                //**************************************************************
-                Gson gsonPerson = new Gson();
-                String jsonPerson = gsonPerson.toJson(userPerson);
-                editor.putString("userPerson", jsonPerson);
-                editor.commit();
-
-                new LoadCharity().execute();
             }
         }
     }

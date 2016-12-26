@@ -14,6 +14,7 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -105,6 +106,7 @@ public class ReceptionClientActivity extends MenuClientActivity
     public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
+        Exception ioException;
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -116,6 +118,10 @@ public class ReceptionClientActivity extends MenuClientActivity
             try
             {
                 nbCoffee = charityDAO.getNbCoffeeCharityPerson(pref.getString("token",null),pref.getString("userName",null));
+            }
+            catch(IOException e)
+            {
+                ioException = e;
             }
             catch(Exception e)
             {
@@ -133,13 +139,21 @@ public class ReceptionClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
-                System.out.println(exception);
-                Toast.makeText(ReceptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                goToDisconaction();
+                Toast.makeText(ReceptionClientActivity.this, "Erreur lors de l'affichage", Toast.LENGTH_LONG).show();
             }
-
-            welcome = "Grâce à vous, "+nbCoffee+" café(s) ont été offerts à des sans-abris.";
-            textWelcome.setText(welcome);
+            else
+            {
+                if(ioException != null)
+                {
+                    Toast.makeText(ReceptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                    goToDisconaction();
+                }
+                else
+                {
+                    welcome = "Grâce à vous, "+nbCoffee+" café(s) ont été offerts à des sans-abris.";
+                    textWelcome.setText(welcome);
+                }
+            }
         }
     }
 }

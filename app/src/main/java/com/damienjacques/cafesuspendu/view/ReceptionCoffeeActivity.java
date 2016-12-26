@@ -13,6 +13,7 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -104,6 +105,7 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
     public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
+        Exception ioException;
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -115,6 +117,10 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
             try
             {
                 nbCoffee = charityDAO.getNbCoffeeCharity(pref.getString("token",null),pref.getString("userName",null));
+            }
+            catch(IOException e)
+            {
+                ioException = e;
             }
             catch(Exception e)
             {
@@ -132,12 +138,21 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
-                Toast.makeText(ReceptionCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                goToDisconaction();
+                Toast.makeText(ReceptionCoffeeActivity.this, "Erreur lors de l'affichage", Toast.LENGTH_LONG).show();
             }
-
-            welcome = "Grâce à vous, "+nbCoffee+" café(s) suspendus ont été offerts.";
-            textWelcome.setText(welcome);
+            else
+            {
+                if(ioException != null)
+                {
+                    Toast.makeText(ReceptionCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                    goToDisconaction();
+                }
+                else
+                {
+                    welcome = "Grâce à vous, "+nbCoffee+" café(s) suspendus ont été offerts.";
+                    textWelcome.setText(welcome);
+                }
+            }
         }
     }
 }

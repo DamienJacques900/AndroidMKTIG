@@ -18,6 +18,7 @@ import com.damienjacques.cafesuspendu.dao.UserDAO;
 import com.damienjacques.cafesuspendu.model.Charity;
 import com.damienjacques.cafesuspendu.model.User;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -139,6 +140,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     private class LoadUserModify extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        Exception ioException;
 
         String nbCoffee = nbCoffeeTextView.getText().toString();
         String promotionValue = promotionValueTextView.getText().toString();
@@ -178,6 +180,10 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
                 userDAO.putChangeOptionCoffee(token, userModified);
             }
+            catch(IOException e)
+            {
+                ioException = e;
+            }
             catch(Exception e)
             {
                 exception = e;
@@ -205,9 +211,18 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             }
             else
             {
-                Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                Intent intentOption = new Intent(OptionCoffeeActivity.this,OptionCoffeeActivity.class);
-                startActivity(intentOption);
+                if(ioException !=null)
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                    goToDisconaction();
+
+                }
+                else
+                {
+                    Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                    Intent intentOption = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
+                    startActivity(intentOption);
+                }
             }
         }
     }

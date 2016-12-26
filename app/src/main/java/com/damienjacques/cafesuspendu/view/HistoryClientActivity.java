@@ -19,6 +19,7 @@ import com.damienjacques.cafesuspendu.model.Charity;
 import com.damienjacques.cafesuspendu.model.HistoryAdapter;
 import com.damienjacques.cafesuspendu.model.HistoryLine;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -109,6 +110,7 @@ public class HistoryClientActivity extends MenuClientActivity
     public class LoadCharity extends AsyncTask<String, Void, ArrayList<Charity>>
     {
         Exception exception;
+        Exception ioException;
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -120,6 +122,10 @@ public class HistoryClientActivity extends MenuClientActivity
             try
             {
                 charities = charityDAO.getAllCharities(pref.getString("token",null));
+            }
+            catch(IOException e)
+            {
+                ioException = e;
             }
             catch(Exception e)
             {
@@ -137,74 +143,77 @@ public class HistoryClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
-                Toast.makeText(HistoryClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                goToDisconaction();
+                Toast.makeText(HistoryClientActivity.this, "Erreur", Toast.LENGTH_LONG).show();
             }
             else
             {
-                //***********************COMMENTAIRE****************************
-                //Permet de pouvoir récuperer les données partout dans le code
-                //par la suite en stockant les données dans un sharePreference
-                //**************************************************************
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
-
-                for (int i = 0; i < charities.size(); i++)
+                if(ioException != null)
+                {
+                    Toast.makeText(HistoryClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
+                    goToDisconaction();
+                }
+                else
                 {
                     //***********************COMMENTAIRE****************************
-                    //Si le charity correspondent à l'utilisateur actuel, alors
-                    //on ajoute ces données dans l'arrayList de l'utilisateur.
+                    //Permet de pouvoir récuperer les données partout dans le code
+                    //par la suite en stockant les données dans un sharePreference
                     //**************************************************************
-                    if (charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName", null)))
-                    {
-                        charitiesClient.add(charities.get(i));
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    ArrayList<Charity> charitiesClient = new ArrayList<Charity>();
+
+                    for (int i = 0; i < charities.size(); i++) {
+                        //***********************COMMENTAIRE****************************
+                        //Si le charity correspondent à l'utilisateur actuel, alors
+                        //on ajoute ces données dans l'arrayList de l'utilisateur.
+                        //**************************************************************
+                        if (charities.get(i).getUserPerson().getUserName().equals(pref.getString("userName", null))) {
+                            charitiesClient.add(charities.get(i));
+                        }
                     }
+
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'éditer le sharePreference
+                    //**************************************************************
+                    SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+
+                    for (int i = 1; i <= charitiesClient.size(); i++) {
+                        editor.putString("coffeeName" + i, charitiesClient.get(i - 1).getUserCafe().getUserName());
+                        editor.putInt("nbCoffeeOffered" + i, charitiesClient.get(i - 1).getNbCoffeeOffered());
+                        String HistoryDate = new SimpleDateFormat("yyyy-MM-dd").format(charitiesClient.get(i - 1).getOfferingTime());
+                        editor.putString("dateOffering" + i, HistoryDate);
+                    }
+
+                    editor.putInt("SizeCharities", charitiesClient.size());
+                    editor.commit();
+
+
+                    //***********************COMMENTAIRE****************************
+                    //Affichage de l'historique
+                    //**************************************************************
+                    ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();
+                    ListView listHistory = (ListView) findViewById(R.id.listHistory);
+
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'afficher les données dans une listView
+                    //**************************************************************
+                    for (int i = 1; i <= pref.getInt("SizeCharities", 0); i++) {
+                        int nbCoffeeOffered = pref.getInt("nbCoffeeOffered" + i, 0);
+                        String dateOffering = pref.getString("dateOffering" + i, null);
+
+                        String coffeeName = pref.getString("coffeeName" + i, null);
+                        String coffeeDescription = nbCoffeeOffered + " café(s) offert le " + dateOffering;
+
+                        System.out.println("Description = " + coffeeDescription);
+
+                        HistoryLine historyLine = new HistoryLine(coffeeName, coffeeDescription);
+
+                        arrayHistoryLine.add(historyLine);
+                    }
+
+                    HistoryAdapter adapterHistory = new HistoryAdapter(HistoryClientActivity.this, arrayHistoryLine);
+                    listHistory.setAdapter(adapterHistory);
                 }
-
-                //***********************COMMENTAIRE****************************
-                //Permet d'éditer le sharePreference
-                //**************************************************************
-                SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-
-                for (int i = 1; i <= charitiesClient.size(); i++)
-                {
-                    editor.putString("coffeeName" + i, charitiesClient.get(i - 1).getUserCafe().getUserName());
-                    editor.putInt("nbCoffeeOffered" + i, charitiesClient.get(i - 1).getNbCoffeeOffered());
-                    String HistoryDate = new SimpleDateFormat("yyyy-MM-dd").format(charitiesClient.get(i - 1).getOfferingTime());
-                    editor.putString("dateOffering" + i, HistoryDate);
-                }
-
-                editor.putInt("SizeCharities", charitiesClient.size());
-                editor.commit();
-
-
-                //***********************COMMENTAIRE****************************
-                //Affichage de l'historique
-                //**************************************************************
-                ArrayList<HistoryLine> arrayHistoryLine = new ArrayList<HistoryLine>();
-                ListView listHistory= (ListView) findViewById(R.id.listHistory);
-
-                //***********************COMMENTAIRE****************************
-                //Permet d'afficher les données dans une listView
-                //**************************************************************
-                for(int i = 1; i <= pref.getInt("SizeCharities",0); i++)
-                {
-                    int nbCoffeeOffered = pref.getInt("nbCoffeeOffered"+i,0);
-                    String dateOffering = pref.getString("dateOffering"+i,null);
-
-                    String coffeeName = pref.getString("coffeeName"+i,null);
-                    String coffeeDescription = nbCoffeeOffered+" café(s) offert le "+dateOffering;
-
-                    System.out.println("Description = "+coffeeDescription);
-
-                    HistoryLine historyLine = new HistoryLine(coffeeName,coffeeDescription);
-
-                    arrayHistoryLine.add(historyLine);
-                }
-
-                HistoryAdapter adapterHistory = new HistoryAdapter(HistoryClientActivity.this,arrayHistoryLine);
-                listHistory.setAdapter(adapterHistory);
             }
 
             spinner.setVisibility(View.GONE);

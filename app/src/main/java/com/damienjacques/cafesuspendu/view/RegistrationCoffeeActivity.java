@@ -15,6 +15,7 @@ import com.damienjacques.cafesuspendu.dao.UserDAO;
 import com.damienjacques.cafesuspendu.model.TimeTable;
 import com.damienjacques.cafesuspendu.model.User;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.Time;
 import java.text.DateFormat;
@@ -137,6 +138,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        Exception ioException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -230,6 +232,10 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
 
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
             }
+            catch(IOException e)
+            {
+                ioException = e;
+            }
             catch(Exception e)
             {
                 exception = e;
@@ -265,9 +271,16 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             }
             else
             {
-                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this,MainActivity.class);
-                startActivity(intentReservation);
-                Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                if(ioException != null)
+                {
+                    Toast.makeText(RegistrationCoffeeActivity.this, "Erreur lors de l'enregistrement de l'inscription", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                    startActivity(intentReservation);
+                    Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
