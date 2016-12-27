@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
+import android.util.Size;
 import android.view.View;
 import android.widget.*;
 
@@ -16,7 +17,9 @@ import com.damienjacques.cafesuspendu.exception.EmailFalseException;
 import com.damienjacques.cafesuspendu.exception.EmptyInputException;
 import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
 import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
+import com.damienjacques.cafesuspendu.exception.PasswordNotGoodException;
 import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
+import com.damienjacques.cafesuspendu.exception.SizeNameFirstNameException;
 import com.damienjacques.cafesuspendu.model.User;
 
 import java.io.IOException;
@@ -102,6 +105,8 @@ public class RegistrationClientActivity extends AppCompatActivity
         PhoneNumberFalseException phoneException;
         ExistingUserNameException existingUserNameException;
         PasswordDifferentException passwordDifferentException;
+        SizeNameFirstNameException sizeNameFirstNameException;
+        PasswordNotGoodException passwordNotGoodException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -155,7 +160,48 @@ public class RegistrationClientActivity extends AppCompatActivity
                     throw new ExistingUserNameException();
                 }
 
+                if(name.length() > 30 || firstName.length() > 30)
+                {
+                    throw new SizeNameFirstNameException();
+                }
+
+                Boolean upper = false;
+                for(int i = 0; i < password.length();i++)
+                {
+                    if(Character.isUpperCase(password.charAt(i)))
+                    {
+                        upper = true;
+                    }
+                }
+
+                Boolean number = false;
+                for(int i = 0; i < password.length();i++)
+                {
+                    if(java.lang.Character.isDigit(password.charAt(i)))
+                    {
+                        number = true;
+                    }
+                }
+
+                if(!number)
+                {
+                    throw new PasswordNotGoodException();
+                }
+
+                if(!upper)
+                {
+                    throw new PasswordNotGoodException();
+                }
+
                 userDAO.postNewRegistrationPerson(newPerson);
+            }
+            catch(PasswordNotGoodException e)
+            {
+                passwordNotGoodException = e;
+            }
+            catch(SizeNameFirstNameException e)
+            {
+                sizeNameFirstNameException = e;
             }
             catch(EmptyInputException e)
             {
@@ -234,9 +280,25 @@ public class RegistrationClientActivity extends AppCompatActivity
                                 }
                                 else
                                 {
-                                    Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
-                                    startActivity(intentReservation);
-                                    Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                    if(sizeNameFirstNameException != null)
+                                    {
+                                        Toast.makeText(RegistrationClientActivity.this, sizeNameFirstNameException.getMessage(), Toast.LENGTH_LONG).show();
+                                        spinner.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        if(passwordNotGoodException != null)
+                                        {
+                                            Toast.makeText(RegistrationClientActivity.this, passwordNotGoodException.getMessage(), Toast.LENGTH_LONG).show();
+                                            spinner.setVisibility(View.GONE);
+                                        }
+                                        else
+                                        {
+                                            Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
+                                            startActivity(intentReservation);
+                                            Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -250,5 +312,18 @@ public class RegistrationClientActivity extends AppCompatActivity
     {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
+    }
+
+    public boolean isNumber(char number) {
+        try
+        {
+            java.lang.Character.isDigit(number);
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

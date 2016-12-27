@@ -18,7 +18,11 @@ import com.damienjacques.cafesuspendu.exception.EmptyInputException;
 import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
 import com.damienjacques.cafesuspendu.exception.NbGreaterThanOneException;
 import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
+import com.damienjacques.cafesuspendu.exception.PasswordNotGoodException;
 import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
+import com.damienjacques.cafesuspendu.exception.SizeNumberException;
+import com.damienjacques.cafesuspendu.exception.SizeStreetException;
+import com.damienjacques.cafesuspendu.exception.TooMuchException;
 import com.damienjacques.cafesuspendu.model.TimeTable;
 import com.damienjacques.cafesuspendu.model.User;
 
@@ -157,6 +161,10 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         ExistingUserNameException existingUserNameException;
         PasswordDifferentException passwordDifferentException;
         NbGreaterThanOneException nbGreaterThanOneException;
+        PasswordNotGoodException passwordNotGoodException;
+        SizeStreetException sizeStreetException;
+        SizeNumberException sizeNumberException;
+        TooMuchException tooMuchException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -254,6 +262,11 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                     throw new NbGreaterThanOneException();
                 }
 
+                if (Integer.parseInt(promotionAfter)> 100 || Float.parseFloat(promoValue) > 100.0)
+                {
+                    throw new TooMuchException();
+                }
+
                 if(!validEmail(email))
                 {
                     throw new EmailFalseException();
@@ -279,8 +292,52 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                     throw new ExistingUserNameException();
                 }
 
+                Boolean upper = false;
+                for(int i = 0; i < password.length();i++)
+                {
+                    if(Character.isUpperCase(password.charAt(i)))
+                    {
+                        upper = true;
+                    }
+                }
+
+                Boolean number = false;
+                for(int i = 0; i < password.length();i++)
+                {
+                    if(java.lang.Character.isDigit(password.charAt(i)))
+                    {
+                        number = true;
+                    }
+                }
+
+                if(!number)
+                {
+                    throw new PasswordNotGoodException();
+                }
+
+                if(!upper)
+                {
+                    throw new PasswordNotGoodException();
+                }
+
 
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
+            }
+            catch(TooMuchException e)
+            {
+                tooMuchException = e;
+            }
+            catch(SizeNumberException e)
+            {
+                sizeNumberException = e;
+            }
+            catch(SizeStreetException e)
+            {
+                sizeStreetException = e;
+            }
+            catch(PasswordNotGoodException e)
+            {
+                passwordNotGoodException = e;
             }
             catch(EmptyInputException e)
             {
