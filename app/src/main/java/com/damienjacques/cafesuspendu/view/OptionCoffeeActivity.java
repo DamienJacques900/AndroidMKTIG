@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.CharityDAO;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.exception.EmptyInputException;
+import com.damienjacques.cafesuspendu.exception.NbGreaterThanOneException;
+import com.damienjacques.cafesuspendu.exception.TooMuchException;
 import com.damienjacques.cafesuspendu.model.Charity;
 import com.damienjacques.cafesuspendu.model.User;
 
@@ -147,6 +150,9 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     private class LoadUserModify extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        NbGreaterThanOneException nbGreaterThanOneException;
+        EmptyInputException emptyInputException;
+        TooMuchException tooMuchException;
 
         String nbCoffee = nbCoffeeTextView.getText().toString();
         String promotionValue = promotionValueTextView.getText().toString();
@@ -157,6 +163,21 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
+                if (nbCoffee.equals("") || promotionValue.equals(""))
+                {
+                    throw new EmptyInputException();
+                }
+
+                if (Integer.parseInt(nbCoffee)< 1 || Float.parseFloat(promotionValue) < 0.1)
+                {
+                    throw new NbGreaterThanOneException();
+                }
+
+                if (Integer.parseInt(nbCoffee)> 100 || Float.parseFloat(promotionValue) > 100.0)
+                {
+                    throw new TooMuchException();
+                }
+
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
                 String userName = pref.getString("userName",null);
@@ -186,6 +207,18 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
                 userDAO.putChangeOptionCoffee(token, userModified);
             }
+            catch(NbGreaterThanOneException e)
+            {
+                nbGreaterThanOneException = e;
+            }
+            catch(TooMuchException e)
+            {
+                tooMuchException = e;
+            }
+            catch(EmptyInputException e)
+            {
+                emptyInputException = e;
+            }
             catch(Exception e)
             {
                 exception = e;
@@ -202,25 +235,40 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
-                if (nbCoffee.equals("") || promotionValue.equals(""))
+                System.out.println(exception);
+                Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
+                goToDisconaction();
+            }
+            else
+            {
+                if(nbGreaterThanOneException != null)
                 {
-                    System.out.println(exception);
-                    Toast.makeText(OptionCoffeeActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OptionCoffeeActivity.this, nbGreaterThanOneException.getMessage(), Toast.LENGTH_SHORT).show();
                     spinner.setVisibility(View.GONE);
                 }
                 else
                 {
-                    System.out.println(exception);
-                    Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
-                    goToDisconaction();
+                    if(emptyInputException != null)
+                    {
+                        Toast.makeText(OptionCoffeeActivity.this, emptyInputException.getMessage(), Toast.LENGTH_SHORT).show();
+                        spinner.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        if(tooMuchException != null)
+                        {
+                            Toast.makeText(OptionCoffeeActivity.this, tooMuchException.getMessage(), Toast.LENGTH_SHORT).show();
+                            spinner.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+                            Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                            spinner.setVisibility(View.GONE);
+                            Intent intentOption = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
+                            startActivity(intentOption);
+                        }
+                    }
                 }
-            }
-            else
-            {
-                Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                spinner.setVisibility(View.GONE);
-                Intent intentOption = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
-                startActivity(intentOption);
             }
         }
     }

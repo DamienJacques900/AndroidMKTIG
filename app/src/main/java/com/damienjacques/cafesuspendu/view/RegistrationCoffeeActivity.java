@@ -7,11 +7,18 @@ import android.icu.util.DateInterval;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.exception.EmailFalseException;
+import com.damienjacques.cafesuspendu.exception.EmptyInputException;
+import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
+import com.damienjacques.cafesuspendu.exception.NbGreaterThanOneException;
+import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
+import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
 import com.damienjacques.cafesuspendu.model.TimeTable;
 import com.damienjacques.cafesuspendu.model.User;
 
@@ -23,6 +30,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class RegistrationCoffeeActivity extends AppCompatActivity
 {
@@ -144,6 +152,11 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        EmptyInputException inputException;
+        EmailFalseException emailException;
+        ExistingUserNameException existingUserNameException;
+        PasswordDifferentException passwordDifferentException;
+        NbGreaterThanOneException nbGreaterThanOneException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -235,7 +248,59 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 timeTables.add(timeTableSaturday);
                 timeTables.add(timeTableSunday);
 
+
+                if(Float.parseFloat(promoValue) < 0.1 || Integer.parseInt(promotionAfter) < 1)
+                {
+                    throw new NbGreaterThanOneException();
+                }
+
+                if(!validEmail(email))
+                {
+                    throw new EmailFalseException();
+                }
+
+                if (!password.equals(confirmationPassword))
+                {
+                    throw new PasswordDifferentException();
+                }
+
+                Boolean exist = false;
+
+                ArrayList<User> usersTestUserName = new ArrayList<User>();
+                usersTestUserName = userDAO.getAllUsers();
+                for(int i = 0 ; i < usersTestUserName.size(); i++)
+                {
+                    if(usersTestUserName.get(i).getUserName().equals(userName))
+                        exist = true;
+                }
+
+                if(exist)
+                {
+                    throw new ExistingUserNameException();
+                }
+
+
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
+            }
+            catch(EmptyInputException e)
+            {
+                inputException = e;
+            }
+            catch(NbGreaterThanOneException e)
+            {
+                nbGreaterThanOneException = e;
+            }
+            catch(PasswordDifferentException e)
+            {
+                passwordDifferentException = e;
+            }
+            catch(ExistingUserNameException e)
+            {
+                existingUserNameException = e;
+            }
+            catch(EmailFalseException e)
+            {
+                emailException = e;
             }
             catch(Exception e)
             {
@@ -283,5 +348,11 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public boolean validEmail(String email)
+    {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 }

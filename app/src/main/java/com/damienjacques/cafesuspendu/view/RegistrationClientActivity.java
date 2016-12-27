@@ -6,15 +6,22 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.exception.EmailFalseException;
+import com.damienjacques.cafesuspendu.exception.EmptyInputException;
+import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
+import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
+import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
 import com.damienjacques.cafesuspendu.model.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class RegistrationClientActivity extends AppCompatActivity
@@ -90,6 +97,11 @@ public class RegistrationClientActivity extends AppCompatActivity
     private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        EmptyInputException inputException;
+        EmailFalseException emailException;
+        PhoneNumberFalseException phoneException;
+        ExistingUserNameException existingUserNameException;
+        PasswordDifferentException passwordDifferentException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -109,7 +121,61 @@ public class RegistrationClientActivity extends AppCompatActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
+                if (userName.equals("") || password.equals("") || confirmationPassword.equals("") || name.equals("") || firstName.equals("") || email.equals("") || phoneNumber.equals(""))
+                {
+                    throw new EmptyInputException();
+                }
+
+                if(!validEmail(email))
+                {
+                    throw new EmailFalseException();
+                }
+
+                if(phoneNumber.length()> 15)
+                {
+                    throw new PhoneNumberFalseException();
+                }
+                if (!password.equals(confirmationPassword))
+                {
+                    throw new PasswordDifferentException();
+                }
+
+                Boolean exist = false;
+
+                ArrayList<User> usersTestUserName = new ArrayList<User>();
+                usersTestUserName = userDAO.getAllUsers();
+                for(int i = 0 ; i < usersTestUserName.size(); i++)
+                {
+                    if(usersTestUserName.get(i).getUserName().equals(userName))
+                        exist = true;
+                }
+
+                if(exist)
+                {
+                    throw new ExistingUserNameException();
+                }
+
                 userDAO.postNewRegistrationPerson(newPerson);
+            }
+            catch(EmptyInputException e)
+            {
+                inputException = e;
+            }
+            catch(PasswordDifferentException e)
+            {
+                passwordDifferentException = e;
+            }
+            catch(ExistingUserNameException e)
+            {
+                existingUserNameException = e;
+            }
+            catch(EmailFalseException e)
+            {
+                emailException = e;
+            }
+            catch(PhoneNumberFalseException e)
+            {
+                phoneException = e;
             }
             catch(Exception e)
             {
@@ -127,34 +193,62 @@ public class RegistrationClientActivity extends AppCompatActivity
         {
             if (exception != null)
             {
-                if (!password.equals(confirmationPassword))
+                System.out.println(exception);
+                Toast.makeText(RegistrationClientActivity.this, "Erreur lors de l'enregistrement de l'inscription.Erreur de connexion.", Toast.LENGTH_LONG).show();
+                spinner.setVisibility(View.GONE);
+            }
+            else
+            {
+                if(inputException != null)
                 {
-                    System.out.println(exception);
-                    Toast.makeText(RegistrationClientActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationClientActivity.this, inputException.getMessage(), Toast.LENGTH_LONG).show();
                     spinner.setVisibility(View.GONE);
                 }
                 else
                 {
-                    if (userName.equals("") || password.equals("") || confirmationPassword.equals("") || name.equals("") || firstName.equals(""))
+                    if(passwordDifferentException != null)
                     {
-                        System.out.println(exception);
-                        Toast.makeText(RegistrationClientActivity.this, "Tout les champs doivent être remplis obligatoirememnt sauf email et numéro de téléphone", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationClientActivity.this, passwordDifferentException.getMessage(), Toast.LENGTH_LONG).show();
                         spinner.setVisibility(View.GONE);
                     }
                     else
                     {
-                        System.out.println(exception);
-                        Toast.makeText(RegistrationClientActivity.this, "Erreur lors de l'enregistrement de l'inscription.Erreur de connexion.", Toast.LENGTH_LONG).show();
-                        spinner.setVisibility(View.GONE);
+                        if(existingUserNameException != null)
+                        {
+                            Toast.makeText(RegistrationClientActivity.this, existingUserNameException.getMessage(), Toast.LENGTH_LONG).show();
+                            spinner.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+                            if(emailException != null)
+                            {
+                                Toast.makeText(RegistrationClientActivity.this, emailException.getMessage(), Toast.LENGTH_LONG).show();
+                                spinner.setVisibility(View.GONE);
+                            }
+                            else
+                            {
+                                if(phoneException !=null)
+                                {
+                                    Toast.makeText(RegistrationClientActivity.this, phoneException.getMessage(), Toast.LENGTH_LONG).show();
+                                    spinner.setVisibility(View.GONE);
+                                }
+                                else
+                                {
+                                    Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
+                                    startActivity(intentReservation);
+                                    Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
                     }
                 }
             }
-            else
-            {
-                Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
-                startActivity(intentReservation);
-                Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-            }
         }
+    }
+
+    public boolean validEmail(String email)
+    {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 }

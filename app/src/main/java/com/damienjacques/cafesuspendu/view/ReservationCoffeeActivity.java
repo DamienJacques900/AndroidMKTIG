@@ -156,7 +156,6 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
                     goToDisconaction();
                 }
                 else
-
                 {
                     //***********************COMMENTAIRE****************************
                     //Permet de pouvoir récuperer les données partout dans le code

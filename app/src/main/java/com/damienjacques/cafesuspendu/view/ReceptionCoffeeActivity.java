@@ -148,9 +148,9 @@ public class ReceptionCoffeeActivity extends MenuCoffeeActivity
             }
             else
             {
-                    welcome = "Grâce à vous, "+nbCoffee+" café(s) suspendus ont été offerts.";
-                    textWelcome.setText(welcome);
-                    spinner.setVisibility(View.GONE);
+                welcome = "Grâce à vous, "+nbCoffee+" café(s) suspendus ont été offerts.";
+                textWelcome.setText(welcome);
+                spinner.setVisibility(View.GONE);
             }
         }
     }

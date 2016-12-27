@@ -1,7 +1,6 @@
 package com.damienjacques.cafesuspendu.model;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
@@ -9,21 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.app.AppCompatActivity;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
-import com.damienjacques.cafesuspendu.exception.DeleteBookingException;
-import com.damienjacques.cafesuspendu.view.ChooseRegistrationActivity;
-import com.damienjacques.cafesuspendu.view.MainActivity;
-import com.damienjacques.cafesuspendu.view.ReceptionClientActivity;
-import com.damienjacques.cafesuspendu.view.ReceptionCoffeeActivity;
-import com.damienjacques.cafesuspendu.view.ReservationCoffeeActivity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;

@@ -5,17 +5,23 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.exception.EmailFalseException;
+import com.damienjacques.cafesuspendu.exception.EmptyInputException;
+import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
 import com.damienjacques.cafesuspendu.model.User;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class OptionClientActivity extends MenuClientActivity
 {
@@ -144,6 +150,9 @@ public class OptionClientActivity extends MenuClientActivity
     {
         Exception exception;
         Exception ioException;
+        EmptyInputException inputException;
+        EmailFalseException emailException;
+        PhoneNumberFalseException phoneException;
 
         String email = mailTextView.getText().toString();
         String phoneNumber = phoneTextView.getText().toString();
@@ -173,16 +182,43 @@ public class OptionClientActivity extends MenuClientActivity
 
                 User userModified = users.get(i);
 
+                if (email.equals("") || phoneNumber.toString().equals(""))
+                {
+                    throw new EmptyInputException();
+                }
+
+                if(!validEmail(email))
+                {
+                    throw new EmailFalseException();
+                }
+
+                if(phoneNumber.length()> 15)
+                {
+                    throw new PhoneNumberFalseException();
+                }
+
                 userModified.setEmail(email);
                 userModified.setPhoneNumber(phoneNumber);
+
+                userDAO.postChangeOptionPersonPhone(token, userModified);
+                userDAO.postChangeOptionPersonEmail(token, userModified);
 
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("email", email);
                 editor.putString("phoneNumber", phoneNumber);
                 editor.commit();
-
-                userDAO.postChangeOptionPersonPhone(token, userModified);
-                userDAO.postChangeOptionPersonEmail(token, userModified);
+            }
+            catch(EmptyInputException e)
+            {
+                inputException = e;
+            }
+            catch(EmailFalseException e)
+            {
+                emailException = e;
+            }
+            catch(PhoneNumberFalseException e)
+            {
+                phoneException = e;
             }
             catch(IOException e)
             {
@@ -202,28 +238,50 @@ public class OptionClientActivity extends MenuClientActivity
         @Override
         protected void onPostExecute(ArrayList<User> users)
         {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             if (exception != null)
             {
-                if (mailTextView.getText().toString().equals("") || phoneTextView.getText().toString().equals(""))
-                {
-                    spinner.setVisibility(View.GONE);
-                    System.out.println(exception);
-                    Toast.makeText(OptionClientActivity.this, "Vous devez remplir tout les champs pour effectuer une modification.", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    spinner.setVisibility(View.GONE);
-                    Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
-                    System.out.println(exception);
-                    goToDisconaction();
-                }
+                spinner.setVisibility(View.GONE);
+                Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
+                System.out.println(exception);
+                goToDisconaction();
             }
             else
             {
-                Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                Intent intentOption = new Intent(OptionClientActivity.this, OptionClientActivity.class);
-                startActivity(intentOption);
+                if(emailException != null)
+                {
+                    spinner.setVisibility(View.GONE);
+                    Toast.makeText(OptionClientActivity.this, emailException.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    if(phoneException != null)
+                    {
+                        spinner.setVisibility(View.GONE);
+                        Toast.makeText(OptionClientActivity.this, phoneException.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        if(inputException != null)
+                        {
+                            spinner.setVisibility(View.GONE);
+                            Toast.makeText(OptionClientActivity.this, inputException.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                            Intent intentOption = new Intent(OptionClientActivity.this, OptionClientActivity.class);
+                            startActivity(intentOption);
+                        }
+                    }
+                }
             }
         }
+    }
+
+    public boolean validEmail(String email)
+    {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 }
