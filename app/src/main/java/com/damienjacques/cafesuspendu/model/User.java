@@ -106,6 +106,18 @@ public class User implements Serializable
         this.id = id;
     }
 
+    public User(String userName,String roles,String email,String phoneNumber,Integer nbCoffeeRequiredForPromotion ,Float promotionValue,String id, String cafeName)
+    {
+        this.userName = userName;
+        this.roles = roles;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.nbCoffeeRequiredForPromotion = nbCoffeeRequiredForPromotion;
+        this.promotionValue = promotionValue;
+        this.id = id;
+        this.cafeName = cafeName;
+    }
+
 
     public User(String userName, String cafeName, String street, String number, Integer nbCoffeeRequiredForPromotion, Float promotionValue, ArrayList<Booking> bookings, ArrayList<TimeTable> timesTables, String firstName, String lastName, String email, Boolean emailConfirmed, String phoneNumber) {
         this.userName = userName;

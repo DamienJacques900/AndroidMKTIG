@@ -15,6 +15,7 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
 import com.damienjacques.cafesuspendu.exception.EmailFalseException;
 import com.damienjacques.cafesuspendu.exception.EmptyInputException;
+import com.damienjacques.cafesuspendu.exception.ExistingCoffeeNameException;
 import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
 import com.damienjacques.cafesuspendu.exception.NbGreaterThanOneException;
 import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
@@ -165,14 +166,19 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         SizeStreetException sizeStreetException;
         SizeNumberException sizeNumberException;
         TooMuchException tooMuchException;
+        ExistingCoffeeNameException existingCoffeeNameException;
+        NumberFormatException numberFormatException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
         String confirmationPassword = confirmationPasswordTextView.getText().toString();
         String street = streetTextView.getText().toString();
         String number = numberTextView.getText().toString();
+
         String promotionAfter = nbCoffeePromotionTextView.getText().toString();
+
         String promoValue = promotionValueTextView.getText().toString();
+
         String coffeeName = coffeNameTextView.getText().toString();
         String email = emailTextView.getText().toString();
         String userCoffee = "usercafe";
@@ -199,14 +205,27 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         String sundayEndHour = sundayEndHourTextView.getText().toString();
 
 
-        int intPromotionAfter = Integer.parseInt(promotionAfter);
-        Float doublePromoValue = Float.parseFloat(promoValue);
 
         ArrayList<String> hourDay = new ArrayList<String>();
-        User newCoffee = new User(coffeeName,userName,password,confirmationPassword,street,number,email,intPromotionAfter,doublePromoValue,userCoffee);
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
+            int intPromotionAfter;
+
+            if(promotionAfter.equals(""))
+                intPromotionAfter = 0;
+            else
+                intPromotionAfter = Integer.parseInt(promotionAfter);
+
+            Float doublePromoValue;
+            if(promoValue.equals(""))
+                doublePromoValue = Float.parseFloat("0");
+            else
+                doublePromoValue = Float.parseFloat(promoValue);
+
+            User newCoffee = new User(coffeeName,userName,password,confirmationPassword,street,number,email,intPromotionAfter,doublePromoValue,userCoffee);
+
+
             hourDay.add(mondayBeginHour+":00");
             hourDay.add(mondayEndHour+":00");
             hourDay.add(thusdayBeginHour+":00");
@@ -278,6 +297,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 }
 
                 Boolean exist = false;
+                Boolean existCoffeeName = false;
 
                 ArrayList<User> usersTestUserName = new ArrayList<User>();
                 usersTestUserName = userDAO.getAllUsers();
@@ -285,6 +305,9 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 {
                     if(usersTestUserName.get(i).getUserName().equals(userName))
                         exist = true;
+
+                    if(usersTestUserName.get(i).getCafeName().equals(coffeeName))
+                        existCoffeeName = true;
                 }
 
                 if(exist)
@@ -301,16 +324,16 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                     }
                 }
 
-                Boolean number = false;
+                Boolean numberPassword = false;
                 for(int i = 0; i < password.length();i++)
                 {
                     if(java.lang.Character.isDigit(password.charAt(i)))
                     {
-                        number = true;
+                        numberPassword = true;
                     }
                 }
 
-                if(!number)
+                if(!numberPassword)
                 {
                     throw new PasswordNotGoodException();
                 }
@@ -321,41 +344,69 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                 }
 
 
+                if(existCoffeeName)
+                {
+                    throw new ExistingCoffeeNameException();
+                }
+
+                if(number.length() > 5)
+                {
+                    throw new SizeNumberException();
+                }
+
+                if(street.length() > 50)
+                {
+                    throw new SizeStreetException();
+                }
+
+                if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") || number.equals("") || promoValue.equals("") || promotionAfter.equals("") || coffeeName.equals("") || email.equals(""))
+                {
+                    throw new EmptyInputException();
+                }
+
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
             }
-            catch(TooMuchException e)
+            catch(NumberFormatException e) //OK---------------
+            {
+                numberFormatException = e;
+            }
+            catch(ExistingCoffeeNameException e) //OK---------------
+            {
+                existingCoffeeNameException = e;
+            }
+            catch(TooMuchException e) //OK---------------
             {
                 tooMuchException = e;
             }
-            catch(SizeNumberException e)
+            catch(SizeNumberException e) //OK---------------
             {
                 sizeNumberException = e;
             }
-            catch(SizeStreetException e)
+            catch(SizeStreetException e) //OK---------------
             {
                 sizeStreetException = e;
             }
-            catch(PasswordNotGoodException e)
+            catch(PasswordNotGoodException e) //OK---------------
             {
                 passwordNotGoodException = e;
             }
-            catch(EmptyInputException e)
+            catch(EmptyInputException e) //OK---------------
             {
                 inputException = e;
             }
-            catch(NbGreaterThanOneException e)
+            catch(NbGreaterThanOneException e)  //OK---------------
             {
                 nbGreaterThanOneException = e;
             }
-            catch(PasswordDifferentException e)
+            catch(PasswordDifferentException e) //OK---------------
             {
                 passwordDifferentException = e;
             }
-            catch(ExistingUserNameException e)
+            catch(ExistingUserNameException e) //OK---------------
             {
                 existingUserNameException = e;
             }
-            catch(EmailFalseException e)
+            catch(EmailFalseException e) //OK---------------
             {
                 emailException = e;
             }
@@ -375,35 +426,105 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         {
             if (exception != null)
             {
-                if (!password.equals(confirmationPassword))
+                System.out.println(exception);
+                Toast.makeText(RegistrationCoffeeActivity.this, "Erreur dans de connexion", Toast.LENGTH_LONG).show();
+                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                startActivity(intentReservation);
+            }
+            else
+            {
+                if(existingCoffeeNameException != null)
                 {
-                    System.out.println(exception);
-                    Toast.makeText(RegistrationCoffeeActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationCoffeeActivity.this, existingCoffeeNameException.getMessage(), Toast.LENGTH_LONG).show();
                     spinner.setVisibility(View.GONE);
                 }
                 else
                 {
-                    if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals("") || email.equals(""))
+                    if(tooMuchException != null)
                     {
-                        System.out.println(exception);
-                        Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationCoffeeActivity.this, tooMuchException.getMessage(), Toast.LENGTH_LONG).show();
                         spinner.setVisibility(View.GONE);
                     }
                     else
                     {
-                        System.out.println(exception);
-                        Toast.makeText(RegistrationCoffeeActivity.this, "Erreur dans de connexion", Toast.LENGTH_LONG).show();
-                        Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
-                        startActivity(intentReservation);
+                        if(sizeNumberException != null)
+                        {
+                            Toast.makeText(RegistrationCoffeeActivity.this, sizeNumberException.getMessage(), Toast.LENGTH_LONG).show();
+                            spinner.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+                            if(sizeStreetException != null)
+                            {
+                                Toast.makeText(RegistrationCoffeeActivity.this, sizeStreetException.getMessage(), Toast.LENGTH_LONG).show();
+                                spinner.setVisibility(View.GONE);
+                            }
+                            else
+                            {
+                                if(passwordNotGoodException != null)
+                                {
+                                    Toast.makeText(RegistrationCoffeeActivity.this, passwordNotGoodException.getMessage(), Toast.LENGTH_LONG).show();
+                                    spinner.setVisibility(View.GONE);
+                                }
+                                else
+                                {
+                                    if(inputException != null)
+                                    {
+                                        Toast.makeText(RegistrationCoffeeActivity.this, inputException.getMessage(), Toast.LENGTH_LONG).show();
+                                        spinner.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        if(nbGreaterThanOneException != null)
+                                        {
+                                            Toast.makeText(RegistrationCoffeeActivity.this, nbGreaterThanOneException.getMessage(), Toast.LENGTH_LONG).show();
+                                            spinner.setVisibility(View.GONE);
+                                        }
+                                        else
+                                        {
+                                            if(passwordDifferentException != null)
+                                            {
+                                                Toast.makeText(RegistrationCoffeeActivity.this, passwordDifferentException.getMessage(), Toast.LENGTH_LONG).show();
+                                                spinner.setVisibility(View.GONE);
+                                            }
+                                            else
+                                            {
+                                                if(existingUserNameException != null)
+                                                {
+                                                    Toast.makeText(RegistrationCoffeeActivity.this, existingUserNameException.getMessage(), Toast.LENGTH_LONG).show();
+                                                    spinner.setVisibility(View.GONE);
+                                                }
+                                                else
+                                                {
+                                                    if(emailException != null)
+                                                    {
+                                                        Toast.makeText(RegistrationCoffeeActivity.this, emailException.getMessage(), Toast.LENGTH_LONG).show();
+                                                        spinner.setVisibility(View.GONE);
+                                                    }
+                                                    else
+                                                    {
+                                                        if(numberFormatException != null)
+                                                        {
+                                                            Toast.makeText(RegistrationCoffeeActivity.this, "Les champs valeur de la promotion et nombre de café avant promotion doivent être remplies", Toast.LENGTH_LONG).show();
+                                                            spinner.setVisibility(View.GONE);
+                                                        }
+                                                        else
+                                                        {
+                                                            Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                                                            startActivity(intentReservation);
+                                                            Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
-            else
-            {
-                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
-                startActivity(intentReservation);
-                Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-            }
+                  }
         }
     }
 
