@@ -13,6 +13,9 @@ import android.widget.*;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.UserDAO;
+import com.damienjacques.cafesuspendu.exception.BeginHourBeforeEndException;
+import com.damienjacques.cafesuspendu.exception.BetweenZeroAndSixtyException;
+import com.damienjacques.cafesuspendu.exception.BetweenZeroAndTwentyFourException;
 import com.damienjacques.cafesuspendu.exception.EmailFalseException;
 import com.damienjacques.cafesuspendu.exception.EmptyInputException;
 import com.damienjacques.cafesuspendu.exception.ExistingCoffeeNameException;
@@ -168,6 +171,9 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         TooMuchException tooMuchException;
         ExistingCoffeeNameException existingCoffeeNameException;
         NumberFormatException numberFormatException;
+        BeginHourBeforeEndException beginHourBeforeEndException;
+        BetweenZeroAndSixtyException betweenZeroAndSixtyException;
+        BetweenZeroAndTwentyFourException betweenZeroAndTwentyFourException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -210,6 +216,91 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         @Override
         protected ArrayList<User> doInBackground(String... params)
         {
+            //------------------------TEST------------------------------
+
+            String hourtest = "";
+            String mintest = "";
+            for(int i = 0; i < sundayBeginHour.length(); i++)
+            {
+
+                if(!(sundayBeginHour.charAt(i)==':'))
+                {
+                    hourtest+=sundayBeginHour.charAt(i);
+                }
+                else
+                {
+                    mintest = sundayBeginHour.substring(i+1);
+                    break;
+                }
+            }
+
+            int intHourBegin;
+            if(hourtest.equals(""))
+                intHourBegin = 0;
+            else
+                intHourBegin = Integer.parseInt(hourtest);
+
+
+            int intMinBegin;
+            if(mintest.equals(""))
+                intMinBegin = 0;
+            else
+                intMinBegin = Integer.parseInt(mintest);
+
+            if(intHourBegin > 23)
+                System.out.println("pas bonne heure begin");
+            else
+                System.out.println(intHourBegin+" est une bonne heure begin");
+
+            if(intMinBegin > 59)
+                System.out.println("pas bonne min begin");
+            else
+                System.out.println(intMinBegin+" est une bonne min begin");
+
+
+            String hourtestEnd = "";
+            String mintestEnd = "";
+            for(int i = 0; i < sundayEndHour.length(); i++)
+            {
+
+                if(!(sundayEndHour.charAt(i)==':'))
+                {
+                    hourtestEnd+=sundayEndHour.charAt(i);
+                }
+                else
+                {
+                    mintestEnd = sundayEndHour.substring(i+1);
+                    break;
+                }
+            }
+
+            int intHourEnd = Integer.parseInt(hourtestEnd);
+            int intMinEnd = Integer.parseInt(mintestEnd);
+            if(intHourEnd > 23)
+                System.out.println("pas bonne heure end");
+            else
+                System.out.println(intHourEnd+" est une bonne heure end");
+
+            if(intMinEnd > 59)
+                System.out.println("pas bonne min end");
+            else
+                System.out.println(intMinEnd+" est une bonne min end");
+
+            if(intHourBegin >= intHourEnd)
+            {
+                if(intMinBegin > intMinEnd)
+                {
+                    System.out.println("L'heure de début est avant l'heure de fin!");
+                }
+            }
+            else
+            {
+                System.out.println("Les heures sont ok!");
+            }
+
+            //----------------------------------------------TEST----------------------------
+
+
             int intPromotionAfter;
 
             if(promotionAfter.equals(""))
@@ -245,6 +336,125 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             ArrayList<User> users = new ArrayList<>();
             try
             {
+                //------------------------JOUR INSPECTION DES HORAIRES------------------------
+                //------------------------LUNDI-------------------------------------
+                //***********************COMMENTAIRE****************************
+                //Récupération des valeurs de min et des heures
+                //**************************************************************
+                String hourtMondayBegin = "";
+                String minMondayBegin = "";
+                for(int i = 0; i < mondayBeginHour.length(); i++)
+                {
+
+                    if(!(mondayBeginHour.charAt(i)==':'))
+                    {
+                        hourtMondayBegin+=mondayBeginHour.charAt(i);
+                    }
+                    else
+                    {
+                        minMondayBegin = mondayBeginHour.substring(i+1);
+                        break;
+                    }
+                }
+
+                //***********************COMMENTAIRE****************************
+                //Si aucune valeur n'as été notée, zéro par défaut
+                //**************************************************************
+                int intHourMondayBegin;
+                if(hourtMondayBegin.equals(""))
+                    intHourMondayBegin = 0;
+                else
+                    intHourMondayBegin = Integer.parseInt(hourtMondayBegin);
+
+
+                int intMinMondayBegin;
+                if(minMondayBegin.equals(""))
+                    intMinMondayBegin = 0;
+                else
+                    intMinMondayBegin = Integer.parseInt(minMondayBegin);
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les heures sont bien compris entre 0 et 23
+                //**************************************************************
+                if(intHourMondayBegin > 23)
+                    throw new BetweenZeroAndTwentyFourException();
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les minutes sont bien compris entre 0 et 59
+                //**************************************************************
+                if(intMinMondayBegin > 59)
+                    throw new BetweenZeroAndSixtyException();
+
+
+
+                String hourMondayEnd = "";
+                String minMondayEnd = "";
+                for(int i = 0; i < mondayBeginHour.length(); i++)
+                {
+
+                    if(!(mondayBeginHour.charAt(i)==':'))
+                    {
+                        hourMondayEnd+=mondayBeginHour.charAt(i);
+                    }
+                    else
+                    {
+                        minMondayEnd = mondayBeginHour.substring(i+1);
+                        break;
+                    }
+                }
+
+                //***********************COMMENTAIRE****************************
+                //Si aucune valeur n'as été notée, zéro par défaut
+                //**************************************************************
+                int intHourMondayEnd;
+                if(hourMondayEnd.equals(""))
+                    intHourMondayEnd = 0;
+                else
+                    intHourMondayEnd = Integer.parseInt(hourMondayEnd);
+
+
+                int intMinMondayEnd;
+                if(minMondayEnd.equals(""))
+                    intMinMondayEnd = 0;
+                else
+                    intMinMondayEnd = Integer.parseInt(minMondayEnd);
+
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les heures sont bien compris entre 0 et 23
+                //**************************************************************
+                if(intHourMondayEnd > 23)
+                    throw new BetweenZeroAndTwentyFourException();
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les minutes sont bien compris entre 0 et 59
+                //**************************************************************
+                if(intMinMondayEnd > 59)
+                    throw new BetweenZeroAndSixtyException();
+
+                //***********************COMMENTAIRE****************************
+                //Vérification que l'heure de début est bien supérieur à celle de fin
+                //**************************************************************
+                if(intHourMondayBegin >= intHourMondayEnd)
+                {
+                    if(intMinMondayBegin > intMinMondayEnd)
+                    {
+                        throw new BeginHourBeforeEndException();
+                    }
+                }
+
+                //------------------------------MARDI---------------------------------
+                //------------------------------MERCREDI------------------------------
+                //------------------------------JEUDI---------------------------------
+                //------------------------------VENDREDI------------------------------
+                //------------------------------SAMEDI--------------------------------
+                //------------------------------DIMANCHE------------------------------
+                //----------------JOUR INSPECTION DES HORAIRES------------------------
+
+
+
+
+
                 ArrayList<String> dateDay = new ArrayList<String>();
                 for(int i = 0; i < hourDay.size(); i++)
                 {
@@ -364,7 +574,28 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                     throw new EmptyInputException();
                 }
 
+                int result = sundayBeginHour.compareTo(sundayEndHour);
+                if(result >= 0)
+                {
+                    throw new BeginHourBeforeEndException();
+                }
+                //0 si pareil
+                //moins de 0 si sundayBeginHour est plus petit que sundayEndHour
+                //plus de 0 si sundayBeginHour est plus grand que sundayEndHour
+
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
+            }
+            catch(BetweenZeroAndTwentyFourException e)
+            {
+                betweenZeroAndTwentyFourException = e;
+            }
+            catch(BetweenZeroAndSixtyException e)
+            {
+                betweenZeroAndSixtyException = e;
+            }
+            catch(BeginHourBeforeEndException e)
+            {
+                beginHourBeforeEndException = e;
             }
             catch(NumberFormatException e) //OK---------------
             {
@@ -510,9 +741,17 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
                                                         }
                                                         else
                                                         {
-                                                            Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
-                                                            startActivity(intentReservation);
-                                                            Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                                            if(beginHourBeforeEndException != null)
+                                                            {
+                                                                Toast.makeText(RegistrationCoffeeActivity.this, beginHourBeforeEndException.getMessage(), Toast.LENGTH_LONG).show();
+                                                                spinner.setVisibility(View.GONE);
+                                                            }
+                                                            else
+                                                            {
+                                                                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                                                                startActivity(intentReservation);
+                                                                Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                                            }
                                                         }
                                                     }
                                                 }
