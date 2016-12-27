@@ -37,6 +37,8 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private TextView coffeNameTextView;
     private TextView emailTextView;
 
+    private ProgressBar spinner;
+
     private TextView mondayBeginHourTextView;
     private TextView mondayEndHourTextView;
 
@@ -104,6 +106,9 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
         coffeNameTextView = (TextView) findViewById(R.id.coffeeNameEdit);
         emailTextView = (TextView) findViewById(R.id.emailCoffeeEdit);
 
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
+
         mondayBeginHourTextView = (TextView) findViewById(R.id.mondayBeginEdit);
         mondayEndHourTextView = (TextView) findViewById(R.id.mondayEndEdit);
 
@@ -130,6 +135,7 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadNewUser().execute();
             }
         });
@@ -138,7 +144,6 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
     private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
-        Exception ioException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -232,10 +237,6 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
 
                 userDAO.postNewRegistrationCoffee(newCoffee,timeTables);
             }
-            catch(IOException e)
-            {
-                ioException = e;
-            }
             catch(Exception e)
             {
                 exception = e;
@@ -254,33 +255,32 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
             {
                 if (!password.equals(confirmationPassword))
                 {
+                    System.out.println(exception);
                     Toast.makeText(RegistrationCoffeeActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
                     if(userName.equals("") || password.equals("") || confirmationPassword.equals("") || street.equals("") ||number.equals("") || promotionAfter.equals("") || promoValue.equals("") || coffeeName.equals("") || email.equals(""))
                     {
+                        System.out.println(exception);
                         Toast.makeText(RegistrationCoffeeActivity.this, "Tout les champs doivent être remplis obligatoirememnt", Toast.LENGTH_LONG).show();
+                        spinner.setVisibility(View.GONE);
                     }
                     else
                     {
-                        Toast.makeText(RegistrationCoffeeActivity.this, "Erreur dans les horaires", Toast.LENGTH_LONG).show();
+                        System.out.println(exception);
+                        Toast.makeText(RegistrationCoffeeActivity.this, "Erreur dans de connexion", Toast.LENGTH_LONG).show();
+                        Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                        startActivity(intentReservation);
                     }
                 }
-                System.out.println(exception);
             }
             else
             {
-                if(ioException != null)
-                {
-                    Toast.makeText(RegistrationCoffeeActivity.this, "Erreur lors de l'enregistrement de l'inscription", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
-                    startActivity(intentReservation);
-                    Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-                }
+                Intent intentReservation = new Intent(RegistrationCoffeeActivity.this, MainActivity.class);
+                startActivity(intentReservation);
+                Toast.makeText(RegistrationCoffeeActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
             }
         }
     }

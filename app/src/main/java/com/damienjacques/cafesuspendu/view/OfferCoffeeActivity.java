@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import java.util.Date;
 public class OfferCoffeeActivity extends MenuCoffeeActivity
 {
     private Button offerButton;
+
+    private ProgressBar spinner;
 
     private TextView clientTextView;
     private TextView passwordTextView;
@@ -113,6 +116,8 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
     private void createlayout()
     {
         offerButton = (Button)findViewById(R.id.buttonOffer);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         clientTextView = (TextView)findViewById(R.id.userNameBidder);
         passwordTextView = (TextView)findViewById(R.id.passwordBidder);
@@ -122,6 +127,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadUser().execute();
             }
         });
@@ -130,6 +136,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
     public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
+        Exception connectException;
 
         String userName = clientTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -165,6 +172,10 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
                 Charity charity = new Charity(dateCharity,userPerson,userCoffee,intNbCoffee,0);
                 charityDAO.newCharity(charity,tokenCoffee);
             }
+            catch(java.net.UnknownHostException e)
+            {
+                connectException = e;
+            }
             catch(Exception e)
             {
                 exception = e;
@@ -183,7 +194,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             {
                 if(userName.equals("") || password.equals("") || intNbCoffee==0)
                 {
+                    System.out.println(exception);
                     Toast.makeText(OfferCoffeeActivity.this, "Vous devez Remplir tout les champs", Toast.LENGTH_SHORT).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
@@ -194,9 +207,18 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             }
             else
             {
-                Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(OfferCoffeeActivity.this, ReceptionCoffeeActivity.class);
-                startActivity(intent);
+                if(connectException!=null)
+                {
+                    System.out.println(connectException);
+                    Toast.makeText(OfferCoffeeActivity.this, "Erreur de connexion, l'enregistrement prend trop de temps. Vous avez peut-être perdu la connexion", Toast.LENGTH_SHORT).show();
+                    goToDisconaction();
+                }
+                else
+                {
+                    Toast.makeText(OfferCoffeeActivity.this, "L'ajout de votre café a bien été enregistré", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OfferCoffeeActivity.this, ReceptionCoffeeActivity.class);
+                    startActivity(intent);
+                }
             }
         }
     }
@@ -204,7 +226,7 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
-        Exception ioException;
+        Exception connectException;
 
         String userName = clientTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -226,9 +248,9 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
                 editor.putString("tokenPerson", token);
                 editor.commit();
             }
-            catch(IOException e)
+            catch(java.net.UnknownHostException e)
             {
-                ioException = e;
+                connectException = e;
             }
             catch(Exception e)
             {
@@ -248,19 +270,23 @@ public class OfferCoffeeActivity extends MenuCoffeeActivity
             {
                 if (userName.equals("") || password.equals(""))
                 {
+                    System.out.println(exception);
                     Toast.makeText(OfferCoffeeActivity.this, "Vous devez remplir les champs identifiants et mot de passe pour pouvoir offrir un café", Toast.LENGTH_SHORT).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
                     System.out.println(exception);
                     Toast.makeText(OfferCoffeeActivity.this, "Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }
             }
             else
             {
-                if(ioException!=null)
+                if(connectException!=null)
                 {
-                    Toast.makeText(OfferCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                    System.out.println(connectException);
+                    Toast.makeText(OfferCoffeeActivity.this, "Erreur de connexion, l'enregistrement prend trop de temps. Vous avez peut-être perdu la connexion", Toast.LENGTH_SHORT).show();
                     goToDisconaction();
                 }
                 else

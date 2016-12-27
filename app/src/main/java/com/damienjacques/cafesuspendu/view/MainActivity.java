@@ -14,6 +14,8 @@ import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.*;
 import com.damienjacques.cafesuspendu.model.*;
 
+import java.io.IOException;
+import java.net.HttpRetryException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity
     private class LoadUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
+        Exception connectionException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -117,6 +120,10 @@ public class MainActivity extends AppCompatActivity
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("token", token);
                 editor.commit();
+            }
+            catch(java.net.UnknownHostException e )
+            {
+                connectionException = e;
             }
             catch(Exception e)
             {
@@ -147,47 +154,54 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                //***********************COMMENTAIRE****************************
-                //Permet d'aller chercher l'utilisateur que l'on souhaite
-                //**************************************************************
-                int i;
-                for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++)
+                if(connectionException != null)
                 {
-                }
-                //***********************COMMENTAIRE****************************
-                //Permet de pouvoir récuperer les données partout dans le code
-                //par la suite en stockant les données dans un sharePreference
-                //**************************************************************
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                //***********************COMMENTAIRE****************************
-                //Permet d'éditer le sharePreference
-                //**************************************************************
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("userName", users.get(i).getUserName().toString());
-                editor.putString("role", users.get(i).getRoles().toString());
-                editor.putString("email", users.get(i).getEmail().toString());
-                editor.putString("phoneNumber", users.get(i).getPhoneNumber().toString());
-                editor.putInt("nbCoffeeRequiredForPromotion", users.get(i).getNbCoffeeRequiredForPromotion());
-                editor.putFloat("promotionValue", users.get(i).getPromotionValue());
-                editor.commit();
-
-                if (users.get(i).getRoles().equals("userperson"))
-                {//User
+                    System.out.println(connectionException);
                     spinner.setVisibility(View.GONE);
-                    Intent intent = new Intent(MainActivity.this, ReceptionClientActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Erreur de connexion, impossible de se connecter au compte", Toast.LENGTH_LONG).show();
                 }
                 else
-                {//Coffee
-                    if(users.get(i).getRoles().equals("usercafe"))
-                    {
+                {
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'aller chercher l'utilisateur que l'on souhaite
+                    //**************************************************************
+                    int i;
+                    for (i = 0; i < users.size() && !users.get(i).getUserName().equals(userName); i++) {
+                    }
+                    //***********************COMMENTAIRE****************************
+                    //Permet de pouvoir récuperer les données partout dans le code
+                    //par la suite en stockant les données dans un sharePreference
+                    //**************************************************************
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    //***********************COMMENTAIRE****************************
+                    //Permet d'éditer le sharePreference
+                    //**************************************************************
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("userName", users.get(i).getUserName().toString());
+                    editor.putString("role", users.get(i).getRoles().toString());
+                    editor.putString("email", users.get(i).getEmail().toString());
+                    editor.putString("phoneNumber", users.get(i).getPhoneNumber().toString());
+                    editor.putInt("nbCoffeeRequiredForPromotion", users.get(i).getNbCoffeeRequiredForPromotion());
+                    editor.putFloat("promotionValue", users.get(i).getPromotionValue());
+                    editor.commit();
+
+                    if (users.get(i).getRoles().equals("userperson"))
+                    {//User
                         spinner.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ReceptionClientActivity.class);
                         startActivity(intent);
                     }
                     else
-                    {
-                        Toast.makeText(MainActivity.this, "Aucune role pour cet utilisateur", Toast.LENGTH_SHORT).show();
+                    {//Coffee
+                        if (users.get(i).getRoles().equals("usercafe"))
+                        {
+                            spinner.setVisibility(View.GONE);
+                            Intent intent = new Intent(MainActivity.this, ReceptionCoffeeActivity.class);
+                            startActivity(intent);
+                        } else
+                        {
+                            Toast.makeText(MainActivity.this, "Aucune role pour cet utilisateur", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

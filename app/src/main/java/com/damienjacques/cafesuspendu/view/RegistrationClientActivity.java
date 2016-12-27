@@ -28,6 +28,8 @@ public class RegistrationClientActivity extends AppCompatActivity
     private TextView phoneTextView;
     private TextView confirmationPasswordTextView;
 
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -68,7 +70,10 @@ public class RegistrationClientActivity extends AppCompatActivity
         nameTextView = (TextView) findViewById(R.id.nameClientEdit);
         firstNameTextView = (TextView) findViewById(R.id.firstNameClientEdit);
         mailTextView = (TextView) findViewById(R.id.mailClientEdit);
-        phoneTextView = (TextView) findViewById(R.id.phoneClientEdit) ;
+        phoneTextView = (TextView) findViewById(R.id.phoneClientEdit);
+
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         clickRegistration = (Button) findViewById(R.id.buttonRegistrationClient);
 
@@ -76,6 +81,7 @@ public class RegistrationClientActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadNewUser().execute();
             }
         });
@@ -84,7 +90,6 @@ public class RegistrationClientActivity extends AppCompatActivity
     private class LoadNewUser extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
-        Exception ioException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -106,10 +111,6 @@ public class RegistrationClientActivity extends AppCompatActivity
             {
                 userDAO.postNewRegistrationPerson(newPerson);
             }
-            catch(IOException e)
-            {
-                ioException = e;
-            }
             catch(Exception e)
             {
                 exception = e;
@@ -128,28 +129,31 @@ public class RegistrationClientActivity extends AppCompatActivity
             {
                 if (!password.equals(confirmationPassword))
                 {
+                    System.out.println(exception);
                     Toast.makeText(RegistrationClientActivity.this, "Les mot de passes tapés sont différents", Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
                     if (userName.equals("") || password.equals("") || confirmationPassword.equals("") || name.equals("") || firstName.equals(""))
                     {
+                        System.out.println(exception);
                         Toast.makeText(RegistrationClientActivity.this, "Tout les champs doivent être remplis obligatoirememnt sauf email et numéro de téléphone", Toast.LENGTH_LONG).show();
+                        spinner.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        System.out.println(exception);
+                        Toast.makeText(RegistrationClientActivity.this, "Erreur lors de l'enregistrement de l'inscription.Erreur de connexion.", Toast.LENGTH_LONG).show();
+                        spinner.setVisibility(View.GONE);
                     }
                 }
             }
             else
             {
-                if(ioException != null)
-                {
-                    Toast.makeText(RegistrationClientActivity.this, "Erreur lors de l'enregistrement de l'inscription", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
-                    startActivity(intentReservation);
-                    Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-                }
+                Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
+                startActivity(intentReservation);
+                Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
             }
         }
     }

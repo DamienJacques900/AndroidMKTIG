@@ -24,6 +24,8 @@ public class OptionClientActivity extends MenuClientActivity
 
     private Button clickModify;
 
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -106,6 +108,9 @@ public class OptionClientActivity extends MenuClientActivity
         mailTextView = (TextView) findViewById(R.id.mailOptionClient);
         phoneTextView = (TextView) findViewById(R.id.phoneOptionClient);
 
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
+
         clickModify = (Button) findViewById(R.id.buttonModifyClientOption);
 
         clickModify.setOnClickListener(new View.OnClickListener()
@@ -113,6 +118,7 @@ public class OptionClientActivity extends MenuClientActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadUserModify().execute();
             }
         });
@@ -200,27 +206,23 @@ public class OptionClientActivity extends MenuClientActivity
             {
                 if (mailTextView.getText().toString().equals("") || phoneTextView.getText().toString().equals(""))
                 {
-                    Toast.makeText(OptionClientActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                    spinner.setVisibility(View.GONE);
+                    System.out.println(exception);
+                    Toast.makeText(OptionClientActivity.this, "Vous devez remplir tout les champs pour effectuer une modification.", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
+                    Toast.makeText(OptionClientActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
                     System.out.println(exception);
+                    goToDisconaction();
                 }
             }
             else
             {
-                if(ioException!=null)
-                {
-                    Toast.makeText(OptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                    goToDisconaction();
-                }
-                else
-                {
-                    Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                    Intent intentOption = new Intent(OptionClientActivity.this, OptionClientActivity.class);
-                    startActivity(intentOption);
-                }
+                Toast.makeText(OptionClientActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                Intent intentOption = new Intent(OptionClientActivity.this, OptionClientActivity.class);
+                startActivity(intentOption);
             }
         }
     }

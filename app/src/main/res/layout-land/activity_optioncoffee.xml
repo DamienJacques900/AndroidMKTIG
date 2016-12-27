@@ -118,7 +118,7 @@
 
             <Button
                 android:text="@string/modify"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/modiftyButtonCoffeeOption"
                 android:backgroundTint="@color/buttonColor"
@@ -126,7 +126,18 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="22dp"
-                android:layout_below="@+id/valuePromoCoffeeOption"/>
+                android:layout_below="@+id/valuePromoCoffeeOption"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_alignTop="@+id/valuePromoCoffeeOption"
+                android:layout_alignLeft="@+id/textView27"
+                android:layout_alignStart="@+id/textView27" />
         </RelativeLayout>
     </ScrollView>
 

@@ -493,6 +493,15 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"/>
 
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_above="@+id/mondayEndText"
+                android:layout_alignRight="@+id/fridayEndText"
+                android:layout_alignEnd="@+id/fridayEndText" />
+
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

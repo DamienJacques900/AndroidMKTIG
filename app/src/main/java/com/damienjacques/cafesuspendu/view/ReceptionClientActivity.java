@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ public class ReceptionClientActivity extends MenuClientActivity
     private TextView textWelcome;
 
     private String welcome;
+
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -100,13 +104,15 @@ public class ReceptionClientActivity extends MenuClientActivity
     public void createLayout()
     {
         textWelcome = (TextView)findViewById(R.id.welcomeClient);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
+
         new LoadCharity().execute();
     }
 
     public class LoadCharity extends AsyncTask<String, Void, Integer>
     {
         Exception exception;
-        Exception ioException;
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -118,10 +124,6 @@ public class ReceptionClientActivity extends MenuClientActivity
             try
             {
                 nbCoffee = charityDAO.getNbCoffeeCharityPerson(pref.getString("token",null),pref.getString("userName",null));
-            }
-            catch(IOException e)
-            {
-                ioException = e;
             }
             catch(Exception e)
             {
@@ -139,20 +141,15 @@ public class ReceptionClientActivity extends MenuClientActivity
         {
             if (exception != null)
             {
-                Toast.makeText(ReceptionClientActivity.this, "Erreur lors de l'affichage", Toast.LENGTH_LONG).show();
+                System.out.println(exception);
+                Toast.makeText(ReceptionClientActivity.this, "Erreur lors de l'affichage. Erreur de connexion", Toast.LENGTH_LONG).show();
+                goToDisconaction();
             }
             else
             {
-                if(ioException != null)
-                {
-                    Toast.makeText(ReceptionClientActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                    goToDisconaction();
-                }
-                else
-                {
-                    welcome = "Grâce à vous, "+nbCoffee+" café(s) ont été offerts à des sans-abris.";
-                    textWelcome.setText(welcome);
-                }
+                welcome = "Grâce à vous, "+nbCoffee+" café(s) ont été offerts à des sans-abris.";
+                textWelcome.setText(welcome);
+                spinner.setVisibility(View.GONE);
             }
         }
     }

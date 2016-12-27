@@ -107,6 +107,17 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/textColorButton"/>
 
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_alignRight="@+id/thankYou"
+                android:layout_alignEnd="@+id/thankYou"
+                android:layout_marginRight="61dp"
+                android:layout_marginEnd="61dp"
+                android:layout_alignTop="@+id/textView2" />
+
         </RelativeLayout>
     </ScrollView>
 

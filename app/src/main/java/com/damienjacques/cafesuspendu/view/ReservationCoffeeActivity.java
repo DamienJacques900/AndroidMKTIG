@@ -20,6 +20,7 @@ import com.damienjacques.cafesuspendu.model.ReservationAdatper;
 import com.damienjacques.cafesuspendu.model.ReservationLine;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
     public class LoadBooking extends AsyncTask<String, Void, ArrayList<Booking>>
     {
         Exception exception;
-        Exception ioException;
+        Exception connectException;
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
@@ -123,9 +124,9 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
             {
                 bookings = bookingDAO.getAllBooking(pref.getString("token",null));
             }
-            catch(IOException e)
+            catch(ConnectException e)
             {
-                ioException = e;
+                connectException = e;
             }
             catch(Exception e)
             {
@@ -143,16 +144,19 @@ public class ReservationCoffeeActivity extends MenuCoffeeActivity
         {
             if (exception != null)
             {
+                System.out.println(exception);
                 Toast.makeText(ReservationCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
             }
             else
             {
-                if(ioException != null)
+                if(connectException != null)
                 {
+                    System.out.println(exception);
                     Toast.makeText(ReservationCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
                     goToDisconaction();
                 }
                 else
+
                 {
                     //***********************COMMENTAIRE****************************
                     //Permet de pouvoir récuperer les données partout dans le code

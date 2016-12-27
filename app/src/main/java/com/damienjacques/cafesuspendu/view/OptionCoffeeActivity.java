@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 public class OptionCoffeeActivity extends MenuCoffeeActivity
 {
     private Button clickModify;
+
+    private ProgressBar spinner;
 
     private TextView nbCoffeeTextView;
     private TextView promotionValueTextView;
@@ -110,6 +113,9 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     {
         clickModify = (Button) findViewById(R.id.modiftyButtonCoffeeOption);
 
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
+
         nbCoffeeTextView = (TextView) findViewById(R.id.numberCoffeOption);
         promotionValueTextView = (TextView) findViewById(R.id.valuePromoCoffeeOption);
 
@@ -117,6 +123,7 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             @Override
             public void onClick(View v)
             {
+                spinner.setVisibility(View.VISIBLE);
                 new LoadUserModify().execute();
             }
         });
@@ -140,7 +147,6 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
     private class LoadUserModify extends AsyncTask<String, Void, ArrayList<User>>
     {
         Exception exception;
-        Exception ioException;
 
         String nbCoffee = nbCoffeeTextView.getText().toString();
         String promotionValue = promotionValueTextView.getText().toString();
@@ -180,10 +186,6 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
 
                 userDAO.putChangeOptionCoffee(token, userModified);
             }
-            catch(IOException e)
-            {
-                ioException = e;
-            }
             catch(Exception e)
             {
                 exception = e;
@@ -202,27 +204,23 @@ public class OptionCoffeeActivity extends MenuCoffeeActivity
             {
                 if (nbCoffee.equals("") || promotionValue.equals(""))
                 {
+                    System.out.println(exception);
                     Toast.makeText(OptionCoffeeActivity.this, "Vous devez remplir tout les champs pour effectuer une modification", Toast.LENGTH_SHORT).show();
+                    spinner.setVisibility(View.GONE);
                 }
                 else
                 {
-                    Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications", Toast.LENGTH_LONG).show();
+                    System.out.println(exception);
+                    Toast.makeText(OptionCoffeeActivity.this, "Erreur lors de l'enregistrement des modifications. Erreur de connexion.", Toast.LENGTH_LONG).show();
+                    goToDisconaction();
                 }
             }
             else
             {
-                if(ioException !=null)
-                {
-                    Toast.makeText(OptionCoffeeActivity.this, "Erreur de connexion", Toast.LENGTH_LONG).show();
-                    goToDisconaction();
-
-                }
-                else
-                {
-                    Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
-                    Intent intentOption = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
-                    startActivity(intentOption);
-                }
+                Toast.makeText(OptionCoffeeActivity.this, "Les valeurs ont bien été modifiées", Toast.LENGTH_LONG).show();
+                spinner.setVisibility(View.GONE);
+                Intent intentOption = new Intent(OptionCoffeeActivity.this, OptionCoffeeActivity.class);
+                startActivity(intentOption);
             }
         }
     }
