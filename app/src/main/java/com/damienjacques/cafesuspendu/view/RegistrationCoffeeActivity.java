@@ -1029,7 +1029,128 @@ public class RegistrationCoffeeActivity extends AppCompatActivity
 
                 //------------------------------DIMANCHE------------------------------
 
+                //***********************COMMENTAIRE****************************
+                //Récupération des valeurs de min et des heures
+                //**************************************************************
+                String hourSundayBegin = "";
+                String minSundayBegin = "";
+                for(int i = 0; i < sundayBeginHour.length(); i++)
+                {
 
+                    if(!(sundayBeginHour.charAt(i)==':'))
+                    {
+                        hourSundayBegin+=sundayBeginHour.charAt(i);
+                    }
+                    else
+                    {
+                        minSundayBegin = sundayBeginHour.substring(i+1);
+                        break;
+                    }
+                }
+
+                //***********************COMMENTAIRE****************************
+                //Si aucune valeur n'as été notée, zéro par défaut
+                //**************************************************************
+                int intHourSundayBegin;
+                if(hourSundayBegin.equals(""))
+                    intHourSundayBegin = 0;
+                else
+                    intHourSundayBegin = Integer.parseInt(hourSundayBegin);
+
+
+                int intMinSundayBegin;
+                if(minSundayBegin.equals(""))
+                    intMinSundayBegin = 0;
+                else
+                    intMinSundayBegin = Integer.parseInt(minSundayBegin);
+
+
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les heures sont bien compris entre 0 et 23
+                //**************************************************************
+                if(intHourSundayBegin > 23)
+                {
+                    throw new BetweenZeroAndTwentyFourException();
+                }
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les minutes sont bien compris entre 0 et 59
+                //**************************************************************
+                if(intMinSundayBegin > 59)
+                {
+                    throw new BetweenZeroAndSixtyException();
+                }
+
+
+                String hourSundayEnd = "";
+                String minSundayEnd = "";
+                for(int i = 0; i < sundayEndHour.length(); i++)
+                {
+
+                    if(!(sundayEndHour.charAt(i)==':'))
+                    {
+                        hourSundayEnd+=sundayEndHour.charAt(i);
+                    }
+                    else
+                    {
+                        minSundayEnd = sundayEndHour.substring(i+1);
+                        break;
+                    }
+                }
+
+                //***********************COMMENTAIRE****************************
+                //Si aucune valeur n'as été notée, zéro par défaut
+                //**************************************************************
+                int intHourSundayEnd;
+                if(hourSundayEnd.equals(""))
+                    intHourSundayEnd = 0;
+                else
+                    intHourSundayEnd = Integer.parseInt(hourSundayEnd);
+
+
+                int intMinSundayEnd;
+                if(minSundayEnd.equals(""))
+                    intMinSundayEnd = 0;
+                else
+                    intMinSundayEnd = Integer.parseInt(minSundayEnd);
+
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les heures sont bien compris entre 0 et 23
+                //**************************************************************
+                if(intHourSundayEnd > 23)
+                {
+                    throw new BetweenZeroAndTwentyFourException();
+                }
+
+
+                //***********************COMMENTAIRE****************************
+                //Vérification si les minutes sont bien compris entre 0 et 59
+                //**************************************************************
+                if(intMinSundayEnd > 59)
+                {
+                    throw new BetweenZeroAndSixtyException();
+                }
+
+
+                //***********************COMMENTAIRE****************************
+                //Vérification que l'heure de début est bien supérieur à celle de fin
+                //**************************************************************
+                if(intHourSundayBegin > intHourSundayEnd)
+                {
+                    throw new BeginHourBeforeEndException();
+                }
+                else
+                {
+                    if(intHourSundayBegin == intHourSundayEnd)
+                    {
+                        if(intMinSundayBegin >= intMinSundayEnd)
+                        {
+                            throw new BeginHourBeforeEndException();
+                        }
+                    }
+                }
 
                 //----------------JOUR INSPECTION DES HORAIRES------------------------
 
