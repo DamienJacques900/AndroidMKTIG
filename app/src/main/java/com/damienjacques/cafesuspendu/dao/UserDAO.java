@@ -163,6 +163,8 @@ public class UserDAO extends ModifyDBDAO
         newCoffee.accumulate("password",userCoffee.getPassword());
         newCoffee.accumulate("confirmPassword",userCoffee.getConfirmPassword());
 
+        System.out.println(newCoffee);
+
         return newCoffee.toString();
     }
 
