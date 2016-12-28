@@ -99,13 +99,15 @@
 
             <Button
                 android:text="@string/offer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonOffer"
                 android:backgroundTint="@color/buttonColor"
                 android:layout_below="@+id/numberCoffeeBidder"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/textColorButton"/>
+                android:textColor="@color/textColorButton"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <ProgressBar
                 style="?android:attr/progressBarStyle"

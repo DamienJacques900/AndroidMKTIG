@@ -94,14 +94,16 @@
 
             <Button
                 android:text="@string/offer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/buttonOffer"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColorButton"/>
+                android:textColor="@color/textColorButton"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <ProgressBar
                 style="?android:attr/progressBarStyle"

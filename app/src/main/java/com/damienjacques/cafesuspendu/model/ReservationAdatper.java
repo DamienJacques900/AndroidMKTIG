@@ -1,6 +1,7 @@
 package com.damienjacques.cafesuspendu.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.damienjacques.cafesuspendu.R;
 import com.damienjacques.cafesuspendu.dao.BookingDAO;
+import com.damienjacques.cafesuspendu.view.ReservationCoffeeActivity;
 
 import java.util.ArrayList;
 
