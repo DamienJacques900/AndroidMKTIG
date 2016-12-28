@@ -18,6 +18,7 @@ import com.damienjacques.cafesuspendu.exception.EmptyInputException;
 import com.damienjacques.cafesuspendu.exception.ExistingUserNameException;
 import com.damienjacques.cafesuspendu.exception.PasswordDifferentException;
 import com.damienjacques.cafesuspendu.exception.PasswordNotGoodException;
+import com.damienjacques.cafesuspendu.exception.PasswordTooShortException;
 import com.damienjacques.cafesuspendu.exception.PhoneNumberFalseException;
 import com.damienjacques.cafesuspendu.exception.SizeNameFirstNameException;
 import com.damienjacques.cafesuspendu.model.User;
@@ -107,6 +108,7 @@ public class RegistrationClientActivity extends AppCompatActivity
         PasswordDifferentException passwordDifferentException;
         SizeNameFirstNameException sizeNameFirstNameException;
         PasswordNotGoodException passwordNotGoodException;
+        PasswordTooShortException passwordTooShortException;
 
         String userName = userNameTextView.getText().toString();
         String password = passwordTextView.getText().toString();
@@ -194,6 +196,10 @@ public class RegistrationClientActivity extends AppCompatActivity
                 }
 
                 userDAO.postNewRegistrationPerson(newPerson);
+            }
+            catch(PasswordTooShortException e)
+            {
+                passwordTooShortException = e;
             }
             catch(PasswordNotGoodException e)
             {
@@ -294,9 +300,17 @@ public class RegistrationClientActivity extends AppCompatActivity
                                         }
                                         else
                                         {
-                                            Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
-                                            startActivity(intentReservation);
-                                            Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                            if(passwordTooShortException != null)
+                                            {
+                                                Toast.makeText(RegistrationClientActivity.this, passwordTooShortException.getMessage(), Toast.LENGTH_LONG).show();
+                                                spinner.setVisibility(View.GONE);
+                                            }
+                                            else
+                                            {
+                                                Intent intentReservation = new Intent(RegistrationClientActivity.this, MainActivity.class);
+                                                startActivity(intentReservation);
+                                                Toast.makeText(RegistrationClientActivity.this, "L'inscription a bien été effectuée, vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                                            }
                                         }
                                     }
                                 }
