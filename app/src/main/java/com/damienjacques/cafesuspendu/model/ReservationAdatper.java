@@ -37,11 +37,11 @@ public class ReservationAdatper extends ArrayAdapter
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.reservationline,parent,false);
         }
 
-        TextView reservationName = (TextView) convertView.findViewById(R.id.reservationName);
-        TextView dateReservation = (TextView) convertView.findViewById(R.id.textReservation);
+        final TextView reservationName = (TextView) convertView.findViewById(R.id.reservationName);
+        final TextView dateReservation = (TextView) convertView.findViewById(R.id.textReservation);
 
-        Button consumed = (Button) convertView.findViewById(R.id.button);
-        Button notConsumed = (Button) convertView.findViewById(R.id.button2);
+        final Button consumed = (Button) convertView.findViewById(R.id.button);
+        final Button notConsumed = (Button) convertView.findViewById(R.id.button2);
 
 
         consumed.setOnClickListener(new View.OnClickListener()
@@ -59,6 +59,15 @@ public class ReservationAdatper extends ArrayAdapter
                 editor.putInt("idBooking", idBooking);
                 editor.putBoolean("consumedBool", consumedBool);
                 editor.commit();
+
+                consumed.setAlpha(.5f);
+                consumed.setClickable(false);
+                notConsumed.setAlpha(.5f);
+                notConsumed.setClickable(false);
+
+                reservationName.setText("La réservation est bien supprimée");
+                dateReservation.setText("");
+
                 new LoadBooking().execute();
             }
         });
@@ -78,6 +87,15 @@ public class ReservationAdatper extends ArrayAdapter
                 editor.putInt("idBooking", idBooking);
                 editor.putBoolean("consumedBool", consumedBool);
                 editor.commit();
+
+                consumed.setAlpha(.5f);
+                consumed.setClickable(false);
+                notConsumed.setAlpha(.5f);
+                notConsumed.setClickable(false);
+
+                reservationName.setText("La réservation est bien supprimée");
+                dateReservation.setText("");
+
                 new LoadBooking().execute();
 
             }
