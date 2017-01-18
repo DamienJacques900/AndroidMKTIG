@@ -20,19 +20,6 @@
         android:layout_marginLeft="42dp"
         android:layout_marginStart="42dp" />
 
-    <android.support.v7.widget.SwitchCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch3"
-        android:textOff="@string/client"
-        android:textOn="@string/coffee"
-        app:showText="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_alignTop="@+id/textView14"
-        android:layout_toRightOf="@+id/registrationButton"
-        android:layout_toEndOf="@+id/registrationButton" />
-
     <Button
                 android:text="@string/registration"
                 android:layout_width="match_parent"
@@ -54,6 +41,20 @@
         android:layout_below="@+id/switch3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch3"
+        android:textOff="@string/client"
+        android:textOn="@string/coffee"
+        app:showText="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
     <!--//android:thumb="@drawable/switch_thumb"
     //android:track="@drawable/switch_bg"/>
 //android:track="@drawable/switch_bg"-->
